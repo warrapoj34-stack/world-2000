@@ -9,24 +9,25 @@
   <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
   <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/map.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
 </head>
 <body>
-  <header class="masthead">
+  <header class="masthead" id="menu-header">
     <a class="brand" href="./" aria-label="World 2000 หน้าหลัก"><span class="brand-mark" aria-hidden="true">W</span><span>WORLD 2000</span></a>
     <span class="era"><span class="status-dot" aria-hidden="true"></span> จุดเริ่มต้นแห่งสหัสวรรษใหม่</span>
   </header>
-  <main class="main-menu">
+  <main class="main-menu" id="menu-screen">
     <section class="menu-content" aria-labelledby="game-title">
       <p class="eyebrow">โลกหนึ่งใบ • อนาคตในมือคุณ</p>
       <h1 id="game-title">WORLD<span>2000<span class="title-dot">.</span></span></h1>
       <p class="intro">หนึ่งประเทศ ล้านความเป็นไปได้<br>กำหนดเส้นทางของคุณบนเวทีโลก</p>
       <div class="menu-actions" aria-describedby="menu-note">
-        <button class="menu-button primary" type="button" disabled><span>เริ่มเกมใหม่</span><span aria-hidden="true">↗</span></button>
+        <button class="menu-button primary" id="new-game" type="button"><span>เริ่มเกมใหม่</span><span aria-hidden="true">↗</span></button>
         <button class="menu-button secondary" type="button" disabled><span>เล่นต่อ</span><span aria-hidden="true">→</span></button>
       </div>
-      <p id="menu-note" class="menu-note">อยู่ระหว่างการพัฒนา • ยังไม่เปิดให้เล่น</p>
+      <p id="menu-note" class="menu-note">สำรวจแผนที่โลกปี 2000 • ระบบบริหารประเทศกำลังพัฒนา</p>
     </section>
     <div class="world-art" aria-hidden="true">
       <div class="coordinate top-coordinate">ค.ศ. <strong>2000</strong></div>
@@ -52,6 +53,46 @@
         <path class="route" d="M198 216Q270 125 342 209T423 292" stroke-dasharray="4 7"/>
       </svg>
       <div class="coordinate bottom-coordinate"><span class="tiny-line"></span> โลกกำลังรอการเปลี่ยนแปลง</div>
+    </div>
+  </main>
+  <main class="map-screen" id="map-screen" hidden>
+    <header class="map-header">
+      <button class="map-button back-button" id="back-to-menu" type="button">← กลับเมนู</button>
+      <div class="map-heading"><h2>แผนที่โลก</h2><span>WORLD 2000</span></div>
+      <span class="year-badge">ค.ศ. 2000</span>
+    </header>
+    <div class="map-layout">
+      <section class="map-viewport" aria-label="แผนที่ประเทศและดินแดน">
+        <canvas id="world-map" tabindex="0" role="img" aria-label="แผนที่โลก ลากเพื่อเลื่อน ใช้สองนิ้วหรือล้อเมาส์เพื่อซูม แตะเพื่อเลือกประเทศ หรือเลือกจากรายชื่อด้านข้าง"></canvas>
+        <div class="map-caption" aria-hidden="true">แผนที่การเมือง <span>ปี 2000</span></div>
+        <div class="map-tools" aria-label="ควบคุมแผนที่">
+          <button class="map-button" id="zoom-in" type="button" aria-label="ซูมเข้า" disabled>+</button>
+          <output id="zoom-level" aria-label="ระดับการซูม">1.0×</output>
+          <button class="map-button" id="zoom-out" type="button" aria-label="ซูมออก" disabled>−</button>
+          <button class="map-button reset-button" id="reset-map" type="button" disabled>ดูทั้งโลก</button>
+        </div>
+        <div class="map-loading" id="map-loading">
+          <p id="map-load-message" role="status">กำลังเตรียมแผนที่โลก…</p>
+          <button class="map-button" id="retry-map" type="button" hidden>ลองอีกครั้ง</button>
+        </div>
+      </section>
+      <aside class="country-panel" aria-label="ข้อมูลประเทศ">
+        <div class="panel-heading"><span class="status-dot" aria-hidden="true"></span> สำรวจโลก</div>
+        <label class="country-picker-label" for="country-picker">เลือกจากรายชื่อ</label>
+        <select id="country-picker" disabled><option value="">เลือกประเทศหรือดินแดน</option></select>
+        <div class="country-detail" id="country-detail" aria-live="polite" aria-atomic="true">
+          <div class="country-swatch" id="country-swatch" hidden aria-hidden="true"></div>
+          <p class="detail-eyebrow" id="country-category">ประเทศและดินแดน</p>
+          <h3 id="country-name">เลือกประเทศ</h3>
+          <p id="country-note">แตะพื้นที่บนแผนที่ เพื่อดูชื่อประเทศและไฮไลต์พรมแดน</p>
+        </div>
+        <div class="map-guide">
+          <h3>วิธีสำรวจ</h3>
+          <p>ลากนิ้วหรือเมาส์เพื่อเลื่อน<br>กางสองนิ้วหรือหมุนล้อเมาส์เพื่อซูม<br>แตะประเทศเพื่อดูข้อมูล</p>
+          <p class="un-legend"><span aria-hidden="true"></span> ดินแดนภายใต้การดูแลของสหประชาชาติ</p>
+        </div>
+        <p class="map-credit">ข้อมูลแผนที่ Natural Earth · 1:50m<br>ปรับซูดาน ยูโกสลาเวีย และติมอร์-เลสเตตามโจทย์ปี 2000</p>
+      </aside>
     </div>
   </main>
   <footer class="footer"><span id="connection-status" role="status">เตรียมเข้าสู่สหัสวรรษใหม่</span><span id="version" aria-label="เวอร์ชันเกม"></span></footer>

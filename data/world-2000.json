@@ -1,0 +1,46 @@
+{
+  "year": 2000,
+  "merges": [
+    {
+      "id": "729",
+      "nameTh": "ซูดาน",
+      "members": ["Sudan", "S. Sudan"],
+      "noteTh": "แสดงซูดานและซูดานใต้รวมเป็นประเทศเดียวตามพรมแดนปี 2000"
+    },
+    {
+      "id": "YUG",
+      "nameTh": "ยูโกสลาเวีย",
+      "members": ["Serbia", "Montenegro", "Kosovo"],
+      "noteTh": "แสดงเซอร์เบีย มอนเตเนโกร และโคโซโวรวมเป็นยูโกสลาเวียตามขอบเขตที่กำหนดสำหรับเกมปี 2000"
+    }
+  ],
+  "overrides": {
+    "626": {
+      "nameTh": "ติมอร์-เลสเต",
+      "statusTh": "ดินแดนภายใต้การดูแลของสหประชาชาติ",
+      "noteTh": "อยู่ภายใต้การบริหารชั่วคราวของสหประชาชาติในปี 2000",
+      "color": "#999fa4",
+      "administration": "UN"
+    },
+    "807": { "nameTh": "มาซิโดเนีย" },
+    "748": { "nameTh": "สวาซิแลนด์" },
+    "203": { "nameTh": "สาธารณรัฐเช็ก" }
+  },
+  "specialTerritories": {
+    "Somaliland": { "id": "SOMALILAND", "nameTh": "โซมาลิแลนด์" },
+    "N. Cyprus": { "id": "N-CYPRUS", "nameTh": "ไซปรัสเหนือ" },
+    "Indian Ocean Ter.": { "id": "INDIAN-OCEAN-TERRITORIES", "nameTh": "ดินแดนออสเตรเลียในมหาสมุทรอินเดีย" },
+    "Siachen Glacier": { "id": "SIACHEN", "nameTh": "ธารน้ำแข็งเซียเชน" }
+  },
+  "map": {
+    "width": 1800,
+    "height": 900,
+    "minZoom": 1,
+    "maxZoom": 12,
+    "tapThreshold": 10,
+    "oceanColor": "#102736",
+    "borderColor": "#243743",
+    "highlightColor": "#efd79c",
+    "palette": ["#9dad91", "#c1ad91", "#9baeb9", "#b4a0aa", "#a6b9b0", "#b8b49a", "#a2a6bb", "#bd9d8e", "#94b3b0", "#b2ae8c", "#b9a9be", "#8fa5b3"]
+  }
+}

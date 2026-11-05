@@ -7,6 +7,10 @@ const APP_SHELL = [
   './js/version.js', './js/ui/menu.js', './js/pwa.js',
   './manifest.json', './data/game.json', './icons/icon.svg',
   './icons/icon-192.png', './icons/icon-512.png',
+  './css/map.css', './js/ui/map-screen.js', './js/data/world.js',
+  './js/map/renderer.js', './js/map/controls.js',
+  './lib/d3-7.9.0.js', './lib/topojson-client-3.1.0.js',
+  './data/countries-50m.json', './data/country-names-th.json', './data/world-2000.json',
 ];
 const APP_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 
