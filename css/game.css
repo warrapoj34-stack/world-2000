@@ -1,0 +1,81 @@
+.start-screen { padding-bottom: 90px; }
+.start-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 5vw; border-bottom: 1px solid #334552; }
+.start-header .eyebrow { margin: 0; }
+.start-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; max-width: 1200px; margin: auto; padding: 36px 5vw 22px; align-items: center; }
+.draw-machine { text-align: center; min-width: 0; }
+.draw-machine .eyebrow { font-size: 12px; }
+.draw-emblem { font: 700 85px Arial, sans-serif; color: #b5c8ab; margin: 22px auto; width: 150px; height: 150px; display: grid; align-content: center; border: 1px solid #668c8880; border-radius: 50%; outline: 1px dashed #668c8840; outline-offset: 12px; }
+.draw-emblem span { font: 13px monospace; letter-spacing: 5px; padding-left: 5px; }
+#draw-status { color: #a0bdba; font-size: 12px; margin-top: 34px; }
+.draw-reel { min-height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 10px; border-top: 1px solid #628c8f66; border-bottom: 1px solid #628c8f66; background: linear-gradient(90deg, transparent, #213d4655, transparent); }
+#draw-name { font-size: clamp(24px, 3vw, 38px); margin: 16px 0; color: #e2d5b6; font-weight: 500; overflow-wrap: anywhere; }
+.reel-marker { color: #9cbaa6; font: 36px Arial, sans-serif; }
+#draw-code { color: #8ba1ab; font-size: 12px; min-height: 16px; }
+.draw-hint { color: #8fa5af; font-size: 12px; line-height: 1.9; }
+.draw-card { padding: 25px 28px; background: #122733; border: 1px solid #49616b; border-top: 3px solid #b5c8ab; border-radius: 4px; }
+.draw-card .eyebrow { margin-bottom: 14px; }
+#draw-intro { font-size: 23px; line-height: 1.65; font-weight: 500; margin: 0; }
+#draw-government { color: #a8b9bf; font-size: 12px; margin-bottom: 22px; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; gap: 18px 16px; }
+.stat-grid dt { color: #93aeb8; font-size: 11px; margin-bottom: 6px; }
+.stat-grid dd { color: #dce6da; font-size: 13px; margin: 0; line-height: 1.5; overflow-wrap: anywhere; }
+.stat-grid > div { min-width: 0; }
+.estimate-note { color: #839eaa; font-size: 10px; line-height: 1.8; margin: 22px 0 0; }
+.start-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 0 5vw; }
+.start-actions button { min-width: 190px; min-height: 56px; font-size: 16px; }
+.accept-button { background: #b5c8ab; color: #142a2e; border-color: #b5c8ab; }
+.accept-button:active:not(:disabled) { background: #cbd7c2; }
+#replace-save-note { flex-basis: 100%; text-align: center; margin: 0; font-size: 12px; color: #dbc9a7; }
+.manual-choice { max-width: 800px; margin: 18px auto 0; padding: 0 5vw; color: #a3b7c0; font-size: 12px; }
+.manual-choice summary { min-height: 48px; padding: 15px 0; cursor: pointer; }
+.manual-choice > div { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.manual-choice select { flex: 1; min-width: 160px; min-height: 48px; background: #1a303e; border: 1px solid #526473; color: #dce7e7; font: 14px Tahoma, sans-serif; padding: 8px; border-radius: 3px; }
+.manual-choice p { font-size: 11px; color: #8b9fa9; }
+.is-spinning .draw-emblem { animation: orbit-glow 1s linear infinite; }
+.is-spinning #draw-name { animation: reel-shift .15s linear infinite; }
+.is-spinning .start-layout { min-height: 480px; }
+.is-spinning .draw-machine { grid-column: 1 / -1; width: min(100%, 480px); justify-self: center; }
+@keyframes orbit-glow { 50% { box-shadow: 0 0 30px #8ed1be35; outline-offset: 20px; } }
+@keyframes reel-shift { from { transform: translateY(-6px); opacity: .4; } to { transform: translateY(6px); opacity: 1; } }
+.country-hud { height: 66px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #152b37; border-bottom: 1px solid #425460; padding: 10px 20px; gap: 14px; }
+.country-hud > div { min-width: 0; border-right: 1px solid #3d5461; padding-right: 12px; }
+.country-hud > div:last-child { border-right: 0; }
+.country-hud span { color: #9db1bb; font-size: 11px; display: block; margin-bottom: 5px; }
+.country-hud strong { font-size: 14px; font-weight: 500; color: #d9e5cc; display: block; white-space: nowrap; }
+.map-layout { height: calc(100% - 138px); }
+.compact-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; margin-top: 22px; }
+.compact-stats dd { font-size: 12px; }
+.relation { margin-top: 20px; padding: 12px; border: 1px solid #526473; background: #1a303e; border-radius: 3px; }
+.relation strong { font-size: 12px; font-weight: 500; line-height: 1.8; }
+.relation p { font-size: 10px; color: #9db1bb; line-height: 1.8; margin: 5px 0 0; }
+.relation.positive { border-color: #6e9f89; color: #a4dfbe; }
+.relation.negative { border-color: #a37672; color: #ebaca4; }
+.player-legend span { display: inline-block; width: 10px; height: 10px; border: 2px solid #91f2d0; box-shadow: 0 0 6px #5deec5; margin-right: 6px; }
+.save-error { color: #f0ba94; }
+@media (min-width: 701px) and (max-height: 650px) {
+  .map-layout { height: calc(100% - 130px); }
+  .start-layout { padding-top: 24px; gap: 30px; }
+  .draw-emblem { width: 110px; height: 110px; font-size: 60px; }
+  .draw-card { padding: 20px; }
+  .stat-grid { gap: 14px; }
+}
+@media (max-width: 700px) {
+  .start-layout { grid-template-columns: 1fr; gap: 24px; padding-top: 24px; }
+  .start-header .eyebrow { display: none; }
+  .draw-emblem { width: 100px; height: 100px; font-size: 54px; }
+  .draw-hint { display: none; }
+  .draw-card { padding: 20px; }
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .start-actions button { min-width: 140px; flex: 1; }
+  .country-hud { padding: 8px 10px; gap: 7px; height: 72px; }
+  .country-hud > div { padding-right: 3px; }
+  .country-hud span { font-size: 9px; }
+  .country-hud strong { font-size: 10px; white-space: normal; }
+  .map-layout { height: calc(100% - 144px); grid-template-rows: minmax(140px, 1fr) 205px; }
+  .footer { gap: 6px; padding-left: 12px; padding-right: 12px; }
+  #connection-status { max-width: 28%; }
+  #save-status { max-width: 48%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-spinning .draw-emblem, .is-spinning #draw-name { animation: none; }
+}

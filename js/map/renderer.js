@@ -1,7 +1,7 @@
 import { geoEquirectangular, geoPath, geoGraticule10 } from '../../lib/d3-7.9.0.js';
 import { bindMapControls } from './controls.js';
 
-export function createWorldMap(canvas, world, { onSelect, onZoom }) {
+export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {} }) {
   const context = canvas.getContext('2d', { alpha: false });
   if (!context) throw new Error('เบราว์เซอร์นี้ไม่รองรับแผนที่ Canvas');
   const { map } = world.settings;
@@ -21,6 +21,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom }) {
   let width = 0, height = 0, ratio = 1, fit = 1;
   let transform = { x: 0, y: 0, k: 1 };
   let selected = null;
+  let player = null;
   let frame = 0;
 
   function constrain(next) {
@@ -33,6 +34,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom }) {
   function update(next) {
     transform = constrain(next);
     onZoom(transform.k / fit);
+    onViewChange(viewState());
     schedule();
   }
   function schedule() {
@@ -70,6 +72,15 @@ export function createWorldMap(canvas, world, { onSelect, onZoom }) {
       context.strokeStyle = map.highlightColor;
       context.lineWidth = 2.4 / k;
       context.stroke(selected.path);
+    }
+    if (player) {
+      context.save();
+      context.strokeStyle = '#91f2d0';
+      context.shadowColor = '#5deec5';
+      context.shadowBlur = 12 * ratio;
+      context.lineWidth = 2.8 / k;
+      context.stroke(player.path);
+      context.restore();
     }
 
     // วาดชื่อด้วยขนาดคงที่และเว้นช่องว่างไม่ให้ทับกัน
@@ -113,7 +124,21 @@ export function createWorldMap(canvas, world, { onSelect, onZoom }) {
     onSelect(selected?.country ?? null);
     schedule();
   }
+  function viewState() {
+    return { zoom: Math.max(1, Math.min(12, transform.k / fit)),
+      center: [(width / 2 - transform.x) / transform.k, (height / 2 - transform.y) / transform.k] };
+  }
   const view = {
+    getViewState: viewState,
+    setViewState: saved => {
+      const k = fit * saved.zoom;
+      update({ k, x: width / 2 - saved.center[0] * k, y: height / 2 - saved.center[1] * k });
+    },
+    setPlayerCountry: id => {
+      player = shapes.find(shape => shape.country.id === id) ?? null;
+      canvas.dataset.playerCountryId = player?.country.id ?? '';
+      schedule();
+    },
     getTransform: () => ({ ...transform }),
     pan: (dx, dy) => update({ ...transform, x: transform.x + dx, y: transform.y + dy }),
     pinch: (start, anchor, center, scale) => {

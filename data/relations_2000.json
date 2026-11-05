@@ -1,0 +1,1585 @@
+{
+  "schemaVersion": 1,
+  "year": 2000,
+  "default": 0,
+  "noteTh": "ค่าความสัมพันธ์เป็นการประเมินสำหรับสถานการณ์เกม ไม่ใช่ดัชนีทางสถิติ",
+  "groups": {
+    "NATO": [
+      "USA",
+      "CAN",
+      "GBR",
+      "FRA",
+      "DEU",
+      "ITA",
+      "ESP",
+      "PRT",
+      "BEL",
+      "NLD",
+      "LUX",
+      "DNK",
+      "NOR",
+      "ISL",
+      "GRC",
+      "TUR",
+      "POL",
+      "CZE",
+      "HUN"
+    ],
+    "ASEAN": [
+      "THA",
+      "VNM",
+      "KHM",
+      "LAO",
+      "MMR",
+      "MYS",
+      "SGP",
+      "IDN",
+      "PHL",
+      "BRN"
+    ]
+  },
+  "pairs": [
+    {
+      "a": "ARM",
+      "b": "AZE",
+      "value": -90,
+      "reasonTh": "ความขัดแย้งนากอร์โน-คาราบัค"
+    },
+    {
+      "a": "AUS",
+      "b": "IDN",
+      "value": -20,
+      "reasonTh": "ผลจากวิกฤตติมอร์ตะวันออก"
+    },
+    {
+      "a": "AUS",
+      "b": "NZL",
+      "value": 85,
+      "reasonTh": "ความร่วมมือใกล้ชิด"
+    },
+    {
+      "a": "AUS",
+      "b": "USA",
+      "value": 80,
+      "reasonTh": "พันธมิตรด้านความมั่นคง"
+    },
+    {
+      "a": "BEL",
+      "b": "CAN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "CZE",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "DEU",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "DNK",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "ESP",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "FRA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "GBR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BEL",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "BLR",
+      "b": "RUS",
+      "value": 75,
+      "reasonTh": "ความสัมพันธ์ใกล้ชิด"
+    },
+    {
+      "a": "BRN",
+      "b": "IDN",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "KHM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "LAO",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "MMR",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "MYS",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "PHL",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "SGP",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "THA",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "BRN",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "CZE",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "DEU",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "DNK",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "ESP",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "FRA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "GBR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CAN",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CHN",
+      "b": "IND",
+      "value": -25,
+      "reasonTh": "ข้อพิพาทพรมแดน"
+    },
+    {
+      "a": "CHN",
+      "b": "PAK",
+      "value": 70,
+      "reasonTh": "ความร่วมมือทางยุทธศาสตร์"
+    },
+    {
+      "a": "CHN",
+      "b": "PHL",
+      "value": -25,
+      "reasonTh": "ข้อพิพาททะเลจีนใต้"
+    },
+    {
+      "a": "CHN",
+      "b": "PRK",
+      "value": 65,
+      "reasonTh": "ความสัมพันธ์ใกล้ชิดทางยุทธศาสตร์"
+    },
+    {
+      "a": "CHN",
+      "b": "RUS",
+      "value": 45,
+      "reasonTh": "ความร่วมมือทางยุทธศาสตร์"
+    },
+    {
+      "a": "CHN",
+      "b": "THA",
+      "value": 45,
+      "reasonTh": "ความร่วมมือทางเศรษฐกิจ"
+    },
+    {
+      "a": "CHN",
+      "b": "TWN",
+      "value": -80,
+      "reasonTh": "ความตึงเครียดข้ามช่องแคบไต้หวัน"
+    },
+    {
+      "a": "CHN",
+      "b": "USA",
+      "value": -15,
+      "reasonTh": "การค้าและความขัดแย้งทางยุทธศาสตร์"
+    },
+    {
+      "a": "CHN",
+      "b": "VNM",
+      "value": -20,
+      "reasonTh": "ข้อพิพาทพรมแดนและทะเล"
+    },
+    {
+      "a": "CUB",
+      "b": "USA",
+      "value": -80,
+      "reasonTh": "การคว่ำบาตรและความขัดแย้งทางอุดมการณ์"
+    },
+    {
+      "a": "CYP",
+      "b": "TUR",
+      "value": -75,
+      "reasonTh": "ข้อพิพาทไซปรัส"
+    },
+    {
+      "a": "CZE",
+      "b": "DEU",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "DNK",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "ESP",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "FRA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "GBR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "CZE",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "DNK",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "ESP",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "FRA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "GBR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DEU",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "ESP",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "FRA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "GBR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "DNK",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ERI",
+      "b": "ETH",
+      "value": -95,
+      "reasonTh": "สงครามชายแดนในช่วงปี 1998–2000"
+    },
+    {
+      "a": "ESP",
+      "b": "FRA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "GBR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ESP",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "GBR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "FRA",
+      "b": "YUG",
+      "value": -60,
+      "reasonTh": "ผลจากสงครามโคโซโวปี 1999"
+    },
+    {
+      "a": "GBR",
+      "b": "GRC",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GBR",
+      "b": "YUG",
+      "value": -75,
+      "reasonTh": "ผลจากสงครามโคโซโวปี 1999"
+    },
+    {
+      "a": "GRC",
+      "b": "HUN",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "GRC",
+      "b": "TUR",
+      "value": -35,
+      "reasonTh": "ข้อพิพาททะเลอีเจียนและไซปรัส"
+    },
+    {
+      "a": "GRC",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "ISL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "HUN",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "KHM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "LAO",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "MMR",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "MYS",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "PHL",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "SGP",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "THA",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IDN",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "IND",
+      "b": "PAK",
+      "value": -90,
+      "reasonTh": "ความขัดแย้งแคชเมียร์และผลจากสงครามคาร์กิล"
+    },
+    {
+      "a": "IND",
+      "b": "RUS",
+      "value": 65,
+      "reasonTh": "ความร่วมมือด้านกลาโหม"
+    },
+    {
+      "a": "IRN",
+      "b": "IRQ",
+      "value": -60,
+      "reasonTh": "ผลจากสงครามอิหร่าน–อิรัก"
+    },
+    {
+      "a": "IRN",
+      "b": "ISR",
+      "value": -85,
+      "reasonTh": "ความขัดแย้งทางยุทธศาสตร์"
+    },
+    {
+      "a": "IRN",
+      "b": "USA",
+      "value": -80,
+      "reasonTh": "ความขัดแย้งทางการทูต"
+    },
+    {
+      "a": "IRQ",
+      "b": "KWT",
+      "value": -85,
+      "reasonTh": "ผลจากการรุกรานคูเวต"
+    },
+    {
+      "a": "IRQ",
+      "b": "USA",
+      "value": -90,
+      "reasonTh": "การคว่ำบาตรและความขัดแย้งในอ่าว"
+    },
+    {
+      "a": "ISL",
+      "b": "ITA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISL",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISL",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISL",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISL",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISL",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISL",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISL",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ISR",
+      "b": "PSE",
+      "value": -65,
+      "reasonTh": "ความขัดแย้งและกระบวนการสันติภาพที่เปราะบาง"
+    },
+    {
+      "a": "ISR",
+      "b": "SYR",
+      "value": -80,
+      "reasonTh": "ข้อพิพาทและความขัดแย้ง"
+    },
+    {
+      "a": "ISR",
+      "b": "USA",
+      "value": 85,
+      "reasonTh": "พันธมิตรใกล้ชิด"
+    },
+    {
+      "a": "ITA",
+      "b": "LUX",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ITA",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ITA",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ITA",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ITA",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ITA",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "ITA",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "JPN",
+      "b": "PRK",
+      "value": -70,
+      "reasonTh": "ข้อพิพาทและความตึงเครียดด้านความมั่นคง"
+    },
+    {
+      "a": "JPN",
+      "b": "USA",
+      "value": 85,
+      "reasonTh": "พันธมิตรด้านความมั่นคง"
+    },
+    {
+      "a": "KHM",
+      "b": "LAO",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "KHM",
+      "b": "MMR",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "KHM",
+      "b": "MYS",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "KHM",
+      "b": "PHL",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "KHM",
+      "b": "SGP",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "KHM",
+      "b": "THA",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "KHM",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "KOR",
+      "b": "PRK",
+      "value": -80,
+      "reasonTh": "การแบ่งแยกคาบสมุทรเกาหลี"
+    },
+    {
+      "a": "KOR",
+      "b": "USA",
+      "value": 80,
+      "reasonTh": "พันธมิตรด้านความมั่นคง"
+    },
+    {
+      "a": "LAO",
+      "b": "MMR",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "LAO",
+      "b": "MYS",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "LAO",
+      "b": "PHL",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "LAO",
+      "b": "SGP",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "LAO",
+      "b": "THA",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "LAO",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "LUX",
+      "b": "NLD",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "LUX",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "LUX",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "LUX",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "LUX",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "LUX",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "MMR",
+      "b": "MYS",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "MMR",
+      "b": "PHL",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "MMR",
+      "b": "SGP",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "MMR",
+      "b": "THA",
+      "value": -15,
+      "reasonTh": "ความตึงเครียดตามชายแดน"
+    },
+    {
+      "a": "MMR",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "MYS",
+      "b": "PHL",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "MYS",
+      "b": "SGP",
+      "value": 15,
+      "reasonTh": "การค้าใกล้ชิดแต่มีข้อพิพาททวิภาคี"
+    },
+    {
+      "a": "MYS",
+      "b": "THA",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "MYS",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "NLD",
+      "b": "NOR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NLD",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NLD",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NLD",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NLD",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NOR",
+      "b": "POL",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NOR",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NOR",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "NOR",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "PHL",
+      "b": "SGP",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "PHL",
+      "b": "THA",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "PHL",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "POL",
+      "b": "PRT",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "POL",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "POL",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "PRK",
+      "b": "USA",
+      "value": -90,
+      "reasonTh": "ความตึงเครียดบนคาบสมุทรเกาหลี"
+    },
+    {
+      "a": "PRT",
+      "b": "TUR",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "PRT",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "RUS",
+      "b": "UKR",
+      "value": 30,
+      "reasonTh": "ความร่วมมือหลังสหภาพโซเวียต"
+    },
+    {
+      "a": "RUS",
+      "b": "USA",
+      "value": 10,
+      "reasonTh": "ความร่วมมือที่ยังมีความระแวงหลังสงครามเย็น"
+    },
+    {
+      "a": "RUS",
+      "b": "YUG",
+      "value": 65,
+      "reasonTh": "ความสัมพันธ์ทางประวัติศาสตร์"
+    },
+    {
+      "a": "SAU",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "ความร่วมมือด้านพลังงานและความมั่นคง"
+    },
+    {
+      "a": "SGP",
+      "b": "THA",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "SGP",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "THA",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "พันธมิตรและความร่วมมือ"
+    },
+    {
+      "a": "THA",
+      "b": "VNM",
+      "value": 40,
+      "reasonTh": "สมาชิกอาเซียนในปี 2000"
+    },
+    {
+      "a": "TUR",
+      "b": "USA",
+      "value": 65,
+      "reasonTh": "สมาชิก NATO ในปี 2000"
+    },
+    {
+      "a": "TWN",
+      "b": "USA",
+      "value": 60,
+      "reasonTh": "ความร่วมมือด้านความมั่นคง"
+    },
+    {
+      "a": "USA",
+      "b": "YUG",
+      "value": -85,
+      "reasonTh": "ผลจากสงครามโคโซโวปี 1999"
+    }
+  ]
+}
