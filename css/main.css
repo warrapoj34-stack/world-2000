@@ -1,0 +1,70 @@
+:root {
+  color-scheme: dark;
+  font-family: Tahoma, "Leelawadee UI", sans-serif;
+  color: #e4eced;
+  background: #0a1725;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: radial-gradient(ellipse at 77% 46%, #18364266, transparent 55%),
+    linear-gradient(#4764740d 1px, transparent 1px), linear-gradient(90deg, #4764740d 1px, transparent 1px), #0a1725;
+  background-size: auto, 64px 64px, 64px 64px, auto;
+}
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 5vw; border-bottom: 1px solid #91b4c018; }
+.brand { display: flex; align-items: center; gap: 12px; color: #d5e2e4; text-decoration: none; font: 700 12px Arial, sans-serif; letter-spacing: 2px; }
+.brand-mark { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #80a7ae66; color: #b4c9bb; font-size: 22px; letter-spacing: -2px; padding-right: 2px; }
+.era { color: #8dabb4; font-size: 12px; }
+.status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 8px; border-radius: 50%; background: #afc3a4; }
+.main-menu { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 5vw; max-width: 1440px; margin: auto; padding: 42px 8vw 94px; min-height: calc(100svh - 89px); }
+.menu-content { position: relative; z-index: 1; max-width: 430px; }
+.eyebrow { margin: 0 0 22px; color: #b5c8ab; font-size: 13px; letter-spacing: 1px; }
+h1 { margin: 0; font-family: Arial, sans-serif; font-size: clamp(60px, 7.5vw, 110px); line-height: .92; font-weight: 800; letter-spacing: -.045em; }
+h1 > span { display: block; color: #b5c8ab; font-size: 1.35em; letter-spacing: -.06em; }
+.title-dot { color: #628c8f; }
+.intro { color: #9fb2bc; margin: 26px 0 30px; font-size: 15px; line-height: 1.9; }
+.menu-actions { display: grid; gap: 12px; max-width: 340px; }
+.menu-button { display: flex; align-items: center; justify-content: space-between; min-height: 60px; padding: 15px 23px; border: 1px solid #77909d50; border-radius: 3px; font: 600 17px Tahoma, "Leelawadee UI", sans-serif; text-align: left; touch-action: manipulation; }
+.menu-button:disabled { cursor: not-allowed; opacity: 1; }
+.primary { background: #b5c8ab; color: #172a2e; border-color: #b5c8ab; }
+.secondary { background: #142635aa; color: #96a9b3; }
+.menu-button span:last-child { font: 24px Arial, sans-serif; }
+.menu-note { color: #8c9faa; font-size: 11px; line-height: 1.8; margin: 14px 0 0; }
+.world-art { position: relative; width: 100%; max-width: 610px; justify-self: center; }
+.globe { display: block; width: 100%; }
+.orbit { stroke: #50738260; }
+.crosshair { stroke: #789b9d90; }
+.globe-grid { stroke: #507c8045; }
+.land { fill: #54786f50; stroke: #76998b90; stroke-width: 1.5; stroke-linejoin: round; }
+.map-points { fill: #bdd1ac; stroke: #bdd1ac22; stroke-width: 12; }
+.route { stroke: #acc3a58a; }
+.coordinate { position: absolute; color: #94adb3; font-size: 12px; letter-spacing: 1px; }
+.top-coordinate { top: -12px; right: 10%; }
+.top-coordinate strong { color: #b5c8ab; font: 400 24px monospace; margin-left: 6px; }
+.bottom-coordinate { bottom: -12px; left: 14%; font-size: 11px; }
+.tiny-line { display: inline-block; width: 28px; height: 1px; background: #b5c8ab; vertical-align: middle; margin-right: 10px; }
+.footer { position: fixed; left: 0; right: 0; bottom: 0; display: flex; gap: 16px; justify-content: space-between; align-items: center; padding: 18px max(5vw, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(5vw, env(safe-area-inset-left)); background: #0a1725ed; border-top: 1px solid #91b4c018; color: #91a7b2; font-size: 11px; z-index: 2; }
+#version { color: #b5c8ab; font: 13px monospace; white-space: nowrap; }
+.script-notice { position: fixed; bottom: 50px; left: 24px; color: #ead5ac; }
+a:focus-visible { outline: 2px solid #b5c8ab; outline-offset: 6px; }
+@media (min-width: 761px) and (max-height: 700px) {
+  .masthead { padding-top: 16px; padding-bottom: 16px; }
+  .main-menu { padding-top: 26px; padding-bottom: 76px; min-height: calc(100svh - 69px); }
+  h1 { font-size: clamp(56px, 6.5vw, 82px); }
+  .eyebrow { margin-bottom: 16px; }
+  .intro { margin: 18px 0; }
+  .world-art { max-width: 460px; }
+}
+@media (max-width: 760px) {
+  .masthead { padding: 18px 6vw; }
+  .era { display: none; }
+  .main-menu { grid-template-columns: 1fr; padding: 40px 8vw 92px; gap: 44px; }
+  .menu-content { width: 100%; justify-self: center; }
+  h1 { font-size: clamp(64px, 15vw, 92px); }
+  .world-art { max-width: 340px; }
+  .menu-actions { max-width: none; }
+  .footer { font-size: 10px; }
+}
