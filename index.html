@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/map.css">
   <link rel="stylesheet" href="./css/game.css">
+  <link rel="stylesheet" href="./css/economy.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
 </head>
@@ -140,7 +141,17 @@
         <p class="map-credit">ข้อมูลแผนที่ Natural Earth · 1:50m<br>ปรับซูดาน ยูโกสลาเวีย และติมอร์-เลสเตตามโจทย์ปี 2000</p>
       </aside>
     </div>
+    <nav class="turn-bar" aria-label="บริหารประเทศ">
+      <button id="open-policy" class="map-button" type="button">นโยบาย</button>
+      <button id="open-ranking" class="map-button" type="button">อันดับโลก</button>
+      <span class="turn-hint">ปรับนโยบาย → จบเทิร์น → อ่านรายงาน • 1 เทิร์น = 3 เดือน</span>
+      <button id="end-turn" class="map-button end-turn" type="button">จบเทิร์น +3 เดือน</button>
+    </nav>
   </main>
+  <dialog id="economy-dialog" class="economy-dialog" aria-labelledby="economy-title">
+    <header><h2 id="economy-title"></h2><button id="close-economy" class="map-button" type="button">กลับแผนที่</button></header>
+    <section id="economy-content"></section>
+  </dialog>
   <footer class="footer"><span id="connection-status" role="status">เตรียมเข้าสู่สหัสวรรษใหม่</span><span id="save-status" role="status"></span><span id="version" aria-label="เวอร์ชันเกม"></span></footer>
   <noscript><p class="script-notice">กรุณาเปิด JavaScript เพื่อใช้งาน World 2000</p></noscript>
 </body>

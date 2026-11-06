@@ -12,8 +12,8 @@ export function renderStats(container, stats, compact = false) {
   const rows = [
     ['เงินคลัง', `${formatNumber(stats.treasury)} พันล้าน $`], ['GDP', `${formatNumber(stats.gdp)} พันล้าน $`],
     ['ประชากร', formatPopulation(stats.population)], ['หนี้ / GDP', `${formatNumber(stats.debt)}%`],
-    ['ทหาร', `${stats.military}/100`], ['เสถียรภาพ', `${stats.stability}/100`],
-    ['ความสุข', `${stats.happiness}/100`], ['เทคโนโลยี', `${stats.tech}/100`],
+    ['ทหาร', `${formatNumber(stats.military)}/100`], ['เสถียรภาพ', `${formatNumber(stats.stability)}/100`],
+    ['ความสุข', `${formatNumber(stats.happiness)}/100`], ['เทคโนโลยี', `${formatNumber(stats.tech)}/100`],
     ['ชื่อเสียง', `${stats.reputation}/100`], ['น้ำมัน', `${stats.resources.oil}/100`],
     ['อาหาร', `${stats.resources.food}/100`], ['แร่ธาตุ', `${stats.resources.minerals}/100`],
   ];
@@ -36,6 +36,6 @@ export function renderHUD(state, catalog) {
   document.querySelector('#game-date').textContent = monthName(state.date);
   for (const key of ['treasury', 'gdp', 'happiness', 'stability', 'military']) {
     const node = document.querySelector(`#hud-${key}`);
-    node.textContent = key === 'treasury' || key === 'gdp' ? `${formatNumber(stats[key])} พันล้าน $` : `${stats[key]}/100`;
+    node.textContent = key === 'treasury' || key === 'gdp' ? `${formatNumber(stats[key])} พันล้าน $` : `${formatNumber(stats[key])}/100`;
   }
 }

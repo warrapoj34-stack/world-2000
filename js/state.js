@@ -1,4 +1,5 @@
 import { STAT_KEYS, validStats } from './data/countries.js';
+import { validPolicy } from './economy.js';
 
 export function chooseCountry(catalog, previousId, random = Math.random) {
   const pool = catalog.playable.filter(country => country.id !== previousId);
@@ -33,6 +34,7 @@ export function createGame(countryId, catalog) {
 
 export function validGame(state, catalog) {
   return Boolean(state && catalog.byId.get(state.playerCountryId)?.playable
+    && validEconomy(state.economy)
     && Number.isInteger(state.date?.year) && state.date.year >= 2000 && state.date.year <= 9999
     && Number.isInteger(state.date.month) && state.date.month >= 1 && state.date.month <= 12
     && (state.selectedCountryId === null || catalog.byId.has(state.selectedCountryId))
@@ -42,4 +44,15 @@ export function validGame(state, catalog) {
       && state.view.center.every(Number.isFinite)
       && state.view.center[0] >= 0 && state.view.center[0] <= 1800
       && state.view.center[1] >= 0 && state.view.center[1] <= 900)));
+}
+
+function validEconomy(economy) {
+  if (economy === undefined) return true;
+  if (!economy || !validPolicy(economy.policy) || economy.policy.tax > 100
+    || !Number.isInteger(economy.turns) || economy.turns < 0
+    || ![null, 'bankruptcy', 'collapse'].includes(economy.gameOver)) return false;
+  const r = economy.lastReport;
+  return r === null || Boolean(r && validStats(r.before) && validStats(r.after)
+    && Number.isInteger(r.period?.year) && Number.isInteger(r.period?.month) && r.period.month >= 1 && r.period.month <= 12
+    && ['revenue', 'spending', 'interest', 'net', 'borrowed'].every(key => Number.isFinite(r.fiscal?.[key])));
 }

@@ -14,6 +14,7 @@ const APP_SHELL = [
   './css/game.css', './js/state.js', './js/data/countries.js', './js/diplomacy/relations.js',
   './js/save/storage.js', './js/ui/start-screen.js', './js/ui/stats.js',
   './data/countries_2000.json', './data/relations_2000.json',
+  './data/balance.json', './js/economy.js', './js/ui/economy-screen.js', './css/economy.css',
 ];
 const APP_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 

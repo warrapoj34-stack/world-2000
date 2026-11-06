@@ -5,6 +5,8 @@ import { loadCatalog } from './data/countries.js';
 import { createDraft, createGame } from './state.js';
 import { readSave, writeSave, removeDraft } from './save/storage.js';
 import { createStartScreen } from './ui/start-screen.js';
+import { ensureEconomy } from './economy.js';
+import { createEconomyScreen } from './ui/economy-screen.js';
 
 showVersion(VERSION);
 registerServiceWorker(showOfflineStatus);
@@ -19,6 +21,7 @@ const newButton = document.querySelector('#new-game');
 const continueButton = document.querySelector('#continue-game');
 const feedback = document.querySelector('#menu-feedback');
 let catalog, startUI, activeGame, activeDraft;
+let balance, economyUI;
 let map = null, pendingMap = null, saveTimer = 0;
 
 function showScreen(target) {
@@ -70,7 +73,9 @@ function goMenu() {
 }
 
 async function openMap() {
+  ensureEconomy(activeGame, balance);
   showScreen('map');
+  economyUI.refresh();
   document.querySelector('#back-to-menu').focus({ preventScroll: true });
   if (map) { map.setSession(activeGame); return; }
   if (pendingMap) return;
@@ -111,9 +116,15 @@ async function boot() {
   feedback.textContent = 'กำลังเตรียมข้อมูลประเทศ…';
   try {
     catalog = await loadCatalog();
+    const response = await fetch(new URL('../data/balance.json', import.meta.url));
+    if (!response.ok) throw new Error('โหลดค่าระบบเศรษฐกิจไม่สำเร็จ');
+    balance = await response.json();
+    economyUI = createEconomyScreen({ catalog, balance, getState: () => activeGame,
+      onChange: persistGame, onRefresh: () => map?.setSession(activeGame), onMenu: goMenu });
     startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();
   } catch {
+    catalog = null;
     feedback.textContent = 'โหลดข้อมูลไม่สำเร็จ กดเริ่มเกมใหม่เพื่อลองอีกครั้ง';
   } finally { newButton.disabled = false; }
 }

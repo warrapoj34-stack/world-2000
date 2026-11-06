@@ -1,0 +1,89 @@
+// สูตรเกมใช้ GDP รายปี หน่วยเงินเป็นพันล้านดอลลาร์
+export const BUDGET_KEYS = ['military', 'education', 'health', 'infrastructure', 'welfare'];
+const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+export const copyPolicy = policy => ({ tax: policy.tax, budget: { ...policy.budget } });
+export function validPolicy(policy) {
+  return Boolean(policy && Number.isInteger(policy.tax) && policy.tax >= 0 && policy.tax <= 100
+    && BUDGET_KEYS.every(key => Number.isInteger(policy.budget?.[key]) && policy.budget[key] >= 0 && policy.budget[key] <= 100)
+    && BUDGET_KEYS.reduce((sum, key) => sum + policy.budget[key], 0) === 100);
+}
+export function allocateBudget(policy, key, value) {
+  const next = copyPolicy(policy);
+  const others = BUDGET_KEYS.filter(item => item !== key);
+  const remaining = 100 - clamp(Math.round(value), 0, 100);
+  const total = others.reduce((sum, item) => sum + policy.budget[item], 0);
+  next.budget[key] = 100 - remaining;
+  let used = 0;
+  others.forEach((item, index) => {
+    const amount = index === others.length - 1 ? remaining - used
+      : Math.floor(remaining * (total ? policy.budget[item] / total : 1 / others.length));
+    next.budget[item] = amount;
+    used += amount;
+  });
+  return next;
+}
+export function fiscalForecast(stats, government, policy, balance) {
+  const modifier = balance.governments[government];
+  const revenue = stats.gdp * policy.tax / 100 / balance.quartersPerYear;
+  const base = stats.gdp * balance.spendingRate / balance.quartersPerYear;
+  const spending = base * (1 + policy.budget.military / 100 * (modifier.militaryCost - 1));
+  const interest = stats.gdp * stats.debt / 100 * balance.interestRate / balance.quartersPerYear;
+  return { revenue, spending, interest, net: revenue - spending - interest };
+}
+export function simulateCountry(stats, government, policy, balance, random = Math.random) {
+  const b = balance, gov = b.governments[government], budget = policy.budget;
+  const fiscal = fiscalForecast(stats, government, policy, b);
+  const borrowed = Math.max(0, -(stats.treasury + fiscal.net));
+  const debtAmount = stats.gdp * stats.debt / 100 + borrowed;
+  const g = b.growth;
+  const annualGrowth = clamp(g.base + budget.infrastructure / 100 * g.infrastructure
+    + budget.education / 100 * g.education + stats.tech * g.tech
+    + (stats.stability - 50) * g.stability - policy.tax * g.tax + gov.growth
+    + (clamp(random(), 0, 1) * 2 - 1) * g.random, g.min, g.max);
+  const gdp = stats.gdp * (1 + annualGrowth) ** (1 / b.quartersPerYear);
+  const happinessTarget = clamp(b.happiness.base - policy.tax * b.happiness.tax
+    + budget.welfare * b.happiness.welfare + budget.health * b.happiness.health + gov.happiness, 0, 100);
+  const happiness = clamp(stats.happiness + (happinessTarget - stats.happiness) * b.happiness.adjustment, 0, 100);
+  const debt = gdp > 0 ? debtAmount / gdp * 100 : 0;
+  const stability = clamp(stats.stability + (happiness - 50) * b.stability.happiness
+    - Math.max(0, debt - b.stability.debtThreshold) * b.stability.debtPenalty + gov.stability, 0, 100);
+  const next = { ...stats, gdp, debt, happiness, stability,
+    treasury: Math.max(0, stats.treasury + fiscal.net),
+    tech: clamp(stats.tech + budget.education / 100 * b.tech.education - stats.tech * b.tech.decay, 0, 100),
+    military: clamp(stats.military + budget.military / 100 * b.military.investment / gov.militaryCost - stats.military * b.military.decay, 0, 100) };
+  return { stats: next, fiscal: { ...fiscal, borrowed }, annualGrowth };
+}
+export function ensureEconomy(state, balance) {
+  if (!state.economy) state.economy = { policy: copyPolicy(balance.defaultPolicy), turns: 0, lastReport: null, gameOver: null };
+  return state.economy;
+}
+export function defeatReason(stats, balance) {
+  return stats.debt > balance.bankruptcyDebt ? 'bankruptcy' : stats.stability <= 0 ? 'collapse' : null;
+}
+export function advanceQuarter(state, catalog, balance, random = Math.random) {
+  const economy = ensureEconomy(state, balance);
+  if (economy.gameOver) return null;
+  if (!validPolicy(economy.policy) || economy.policy.tax > balance.taxMax) throw new Error('นโยบายไม่ถูกต้อง');
+  const before = state.countries[state.playerCountryId];
+  const initialDefeat = defeatReason(before, balance);
+  if (initialDefeat) { economy.gameOver = initialDefeat; return null; }
+  let result;
+  for (const country of catalog.countries) {
+    if (state.countries[country.id].gdp <= 0) continue;
+    const outcome = simulateCountry(state.countries[country.id], country.government,
+      country.id === state.playerCountryId ? economy.policy : balance.defaultPolicy, balance, random);
+    state.countries[country.id] = outcome.stats;
+    if (country.id === state.playerCountryId) result = outcome;
+  }
+  const period = { ...state.date };
+  state.date.month += 3;
+  if (state.date.month > 12) { state.date.month -= 12; state.date.year++; }
+  economy.turns++;
+  economy.lastReport = { period, before: { ...before }, after: { ...result.stats }, fiscal: result.fiscal };
+  economy.gameOver = defeatReason(result.stats, balance);
+  return economy.lastReport;
+}
+export function worldRanking(state, catalog) {
+  return catalog.playable.map(country => ({ id: country.id, nameTh: country.nameTh, gdp: state.countries[country.id].gdp }))
+    .sort((a, b) => b.gdp - a.gdp || a.id.localeCompare(b.id));
+}

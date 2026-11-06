@@ -1,0 +1,23 @@
+.turn-bar { display: flex; gap: 8px; align-items: center; padding: 8px 16px; background: #0a1725; border-top: 1px solid #415361; height: 76px; }
+.turn-hint { margin-right: auto; color: #a8bdc1; font-size: 12px; }
+.end-turn { min-height: 56px; min-width: 170px; font-size: 18px; background: #b7c995; color: #122b29; font-weight: bold; }
+.map-screen .map-layout { height: calc(100% - 72px - 66px - 76px); }
+.economy-dialog { color: #dce7e7; background: #10212e; border: 1px solid #6c8487; border-radius: 10px; width: min(760px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; }
+.economy-dialog::backdrop { background: #030d16c9; }
+.economy-dialog header { display: flex; align-items: center; gap: 12px; justify-content: space-between; padding: 16px 20px; position: sticky; top: 0; background: #10212e; z-index: 1; border-bottom: 1px solid #415361; }
+.economy-dialog h2 { margin: 0; font-size: 19px; }
+#economy-content { padding: 12px 24px 24px; line-height: 1.7; }
+.policy-control { display: grid; grid-template-columns: 1fr auto; align-items: center; }
+.policy-control input { grid-column: 1 / -1; width: 100%; height: 48px; accent-color: #b7c995; cursor: pointer; }
+.policy-control output, .budget-total { color: #c9dda8; font-weight: bold; }
+.fiscal-preview { background: #1a3443; padding: 16px; border-radius: 6px; }
+.economy-row { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid #2b4351; }
+.good { color: #a8e0b4; }.bad { color: #ff9f9c; }.player-rank { background: #24443d; color: #c5f0bd; }
+@media (max-height: 650px) and (min-width: 701px) { .map-screen .map-layout { height: calc(100% - 64px - 66px - 76px); } }
+@media (max-width: 700px) {
+  .turn-hint { display: none; }.turn-bar { justify-content: space-between; padding: 8px; gap: 4px; }
+  .end-turn { min-width: 110px; font-size: 16px; }
+  .map-screen .map-layout { height: calc(100% - 72px - 72px - 76px); grid-template-rows: minmax(100px, 1fr) 150px; }
+  .economy-dialog header { padding: 12px; }.economy-dialog h2 { font-size: 16px; }
+  #economy-content { padding: 12px; }
+}
