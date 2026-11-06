@@ -2,6 +2,7 @@ import { loadWorld } from '../data/world.js';
 import { createWorldMap } from '../map/renderer.js';
 import { getRelation } from '../diplomacy/relations.js';
 import { renderStats, renderHUD, governmentName } from './stats.js';
+import { topResources, mapResourceLevel, RESOURCE_COLORS } from '../resources.js';
 
 export async function initializeMapScreen({ catalog, getState, onChange }) {
   const world = await loadWorld();
@@ -19,6 +20,16 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       const state = getState();
       const record = country ? catalog.byMapId.get(country.id) : null;
       const info = country?.properties;
+      const top = document.querySelector('#country-top-resources');
+      top.replaceChildren();
+      if (record) {
+        for (const resource of topResources(catalog.resourceLevels.get(record.id), catalog.resourceDefinitions)) {
+          const badge = document.createElement('span'); badge.className = 'resource-badge';
+          badge.textContent = `${resource.icon} ${resource.nameTh} ${catalog.resourceLevels.get(record.id)[resource.id]}★`;
+          top.append(badge);
+        }
+        if (!top.childElementCount) top.textContent = 'ไม่มีทรัพยากรที่ประเมินไว้';
+      }
       detail.dataset.countryId = country?.id ?? '';
       picker.value = country?.id ?? '';
       document.querySelector('#country-name').textContent = info?.nameTh ?? 'เลือกประเทศ';
@@ -64,6 +75,22 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   zoomIn.addEventListener('click', () => map.zoomBy(1.5));
   zoomOut.addEventListener('click', () => map.zoomBy(1 / 1.5));
   reset.addEventListener('click', () => map.reset());
+  const mode = document.querySelector('#map-mode'), legend = document.querySelector('#resource-legend');
+  mode.append(new Option('แร่ธาตุ (ดาวสูงสุดในกลุ่ม)', 'minerals'), ...catalog.resourceDefinitions.map(r=>new Option(`${r.icon} ${r.nameTh}`,r.id)));
+  function changeMode() {
+    const state=getState(); if(!state)return;
+    state.mapMode=mode.value; document.querySelector('#world-map').dataset.mapMode=mode.value;
+    legend.hidden=mode.value==='political';
+    map.setResourceColors(mode.value==='political'?null:country=>RESOURCE_COLORS[mapResourceLevel(catalog.resourceLevels.get(catalog.byMapId.get(country.id).id),mode.value)]);
+    legend.replaceChildren();
+    if(mode.value!=='political') {
+      const label=document.createElement('span');label.textContent=mode.value==='minerals'?'เหล็ก ทองแดง ทอง แร่หายาก: ดาวสูงสุด':'จำนวนดาว • ไม่ใช่ของในคลัง';legend.append(label);
+      const scale=document.createElement('div');scale.className='resource-scale';
+      RESOURCE_COLORS.forEach((color,i)=>{const cell=document.createElement('span');cell.textContent=`${i}★`;cell.style.background=color;cell.style.color=i>2?'#fff':'#102736';scale.append(cell);});legend.append(scale);
+    }
+    onChange();
+  }
+  mode.addEventListener('change',changeMode);
   return {
     ...map,
     setSession(state) {
@@ -76,6 +103,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       else map.selectCountry(catalog.byId.get(state.playerCountryId).mapId);
       state.view = map.getViewState();
       renderHUD(state, catalog);
+      mode.value=state.mapMode ?? 'political'; changeMode();
       document.dispatchEvent(new Event('world-session'));
       restoring = false;
       onChange();

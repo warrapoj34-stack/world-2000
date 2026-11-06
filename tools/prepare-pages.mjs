@@ -11,7 +11,7 @@ if (!declaration) throw new Error('ไม่พบรายการทรัพ
 const files = new Set([...declaration[1].matchAll(/'([^']+)'/g)]
   .map(match => match[1] === './' ? 'index.html' : match[1].replace(/^\.\//, '')));
 for (const file of ['sw.js', '.nojekyll', 'lib/d3-LICENSE.txt', 'lib/topojson-client-LICENSE.txt',
-  'data/world-atlas-LICENSE.txt', 'data/cldr-LICENSE.txt', 'data/SOURCES.md']) files.add(file);
+  'data/world-atlas-LICENSE.txt', 'data/cldr-LICENSE.txt', 'data/SOURCES.md', 'data/RESOURCE_SOURCES.md']) files.add(file);
 
 // ตรวจให้ครบก่อนคัดลอก เพื่อไม่เผยแพร่ชุดไฟล์ที่ขาดหาย
 for (const file of files) {

@@ -1,20 +1,112 @@
 {
-  "defaultPolicy": {"tax": 25, "budget": {"military": 20, "education": 20, "health": 20, "infrastructure": 20, "welfare": 20}},
+  "defaultPolicy": {
+    "tax": 25,
+    "budget": {
+      "military": 20,
+      "education": 20,
+      "health": 20,
+      "infrastructure": 20,
+      "welfare": 20
+    }
+  },
   "taxMax": 60,
   "quartersPerYear": 4,
   "spendingRate": 0.25,
   "interestRate": 0.04,
-  "growth": {"base": 0.005, "infrastructure": 0.09, "education": 0.05, "tech": 0.0002, "stability": 0.0006, "tax": 0.0007, "random": 0.008, "min": -0.15, "max": 0.15},
-  "happiness": {"base": 65, "tax": 0.8, "welfare": 0.6, "health": 0.5, "adjustment": 0.15},
-  "stability": {"happiness": 0.06, "debtThreshold": 80, "debtPenalty": 0.018},
-  "tech": {"education": 2, "decay": 0.002},
-  "military": {"investment": 4, "decay": 0.012},
+  "growth": {
+    "base": 0.005,
+    "infrastructure": 0.09,
+    "education": 0.05,
+    "tech": 0.0002,
+    "stability": 0.0006,
+    "tax": 0.0007,
+    "random": 0.008,
+    "min": -0.15,
+    "max": 0.15
+  },
+  "happiness": {
+    "base": 65,
+    "tax": 0.8,
+    "welfare": 0.6,
+    "health": 0.5,
+    "adjustment": 0.15
+  },
+  "stability": {
+    "happiness": 0.06,
+    "debtThreshold": 80,
+    "debtPenalty": 0.018
+  },
+  "tech": {
+    "education": 2,
+    "decay": 0.002
+  },
+  "military": {
+    "investment": 4,
+    "decay": 0.012
+  },
   "bankruptcyDebt": 200,
   "governments": {
-    "democracy": {"growth": 0.008, "militaryCost": 1.25, "happiness": 4, "stability": -0.3},
-    "authoritarian": {"growth": -0.002, "militaryCost": 0.9, "happiness": -12, "stability": 1},
-    "one_party": {"growth": 0.003, "militaryCost": 0.95, "happiness": -8, "stability": 0.8},
-    "absolute_monarchy": {"growth": -0.004, "militaryCost": 1, "happiness": -6, "stability": 0.7},
-    "constitutional_monarchy": {"growth": 0.006, "militaryCost": 1.15, "happiness": 3, "stability": -0.1}
+    "democracy": {
+      "growth": 0.008,
+      "militaryCost": 1.25,
+      "happiness": 4,
+      "stability": -0.3
+    },
+    "authoritarian": {
+      "growth": -0.002,
+      "militaryCost": 0.9,
+      "happiness": -12,
+      "stability": 1
+    },
+    "one_party": {
+      "growth": 0.003,
+      "militaryCost": 0.95,
+      "happiness": -8,
+      "stability": 0.8
+    },
+    "absolute_monarchy": {
+      "growth": -0.004,
+      "militaryCost": 1,
+      "happiness": -6,
+      "stability": 0.7
+    },
+    "constitutional_monarchy": {
+      "growth": 0.006,
+      "militaryCost": 1.15,
+      "happiness": 3,
+      "stability": -0.1
+    }
+  },
+  "resources": {
+    "unitsPerStar": 10,
+    "populationDivisor": 10,
+    "minScale": 0.25,
+    "maxScale": 20,
+    "baseEfficiency": 0.25,
+    "maxStock": 1000000000,
+    "exportShares": {
+      "oil": 0.5,
+      "gas": 0.5,
+      "coal": 0.3,
+      "gold": 0.5,
+      "forest": 0.2,
+      "copper": 0.3
+    },
+    "maxExportGDPShare": 0.004,
+    "energyGrowthPerStar": 0.0004,
+    "foodHappinessPerStar": 0.12,
+    "fishFoodWeight": 0.4,
+    "techPerStar": 0.025,
+    "reputationPerStar": 0.025,
+    "droughtChance": 0.08,
+    "waterProtectionPerStar": 0.2,
+    "droughtFoodLoss": 0.5,
+    "droughtHappinessLoss": 2,
+    "droughtGrowthLoss": 0.01,
+    "reinforcement": {
+      "iron": 10,
+      "money": 0.02,
+      "military": 2
+    }
   }
 }

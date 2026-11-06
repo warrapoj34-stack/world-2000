@@ -1,3 +1,4 @@
+import { resourceEffects } from '../resources.js';
 import { allocateBudget, advanceQuarter, ensureEconomy, fiscalForecast, worldRanking, BUDGET_KEYS, defeatReason } from '../economy.js';
 import { formatNumber, shortMoney, monthName, governmentName } from './stats.js';
 
@@ -58,7 +59,9 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
         control.input.value = value; control.output.value = `${value}%`;
       }
       const f = fiscalForecast(state.countries[state.playerCountryId], catalog.byId.get(state.playerCountryId).government, economy.policy, balance);
-      forecast.textContent = `ประมาณการ3 เดือนหน้า: รายได้ ${money(f.revenue)} · รายจ่าย ${money(f.spending)} · ดอกเบี้ย ${money(f.interest)} · คงเหลือ ${money(f.net)} · ต้องกู้ ${money(Math.max(0, -state.countries[state.playerCountryId].treasury - f.net))}`;
+      const resources = resourceEffects(state.countries[state.playerCountryId],catalog.resourceLevels.get(state.playerCountryId),catalog.resourceDefinitions,balance,()=>1);
+      f.net += resources.revenue;
+      forecast.textContent = `ประมาณการ3 เดือนหน้า: ภาษี ${money(f.revenue)} · ทรัพยากร ${money(resources.revenue)} · รายจ่าย ${money(f.spending)} · ดอกเบี้ย ${money(f.interest)} · คงเหลือ ${money(f.net)} · ต้องกู้ ${money(Math.max(0, -state.countries[state.playerCountryId].treasury - f.net))}`;
       total.textContent = `งบรวม ${BUDGET_KEYS.reduce((sum, key) => sum + economy.policy.budget[key], 0)}%`;
     }
     refresh();
@@ -79,8 +82,8 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
       const delta = r.after.treasury - r.before.treasury;
       const lines = [
         [delta > 0 ? 'good' : delta < 0 ? 'bad' : '', delta === 0 ? 'เงินที่มีเท่าเดิม' : `เงิน${delta > 0 ? 'เพิ่ม' : 'ลด'} ${shortMoney(Math.abs(delta))}ดอลลาร์`],
-        ['', r.fiscal.net >= 0 ? 'ภาษีที่เก็บได้พอจ่ายค่าใช้จ่าย' : 'ค่าใช้จ่ายมากกว่าภาษีที่เก็บได้'],
-        [r.fiscal.borrowed > 0 ? 'bad' : '', r.fiscal.borrowed > 0 ? 'เงินไม่พอ จึงต้องกู้เพิ่ม' : r.fiscal.interest > 0 ? 'จ่ายดอกเบี้ยแล้ว ไม่ต้องกู้เพิ่ม' : 'ไม่มีดอกเบี้ย และไม่ต้องกู้เพิ่ม'],
+        ['', r.fiscal.net >= 0 ? 'รายรับรวมพอจ่ายค่าใช้จ่าย' : 'ค่าใช้จ่ายมากกว่ารายรับรวม'],
+        [r.fiscal.borrowed > 0 ? 'bad' : '', r.resourceSummary?.drought ? `ภัยแล้ง • น้ำช่วยลดผลเสีย ${Math.round(r.resourceSummary.protection*100)}%` : r.fiscal.borrowed > 0 ? 'เงินไม่พอ จึงต้องกู้เพิ่ม' : r.fiscal.interest > 0 ? 'จ่ายดอกเบี้ยแล้ว ไม่ต้องกู้เพิ่ม' : 'ไม่มีดอกเบี้ย และไม่ต้องกู้เพิ่ม'],
       ];
       for (const [style, value] of lines) { const p = document.createElement('p'); p.className = style; p.textContent = value; summary.append(p); }
       const more = document.createElement('button'); more.type = 'button'; more.className = 'map-button'; more.id = 'report-details'; more.textContent = 'ดูรายละเอียด'; more.addEventListener('click', () => report(true)); content.append(more);
@@ -92,7 +95,8 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
       const unit = key === 'debt' ? '%' : ['gdp', 'treasury'].includes(key) ? ' พันล้าน $' : '/100';
       row(label, `${formatNumber(r.after[key])}${unit} (${delta > 0 ? '+' : ''}${formatNumber(delta)})`, delta === 0 ? '' : (key === 'debt' ? delta < 0 : delta > 0) ? 'good' : 'bad');
     }
-    paragraph(`รายได้ ${money(r.fiscal.revenue)} · รายจ่าย ${money(r.fiscal.spending)} · ดอกเบี้ย ${money(r.fiscal.interest)} · กู้เพิ่ม ${money(r.fiscal.borrowed)}`);
+    if (r.resourceSummary) paragraph(`ทรัพยากรสร้างรายได้ ${money(r.resourceSummary.income)}${r.resourceSummary.drought ? ` • ภัยแล้ง: น้ำลดผลเสีย ${Math.round(r.resourceSummary.protection*100)}%` : ' • ไม่มีภัยแล้งในรอบนี้'}`);
+    paragraph(`ภาษี ${money(r.fiscal.revenue)} · รายจ่าย ${money(r.fiscal.spending)} · ดอกเบี้ย ${money(r.fiscal.interest)} · กู้เพิ่ม ${money(r.fiscal.borrowed)}`);
   }
   function gameOver() {
     const state = getState(), economy = state.economy, stats = state.countries[state.playerCountryId];

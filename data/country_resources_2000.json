@@ -1,0 +1,4505 @@
+[
+  {
+    "id": "ABW",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 157
+  },
+  {
+    "id": "AFG",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 642058
+  },
+  {
+    "id": "AGO",
+    "levels": {
+      "oil": 4,
+      "gas": 2,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1249380
+  },
+  {
+    "id": "AIA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 84
+  },
+  {
+    "id": "ALA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 761
+  },
+  {
+    "id": "ALB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 28337
+  },
+  {
+    "id": "AND",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 0,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 441
+  },
+  {
+    "id": "ARE",
+    "levels": {
+      "oil": 5,
+      "gas": 4,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 71265
+  },
+  {
+    "id": "ARG",
+    "levels": {
+      "oil": 3,
+      "gas": 4,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 2,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 5,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 2
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 2782703
+  },
+  {
+    "id": "ARM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 29568
+  },
+  {
+    "id": "ASM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 119
+  },
+  {
+    "id": "ATA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 0,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 12256364
+  },
+  {
+    "id": "ATF",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 6977
+  },
+  {
+    "id": "ATG",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 433
+  },
+  {
+    "id": "AUS",
+    "levels": {
+      "oil": 3,
+      "gas": 4,
+      "coal": 5,
+      "iron": 5,
+      "rare_earths": 3,
+      "gold": 5,
+      "forest": 4,
+      "freshwater": 2,
+      "food": 4,
+      "fish": 3,
+      "biodiversity": 5,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 7706012
+  },
+  {
+    "id": "AUT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 83901
+  },
+  {
+    "id": "AZE",
+    "levels": {
+      "oil": 4,
+      "gas": 3,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 86400
+  },
+  {
+    "id": "BDI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 27217
+  },
+  {
+    "id": "BEL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 30627
+  },
+  {
+    "id": "BEN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 116553
+  },
+  {
+    "id": "BFA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 273690
+  },
+  {
+    "id": "BGD",
+    "levels": {
+      "oil": 0,
+      "gas": 3,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 135674
+  },
+  {
+    "id": "BGR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 112424
+  },
+  {
+    "id": "BHR",
+    "levels": {
+      "oil": 3,
+      "gas": 3,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 544
+  },
+  {
+    "id": "BHS",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 12657
+  },
+  {
+    "id": "BIH",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 51690
+  },
+  {
+    "id": "BLM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 25
+  },
+  {
+    "id": "BLR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 206698
+  },
+  {
+    "id": "BLZ",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 22770
+  },
+  {
+    "id": "BMU",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 65
+  },
+  {
+    "id": "BOL",
+    "levels": {
+      "oil": 0,
+      "gas": 3,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 2,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1090271
+  },
+  {
+    "id": "BRA",
+    "levels": {
+      "oil": 3,
+      "gas": 2,
+      "coal": 0,
+      "iron": 5,
+      "rare_earths": 0,
+      "gold": 4,
+      "forest": 5,
+      "freshwater": 5,
+      "food": 5,
+      "fish": 3,
+      "biodiversity": 5,
+      "copper": 2
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 8499400
+  },
+  {
+    "id": "BRB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 388
+  },
+  {
+    "id": "BRN",
+    "levels": {
+      "oil": 4,
+      "gas": 4,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 5669
+  },
+  {
+    "id": "BTN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 39870
+  },
+  {
+    "id": "BWA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 580622
+  },
+  {
+    "id": "CAF",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 620987
+  },
+  {
+    "id": "CAN",
+    "levels": {
+      "oil": 4,
+      "gas": 5,
+      "coal": 4,
+      "iron": 4,
+      "rare_earths": 0,
+      "gold": 4,
+      "forest": 5,
+      "freshwater": 5,
+      "food": 4,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 9872102
+  },
+  {
+    "id": "CHE",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 41215
+  },
+  {
+    "id": "CHL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 3,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 5,
+      "biodiversity": 3,
+      "copper": 5
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 737442
+  },
+  {
+    "id": "CHN",
+    "levels": {
+      "oil": 4,
+      "gas": 3,
+      "coal": 5,
+      "iron": 5,
+      "rare_earths": 5,
+      "gold": 4,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 5,
+      "fish": 5,
+      "biodiversity": 5,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 9371225
+  },
+  {
+    "id": "CIV",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 322298
+  },
+  {
+    "id": "CMR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 465902
+  },
+  {
+    "id": "COD",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 3,
+      "forest": 5,
+      "freshwater": 5,
+      "food": 4,
+      "fish": 3,
+      "biodiversity": 5,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 2334703
+  },
+  {
+    "id": "COG",
+    "levels": {
+      "oil": 3,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 346857
+  },
+  {
+    "id": "COK",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 62
+  },
+  {
+    "id": "COL",
+    "levels": {
+      "oil": 4,
+      "gas": 0,
+      "coal": 4,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 5,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 5,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1139434
+  },
+  {
+    "id": "COM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1582
+  },
+  {
+    "id": "CPV",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 3587
+  },
+  {
+    "id": "CRI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 51511
+  },
+  {
+    "id": "CUB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 109285
+  },
+  {
+    "id": "CUW",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 429
+  },
+  {
+    "id": "CYM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 303
+  },
+  {
+    "id": "CYP",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 5710
+  },
+  {
+    "id": "CZE",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 78487
+  },
+  {
+    "id": "DEU",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 4,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 4,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 356163
+  },
+  {
+    "id": "DJI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 21693
+  },
+  {
+    "id": "DMA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 688
+  },
+  {
+    "id": "DNK",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 42411
+  },
+  {
+    "id": "DOM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 48592
+  },
+  {
+    "id": "DZA",
+    "levels": {
+      "oil": 4,
+      "gas": 5,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 2,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 2
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 2322788
+  },
+  {
+    "id": "ECU",
+    "levels": {
+      "oil": 4,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 5,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 255658
+  },
+  {
+    "id": "EGY",
+    "levels": {
+      "oil": 3,
+      "gas": 3,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 1,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1003707
+  },
+  {
+    "id": "ERI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 123678
+  },
+  {
+    "id": "ESH",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 90820
+  },
+  {
+    "id": "ESP",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 506178
+  },
+  {
+    "id": "EST",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 45442
+  },
+  {
+    "id": "ETH",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1131761
+  },
+  {
+    "id": "FIN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 2
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 330482
+  },
+  {
+    "id": "FJI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 18398
+  },
+  {
+    "id": "FLK",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 11390
+  },
+  {
+    "id": "FRA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 5,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 635064
+  },
+  {
+    "id": "FRO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1036
+  },
+  {
+    "id": "FSM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 524
+  },
+  {
+    "id": "GAB",
+    "levels": {
+      "oil": 3,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 4,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 4,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 260715
+  },
+  {
+    "id": "GBR",
+    "levels": {
+      "oil": 4,
+      "gas": 4,
+      "coal": 3,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 2,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 239616
+  },
+  {
+    "id": "GEO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 69297
+  },
+  {
+    "id": "GGY",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 49
+  },
+  {
+    "id": "GHA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 4,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 239589
+  },
+  {
+    "id": "GIN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 2,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 244938
+  },
+  {
+    "id": "GMB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 10324
+  },
+  {
+    "id": "GNB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 32044
+  },
+  {
+    "id": "GNQ",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 26637
+  },
+  {
+    "id": "GRC",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 130177
+  },
+  {
+    "id": "GRD",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 288
+  },
+  {
+    "id": "GRL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 2,
+      "forest": 0,
+      "freshwater": 4,
+      "food": 0,
+      "fish": 3,
+      "biodiversity": 1,
+      "copper": 2
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 2154754
+  },
+  {
+    "id": "GTM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 108520
+  },
+  {
+    "id": "GUM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 482
+  },
+  {
+    "id": "GUY",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 211930
+  },
+  {
+    "id": "HKG",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1029
+  },
+  {
+    "id": "HMD",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 419
+  },
+  {
+    "id": "HND",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 113531
+  },
+  {
+    "id": "HRV",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 54414
+  },
+  {
+    "id": "HTI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 26822
+  },
+  {
+    "id": "HUN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 92966
+  },
+  {
+    "id": "IDN",
+    "levels": {
+      "oil": 4,
+      "gas": 5,
+      "coal": 4,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 4,
+      "forest": 5,
+      "freshwater": 5,
+      "food": 4,
+      "fish": 4,
+      "biodiversity": 5,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1872242
+  },
+  {
+    "id": "IMN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 562
+  },
+  {
+    "id": "IND",
+    "levels": {
+      "oil": 3,
+      "gas": 3,
+      "coal": 5,
+      "iron": 5,
+      "rare_earths": 3,
+      "gold": 2,
+      "forest": 3,
+      "freshwater": 4,
+      "food": 5,
+      "fish": 4,
+      "biodiversity": 5,
+      "copper": 2
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 3155807
+  },
+  {
+    "id": "IOT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 133
+  },
+  {
+    "id": "IRL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 68700
+  },
+  {
+    "id": "IRN",
+    "levels": {
+      "oil": 5,
+      "gas": 5,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 1,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1622847
+  },
+  {
+    "id": "IRQ",
+    "levels": {
+      "oil": 5,
+      "gas": 4,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 437462
+  },
+  {
+    "id": "ISL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 3,
+      "food": 1,
+      "fish": 5,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 101161
+  },
+  {
+    "id": "ISR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 22284
+  },
+  {
+    "id": "ITA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 300267
+  },
+  {
+    "id": "JAM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 10935
+  },
+  {
+    "id": "JEY",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 127
+  },
+  {
+    "id": "JOR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 88856
+  },
+  {
+    "id": "JPN",
+    "levels": {
+      "oil": 0,
+      "gas": 1,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 5,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 370074
+  },
+  {
+    "id": "KAZ",
+    "levels": {
+      "oil": 4,
+      "gas": 3,
+      "coal": 4,
+      "iron": 4,
+      "rare_earths": 0,
+      "gold": 2,
+      "forest": 4,
+      "freshwater": 2,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 2712747
+  },
+  {
+    "id": "KEN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 594848
+  },
+  {
+    "id": "KGZ",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 198661
+  },
+  {
+    "id": "KHM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 181373
+  },
+  {
+    "id": "KIR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 941
+  },
+  {
+    "id": "KNA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 234
+  },
+  {
+    "id": "KOR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 97165
+  },
+  {
+    "id": "KWT",
+    "levels": {
+      "oil": 5,
+      "gas": 3,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 17330
+  },
+  {
+    "id": "LAO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 228928
+  },
+  {
+    "id": "LBN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 10010
+  },
+  {
+    "id": "LBR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 95648
+  },
+  {
+    "id": "LBY",
+    "levels": {
+      "oil": 5,
+      "gas": 3,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1626369
+  },
+  {
+    "id": "LCA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 552
+  },
+  {
+    "id": "LIE",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 0,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 138
+  },
+  {
+    "id": "LKA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 66046
+  },
+  {
+    "id": "LSO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 30020
+  },
+  {
+    "id": "LTU",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 64519
+  },
+  {
+    "id": "LUX",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 2614
+  },
+  {
+    "id": "LVA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 64254
+  },
+  {
+    "id": "MAC",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 23
+  },
+  {
+    "id": "MAF",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 50
+  },
+  {
+    "id": "MAR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 582378
+  },
+  {
+    "id": "MCO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 12
+  },
+  {
+    "id": "MDA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 33115
+  },
+  {
+    "id": "MDG",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 594622
+  },
+  {
+    "id": "MDV",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 67
+  },
+  {
+    "id": "MEX",
+    "levels": {
+      "oil": 5,
+      "gas": 4,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 3,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 4,
+      "fish": 3,
+      "biodiversity": 5,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1962279
+  },
+  {
+    "id": "MHL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 236
+  },
+  {
+    "id": "MKD",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 25366
+  },
+  {
+    "id": "MLI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 3,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1258185
+  },
+  {
+    "id": "MLT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 276
+  },
+  {
+    "id": "MMR",
+    "levels": {
+      "oil": 0,
+      "gas": 3,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 662746
+  },
+  {
+    "id": "MNG",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1560428
+  },
+  {
+    "id": "MNP",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 395
+  },
+  {
+    "id": "MOZ",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 790643
+  },
+  {
+    "id": "MRT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 4,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1038352
+  },
+  {
+    "id": "MSR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 82
+  },
+  {
+    "id": "MUS",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1880
+  },
+  {
+    "id": "MWI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 119763
+  },
+  {
+    "id": "MYS",
+    "levels": {
+      "oil": 4,
+      "gas": 4,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 4,
+      "freshwater": 2,
+      "food": 3,
+      "fish": 2,
+      "biodiversity": 5,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 327621
+  },
+  {
+    "id": "NAM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 824750
+  },
+  {
+    "id": "NCL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 18648
+  },
+  {
+    "id": "NER",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1185111
+  },
+  {
+    "id": "NFK",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 42
+  },
+  {
+    "id": "NGA",
+    "levels": {
+      "oil": 5,
+      "gas": 4,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 2,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 911496
+  },
+  {
+    "id": "NIC",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 129225
+  },
+  {
+    "id": "NIU",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 197
+  },
+  {
+    "id": "NLD",
+    "levels": {
+      "oil": 0,
+      "gas": 4,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 2,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 37132
+  },
+  {
+    "id": "NOR",
+    "levels": {
+      "oil": 5,
+      "gas": 4,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 4,
+      "food": 1,
+      "fish": 5,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 384264
+  },
+  {
+    "id": "NPL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 147193
+  },
+  {
+    "id": "NRU",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 28
+  },
+  {
+    "id": "NZL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 4,
+      "food": 4,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 266828
+  },
+  {
+    "id": "OMN",
+    "levels": {
+      "oil": 4,
+      "gas": 3,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 312041
+  },
+  {
+    "id": "PAK",
+    "levels": {
+      "oil": 0,
+      "gas": 3,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 4,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 873772
+  },
+  {
+    "id": "PAN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 74235
+  },
+  {
+    "id": "PCN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 40
+  },
+  {
+    "id": "PER",
+    "levels": {
+      "oil": 2,
+      "gas": 2,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 4,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 3,
+      "fish": 5,
+      "biodiversity": 5,
+      "copper": 5
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1296279
+  },
+  {
+    "id": "PHL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 3,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 3,
+      "fish": 4,
+      "biodiversity": 5,
+      "copper": 3
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 290318
+  },
+  {
+    "id": "PLW",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 343
+  },
+  {
+    "id": "PNG",
+    "levels": {
+      "oil": 2,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 4,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 5,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 464271
+  },
+  {
+    "id": "POL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 4,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 3,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 312566
+  },
+  {
+    "id": "PRI",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 8936
+  },
+  {
+    "id": "PRK",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 3,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 122496
+  },
+  {
+    "id": "PRT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 90766
+  },
+  {
+    "id": "PRY",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 400900
+  },
+  {
+    "id": "PSE",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 6336
+  },
+  {
+    "id": "PYF",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 2618
+  },
+  {
+    "id": "QAT",
+    "levels": {
+      "oil": 4,
+      "gas": 5,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 11076
+  },
+  {
+    "id": "ROU",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 235752
+  },
+  {
+    "id": "RUS",
+    "levels": {
+      "oil": 5,
+      "gas": 5,
+      "coal": 5,
+      "iron": 5,
+      "rare_earths": 3,
+      "gold": 4,
+      "forest": 5,
+      "freshwater": 5,
+      "food": 4,
+      "fish": 4,
+      "biodiversity": 1,
+      "copper": 4
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 16879701
+  },
+  {
+    "id": "RWA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 25377
+  },
+  {
+    "id": "SAU",
+    "levels": {
+      "oil": 5,
+      "gas": 4,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1925871
+  },
+  {
+    "id": "SDN",
+    "levels": {
+      "oil": 3,
+      "gas": 0,
+      "coal": 0,
+      "iron": 3,
+      "rare_earths": 0,
+      "gold": 2,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 2
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 2487025
+  },
+  {
+    "id": "SEN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 197300
+  },
+  {
+    "id": "SGP",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 484
+  },
+  {
+    "id": "SGS",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 3670
+  },
+  {
+    "id": "SHN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 188
+  },
+  {
+    "id": "SLB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 25732
+  },
+  {
+    "id": "SLE",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 71877
+  },
+  {
+    "id": "SLV",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 20401
+  },
+  {
+    "id": "SMR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 0,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 70
+  },
+  {
+    "id": "SOM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 473622
+  },
+  {
+    "id": "SPM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 207
+  },
+  {
+    "id": "STP",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 979
+  },
+  {
+    "id": "SUR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 145559
+  },
+  {
+    "id": "SVK",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 48337
+  },
+  {
+    "id": "SVN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 20198
+  },
+  {
+    "id": "SWE",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 4,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 3
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 442970
+  },
+  {
+    "id": "SWZ",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 0,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 17007
+  },
+  {
+    "id": "SXM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 42
+  },
+  {
+    "id": "SYC",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 172
+  },
+  {
+    "id": "SYR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 185733
+  },
+  {
+    "id": "TCA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 331
+  },
+  {
+    "id": "TCD",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1270927
+  },
+  {
+    "id": "TGO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 57156
+  },
+  {
+    "id": "THA",
+    "levels": {
+      "oil": 2,
+      "gas": 3,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 5,
+      "fish": 4,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 515720
+  },
+  {
+    "id": "TJK",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 142300
+  },
+  {
+    "id": "TKM",
+    "levels": {
+      "oil": 3,
+      "gas": 5,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 470600
+  },
+  {
+    "id": "TLS",
+    "levels": {
+      "oil": 1,
+      "gas": 1,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 15018
+  },
+  {
+    "id": "TON",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 431
+  },
+  {
+    "id": "TTO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 5102
+  },
+  {
+    "id": "TUN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 156653
+  },
+  {
+    "id": "TUR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 2,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 779797
+  },
+  {
+    "id": "TWN",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 36005
+  },
+  {
+    "id": "TZA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 945781
+  },
+  {
+    "id": "UGA",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 242568
+  },
+  {
+    "id": "UKR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 4,
+      "iron": 5,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 5,
+      "fish": 3,
+      "biodiversity": 3,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 570135
+  },
+  {
+    "id": "URY",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 177569
+  },
+  {
+    "id": "USA",
+    "levels": {
+      "oil": 5,
+      "gas": 5,
+      "coal": 5,
+      "iron": 4,
+      "rare_earths": 4,
+      "gold": 5,
+      "forest": 5,
+      "freshwater": 5,
+      "food": 5,
+      "fish": 4,
+      "biodiversity": 4,
+      "copper": 5
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 9439424
+  },
+  {
+    "id": "UZB",
+    "levels": {
+      "oil": 0,
+      "gas": 4,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 4,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 447381
+  },
+  {
+    "id": "VAT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 0,
+      "biodiversity": 0,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 1
+  },
+  {
+    "id": "VCT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 312
+  },
+  {
+    "id": "VEN",
+    "levels": {
+      "oil": 5,
+      "gas": 4,
+      "coal": 0,
+      "iron": 4,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 4,
+      "freshwater": 4,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 5,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 914310
+  },
+  {
+    "id": "VGB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 135
+  },
+  {
+    "id": "VIR",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 318
+  },
+  {
+    "id": "VNM",
+    "levels": {
+      "oil": 3,
+      "gas": 2,
+      "coal": 3,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 4,
+      "fish": 4,
+      "biodiversity": 4,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 328959
+  },
+  {
+    "id": "VUT",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 11266
+  },
+  {
+    "id": "WLF",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 129
+  },
+  {
+    "id": "WSM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 2705
+  },
+  {
+    "id": "XIO",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 142
+  },
+  {
+    "id": "XNC",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 0,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 3472
+  },
+  {
+    "id": "XSG",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 0,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 1,
+      "biodiversity": 1,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 2128
+  },
+  {
+    "id": "XSL",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 168483
+  },
+  {
+    "id": "YEM",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 0,
+      "freshwater": 0,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 454139
+  },
+  {
+    "id": "YUG",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 3,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 2,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 2,
+      "copper": 0
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 102058
+  },
+  {
+    "id": "ZAF",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 5,
+      "iron": 4,
+      "rare_earths": 0,
+      "gold": 5,
+      "forest": 3,
+      "freshwater": 1,
+      "food": 3,
+      "fish": 3,
+      "biodiversity": 4,
+      "copper": 1
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 1221609
+  },
+  {
+    "id": "ZMB",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 2,
+      "rare_earths": 0,
+      "gold": 1,
+      "forest": 3,
+      "freshwater": 3,
+      "food": 3,
+      "fish": 1,
+      "biodiversity": 4,
+      "copper": 5
+    },
+    "basis": "regional_estimate_with_overrides",
+    "areaKm2": 755593
+  },
+  {
+    "id": "ZWE",
+    "levels": {
+      "oil": 0,
+      "gas": 0,
+      "coal": 0,
+      "iron": 1,
+      "rare_earths": 0,
+      "gold": 0,
+      "forest": 3,
+      "freshwater": 2,
+      "food": 2,
+      "fish": 1,
+      "biodiversity": 3,
+      "copper": 0
+    },
+    "basis": "regional_estimate",
+    "areaKm2": 390202
+  }
+]

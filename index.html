@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./css/game.css">
   <link rel="stylesheet" href="./css/economy.css">
   <link rel="stylesheet" href="./css/friendly.css">
+  <link rel="stylesheet" href="./css/resources.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
 </head>
@@ -108,6 +109,7 @@
     </div>
     <div class="map-layout">
       <section class="map-viewport" aria-label="แผนที่ประเทศและดินแดน">
+        <div class="resource-map-control"><label for="map-mode">โหมดแผนที่</label><select id="map-mode"><option value="political">การเมือง</option></select><div id="resource-legend" hidden></div></div>
         <canvas id="world-map" tabindex="0" role="img" aria-label="แผนที่โลก ลากเพื่อเลื่อน ใช้สองนิ้วหรือล้อเมาส์เพื่อซูม แตะเพื่อเลือกประเทศ หรือเลือกจากรายชื่อด้านข้าง"></canvas>
         <aside id="missions" class="missions" aria-label="ภารกิจแนะนำ"><header><h3>ภารกิจแนะนำ</h3><button id="dismiss-missions" class="map-button" type="button" aria-label="ปิดภารกิจแนะนำ">×</button></header><ol id="mission-list"></ol></aside>
         <div class="turn-dock"><button id="end-turn" class="map-button end-turn" type="button">จบเทิร์น +3 เดือน</button></div>
@@ -131,6 +133,7 @@
           <div class="country-swatch" id="country-swatch" hidden aria-hidden="true"></div>
           <p class="detail-eyebrow" id="country-category">ประเทศและดินแดน</p>
           <h3 id="country-name">เลือกประเทศ</h3>
+          <div id="country-top-resources"></div>
           <p id="country-note">แตะพื้นที่บนแผนที่ เพื่อดูชื่อประเทศและไฮไลต์พรมแดน</p>
           <div id="country-relation" class="relation" hidden><strong id="relation-label"></strong><p id="relation-reason"></p></div>
           <details><summary>ดูตัวเลขของประเทศนี้</summary><dl id="country-stats" class="stat-grid compact-stats" hidden></dl></details>
@@ -151,6 +154,7 @@
 <button id="open-transport" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🚆</span>คมนาคม</button>
 <button id="open-policy" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🎚️</span>นโยบาย</button></nav>
   </main>
+  <dialog id="resource-dialog" class="economy-dialog" aria-labelledby="resource-title"><header><h2 id="resource-title">ทรัพยากรของประเทศ</h2><button id="close-resources" class="map-button" type="button">กลับแผนที่</button></header><section id="resource-content"></section></dialog>
   <dialog id="help-dialog" class="economy-dialog help-dialog" aria-labelledby="help-title"><header><h2 id="help-title"></h2><button id="close-help" class="map-button" type="button">กลับแผนที่</button></header><section id="help-content"></section></dialog>
   <dialog id="economy-dialog" class="economy-dialog" aria-labelledby="economy-title">
     <header><h2 id="economy-title"></h2><button id="close-economy" class="map-button" type="button">กลับแผนที่</button></header>

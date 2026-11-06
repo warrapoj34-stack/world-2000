@@ -23,6 +23,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let selected = null;
   let player = null;
   let frame = 0;
+  let resourceColor = null;
 
   function constrain(next) {
     const k = Math.max(fit * map.minZoom, Math.min(fit * map.maxZoom, next.k));
@@ -58,7 +59,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     });
     context.lineJoin = 'round';
     for (const shape of visible) {
-      context.fillStyle = shape.country.properties.color;
+      context.fillStyle = resourceColor ? resourceColor(shape.country) : shape.country.properties.color;
       context.fill(shape.path);
       context.strokeStyle = map.borderColor;
       context.lineWidth = 0.65 / k;
@@ -66,7 +67,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     }
     if (selected) {
       context.fillStyle = map.highlightColor;
-      context.globalAlpha = 0.45;
+      context.globalAlpha = resourceColor ? 0 : 0.45;
       context.fill(selected.path);
       context.globalAlpha = 1;
       context.strokeStyle = map.highlightColor;
@@ -101,6 +102,9 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       const box = [px - textWidth / 2 - 5, py - 10, px + textWidth / 2 + 5, py + 10];
       if (occupied.some(b => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1])) continue;
       occupied.push(box);
+      context.fillStyle = resourceColor ? '#071c24' : '#1c3039';
+      context.strokeStyle = '#ffffffbb'; context.lineWidth = 2;
+      if (resourceColor) context.strokeText(text, px, py);
       context.fillText(text, px, py);
     }
   }
@@ -129,6 +133,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       center: [(width / 2 - transform.x) / transform.k, (height / 2 - transform.y) / transform.k] };
   }
   const view = {
+    setResourceColors: resolver => { resourceColor = resolver; schedule(); },
     getViewState: viewState,
     setViewState: saved => {
       const k = fit * saved.zoom;

@@ -1,3 +1,4 @@
+import { validResourceStock } from '../resources.js';
 export const STAT_KEYS = ['gdp', 'population', 'treasury', 'debt', 'military', 'stability', 'happiness', 'tech', 'reputation'];
 export const SCORE_KEYS = ['military', 'stability', 'happiness', 'tech', 'reputation'];
 export const GOVERNMENTS = {
@@ -6,7 +7,7 @@ export const GOVERNMENTS = {
 };
 
 export function validStats(country) {
-  return Boolean(country && STAT_KEYS.every(key => Number.isFinite(country[key]) && country[key] >= 0)
+  return Boolean(country && validResourceStock(country.resourceStock) && STAT_KEYS.every(key => Number.isFinite(country[key]) && country[key] >= 0)
     && SCORE_KEYS.every(key => country[key] <= 100)
     && ['oil', 'food', 'minerals'].every(key => Number.isFinite(country.resources?.[key])
       && country.resources[key] >= 0 && country.resources[key] <= 100));

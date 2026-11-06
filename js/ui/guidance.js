@@ -15,7 +15,7 @@ const lessons = [
   ['📅', 'พร้อมแล้ว จบเทิร์น', 'กดจบเทิร์นที่มุมขวาล่าง เวลาเดินไป 3 เดือน แล้วอ่านสรุปเงินเข้าออก ลองปรับนโยบายและดูผลในรอบถัดไป'],
 ];
 
-export function createGuidance({ catalog, getState, onRanking }) {
+export function createGuidance({ catalog, getState, onRanking, onResources }) {
   let prefs = {};
   try { prefs = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { /* ใช้ค่าชั่วคราวเมื่ออ่านไม่ได้ */ }
   if (typeof prefs !== 'object' || Array.isArray(prefs)) prefs = {};
@@ -76,16 +76,13 @@ export function createGuidance({ catalog, getState, onRanking }) {
     button('อ่านวิธีเล่นอีกครั้ง', () => { lesson = 0; tutorial(); }, 'replay-tutorial');
     button(prefs.missionsHidden ? 'แสดงภารกิจแนะนำ' : 'ซ่อนภารกิจแนะนำ', () => { prefs.missionsHidden = !prefs.missionsHidden; remember(); finish(); refresh(); }, 'toggle-missions');
   });
-  for (const name of ['resources', 'army', 'market', 'transport']) {
+  document.querySelector('#open-resources').addEventListener('click', onResources);
+  for (const name of ['army', 'market', 'transport']) {
     document.querySelector(`#open-${name}`).addEventListener('click', () => {
       const stats = getState().countries[getState().playerCountryId];
-      if (name === 'resources') {
-        open('ทรัพยากรของประเทศ'); text('ค่าตั้งต้นจาก 0 ถึง 100 ยิ่งมากยิ่งมีทรัพยากรชนิดนั้นมาก');
-        text(`🛢️ น้ำมัน ${stats.resources.oil} • 🌾 อาหาร ${stats.resources.food} • ⛏️ แร่ธาตุ ${stats.resources.minerals}`);
-        text('ระบบจัดการทรัพยากร • เร็วๆ นี้', 'coming-soon'); text('ตอนนี้ดูข้อมูลได้ ยังผลิตหรือซื้อขายไม่ได้');
-      } else if (name === 'army') {
+      if (name === 'army') {
         open('กองทัพ'); text(`⚔️ กำลังทหาร ${formatNumber(stats.military)} / 100`, 'help-heading');
-        text('ปรับงบทหารได้ในหน้านโยบาย แล้วจบเทิร์นเพื่อดูผล'); text('ระบบสั่งรบ • เร็วๆ นี้', 'coming-soon');
+        text('ปรับงบทหารได้ในหน้านโยบาย แล้วจบเทิร์นเพื่อดูผล'); text('ระบบสั่งรบ • เร็วๆ นี้', 'coming-soon'); button('ใช้เหล็กเสริมกำลัง', () => { finish(); onResources('iron'); });
       } else {
         open(name === 'market' ? 'ตลาด' : 'คมนาคม');
         text(name === 'market' ? '⚖️' : '🚆', 'help-emblem'); text('เร็วๆ นี้', 'coming-soon');

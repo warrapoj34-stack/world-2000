@@ -15,8 +15,7 @@ export function renderStats(container, stats, compact = false) {
     ['ประชากร', formatPopulation(stats.population)], ['หนี้เทียบกับเศรษฐกิจ', `${formatNumber(stats.debt)}%`],
     ['ทหาร', `${formatNumber(stats.military)}/100`], ['ความมั่นคง', `${formatNumber(stats.stability)}/100`],
     ['ความสุข', `${formatNumber(stats.happiness)}/100`], ['เทคโนโลยี', `${formatNumber(stats.tech)}/100`],
-    ['ชื่อเสียง', `${stats.reputation}/100`], ['น้ำมัน', `${stats.resources.oil}/100`],
-    ['อาหาร', `${stats.resources.food}/100`], ['แร่ธาตุ', `${stats.resources.minerals}/100`],
+    ['ชื่อเสียง', `${stats.reputation}/100`],
   ];
   container.replaceChildren(...rows.map(([label, value]) => {
     const cell = document.createElement('div');

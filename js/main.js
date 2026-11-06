@@ -1,3 +1,6 @@
+import { loadResources } from './data/resources.js';
+import { ensureResources } from './resources.js';
+import { createResourceScreen } from './ui/resource-screen.js';
 import { VERSION } from './version.js';
 import { showVersion, showOfflineStatus } from './ui/menu.js';
 import { registerServiceWorker } from './pwa.js';
@@ -75,6 +78,7 @@ function goMenu() {
 
 async function openMap() {
   ensureEconomy(activeGame, balance);
+  ensureResources(activeGame);
   showScreen('map');
   economyUI.refresh();
   document.querySelector('#back-to-menu').focus({ preventScroll: true });
@@ -117,12 +121,14 @@ async function boot() {
   feedback.textContent = 'กำลังเตรียมข้อมูลประเทศ…';
   try {
     catalog = await loadCatalog();
+    await loadResources(catalog);
     const response = await fetch(new URL('../data/balance.json', import.meta.url));
     if (!response.ok) throw new Error('โหลดค่าระบบเศรษฐกิจไม่สำเร็จ');
     balance = await response.json();
     economyUI = createEconomyScreen({ catalog, balance, getState: () => activeGame,
       onChange: persistGame, onRefresh: () => map?.setSession(activeGame), onMenu: goMenu });
-    createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking });
+    const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
+    createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open });
     startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();
   } catch {

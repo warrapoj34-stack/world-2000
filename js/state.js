@@ -1,3 +1,4 @@
+import { RESOURCE_IDS } from './resources.js';
 import { STAT_KEYS, validStats } from './data/countries.js';
 import { validPolicy } from './economy.js';
 
@@ -34,6 +35,7 @@ export function createGame(countryId, catalog) {
 
 export function validGame(state, catalog) {
   return Boolean(state && catalog.byId.get(state.playerCountryId)?.playable
+    && (state.mapMode === undefined || ['political','minerals',...RESOURCE_IDS].includes(state.mapMode))
     && validEconomy(state.economy)
     && Number.isInteger(state.date?.year) && state.date.year >= 2000 && state.date.year <= 9999
     && Number.isInteger(state.date.month) && state.date.month >= 1 && state.date.month <= 12
@@ -54,5 +56,6 @@ function validEconomy(economy) {
   const r = economy.lastReport;
   return r === null || Boolean(r && validStats(r.before) && validStats(r.after)
     && Number.isInteger(r.period?.year) && Number.isInteger(r.period?.month) && r.period.month >= 1 && r.period.month <= 12
+    && (r.resourceSummary == null || (Number.isFinite(r.resourceSummary.income) && r.resourceSummary.income >= 0 && typeof r.resourceSummary.drought === 'boolean' && Number.isFinite(r.resourceSummary.protection) && r.resourceSummary.protection >= 0 && r.resourceSummary.protection <= 1))
     && ['revenue', 'spending', 'interest', 'net', 'borrowed'].every(key => Number.isFinite(r.fiscal?.[key])));
 }

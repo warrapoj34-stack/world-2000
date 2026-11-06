@@ -1,3 +1,4 @@
+import { resourceEffects } from './resources.js';
 // สูตรเกมใช้ GDP รายปี หน่วยเงินเป็นพันล้านดอลลาร์
 export const BUDGET_KEYS = ['military', 'education', 'health', 'infrastructure', 'welfare'];
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -30,28 +31,32 @@ export function fiscalForecast(stats, government, policy, balance) {
   const interest = stats.gdp * stats.debt / 100 * balance.interestRate / balance.quartersPerYear;
   return { revenue, spending, interest, net: revenue - spending - interest };
 }
-export function simulateCountry(stats, government, policy, balance, random = Math.random) {
+export function simulateCountry(stats, government, policy, balance, random = Math.random, resources = null) {
   const b = balance, gov = b.governments[government], budget = policy.budget;
   const fiscal = fiscalForecast(stats, government, policy, b);
+  fiscal.resourceIncome = resources?.revenue ?? 0;
+  fiscal.net += fiscal.resourceIncome;
   const borrowed = Math.max(0, -(stats.treasury + fiscal.net));
   const debtAmount = stats.gdp * stats.debt / 100 + borrowed;
   const g = b.growth;
   const annualGrowth = clamp(g.base + budget.infrastructure / 100 * g.infrastructure
     + budget.education / 100 * g.education + stats.tech * g.tech
     + (stats.stability - 50) * g.stability - policy.tax * g.tax + gov.growth
-    + (clamp(random(), 0, 1) * 2 - 1) * g.random, g.min, g.max);
+    + (clamp(random(), 0, 1) * 2 - 1) * g.random + (resources?.energyGrowth ?? 0) - (resources?.droughtGrowthLoss ?? 0), g.min, g.max);
   const gdp = stats.gdp * (1 + annualGrowth) ** (1 / b.quartersPerYear);
   const happinessTarget = clamp(b.happiness.base - policy.tax * b.happiness.tax
     + budget.welfare * b.happiness.welfare + budget.health * b.happiness.health + gov.happiness, 0, 100);
-  const happiness = clamp(stats.happiness + (happinessTarget - stats.happiness) * b.happiness.adjustment, 0, 100);
+  const happiness = clamp(stats.happiness + (happinessTarget - stats.happiness) * b.happiness.adjustment + (resources?.happiness ?? 0), 0, 100);
   const debt = gdp > 0 ? debtAmount / gdp * 100 : 0;
   const stability = clamp(stats.stability + (happiness - 50) * b.stability.happiness
     - Math.max(0, debt - b.stability.debtThreshold) * b.stability.debtPenalty + gov.stability, 0, 100);
   const next = { ...stats, gdp, debt, happiness, stability,
     treasury: Math.max(0, stats.treasury + fiscal.net),
-    tech: clamp(stats.tech + budget.education / 100 * b.tech.education - stats.tech * b.tech.decay, 0, 100),
+    tech: clamp(stats.tech + budget.education / 100 * b.tech.education - stats.tech * b.tech.decay + (resources?.tech ?? 0), 0, 100),
+    reputation: clamp(stats.reputation + (resources?.reputation ?? 0), 0, 100),
     military: clamp(stats.military + budget.military / 100 * b.military.investment / gov.militaryCost - stats.military * b.military.decay, 0, 100) };
-  return { stats: next, fiscal: { ...fiscal, borrowed }, annualGrowth };
+  if (resources) next.resourceStock = resources.stock;
+  return { stats: next, fiscal: { ...fiscal, borrowed }, annualGrowth, resources };
 }
 export function ensureEconomy(state, balance) {
   if (!state.economy) state.economy = { policy: copyPolicy(balance.defaultPolicy), turns: 0, lastReport: null, gameOver: null };
@@ -70,8 +75,9 @@ export function advanceQuarter(state, catalog, balance, random = Math.random) {
   let result;
   for (const country of catalog.countries) {
     if (state.countries[country.id].gdp <= 0) continue;
+    const effects = catalog.resourceLevels ? resourceEffects(state.countries[country.id],catalog.resourceLevels.get(country.id),catalog.resourceDefinitions,balance,random) : null;
     const outcome = simulateCountry(state.countries[country.id], country.government,
-      country.id === state.playerCountryId ? economy.policy : balance.defaultPolicy, balance, random);
+      country.id === state.playerCountryId ? economy.policy : balance.defaultPolicy, balance, random, effects);
     state.countries[country.id] = outcome.stats;
     if (country.id === state.playerCountryId) result = outcome;
   }
@@ -79,7 +85,8 @@ export function advanceQuarter(state, catalog, balance, random = Math.random) {
   state.date.month += 3;
   if (state.date.month > 12) { state.date.month -= 12; state.date.year++; }
   economy.turns++;
-  economy.lastReport = { period, before: { ...before }, after: { ...result.stats }, fiscal: result.fiscal };
+  economy.lastReport = { period, before: { ...before }, after: { ...result.stats }, fiscal: result.fiscal,
+    resourceSummary: result.resources ? {income:result.resources.revenue,drought:result.resources.drought,protection:result.resources.protection} : null };
   economy.gameOver = defeatReason(result.stats, balance);
   return economy.lastReport;
 }
