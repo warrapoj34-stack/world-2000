@@ -1,0 +1,107 @@
+import { formatNumber, renderStats } from './stats.js';
+
+const KEY = 'world-2000:ui-preferences';
+const explanations = {
+  treasury: ['💰 เงินที่มี', 'เงินที่ประเทศใช้ได้ ถ้ารายจ่ายมากกว่าเงินที่มี ประเทศจะกู้เพิ่มและมีหนี้มากขึ้น'],
+  gdp: ['💵 ขนาดเศรษฐกิจ', 'มูลค่าสิ่งที่ประเทศผลิตได้ในหนึ่งปี หรือ GDP ยิ่งมาก ยิ่งเก็บภาษีได้มาก ลงทุนเรื่องการศึกษาและถนนช่วยให้เติบโต'],
+  happiness: ['😊 ความสุข', 'ประชาชนอยู่ดีแค่ไหน จาก 0 ถึง 100 ลดภาษีหรือเพิ่มงบดูแลประชาชนช่วยได้ คนมีความสุขช่วยให้ประเทศมั่นคง'],
+  stability: ['🛡️ ความมั่นคง', 'รัฐบาลดูแลประเทศได้ดีแค่ไหน จาก 0 ถึง 100 ความสุขช่วยเพิ่มค่านี้ แต่หนี้สูงทำให้ลดลง ถ้าเหลือ 0 จะจบเกม'],
+  military: ['⚔️ กำลังทหาร', 'ความพร้อมของกองทัพ จาก 0 ถึง 100 งบทหารช่วยรักษาค่านี้ รุ่นนี้ยังสั่งรบไม่ได้'],
+};
+const lessons = [
+  ['🗺️', 'ประเทศนี้อยู่ในมือคุณ', 'ลากแผนที่เพื่อเลื่อน กางสองนิ้วเพื่อซูม แตะประเทศเพื่อดูข้อมูล ขอบเรืองแสงคือประเทศของคุณ'],
+  ['💰', 'ดูแค่ค่าหลักก่อน', 'แถบบนบอกเงิน เศรษฐกิจ ความสุข ความมั่นคง และทหาร แตะหรือกดค้างที่รูปเพื่ออ่านความหมาย ไม่ต้องจำทุกตัวเลข'],
+  ['🎚️', 'เลือกว่าจะดูแลอะไร', 'เปิดนโยบายด้านล่าง ลดภาษีช่วยให้คนสุขขึ้น แต่เงินเข้าน้อยลง แบ่งงบให้โรงเรียน โรงพยาบาล ถนน และเรื่องที่คุณอยากพัฒนา'],
+  ['📅', 'พร้อมแล้ว จบเทิร์น', 'กดจบเทิร์นที่มุมขวาล่าง เวลาเดินไป 3 เดือน แล้วอ่านสรุปเงินเข้าออก ลองปรับนโยบายและดูผลในรอบถัดไป'],
+];
+
+export function createGuidance({ catalog, getState, onRanking }) {
+  let prefs = {};
+  try { prefs = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { /* ใช้ค่าชั่วคราวเมื่ออ่านไม่ได้ */ }
+  if (typeof prefs !== 'object' || Array.isArray(prefs)) prefs = {};
+  const dialog = document.querySelector('#help-dialog');
+  const title = document.querySelector('#help-title');
+  const body = document.querySelector('#help-content');
+  const close = document.querySelector('#close-help');
+  const missions = document.querySelector('#missions');
+  let lesson = -1;
+  function remember() {
+    try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch { /* จำได้เฉพาะรอบนี้เมื่อพื้นที่ถูกปิด */ }
+  }
+  function finish() {
+    if (lesson >= 0) { prefs.tutorialDone = true; remember(); lesson = -1; }
+    dialog.close();
+  }
+  function open(heading) {
+    title.textContent = heading; body.replaceChildren(); close.textContent = 'กลับแผนที่';
+    if (!dialog.open) dialog.showModal();
+  }
+  function text(value, className = '') {
+    const p = document.createElement('p'); p.textContent = value; p.className = className; body.append(p);
+  }
+  function button(label, action, id) {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'map-button';
+    b.textContent = label; if (id) b.id = id; b.addEventListener('click', action); body.append(b);
+  }
+  function tutorial() {
+    const [icon, heading, copy] = lessons[lesson];
+    open(`เริ่มเล่นง่ายๆ • ${lesson + 1}/${lessons.length}`); close.textContent = 'ข้ามบทแนะนำ';
+    text(icon, 'help-emblem'); text(heading, 'help-heading'); text(copy);
+    if (lesson > 0) button('ย้อนกลับ', () => { lesson--; tutorial(); }, 'tutorial-back');
+    button(lesson === lessons.length - 1 ? 'เริ่มบริหารประเทศ' : 'ถัดไป →', () => {
+      if (lesson === lessons.length - 1) finish(); else { lesson++; tutorial(); }
+    }, 'tutorial-next');
+  }
+  function refresh() {
+    const state = getState(); if (!state) return;
+    missions.hidden = prefs.missionsHidden === true || Boolean(state.economy?.gameOver);
+    const stats = state.countries[state.playerCountryId], policy = state.economy?.policy;
+    const tips = [];
+    if (stats.happiness < 55) tips.push(policy?.tax > 20 ? 'ลองลดภาษีให้ประชาชนสุขขึ้น' : 'ลองเพิ่มงบโรงพยาบาลหรือช่วยค่าครองชีพ');
+    else if (stats.debt > 100 || stats.treasury < stats.gdp * .03) tips.push('เปิดนโยบาย ดูว่าเงินเข้าพอกับรายจ่ายไหม');
+    else tips.push('ลองเลือกเรื่องที่อยากพัฒนาในหน้านโยบาย');
+    tips.push('จบเทิร์นเพื่อดูผลในอีก 3 เดือน');
+    document.querySelector('#mission-list').replaceChildren(...tips.map(tip => { const li = document.createElement('li'); li.textContent = tip; return li; }));
+    if (!prefs.tutorialDone && !dialog.open && !document.querySelector('#economy-dialog').open && !state.economy?.gameOver) { lesson = 0; tutorial(); }
+  }
+  close.addEventListener('click', finish);
+  dialog.addEventListener('cancel', event => { event.preventDefault(); finish(); });
+  document.querySelector('#dismiss-missions').addEventListener('click', () => { prefs.missionsHidden = true; remember(); refresh(); });
+  document.querySelector('#open-country').addEventListener('click', () => {
+    const state = getState(), country = catalog.byId.get(state.playerCountryId);
+    open(`ประเทศของคุณ • ${country.nameTh}`);
+    text('ดูภาพรวมประเทศ หรือเปิดอันดับเพื่อเทียบกับประเทศอื่น');
+    const dl = document.createElement('dl'); dl.className = 'stat-grid'; renderStats(dl, state.countries[country.id]); body.append(dl);
+    button('อันดับโลก', () => { finish(); onRanking(); }, 'open-ranking');
+    button('อ่านวิธีเล่นอีกครั้ง', () => { lesson = 0; tutorial(); }, 'replay-tutorial');
+    button(prefs.missionsHidden ? 'แสดงภารกิจแนะนำ' : 'ซ่อนภารกิจแนะนำ', () => { prefs.missionsHidden = !prefs.missionsHidden; remember(); finish(); refresh(); }, 'toggle-missions');
+  });
+  for (const name of ['resources', 'army', 'market', 'transport']) {
+    document.querySelector(`#open-${name}`).addEventListener('click', () => {
+      const stats = getState().countries[getState().playerCountryId];
+      if (name === 'resources') {
+        open('ทรัพยากรของประเทศ'); text('ค่าตั้งต้นจาก 0 ถึง 100 ยิ่งมากยิ่งมีทรัพยากรชนิดนั้นมาก');
+        text(`🛢️ น้ำมัน ${stats.resources.oil} • 🌾 อาหาร ${stats.resources.food} • ⛏️ แร่ธาตุ ${stats.resources.minerals}`);
+        text('ระบบจัดการทรัพยากร • เร็วๆ นี้', 'coming-soon'); text('ตอนนี้ดูข้อมูลได้ ยังผลิตหรือซื้อขายไม่ได้');
+      } else if (name === 'army') {
+        open('กองทัพ'); text(`⚔️ กำลังทหาร ${formatNumber(stats.military)} / 100`, 'help-heading');
+        text('ปรับงบทหารได้ในหน้านโยบาย แล้วจบเทิร์นเพื่อดูผล'); text('ระบบสั่งรบ • เร็วๆ นี้', 'coming-soon');
+      } else {
+        open(name === 'market' ? 'ตลาด' : 'คมนาคม');
+        text(name === 'market' ? '⚖️' : '🚆', 'help-emblem'); text('เร็วๆ นี้', 'coming-soon');
+        text(name === 'market' ? 'ตลาดซื้อขายยังไม่เปิด ระหว่างนี้ลองดูแลรายรับรายจ่ายในหน้านโยบาย' : 'ระบบสร้างเส้นทางยังไม่เปิด ตอนนี้เพิ่มงบถนนและสิ่งก่อสร้างได้ในหน้านโยบาย');
+      }
+    });
+  }
+  for (const [key, [heading, copy]] of Object.entries(explanations)) {
+    const target = document.querySelector(`[data-stat="${key}"]`); let timer;
+    const show = () => { open(heading); text(copy); };
+    target.addEventListener('click', () => { clearTimeout(timer); if (!dialog.open) show(); });
+    target.addEventListener('pointerdown', () => { timer = setTimeout(show, 500); });
+    for (const event of ['pointerup', 'pointerleave', 'pointercancel']) target.addEventListener(event, () => clearTimeout(timer));
+    target.addEventListener('contextmenu', event => event.preventDefault());
+  }
+  document.addEventListener('world-session', refresh);
+  document.addEventListener('policy-change', refresh);
+  return { refresh };
+}

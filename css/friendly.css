@@ -1,0 +1,57 @@
+/* ขนาดตัวอักษรและพื้นที่แตะใช้ร่วมกันทุกหน้า */
+body { font-size: 16px; }
+body * { font-size: max(14px, 1em); }
+button, select, summary { min-height: 48px; }
+button { min-width: 48px; }
+.map-screen { display: flex; flex-direction: column; }
+.map-header, .country-hud, .turn-bar { flex-shrink: 0; }
+.map-screen .map-layout { height: auto; flex: 1; min-height: 0; }
+.country-hud { height: 76px; padding: 6px 16px; gap: 8px; }
+.hud-button { display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #395362; border-radius: 8px; background: #132c3c; color: #e0eacb; padding: 6px; cursor: pointer; }
+.country-hud .hud-icon { font-size: 24px; margin: 0; }
+.country-hud strong { font-size: 17px; white-space: normal; }
+.country-hud .hud-label { font-size: 14px; margin: 0; color: #b7cbd3; }
+.turn-bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); height: 80px; padding: 8px 16px; }
+.turn-bar button { height: 60px; font-size: 16px; border-radius: 8px; }
+.turn-bar .nav-icon { display: block; font-size: 20px; }
+.turn-dock { position: absolute; right: 16px; bottom: 16px; z-index: 2; }
+.end-turn { box-shadow: 0 4px 18px #07131c; border-radius: 8px; }
+.missions { position: absolute; top: 16px; left: 16px; width: min(320px, calc(100% - 32px)); background: #0a1b28ed; border: 1px solid #587b7c; border-radius: 10px; padding: 10px 14px; box-shadow: 0 6px 20px #08192366; }
+.missions header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.missions h3 { margin: 0; color: #d6e8b4; font-size: 16px; }
+.missions button { padding: 0; background: transparent; }
+.missions ol { padding-left: 22px; margin: 4px 0; line-height: 1.7; font-size: 14px; }
+.map-caption { display: none; }
+.help-dialog { width: min(660px, calc(100vw - 24px)); }
+#help-content { padding: 20px 24px; line-height: 1.8; }
+#help-content button { margin: 8px 8px 0 0; }
+.help-emblem { font-size: 48px; text-align: center; margin: 8px; }
+.help-heading, .coming-soon { font-size: 24px; color: #d6e8b4; text-align: center; }
+.coming-soon { border: 1px dashed #64878a; border-radius: 12px; padding: 18px; background: #1b3542; }
+.report-summary p { margin: 12px 0; font-size: 18px; }
+.country-panel summary { cursor: pointer; display: flex; align-items: center; }
+.country-panel .country-detail { min-height: 0; }
+.footer { gap: 12px; padding-inline: 16px; }
+.footer > span { font-size: 14px; }
+@media (max-width: 900px) {
+  .map-layout { grid-template-columns: minmax(0, 1fr) 225px; }
+  .hud-button { gap: 4px; }.country-hud { padding-inline: 8px; }
+  .missions { width: min(290px, calc(100% - 32px)); }
+  .map-tools { bottom: 84px; }
+}
+@media (max-width: 700px) {
+  .map-screen .map-layout { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(120px, 1fr) 104px; position: relative; }
+  .map-viewport { height: 100%; }
+  .country-panel { display: block; }
+  .country-hud { height: 82px; gap: 4px; }
+  .hud-button { flex-direction: column; gap: 0; }.country-hud .hud-icon { font-size: 20px; }
+  .country-hud .hud-label { display: none; }.country-hud strong { font-size: 14px; }
+  .turn-bar { height: 142px; grid-template-columns: repeat(3, 1fr); padding: 6px 8px; gap: 4px; }
+  .turn-bar button { height: 62px; }
+  .footer #connection-status { display: none; }
+  .map-header { height: 64px; padding-inline: 8px; }
+  .year-badge { padding-left: 4px; }
+  .missions { top: 8px; left: 8px; width: calc(100% - 16px); }
+  .missions ol { line-height: 1.5; }
+  .turn-dock { right: 8px; bottom: 8px; }
+}

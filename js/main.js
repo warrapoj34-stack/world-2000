@@ -6,6 +6,7 @@ import { createDraft, createGame } from './state.js';
 import { readSave, writeSave, removeDraft } from './save/storage.js';
 import { createStartScreen } from './ui/start-screen.js';
 import { ensureEconomy } from './economy.js';
+import { createGuidance } from './ui/guidance.js';
 import { createEconomyScreen } from './ui/economy-screen.js';
 
 showVersion(VERSION);
@@ -121,6 +122,7 @@ async function boot() {
     balance = await response.json();
     economyUI = createEconomyScreen({ catalog, balance, getState: () => activeGame,
       onChange: persistGame, onRefresh: () => map?.setSession(activeGame), onMenu: goMenu });
+    createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking });
     startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();
   } catch {

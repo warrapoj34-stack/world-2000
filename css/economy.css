@@ -1,5 +1,5 @@
 .turn-bar { display: flex; gap: 8px; align-items: center; padding: 8px 16px; background: #0a1725; border-top: 1px solid #415361; height: 76px; }
-.turn-hint { margin-right: auto; color: #a8bdc1; font-size: 12px; }
+.turn-hint { margin-right: auto; color: #a8bdc1; font-size: 14px; }
 .end-turn { min-height: 56px; min-width: 170px; font-size: 18px; background: #b7c995; color: #122b29; font-weight: bold; }
 .map-screen .map-layout { height: calc(100% - 72px - 66px - 76px); }
 .economy-dialog { color: #dce7e7; background: #10212e; border: 1px solid #6c8487; border-radius: 10px; width: min(760px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; }

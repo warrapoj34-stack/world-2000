@@ -76,6 +76,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       else map.selectCountry(catalog.byId.get(state.playerCountryId).mapId);
       state.view = map.getViewState();
       renderHUD(state, catalog);
+      document.dispatchEvent(new Event('world-session'));
       restoring = false;
       onChange();
     },

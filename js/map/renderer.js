@@ -85,7 +85,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
 
     // วาดชื่อด้วยขนาดคงที่และเว้นช่องว่างไม่ให้ทับกัน
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    context.font = '12px Tahoma, sans-serif';
+    context.font = '14px Tahoma, sans-serif';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillStyle = '#1c3039';
