@@ -1,7 +1,7 @@
 import { geoEquirectangular, geoPath, geoGraticule10 } from '../../lib/d3-7.9.0.js';
 import { bindMapControls } from './controls.js';
 
-export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {} }) {
+export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {} }) {
   const context = canvas.getContext('2d', { alpha: false });
   if (!context) throw new Error('เบราว์เซอร์นี้ไม่รองรับแผนที่ Canvas');
   const { map } = world.settings;
@@ -85,8 +85,10 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.lineWidth = (quality === 'high' ? 9 : 3) / k; context.strokeStyle = '#5eb7d544'; context.stroke(shape.path);
       context.shadowBlur = 0;
       context.globalAlpha = .6;
+      context.filter = resourceColor ? 'none' : 'saturate(.75)';
       context.fillStyle = resourceColor ? resourceColor(shape.country) : shape.country.properties.color;
       context.fill(shape.path); context.globalAlpha = 1;
+      context.filter = 'none';
       context.lineWidth = .8 / k; context.strokeStyle = '#d0d6bd99'; context.stroke(shape.path);
       context.restore();
     }
@@ -133,6 +135,10 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       if (resourceColor) context.strokeText(text, px, py);
       context.fillText(text, px, py);
     }
+    if (player) {
+      const [lx, ly] = player.label;
+      onPlayerPosition({ x: lx * k + x, y: ly * k + y, visible: player.area * k * k < 1800 });
+    } else onPlayerPosition(null);
   }
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -195,6 +201,11 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     selectCountry: id => {
       const shape = shapes.find(item => item.country.id === id);
       selectShape(shape);
+      if (!shape) return;
+      view.focusCountry(id);
+    },
+    focusCountry: id => {
+      const shape = shapes.find(item => item.country.id === id);
       if (!shape) return;
       const [[x0, y0], [x1, y1]] = shape.bounds;
       const k = Math.max(fit, Math.min(fit * map.maxZoom, 0.65 * Math.min(width / (x1 - x0), height / (y1 - y0))));

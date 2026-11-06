@@ -14,6 +14,11 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   const zoomLevel = document.querySelector('#zoom-level');
   const detail = document.querySelector('#country-detail');
   const swatch = document.querySelector('#country-swatch');
+  const pulse = document.querySelector('#player-pulse');
+  const settings = document.querySelector('#map-settings');
+  const modeToggle = document.querySelector('#toggle-map-mode');
+  const qualityToggle = document.querySelector('#toggle-map-quality');
+  const settingsMenu = document.querySelector('#map-settings-menu');
   let restoring = true;
   const map = createWorldMap(document.querySelector('#world-map'), world, {
     onSelect(country) {
@@ -65,6 +70,10 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       const state = getState();
       if (state && !restoring) { state.view = view; onChange(); }
     },
+    onPlayerPosition(point) {
+      pulse.hidden = !point?.visible;
+      if (point) { pulse.style.left = `${point.x}px`; pulse.style.top = `${point.y}px`; }
+    },
   });
   const options = [...world.countries].sort((a, b) => a.properties.nameTh.localeCompare(b.properties.nameTh, 'th'))
     .map(country => new Option(country.properties.nameTh, country.id));
@@ -75,9 +84,27 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   zoomIn.addEventListener('click', () => map.zoomBy(1.5));
   zoomOut.addEventListener('click', () => map.zoomBy(1 / 1.5));
   reset.addEventListener('click', () => map.reset());
+  document.querySelector('#focus-player').addEventListener('click', () => {
+    const state = getState();
+    if (state) map.focusCountry(catalog.byId.get(state.playerCountryId).mapId);
+  });
   const mode = document.querySelector('#map-mode'), legend = document.querySelector('#resource-legend');
   const quality = document.querySelector('#map-quality');
   quality.addEventListener('change', () => map.setQuality(quality.value));
+  const closeSettings = () => {
+    settingsMenu.hidden = true;
+    modeToggle.setAttribute('aria-expanded', 'false');
+    qualityToggle.setAttribute('aria-expanded', 'false');
+  };
+  const openSettings = () => {
+    settingsMenu.hidden = false;
+    modeToggle.setAttribute('aria-expanded', 'true');
+    qualityToggle.setAttribute('aria-expanded', 'true');
+  };
+  modeToggle.addEventListener('click', openSettings);
+  qualityToggle.addEventListener('click', openSettings);
+  document.addEventListener('pointerdown', event => { if (!settings.contains(event.target)) closeSettings(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeSettings(); });
   mode.append(new Option('แร่ธาตุ (ดาวสูงสุดในกลุ่ม)', 'minerals'), ...catalog.resourceDefinitions.map(r=>new Option(`${r.icon} ${r.nameTh}`,r.id)));
   function changeMode() {
     const state=getState(); if(!state)return;

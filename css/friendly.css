@@ -14,9 +14,10 @@ button { min-width: 48px; }
 .turn-bar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); height: 80px; padding: 8px 16px; }
 .turn-bar button { height: 60px; font-size: 16px; border-radius: 8px; }
 .turn-bar .nav-icon { display: block; font-size: 20px; }
-.turn-dock { position: absolute; right: 16px; bottom: 16px; z-index: 2; }
+.turn-dock { display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0; min-height: 68px; padding: 6px 16px; background: #0a1725; border-top: 1px solid #415361; }
 .end-turn { box-shadow: 0 4px 18px #07131c; border-radius: 8px; }
-.missions { position: absolute; top: 16px; left: 16px; width: min(320px, calc(100% - 32px)); background: #0a1b28ed; border: 1px solid #587b7c; border-radius: 10px; padding: 10px 14px; box-shadow: 0 6px 20px #08192366; }
+.focus-player { white-space: nowrap; }
+.missions { position: absolute; top: 76px; left: 16px; width: min(320px, calc(100% - 32px)); background: #0a1b28ed; border: 1px solid #587b7c; border-radius: 10px; padding: 10px 14px; box-shadow: 0 6px 20px #08192366; }
 .missions header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .missions h3 { margin: 0; color: #d6e8b4; font-size: 16px; }
 .missions button { padding: 0; background: transparent; }
@@ -53,5 +54,5 @@ button { min-width: 48px; }
   .year-badge { padding-left: 4px; }
   .missions { top: 8px; left: 8px; width: calc(100% - 16px); }
   .missions ol { line-height: 1.5; }
-  .turn-dock { right: 8px; bottom: 8px; }
+  .turn-dock { min-height: 60px; padding: 6px 8px; }
 }

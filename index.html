@@ -109,16 +109,24 @@
     </div>
     <div class="map-layout">
       <section class="map-viewport" aria-label="แผนที่ประเทศและดินแดน">
-        <div class="resource-map-control"><label for="map-mode">โหมดแผนที่</label><select id="map-mode"><option value="political">การเมือง</option></select><div id="resource-legend" hidden></div><label for="map-quality">คุณภาพภาพ</label><select id="map-quality"><option value="high">สูง</option><option value="low">ต่ำ</option></select></div>
+        <div class="map-settings" id="map-settings" aria-label="ตั้งค่าแผนที่">
+          <button class="map-setting-trigger" id="toggle-map-mode" type="button" aria-label="เปิดโหมดแผนที่" aria-controls="map-settings-menu" aria-expanded="false">▤</button>
+          <button class="map-setting-trigger" id="toggle-map-quality" type="button" aria-label="เปิดคุณภาพภาพ" aria-controls="map-settings-menu" aria-expanded="false">◐</button>
+          <div class="map-setting-menu" id="map-settings-menu" hidden>
+            <label for="map-mode">โหมดแผนที่</label><select id="map-mode"><option value="political">การเมือง</option></select><div id="resource-legend" hidden></div>
+            <label for="map-quality">คุณภาพภาพ</label><select id="map-quality"><option value="high">สูง</option><option value="low">ต่ำ</option></select>
+          </div>
+        </div>
+        <span class="player-pulse" id="player-pulse" hidden aria-hidden="true"><i></i><i></i></span>
         <canvas id="world-map" tabindex="0" role="img" aria-label="แผนที่โลก ลากเพื่อเลื่อน ใช้สองนิ้วหรือล้อเมาส์เพื่อซูม แตะเพื่อเลือกประเทศ หรือเลือกจากรายชื่อด้านข้าง"></canvas>
         <aside id="missions" class="missions" aria-label="ภารกิจแนะนำ"><header><h3>ภารกิจแนะนำ</h3><button id="dismiss-missions" class="map-button" type="button" aria-label="ปิดภารกิจแนะนำ">×</button></header><ol id="mission-list"></ol></aside>
-        <div class="turn-dock"><button id="end-turn" class="map-button end-turn" type="button">จบเทิร์น +3 เดือน</button></div>
         <div class="map-caption" aria-hidden="true">แผนที่การเมือง <span>ปี 2000</span></div>
         <div class="map-tools" aria-label="ควบคุมแผนที่">
           <button class="map-button" id="zoom-in" type="button" aria-label="ซูมเข้า" disabled>+</button>
           <output id="zoom-level" aria-label="ระดับการซูม">1.0×</output>
           <button class="map-button" id="zoom-out" type="button" aria-label="ซูมออก" disabled>−</button>
           <button class="map-button reset-button" id="reset-map" type="button" disabled>ดูทั้งโลก</button>
+          <button class="map-button focus-player" id="focus-player" type="button">⌖ ประเทศเรา</button>
         </div>
         <div class="map-loading" id="map-loading">
           <p id="map-load-message" role="status">กำลังเตรียมแผนที่โลก…</p>
@@ -147,6 +155,7 @@
         <p class="map-credit">ข้อมูลแผนที่ Natural Earth · 1:50m<br>ปรับซูดาน ยูโกสลาเวีย และติมอร์-เลสเตตามโจทย์ปี 2000</p>
       </aside>
     </div>
+    <div class="turn-dock"><button id="end-turn" class="map-button end-turn" type="button">จบเทิร์น +3 เดือน</button></div>
     <nav class="turn-bar" aria-label="บริหารประเทศ"><button id="open-country" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🏛️</span>ประเทศ</button>
 <button id="open-resources" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🌾</span>ทรัพยากร</button>
 <button id="open-army" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">⚔️</span>กองทัพ</button>

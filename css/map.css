@@ -19,6 +19,11 @@ body.map-mode { overflow: hidden; }
 .map-caption { position: absolute; top: 18px; left: 20px; color: #9db4bd; pointer-events: none; font-size: 14px; letter-spacing: 1px; text-shadow: 0 1px 4px #081c2c; }
 .map-caption span { margin-left: 10px; color: #c8d2b8; }
 .map-tools { position: absolute; left: 16px; bottom: 16px; display: flex; align-items: center; gap: 4px; padding: 5px; background: #0a1725ed; border: 1px solid #445866; border-radius: 5px; }
+.map-tools .focus-player { min-width: 48px; font-size: 14px; white-space: nowrap; }
+.player-pulse { position: absolute; z-index: 2; width: 8px; height: 8px; margin: -4px 0 0 -4px; border: 2px solid #e8ffd1; border-radius: 50%; background: #78f0d0; box-shadow: 0 0 10px 3px #5deec5; pointer-events: none; }
+.player-pulse i { position: absolute; inset: -7px; border: 2px solid #8fffe2; border-radius: 50%; animation: player-pulse 1.8s ease-out infinite; }
+.player-pulse i + i { animation-delay: .9s; }
+@keyframes player-pulse { 0% { transform: scale(.45); opacity: .95; } 100% { transform: scale(2.1); opacity: 0; } }
 .map-tools button { font-size: 23px; }
 .map-tools .reset-button { font-size: 14px; margin-left: 4px; }
 #zoom-level { width: 46px; text-align: center; font: 14px monospace; color: #b5c8ab; }
@@ -60,4 +65,6 @@ body.map-mode { overflow: hidden; }
   #country-name { font-size: 20px; margin-bottom: 6px; }
   .detail-eyebrow { margin-bottom: 4px; }
   .map-tools { left: 10px; bottom: 10px; }
+  .map-tools .focus-player { width: 48px; padding: 4px; font-size: 19px; }
 }
+@media (prefers-reduced-motion: reduce) { .player-pulse i { animation: none; opacity: .65; transform: scale(1.4); } }
