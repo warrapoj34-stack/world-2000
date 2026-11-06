@@ -1,3 +1,5 @@
+import { VERSION } from './version.js';
+
 export async function registerServiceWorker(showStatus) {
   if (!('serviceWorker' in navigator)) {
     showStatus('เบราว์เซอร์นี้ไม่รองรับโหมดออฟไลน์');
@@ -16,7 +18,7 @@ export async function registerServiceWorker(showStatus) {
 
   try {
     const registration = await navigator.serviceWorker.register(
-      new URL('../sw.js', import.meta.url),
+      new URL(`../sw.js?v=${VERSION}`, import.meta.url),
       { type: 'module', updateViaCache: 'none' },
     );
     await navigator.serviceWorker.ready;
