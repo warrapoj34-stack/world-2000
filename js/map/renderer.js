@@ -80,7 +80,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     const { x, y, k } = transform;
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     const ocean = context.createLinearGradient(0, 0, width * .7, height);
-    ocean.addColorStop(0, '#245b79'); ocean.addColorStop(.45, '#103b5a'); ocean.addColorStop(1, '#06172b');
+    ocean.addColorStop(0, '#123a63'); ocean.addColorStop(.55, '#0b2a4a'); ocean.addColorStop(1, '#123a63');
     context.fillStyle = ocean;
     context.fillRect(0, 0, width, height);
     const vignette = context.createRadialGradient(width * .5, height * .45, Math.min(width, height) * .12, width * .5, height * .45, Math.max(width, height) * .75);
