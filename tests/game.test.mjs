@@ -7,6 +7,7 @@ import { readSave, writeSave, SAVE_KEYS } from '../js/save/storage.js';
 import { getRelation } from '../js/diplomacy/relations.js';
 import { prepareWorld } from '../js/data/world.js';
 import { formatNumber, formatPopulation } from '../js/ui/stats.js';
+import { VERSION } from '../js/version.js';
 
 const read = async name => JSON.parse(await readFile(new URL(`../data/${name}`, import.meta.url), 'utf8'));
 const [countries, relations, topology, names, settings] = await Promise.all([
@@ -89,7 +90,7 @@ test('เซฟคืนค่าสถิติ วันที่ และม
   assert.notEqual(catalog.byId.get('THA').treasury, 321.25);
   const record = JSON.parse(storage.getItem(SAVE_KEYS.game));
   assert.equal(record.saveVersion, 1);
-  assert.equal(record.gameVersion, '0.3.0');
+  assert.equal(record.gameVersion, VERSION);
 });
 
 test('ฉบับร่างไม่ทับเซฟเดิมและจำจำนวนครั้งสุ่ม', () => {
