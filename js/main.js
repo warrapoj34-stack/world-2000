@@ -1,3 +1,4 @@
+import { ensurePolicyCards } from './policies.js';
 import { loadResources } from './data/resources.js';
 import { ensureResources } from './resources.js';
 import { createResourceScreen } from './ui/resource-screen.js';
@@ -79,6 +80,7 @@ function goMenu() {
 async function openMap() {
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
+  ensurePolicyCards(activeGame,catalog.policies);
   showScreen('map');
   economyUI.refresh();
   document.querySelector('#back-to-menu').focus({ preventScroll: true });
@@ -122,6 +124,9 @@ async function boot() {
   try {
     catalog = await loadCatalog();
     await loadResources(catalog);
+    const policiesResponse=await fetch(new URL('../data/policies.json',import.meta.url));
+    if(!policiesResponse.ok)throw Error('โหลดนโยบายไม่สำเร็จ');
+    catalog.policies=await policiesResponse.json();
     const response = await fetch(new URL('../data/balance.json', import.meta.url));
     if (!response.ok) throw new Error('โหลดค่าระบบเศรษฐกิจไม่สำเร็จ');
     balance = await response.json();

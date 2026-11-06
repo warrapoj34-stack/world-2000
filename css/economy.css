@@ -21,3 +21,5 @@
   .economy-dialog header { padding: 12px; }.economy-dialog h2 { font-size: 16px; }
   #economy-content { padding: 12px; }
 }
+
+.policy-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.policy-card{padding:14px;text-align:left;border:1px solid #59777a;border-radius:10px;background:#183543;color:#e1e8dc;font:14px Tahoma;min-height:48px;cursor:pointer}.policy-card[aria-pressed="true"]{border:2px solid #b7d38e;background:#29483d}.policy-card:disabled{cursor:default;opacity:.75}.policy-card p{margin:8px 0}.policy-card:focus-visible{outline:3px solid #e2d59b}

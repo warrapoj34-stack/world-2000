@@ -1,0 +1,185 @@
+{
+  "cooldown": 2,
+  "tax": [
+    {
+      "id": "low",
+      "icon": "🌱",
+      "name": "ภาษีต่ำ 15%",
+      "tax": 15,
+      "good": "😊",
+      "bad": "💰",
+      "description": "ประชาชนสบายขึ้น แต่เงินเข้าน้อยลง"
+    },
+    {
+      "id": "medium",
+      "icon": "⚖️",
+      "name": "ภาษีกลาง 25%",
+      "tax": 25,
+      "good": "💰",
+      "bad": "😊",
+      "description": "แบ่งภาระระหว่างรัฐกับประชาชน"
+    },
+    {
+      "id": "high",
+      "icon": "🏦",
+      "name": "ภาษีสูง 35%",
+      "tax": 35,
+      "good": "💰",
+      "bad": "😊",
+      "description": "เงินเข้ามากขึ้น แต่คนมีความสุขน้อยลง"
+    }
+  ],
+  "budget": [
+    {
+      "id": "balanced",
+      "icon": "⚖️",
+      "name": "สมดุล",
+      "budget": {
+        "military": 20,
+        "education": 20,
+        "health": 20,
+        "infrastructure": 20,
+        "welfare": 20
+      },
+      "description": "ดูแลทุกด้านเท่าๆ กัน",
+      "good": "🛡️",
+      "bad": "⚔️"
+    },
+    {
+      "id": "army",
+      "icon": "⚔️",
+      "name": "เสริมกำลังรบ",
+      "budget": {
+        "military": 45,
+        "education": 15,
+        "health": 15,
+        "infrastructure": 15,
+        "welfare": 10
+      },
+      "description": "เน้นทหาร ลดงบดูแลประชาชน",
+      "good": "⚔️",
+      "bad": "😊"
+    },
+    {
+      "id": "development",
+      "icon": "🏗️",
+      "name": "พัฒนาประเทศ",
+      "budget": {
+        "military": 10,
+        "education": 30,
+        "health": 15,
+        "infrastructure": 35,
+        "welfare": 10
+      },
+      "description": "เน้นโรงเรียนและถนน",
+      "good": "💵",
+      "bad": "⚔️"
+    },
+    {
+      "id": "welfare",
+      "icon": "🤝",
+      "name": "สวัสดิการ",
+      "budget": {
+        "military": 10,
+        "education": 15,
+        "health": 30,
+        "infrastructure": 10,
+        "welfare": 35
+      },
+      "description": "เน้นสุขภาพและค่าครองชีพ",
+      "good": "😊",
+      "bad": "💵"
+    }
+  ],
+  "special": [
+    {
+      "id": "clean",
+      "icon": "🌿",
+      "name": "พลังงานสะอาด",
+      "costRate": 0.001,
+      "multipliers": {
+        "growth": 1.12,
+        "happiness": 1.02
+      },
+      "description": "ลงทุนพลังงานเพื่อการเติบโต",
+      "good": "💵",
+      "bad": "💰",
+      "governments": null
+    },
+    {
+      "id": "exports",
+      "icon": "🚢",
+      "name": "ส่งเสริมการส่งออก",
+      "costRate": 0.001,
+      "multipliers": {
+        "revenue": 1.08,
+        "happiness": 0.99
+      },
+      "description": "เพิ่มรายรับ แต่คนบางส่วนรับภาระ",
+      "good": "💵",
+      "bad": "💰",
+      "governments": null
+    },
+    {
+      "id": "conscription",
+      "icon": "🪖",
+      "name": "เกณฑ์ทหาร",
+      "costRate": 0.0005,
+      "multipliers": {
+        "military": 1.4,
+        "happiness": 0.96
+      },
+      "description": "ทหารเพิ่มเร็ว แต่ความสุขลด",
+      "good": "⚔️",
+      "bad": "💰",
+      "governments": [
+        "authoritarian",
+        "one_party",
+        "absolute_monarchy"
+      ]
+    },
+    {
+      "id": "land",
+      "icon": "🌾",
+      "name": "ปฏิรูปที่ดิน",
+      "costRate": 0.0015,
+      "multipliers": {
+        "growth": 1.08,
+        "happiness": 1.03
+      },
+      "description": "ช่วยเกษตรกรและเพิ่มการเติบโต",
+      "good": "💵",
+      "bad": "💰",
+      "governments": null
+    },
+    {
+      "id": "tourism",
+      "icon": "🏖️",
+      "name": "ส่งเสริมการท่องเที่ยว",
+      "costRate": 0.001,
+      "multipliers": {
+        "revenue": 1.06,
+        "happiness": 1.02
+      },
+      "description": "เพิ่มรายรับและความสุข",
+      "good": "💵",
+      "bad": "💰",
+      "governments": null
+    },
+    {
+      "id": "trade",
+      "icon": "🌐",
+      "name": "เปิดเสรีการค้า",
+      "costRate": 0.0005,
+      "multipliers": {
+        "growth": 1.2,
+        "revenue": 1.03,
+        "stability": 0.98
+      },
+      "description": "เศรษฐกิจโต แต่ความมั่นคงลด",
+      "good": "💵",
+      "bad": "🛡️",
+      "governments": null
+    }
+  ]
+}

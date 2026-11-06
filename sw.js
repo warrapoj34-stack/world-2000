@@ -14,6 +14,7 @@ const APP_SHELL = [
   './css/game.css', './js/state.js', './js/data/countries.js', './js/diplomacy/relations.js',
   './js/save/storage.js', './js/ui/start-screen.js', './js/ui/stats.js',
   './data/countries_2000.json', './data/relations_2000.json',
+  './data/policies.json', './js/policies.js', './js/ui/policy-cards.js',
   './js/resources.js', './js/data/resources.js', './js/ui/resource-screen.js', './css/resources.css',
   './data/resources.json', './data/country_resources_2000.json',
   './js/ui/guidance.js', './css/friendly.css',

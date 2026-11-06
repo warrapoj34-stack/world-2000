@@ -1,3 +1,4 @@
+import { renderPolicyCards } from './policy-cards.js';
 import { resourceEffects } from '../resources.js';
 import { allocateBudget, advanceQuarter, ensureEconomy, fiscalForecast, worldRanking, BUDGET_KEYS, defeatReason } from '../economy.js';
 import { formatNumber, shortMoney, monthName, governmentName } from './stats.js';
@@ -28,43 +29,8 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
     div.append(name, result); content.append(div);
   }
   function policies() {
-    const state = getState(), economy = ensureEconomy(state, balance);
-    open('policy', 'นโยบายภายในประเทศ');
-    paragraph(`${governmentName(catalog.byId.get(state.playerCountryId))} • ปรับแล้วบันทึกทันที มีผลเมื่อจบเทิร์น`);
-    paragraph(`งบรวม 100% เมื่อเลื่อนหมวดหนึ่ง หมวดอื่นปรับตามสัดส่วน • งบพื้นฐาน ${balance.spendingRate * 100}% ของ ขนาดเศรษฐกิจ ต่อปี ทหารมีต้นทุนตามระบอบ`);
-    paragraph('ภาษีต่ำช่วยความสุขแต่เงินเข้าน้อย • การศึกษาและถนนและสิ่งก่อสร้างช่วย ขนาดเศรษฐกิจ • โรงพยาบาลและช่วยค่าครองชีพช่วยความสุข • งบทหารรักษากำลังรบ');
-    const controls = {};
-    function slider(key, label, max) {
-      const wrapper = document.createElement('label'); wrapper.className = 'policy-control';
-      const name = document.createElement('span'); name.textContent = label;
-      const output = document.createElement('output');
-      const input = document.createElement('input'); input.type = 'range'; input.min = 0; input.max = max; input.step = 1; input.id = `policy-${key}`;
-      input.setAttribute('aria-label', label);
-      input.disabled = Boolean(economy.gameOver);
-      controls[key] = { input, output };
-      wrapper.append(name, output, input); content.append(wrapper);
-      input.addEventListener('input', () => {
-        if (key === 'tax') economy.policy.tax = Number(input.value);
-        else economy.policy = allocateBudget(economy.policy, key, Number(input.value));
-        refresh(); onChange(); document.dispatchEvent(new Event('policy-change'));
-      });
-    }
-    slider('tax', 'อัตราภาษี', balance.taxMax);
-    for (const key of BUDGET_KEYS) slider(key, labels[key], 100);
-    const forecast = paragraph('', 'fiscal-preview'); forecast.id = 'fiscal-preview';
-    const total = paragraph('งบรวม 100%', 'budget-total');
-    function refresh() {
-      for (const [key, control] of Object.entries(controls)) {
-        const value = key === 'tax' ? economy.policy.tax : economy.policy.budget[key];
-        control.input.value = value; control.output.value = `${value}%`;
-      }
-      const f = fiscalForecast(state.countries[state.playerCountryId], catalog.byId.get(state.playerCountryId).government, economy.policy, balance);
-      const resources = resourceEffects(state.countries[state.playerCountryId],catalog.resourceLevels.get(state.playerCountryId),catalog.resourceDefinitions,balance,()=>1);
-      f.net += resources.revenue;
-      forecast.textContent = `ประมาณการ3 เดือนหน้า: ภาษี ${money(f.revenue)} · ทรัพยากร ${money(resources.revenue)} · รายจ่าย ${money(f.spending)} · ดอกเบี้ย ${money(f.interest)} · คงเหลือ ${money(f.net)} · ต้องกู้ ${money(Math.max(0, -state.countries[state.playerCountryId].treasury - f.net))}`;
-      total.textContent = `งบรวม ${BUDGET_KEYS.reduce((sum, key) => sum + economy.policy.budget[key], 0)}%`;
-    }
-    refresh();
+    open('policy','นโยบายภายในประเทศ');
+    renderPolicyCards(content,getState(),catalog,balance,()=>{onChange();document.dispatchEvent(new Event('policy-change'));});
   }
   function ranking() {
     const state = getState(), rows = worldRanking(state, catalog);
@@ -96,7 +62,7 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
       row(label, `${formatNumber(r.after[key])}${unit} (${delta > 0 ? '+' : ''}${formatNumber(delta)})`, delta === 0 ? '' : (key === 'debt' ? delta < 0 : delta > 0) ? 'good' : 'bad');
     }
     if (r.resourceSummary) paragraph(`ทรัพยากรสร้างรายได้ ${money(r.resourceSummary.income)}${r.resourceSummary.drought ? ` • ภัยแล้ง: น้ำลดผลเสีย ${Math.round(r.resourceSummary.protection*100)}%` : ' • ไม่มีภัยแล้งในรอบนี้'}`);
-    paragraph(`ภาษี ${money(r.fiscal.revenue)} · รายจ่าย ${money(r.fiscal.spending)} · ดอกเบี้ย ${money(r.fiscal.interest)} · กู้เพิ่ม ${money(r.fiscal.borrowed)}`);
+    paragraph(`ภาษี ${money(r.fiscal.revenue)} · รายจ่าย ${money(r.fiscal.spending)} · ดอกเบี้ย ${money(r.fiscal.interest)} · ค่านโยบายพิเศษ ${money(r.fiscal.policyCost ?? 0)} · กู้เพิ่ม ${money(r.fiscal.borrowed)}`);
   }
   function gameOver() {
     const state = getState(), economy = state.economy, stats = state.countries[state.playerCountryId];
