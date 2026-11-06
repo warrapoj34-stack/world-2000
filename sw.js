@@ -9,6 +9,7 @@ const APP_SHELL = [
   './icons/icon-192.png', './icons/icon-512.png',
   './css/map.css', './js/ui/map-screen.js', './js/data/world.js',
   './js/map/renderer.js', './js/map/controls.js', './css/resources.css',
+  './assets/world-high.jpg', './assets/world-low.jpg',
   './lib/d3-7.9.0.js', './lib/topojson-client-3.1.0.js',
   './data/countries-50m.json', './data/country-names-th.json', './data/world-2000.json',
   './css/game.css', './js/state.js', './js/data/countries.js', './js/diplomacy/relations.js',
