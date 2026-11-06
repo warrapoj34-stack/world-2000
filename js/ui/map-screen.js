@@ -76,6 +76,8 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   zoomOut.addEventListener('click', () => map.zoomBy(1 / 1.5));
   reset.addEventListener('click', () => map.reset());
   const mode = document.querySelector('#map-mode'), legend = document.querySelector('#resource-legend');
+  const quality = document.querySelector('#map-quality');
+  quality.addEventListener('change', () => map.setQuality(quality.value));
   mode.append(new Option('แร่ธาตุ (ดาวสูงสุดในกลุ่ม)', 'minerals'), ...catalog.resourceDefinitions.map(r=>new Option(`${r.icon} ${r.nameTh}`,r.id)));
   function changeMode() {
     const state=getState(); if(!state)return;

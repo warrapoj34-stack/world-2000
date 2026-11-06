@@ -24,6 +24,39 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let player = null;
   let frame = 0;
   let resourceColor = null;
+  let quality = 'high';
+  let relief = null;
+  let wavePattern = null;
+
+  function createSurface() {
+    const w = quality === 'high' ? 1350 : 540;
+    const h = w / 2;
+    relief = document.createElement('canvas');
+    relief.width = w; relief.height = h;
+    const surface = relief.getContext('2d');
+    const pixels = surface.createImageData(w, h);
+    let seed = 2000;
+    const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    for (let y = 0; y < h; y++) {
+      const latitude = Math.abs(y / h * 180 - 90);
+      const base = latitude > 76 ? [205, 211, 207] : latitude > 62 ? [139, 145, 126] : latitude < 48 ? [91, 123, 79] : [121, 126, 94];
+      for (let x = 0; x < w; x++) {
+        const i = (y * w + x) * 4;
+        const n = (random() - .5) * (quality === 'high' ? 25 : 10);
+        const ridge = Math.sin(x * .018 + Math.sin(y * .037) * 2.2) * Math.cos(y * .061 + x * .004) * (latitude < 65 ? 12 : 5);
+        pixels.data[i] = base[0] + n + ridge; pixels.data[i + 1] = base[1] + n + ridge; pixels.data[i + 2] = base[2] + n + ridge; pixels.data[i + 3] = 255;
+      }
+    }
+    surface.putImageData(pixels, 0, 0);
+    const waves = document.createElement('canvas'); waves.width = 512; waves.height = 256;
+    const wc = waves.getContext('2d'); const image = wc.createImageData(512, 256);
+    for (let y = 0; y < 256; y++) for (let x = 0; x < 512; x++) {
+      const i = (y * 512 + x) * 4; const v = 110 + Math.sin(x * .035 + Math.sin(y * .08) * 2) * 20 + Math.cos(y * .07 - x * .012) * 10;
+      image.data[i] = v * .55; image.data[i + 1] = v * .8; image.data[i + 2] = v; image.data[i + 3] = 255;
+    }
+    wc.putImageData(image, 0, 0); wavePattern = context.createPattern(waves, 'repeat');
+  }
+  createSurface();
 
   function constrain(next) {
     const k = Math.max(fit * map.minZoom, Math.min(fit * map.maxZoom, next.k));
@@ -46,12 +79,18 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     if (!width || !height) return;
     const { x, y, k } = transform;
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    context.fillStyle = map.oceanColor;
+    const ocean = context.createLinearGradient(0, 0, width * .7, height);
+    ocean.addColorStop(0, '#245b79'); ocean.addColorStop(.45, '#103b5a'); ocean.addColorStop(1, '#06172b');
+    context.fillStyle = ocean;
     context.fillRect(0, 0, width, height);
+    const vignette = context.createRadialGradient(width * .5, height * .45, Math.min(width, height) * .12, width * .5, height * .45, Math.max(width, height) * .75);
+    vignette.addColorStop(0, '#06111e00'); vignette.addColorStop(1, '#02081266');
+    context.fillStyle = vignette; context.fillRect(0, 0, width, height);
     context.translate(x, y);
     context.scale(k, k);
-    context.lineWidth = 0.5 / k;
-    context.strokeStyle = '#41607255';
+    context.drawImage(relief, 0, 0, map.width, map.height);
+    context.lineWidth = 0.45 / k;
+    context.strokeStyle = '#a8d1df22';
     context.stroke(graticule);
     const visible = shapes.filter(shape => {
       const [[x0, y0], [x1, y1]] = shape.bounds;
@@ -59,19 +98,26 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     });
     context.lineJoin = 'round';
     for (const shape of visible) {
+      context.save();
+      context.shadowColor = '#020b16aa'; context.shadowBlur = (quality === 'high' ? 4 : 1.5) / k;
+      context.lineWidth = (quality === 'high' ? 2 : 1) / k; context.strokeStyle = '#07152299'; context.stroke(shape.path);
+      context.shadowColor = '#70c6e277'; context.shadowBlur = (quality === 'high' ? 13 : 4) / k;
+      context.lineWidth = (quality === 'high' ? 9 : 3) / k; context.strokeStyle = '#5eb7d544'; context.stroke(shape.path);
+      context.shadowBlur = 0; context.fillStyle = '#154b6b88'; context.fill(shape.path);
+      context.globalAlpha = resourceColor ? .9 : .56;
       context.fillStyle = resourceColor ? resourceColor(shape.country) : shape.country.properties.color;
-      context.fill(shape.path);
-      context.strokeStyle = map.borderColor;
-      context.lineWidth = 0.65 / k;
-      context.stroke(shape.path);
+      context.fill(shape.path); context.globalAlpha = 1;
+      context.lineWidth = .8 / k; context.strokeStyle = '#d0d6bd99'; context.stroke(shape.path);
+      context.restore();
     }
     if (selected) {
       context.fillStyle = map.highlightColor;
-      context.globalAlpha = resourceColor ? 0 : 0.45;
+      context.globalAlpha = resourceColor ? 0 : 0.52;
       context.fill(selected.path);
       context.globalAlpha = 1;
       context.strokeStyle = map.highlightColor;
-      context.lineWidth = 2.4 / k;
+      context.shadowColor = map.highlightColor; context.shadowBlur = (quality === 'high' ? 18 : 6) / k;
+      context.lineWidth = 3.4 / k;
       context.stroke(selected.path);
     }
     if (player) {
@@ -83,6 +129,9 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.stroke(player.path);
       context.restore();
     }
+    context.save(); context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    context.globalAlpha = quality === 'high' ? .075 : .025;
+    context.fillStyle = wavePattern; context.fillRect(0, 0, width, height); context.restore();
 
     // วาดชื่อด้วยขนาดคงที่และเว้นช่องว่างไม่ให้ทับกัน
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -133,6 +182,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       center: [(width / 2 - transform.x) / transform.k, (height / 2 - transform.y) / transform.k] };
   }
   const view = {
+    setQuality: value => { quality = value === 'low' ? 'low' : 'high'; createSurface(); schedule(); },
     setResourceColors: resolver => { resourceColor = resolver; schedule(); },
     getViewState: viewState,
     setViewState: saved => {

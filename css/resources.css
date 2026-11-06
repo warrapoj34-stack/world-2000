@@ -7,7 +7,8 @@
 .resource-description { font-size: 20px; color: #d8e8b7; }
 .resource-map-control { position: absolute; z-index: 3; top: 16px; right: 16px; width: 200px; border: 1px solid #547477; border-radius: 8px; background: #0c2230ed; padding: 8px; }
 .resource-map-control label { display: block; margin-bottom: 4px; }
-.resource-map-control select { width: 100%; background: #173442; color: #e8eee6; font-size: 14px; padding: 6px; border: 1px solid #67858a; border-radius: 4px; }
+.resource-map-control select { width: 100%; min-height: 44px; background: #173442; color: #e8eee6; font-size: 14px; padding: 6px; border: 1px solid #67858a; border-radius: 4px; }
+.resource-map-control { box-shadow: 0 6px 20px #06111d88; backdrop-filter: blur(8px); }
 #resource-legend { font-size: 14px; margin-top: 6px; }
 .resource-scale { display: flex; margin-top: 6px; }
 .resource-scale span { flex: 1; text-align: center; font-size: 14px; padding: 3px 0; }
