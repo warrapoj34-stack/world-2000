@@ -26,6 +26,7 @@ const APP_SHELL = [
   './data/playable.json', './data/playable_regions.json', './js/data/playable.js',
   './data/military2000.json', './data/military_rules.json', './js/war/military.js',
   './data/recipes.json', './js/war/production.js', './js/ui/army-screen.js',
+  './data/traits.json', './js/traits.js', './js/ui/traits-screen.js',
 ];
 const APP_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 

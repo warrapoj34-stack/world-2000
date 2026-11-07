@@ -3,6 +3,7 @@ import { STAT_KEYS, validStats } from './data/countries.js';
 import { validPolicy } from './economy.js';
 import { validUnits } from './war/military.js';
 import { validProduction } from './war/production.js';
+import { validTraitState } from './traits.js';
 
 export function chooseCountry(catalog, previousId, random = Math.random) {
   const pool = (catalog.newGameCountries ?? catalog.playable).filter(country => country.id !== previousId);
@@ -41,6 +42,7 @@ export function validGame(state, catalog) {
     && (state.mapMode === undefined || ['political','minerals',...RESOURCE_IDS].includes(state.mapMode))
     && validEconomy(state.economy)
     && validProduction(state.production, catalog)
+    && validTraitState(state.traitState,catalog)
     && Number.isInteger(state.date?.year) && state.date.year >= 2000 && state.date.year <= 9999
     && Number.isInteger(state.date.month) && state.date.month >= 1 && state.date.month <= 12
     && (state.date.day === undefined || (Number.isInteger(state.date.day) && state.date.day >= 1 && state.date.day <= 31))

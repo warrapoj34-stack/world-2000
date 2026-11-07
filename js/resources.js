@@ -10,11 +10,11 @@ export function ensureResources(state) {
     stats.resourceStock = Object.fromEntries(RESOURCE_IDS.map(id => [id, Math.floor(stats.resourceStock?.[id] ?? 0)]));
   }
 }
-export function resourceProduction(stats, levels, balance) {
-  return Object.fromEntries(RESOURCE_IDS.map(id => [id, Math.floor((levels[id] ?? 0) * balance.resources.unitsPerStarPerMonth)]));
+export function resourceProduction(stats, levels, balance, modifiers = {}) {
+  return Object.fromEntries(RESOURCE_IDS.map(id => [id, Math.round((levels[id] ?? 0) * balance.resources.unitsPerStarPerMonth * (modifiers.resourceOutput?.[id] ?? 1))]));
 }
-export function resourceEffects(stats, levels, definitions, balance, random = Math.random, months = 3) {
-  const b = balance.resources, production = resourceProduction(stats,levels,balance);
+export function resourceEffects(stats, levels, definitions, balance, random = Math.random, months = 3, modifiers = {}) {
+  const b = balance.resources, production = resourceProduction(stats,levels,balance,modifiers);
   for (const id of RESOURCE_IDS) production[id] *= months;
   const drought = random() < b.droughtChance * months / 3;
   const protection = clamp(levels.freshwater * b.waterProtectionPerStar,0,1);
@@ -28,12 +28,15 @@ export function resourceEffects(stats, levels, definitions, balance, random = Ma
     tech:levels.rare_earths*b.techPerStar*months/3,
     reputation:levels.biodiversity*b.reputationPerStar*months/3};
 }
-export function sellResource(state, id, balance) {
+export function resourceSalePrice(state, id, balance, catalog) {
+  return balance.resources.salePricesMillions[id] * (traitModifiers(state,catalog).salePrice[id] ?? 1);
+}
+export function sellResource(state, id, balance, catalog) {
   if (!RESOURCE_IDS.includes(id) || state.economy?.gameOver || state.victory?.finished) return null;
   ensureResources(state);
   const stats = state.countries[state.playerCountryId], batch = balance.resources.saleBatchSize;
-  const price = balance.resources.salePricesMillions[id];
-  if (!Number.isSafeInteger(batch) || batch <= 0 || !Number.isSafeInteger(price) || price < 0 || stats.resourceStock[id] < batch) return null;
+  const price = resourceSalePrice(state,id,balance,catalog);
+  if (!Number.isSafeInteger(batch) || batch <= 0 || !Number.isFinite(price) || price < 0 || stats.resourceStock[id] < batch) return null;
   const income = batch * price / 1000;
   stats.resourceStock[id] -= batch; stats.treasury += income;
   return income;
@@ -53,3 +56,4 @@ export function reinforceArmy(state, balance) {
   stats.military=Math.min(100,stats.military+b.military);
   return true;
 }
+import { traitModifiers } from './traits.js';

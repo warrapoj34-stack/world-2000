@@ -1,3 +1,4 @@
+import {traitModifiers} from '../traits.js';
 import {ensurePolicyCards,choosePolicy,policyModifiers} from '../policies.js';
 import {simulateCountry} from '../economy.js';
 import {resourceEffects} from '../resources.js';
@@ -10,8 +11,10 @@ export function renderPolicyCards(container,state,catalog,balance,onChange){
  const action=(group,id,slot)=>{
   const candidate=structuredClone(state);if(!choosePolicy(candidate,data,government,group,id,slot))return;
   container.replaceChildren();container.scrollTop=0;container.parentElement.scrollTop=0;text('ตัวอย่างผลเทิร์นหน้า');
-  const stats=state.countries[state.playerCountryId],resources=resourceEffects(stats,catalog.resourceLevels.get(state.playerCountryId),catalog.resourceDefinitions,balance,()=>1);
-  const result=simulateCountry(stats,government,candidate.economy.policy,balance,()=>.5,resources,policyModifiers(candidate.economy.cards,data));
+  const traits=traitModifiers(state,catalog);
+  const modifiers=policyModifiers(candidate.economy.cards,data);modifiers.revenue*=traits.taxIncome;
+  const stats=state.countries[state.playerCountryId],resources=resourceEffects(stats,catalog.resourceLevels.get(state.playerCountryId),catalog.resourceDefinitions,balance,()=>1,3,traits);
+  const result=simulateCountry(stats,government,candidate.economy.policy,balance,()=>.5,resources,modifiers);
   text('เงินคงเหลือประมาณ '+formatMoney(result.stats.treasury));
   for(const [key,label] of [['happiness','ความสุข']]){const delta=result.stats[key]-stats[key];const p=text(label+' '+(delta>=0?'▲ +':'▼ ')+formatNumber(delta)+' → '+formatNumber(result.stats[key]));p.className=delta>=0?'good':'bad';}
   text('ค่าประมาณใช้สูตรเกมจริง ไม่รวมความผันผวนและภัยแล้ง • ต้องกู้ '+formatMoney(result.fiscal.borrowed));

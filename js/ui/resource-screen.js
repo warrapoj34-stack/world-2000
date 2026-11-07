@@ -1,4 +1,5 @@
-import { resourceProduction, ensureResources, sellResource } from '../resources.js';
+import { traitModifiers } from '../traits.js';
+import { resourceProduction, ensureResources, sellResource, resourceSalePrice } from '../resources.js';
 import { formatNumber, formatMoney } from './stats.js';
 export function createResourceScreen({ catalog, balance, getState, onChange, onRefresh }) {
   const dialog = document.querySelector('#resource-dialog'), body = document.querySelector('#resource-content');
@@ -6,7 +7,7 @@ export function createResourceScreen({ catalog, balance, getState, onChange, onR
   function open(id) {
     const state = getState(); ensureResources(state);
     const stats = state.countries[state.playerCountryId], levels = catalog.resourceLevels.get(state.playerCountryId);
-    const production = resourceProduction(stats, levels, balance), resource = defs.find(r => r.id === id);
+    const production = resourceProduction(stats, levels, balance, traitModifiers(state,catalog)), resource = defs.find(r => r.id === id);
     title.textContent = resource ? `${resource.icon} ${resource.nameTh}` : 'คลังทรัพยากรของประเทศ';
     body.replaceChildren();
     const intro = document.createElement('p'); intro.textContent = resource ? resource.descriptionTh : 'ผลผลิตเข้าคลังทุกเดือน ขายครั้งละ 10 หน่วยเพื่อรับเงินทันที'; body.append(intro);
@@ -18,11 +19,11 @@ export function createResourceScreen({ catalog, balance, getState, onChange, onR
       const stars = document.createElement('span'); stars.className = 'resource-stars'; stars.textContent = '★'.repeat(levels[r.id]) + '☆'.repeat(5-levels[r.id]); stars.setAttribute('aria-label', `${levels[r.id]} จาก 5 ดาว`);
       const stock = document.createElement('strong'); stock.className = 'stock-count'; stock.textContent = `ในคลัง ${formatNumber(stats.resourceStock[r.id])} หน่วย`;
       const output = document.createElement('span'); output.className = 'monthly-production'; output.textContent = `+${formatNumber(production[r.id])} หน่วย / เดือน`;
-      const price = document.createElement('span'); price.textContent = `ราคาขาย ${formatMoney(balance.resources.salePricesMillions[r.id] / 1000)} / หน่วย`;
+      const price = document.createElement('span'); price.textContent = `ขาย ${balance.resources.saleBatchSize} หน่วย ได้ประมาณ ${formatMoney(resourceSalePrice(state,r.id,balance,catalog) * balance.resources.saleBatchSize / 1000)}`;
       const sell = document.createElement('button'); sell.type = 'button'; sell.className = 'map-button sell-resource'; sell.dataset.resource = r.id; sell.textContent = `ขาย ${balance.resources.saleBatchSize} หน่วย`;
       sell.disabled = stats.resourceStock[r.id] < balance.resources.saleBatchSize || Boolean(state.economy?.gameOver || state.victory?.finished);
       sell.onclick = () => {
-        const income = sellResource(state, r.id, balance); if (income === null) return;
+        const income = sellResource(state, r.id, balance, catalog); if (income === null) return;
         onChange(); onRefresh(); open(id);
         document.querySelector('#resource-feedback').textContent = `ขาย${r.nameTh}แล้ว +${formatMoney(income)}`;
       };

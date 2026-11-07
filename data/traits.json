@@ -1,0 +1,2702 @@
+{
+  "USA": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "เครือข่ายธุรกิจ",
+      "descriptionTh": "ตลาดทุนและฐานธุรกิจขนาดใหญ่ช่วยเก็บรายได้",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ค่าแรงสูง",
+      "descriptionTh": "ต้นทุนแรงงานอุตสาหกรรมสูงกว่าฐานผลิตเกิดใหม่",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมทุนอุตสาหกรรม",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "CAN": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ป่าไม้กว้างใหญ่",
+      "descriptionTh": "พื้นที่ป่าขนาดใหญ่รองรับอุตสาหกรรมไม้",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "forest",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ระยะทางไกล",
+      "descriptionTh": "ชุมชนและฐานผลิตกระจายตามพื้นที่กว้าง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "แผนป่าไม้แห่งเหนือ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "forest",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "MEX": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "โรงงานชายแดน",
+      "descriptionTh": "เครือข่ายโรงงานเชื่อมการค้ากับอเมริกาเหนือ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "รายได้ไม่ทั่วถึง",
+      "descriptionTh": "ความต่างระหว่างภูมิภาคจำกัดฐานภาษี",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เดินเครื่องโรงงานชายแดน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "BRA": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรเขตร้อน",
+      "descriptionTh": "พื้นที่เพาะปลูกขนาดใหญ่รองรับสินค้าเกษตร",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ขนส่งภายในแพง",
+      "descriptionTh": "พื้นที่กว้างและเส้นทางภายในเพิ่มต้นทุน",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งฤดูเก็บเกี่ยว",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "ARG": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ทุ่งปัมปัส",
+      "descriptionTh": "ที่ราบอุดมสมบูรณ์ช่วยผลิตอาหาร",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภาระการเงิน",
+      "descriptionTh": "ความเปราะบางทางการเงินช่วงปลายทศวรรษกระทบรัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ส่งออกผลผลิตปัมปัส",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "COL": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรบนที่สูง",
+      "descriptionTh": "ภูมิอากาศหลายระดับช่วยสินค้าเกษตรส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ความขัดแย้งภายใน",
+      "descriptionTh": "ความไม่สงบกระทบการจัดเก็บรายได้",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เครือข่ายเกษตรชุมชน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "CHL": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "แหล่งทองแดง",
+      "descriptionTh": "แหล่งแร่ตามแนวแอนดีสเป็นฐานส่งออก",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "copper",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภูมิประเทศยาวแคบ",
+      "descriptionTh": "ภูเขาและระยะทางเพิ่มต้นทุนโครงการ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งเหมืองแอนดีส",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "copper",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "PER": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ทะเลอุดมปลา",
+      "descriptionTh": "กระแสน้ำชายฝั่งรองรับประมงขนาดใหญ่",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "fish",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "การเชื่อมต่อที่สูง",
+      "descriptionTh": "แนวแอนดีสทำให้การจัดเก็บรายได้เข้าถึงยาก",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฤดูประมงชายฝั่ง",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "fish",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "VEN": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "น้ำมันแคริบเบียน",
+      "descriptionTh": "แหล่งน้ำมันเป็นฐานรายได้จากต่างประเทศ",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "พึ่งพาภาคน้ำมัน",
+      "descriptionTh": "ฐานรายได้ภาคอื่นยังไม่หลากหลาย",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งส่งออกปิโตรเลียม",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "RUS": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ก๊าซยูเรเซีย",
+      "descriptionTh": "แหล่งก๊าซขนาดใหญ่รองรับรายได้ส่งออก",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "gas",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ช่วงเปลี่ยนผ่าน",
+      "descriptionTh": "การปรับโครงสร้างหลังโซเวียตจำกัดฐานภาษี",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งแหล่งก๊าซไซบีเรีย",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "gas",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "GBR": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "ศูนย์การเงินลอนดอน",
+      "descriptionTh": "บริการการเงินระหว่างประเทศช่วยฐานภาษี",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ต้นทุนอุตสาหกรรม",
+      "descriptionTh": "ฐานผลิตในประเทศมีค่าใช้จ่ายสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมทุนจากลอนดอน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "FRA": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "อุตสาหกรรมอากาศยาน",
+      "descriptionTh": "เครือข่ายผู้ผลิตการบินช่วยงานประกอบ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภาระรัฐขนาดใหญ่",
+      "descriptionTh": "ค่าใช้จ่ายและข้อผูกพันรัฐกดรายรับสุทธิ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "โครงการการบินแห่งชาติ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "DEU": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "วิศวกรรมแม่นยำ",
+      "descriptionTh": "ฐานเครื่องจักรช่วยการผลิตรถถัง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภาระรวมประเทศ",
+      "descriptionTh": "การปรับโครงสร้างหลังรวมประเทศยังมีต้นทุน",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เครือข่ายโรงงานวิศวกรรม",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "ITA": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "อู่ต่อเรือเมดิเตอร์เรเนียน",
+      "descriptionTh": "ประสบการณ์อู่ต่อเรือช่วยลดวัสดุสิ้นเปลือง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "warship",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "หนี้ภาครัฐ",
+      "descriptionTh": "ภาระการเงินลดรายรับที่พร้อมใช้",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมอู่ต่อเรือ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "warship",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "ESP": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรเมดิเตอร์เรเนียน",
+      "descriptionTh": "ผลผลิตเกษตรหลากหลายมีตลาดส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานงานไม่ทั่วถึง",
+      "descriptionTh": "ความต่างของตลาดแรงงานกดฐานภาษี",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -6
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เทศกาลส่งออกสินค้าเกษตร",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "NLD": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "ท่าเรือการค้า",
+      "descriptionTh": "เครือข่ายท่าเรือและการค้าช่วยรายได้รัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "พื้นที่อุตสาหกรรมแพง",
+      "descriptionTh": "พื้นที่จำกัดเพิ่มต้นทุนโรงงาน",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ประตูการค้ายุโรป",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "BEL": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "ทางแยกยุโรป",
+      "descriptionTh": "ทำเลเชื่อมเมืองการค้าสำคัญของยุโรป",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 8
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ต้นทุนฐานผลิต",
+      "descriptionTh": "ค่าแรงและพื้นที่อุตสาหกรรมเพิ่มต้นทุน",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ศูนย์กระจายสินค้ายุโรป",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "SWE": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "แร่เหล็กคุณภาพ",
+      "descriptionTh": "แหล่งแร่เหนือเป็นฐานอุตสาหกรรม",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "iron",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "แรงงานต้นทุนสูง",
+      "descriptionTh": "อุตสาหกรรมในประเทศมีค่าแรงสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งแร่เหล็กทางเหนือ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "iron",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "CHE": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "บริการการเงิน",
+      "descriptionTh": "ธุรกิจบริการมูลค่าสูงรองรับรายได้รัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานผลิตราคาแพง",
+      "descriptionTh": "ค่าแรงและการนำเข้าวัตถุดิบทำให้ผลิตแพง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เครือข่ายทุนสวิส",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "AUT": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "ศูนย์กลางยุโรป",
+      "descriptionTh": "ทำเลเชื่อมยุโรปกลางหนุนบริการและการค้า",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 8
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานผลิตขนาดเล็ก",
+      "descriptionTh": "ขนาดอุตสาหกรรมจำกัดงานผลิตขนาดใหญ่",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "โครงการเชื่อมยุโรปกลาง",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "POL": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "ฐานอุตสาหกรรมเดิม",
+      "descriptionTh": "โรงงานและแรงงานรองรับการผลิตรถถัง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ปรับโครงสร้างรัฐ",
+      "descriptionTh": "การเปลี่ยนผ่านอุตสาหกรรมกดรายรับรัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฟื้นโรงงานอุตสาหกรรม",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "UKR": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ดินดำอุดมสมบูรณ์",
+      "descriptionTh": "ที่ราบดินดำเป็นฐานเพาะปลูกสำคัญ",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ช่วงเปลี่ยนผ่าน",
+      "descriptionTh": "ระบบรัฐหลังโซเวียตยังปรับตัว",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฤดูเก็บเกี่ยวดินดำ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "TUR": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "ฐานผลิตสองทวีป",
+      "descriptionTh": "อุตสาหกรรมท้องถิ่นรองรับงานประกอบ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ความเปราะบางการเงิน",
+      "descriptionTh": "แรงกดดันทางการเงินจำกัดรายได้ที่พร้อมใช้",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ขยายฐานผลิตอนาโตเลีย",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "GRC": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "เครือข่ายเดินเรือ",
+      "descriptionTh": "ประสบการณ์เดินเรือช่วยสร้างเรือสินค้า",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "cargo",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภาระการเงินรัฐ",
+      "descriptionTh": "ฐานการเงินรัฐจำกัดรายรับสุทธิ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมเครือข่ายเดินเรือ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "cargo",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "NOR": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "น้ำมันทะเลเหนือ",
+      "descriptionTh": "แหล่งน้ำมันนอกชายฝั่งมีตลาดมั่นคง",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ค่าแรงและระยะทาง",
+      "descriptionTh": "ภูมิประเทศและแรงงานทำให้ผลิตแพง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 18
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งแหล่งพลังงานเหนือ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "DNK": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรและอาหาร",
+      "descriptionTh": "เครือข่ายแปรรูปอาหารช่วยราคาส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "อุตสาหกรรมขนาดเล็ก",
+      "descriptionTh": "การผลิตยุทโธปกรณ์ขนาดใหญ่มีต้นทุนสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ส่งออกอาหารคุณภาพ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "FIN": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ป่าไม้และกระดาษ",
+      "descriptionTh": "อุตสาหกรรมไม้ใช้ประโยชน์จากป่าเขตหนาว",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "forest",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฤดูหนาวยาว",
+      "descriptionTh": "สภาพอากาศเพิ่มค่าใช้จ่ายการผลิต",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "แผนป่าไม้เขตหนาว",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "forest",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "PRT": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "ทำเลมหาสมุทร",
+      "descriptionTh": "ประสบการณ์ชายฝั่งช่วยสร้างเรือสินค้า",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "cargo",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานรายได้จำกัด",
+      "descriptionTh": "ผลิตภาพและขนาดตลาดจำกัดฐานภาษี",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "อู่เรือแอตแลนติก",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "cargo",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "CZE": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "โรงงานยุโรปกลาง",
+      "descriptionTh": "ฐานเครื่องจักรเดิมรองรับการผลิตรถถัง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "การปรับโครงสร้าง",
+      "descriptionTh": "โรงงานและรัฐยังปรับตัวหลังเปลี่ยนระบบ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฟื้นสายการผลิตเครื่องจักร",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "ROU": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "พื้นที่เพาะปลูก",
+      "descriptionTh": "ที่ราบและลุ่มน้ำรองรับเกษตรกรรม",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ต้นทุนเปลี่ยนผ่าน",
+      "descriptionTh": "การปรับระบบรายได้รัฐยังไม่สมบูรณ์",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "พัฒนาเกษตรลุ่มน้ำ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "YUG": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "ฐานอาวุธเดิม",
+      "descriptionTh": "ประสบการณ์อุตสาหกรรมยูโกสลาเวียช่วยรถถัง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ผลจากความขัดแย้ง",
+      "descriptionTh": "ความเสียหายและการโดดเดี่ยวกดรายรับ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ซ่อมฟื้นโรงงานเดิม",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "CHN": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "ฐานผลิตขนาดใหญ่",
+      "descriptionTh": "เครือข่ายโรงงานและแรงงานช่วยประหยัดวัสดุ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ความต่างระหว่างภูมิภาค",
+      "descriptionTh": "ฐานรายได้ยังเข้าถึงไม่เท่ากันทั่วประเทศ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งสายการผลิตส่งออก",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "JPN": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "เทคโนโลยีการบิน",
+      "descriptionTh": "ฐานวิศวกรรมช่วยผลิตเครื่องบินรบ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ข้อจำกัดกำลังภาคพื้น",
+      "descriptionTh": "ข้อจำกัดหลังสงครามทำให้ขยายกำลังภาคพื้นแพง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": 25
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งเครือข่ายวิศวกรรม",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "IND": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "ฐานอุตสาหกรรมในประเทศ",
+      "descriptionTh": "โรงงานรัฐและเครือข่ายชิ้นส่วนช่วยรถถัง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "โครงสร้างพื้นฐานไม่ทั่วถึง",
+      "descriptionTh": "การขนส่งและประสิทธิภาพรัฐกดฐานภาษี",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมโรงงานในประเทศ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "KOR": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "อุตสาหกรรมต่อเรือ",
+      "descriptionTh": "อู่ต่อเรือขนาดใหญ่ช่วยประหยัดวัสดุ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "cargo",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ผลจากวิกฤตการเงิน",
+      "descriptionTh": "การปรับตัวหลังวิกฤตเอเชียกดรายรับ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งอู่ต่อเรือเกาหลี",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "cargo",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "PRK": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "อุตสาหกรรมทางทหาร",
+      "descriptionTh": "การจัดทรัพยากรเน้นสายผลิตรถถัง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "โดดเดี่ยวและขาดแคลน",
+      "descriptionTh": "ข้อจำกัดการค้ากดรายได้รัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมทรัพยากรโรงงานรัฐ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "IDN": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ป่าไม้หมู่เกาะ",
+      "descriptionTh": "ทรัพยากรป่าเป็นฐานวัตถุดิบสำคัญ",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "forest",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ขนส่งข้ามเกาะ",
+      "descriptionTh": "พื้นที่หมู่เกาะเพิ่มต้นทุนการผลิต",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 12
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมทรัพยากรหมู่เกาะ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "forest",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "THA": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ฐานส่งออกอาหาร",
+      "descriptionTh": "เครือข่ายเกษตรและแปรรูปมีตลาดต่างประเทศ",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฟื้นจากวิกฤตเอเชีย",
+      "descriptionTh": "การฟื้นตัวทางการเงินกดรายรับรัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฤดูส่งออกอาหารไทย",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "TWN": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "อุตสาหกรรมอิเล็กทรอนิกส์",
+      "descriptionTh": "เครือข่ายชิ้นส่วนแม่นยำช่วยการบิน",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ข้อจำกัดตลาดยุทโธปกรณ์",
+      "descriptionTh": "การจัดหาบางระบบต้องใช้ต้นทุนสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "warship",
+          "percent": 20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมผู้ผลิตชิ้นส่วน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "MYS": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "ฐานสินค้าอุตสาหกรรม",
+      "descriptionTh": "เครือข่ายโรงงานส่งออกช่วยรายรับรัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 8
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "พึ่งพาเทคโนโลยีนำเข้า",
+      "descriptionTh": "งานอากาศยานยังมีต้นทุนจัดหาสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": 20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "แผนฐานอุตสาหกรรมส่งออก",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "PHL": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "แรงงานภาคบริการ",
+      "descriptionTh": "เครือข่ายบริการและแรงงานช่วยรายได้รัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 8
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "โครงข่ายหมู่เกาะ",
+      "descriptionTh": "อุตสาหกรรมหนักกระจายและมีต้นทุนสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เชื่อมเครือข่ายบริการ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "VNM": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรลุ่มแม่น้ำ",
+      "descriptionTh": "ลุ่มน้ำสำคัญรองรับอาหารส่งออก",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานอุตสาหกรรมยังพัฒนา",
+      "descriptionTh": "การผลิตอากาศยานยังใช้ทรัพยากรมาก",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": 20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ขยายเกษตรลุ่มน้ำ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "PAK": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "ฐานผลิตภาคพื้น",
+      "descriptionTh": "อุตสาหกรรมร่วมพัฒนารองรับรถถัง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภาระการเงินรัฐ",
+      "descriptionTh": "หนี้และฐานภาษีจำกัดรายได้ที่พร้อมใช้",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งโครงการอุตสาหกรรมภาคพื้น",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "tank",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "BGD": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรลุ่มดินตะกอน",
+      "descriptionTh": "ลุ่มน้ำกว้างรองรับผลผลิตอาหาร",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "อุตสาหกรรมหนักจำกัด",
+      "descriptionTh": "เครื่องจักรหนักยังต้องพึ่งการจัดหา",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งผลผลิตลุ่มน้ำ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "IRN": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "แหล่งพลังงาน",
+      "descriptionTh": "ทรัพยากรน้ำมันเป็นฐานส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ข้อจำกัดการจัดหา",
+      "descriptionTh": "การเข้าถึงชิ้นส่วนอากาศยานมีต้นทุนสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": 25
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมแหล่งพลังงาน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "IRQ": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "น้ำมันเมโสโปเตเมีย",
+      "descriptionTh": "แหล่งน้ำมันขนาดใหญ่ช่วยฐานรายได้",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "oil",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ผลจากข้อจำกัดการค้า",
+      "descriptionTh": "สภาพการค้าในปี 2000 กดรายรับรัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฟื้นโครงข่ายน้ำมัน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "SAU": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ผู้ส่งออกน้ำมัน",
+      "descriptionTh": "แหล่งน้ำมันและเครือข่ายส่งออกมีขนาดใหญ่",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานรายได้นอกน้ำมัน",
+      "descriptionTh": "ภาคการผลิตอื่นยังไม่หลากหลาย",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งส่งออกพลังงาน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "ISR": {
+    "strength": {
+      "icon": "🏭",
+      "nameTh": "วิศวกรรมป้องกันประเทศ",
+      "descriptionTh": "เครือข่ายเทคโนโลยีช่วยผลิตเครื่องบินรบ",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภาระความมั่นคง",
+      "descriptionTh": "ความจำเป็นด้านการป้องกันกดรายรับรัฐ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมเทคโนโลยีป้องกันประเทศ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": -20
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "KAZ": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "แหล่งยูเรเนียม",
+      "descriptionTh": "พื้นที่แหล่งแร่กว้างรองรับการขุด",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "uranium",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ระยะทางภายใน",
+      "descriptionTh": "พื้นที่กว้างและการขนส่งเพิ่มต้นทุน",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งสำรวจแร่ทุ่งหญ้า",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "uranium",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "ARE": {
+    "strength": {
+      "icon": "💰",
+      "nameTh": "ศูนย์การค้าอ่าว",
+      "descriptionTh": "ท่าเรือและบริการช่วยฐานรายได้",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "นำเข้ายุทโธปกรณ์",
+      "descriptionTh": "อุตสาหกรรมหนักในประเทศยังมีขนาดเล็ก",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ระดมเขตการค้าอ่าว",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 20
+        },
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 10
+        }
+      ]
+    }
+  },
+  "ZAF": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ฐานแร่และอุตสาหกรรม",
+      "descriptionTh": "ประสบการณ์เหมืองและโรงงานช่วยวัตถุดิบ",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "gold",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ความเหลื่อมล้ำสูง",
+      "descriptionTh": "ความต่างด้านงานและรายได้กดฐานภาษี",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "แผนเหมืองเพื่อการฟื้นตัว",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "gold",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "EGY": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรลุ่มแม่น้ำไนล์",
+      "descriptionTh": "ลุ่มน้ำเป็นฐานผลิตอาหารหลัก",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ภาระประชากรหนาแน่น",
+      "descriptionTh": "พื้นที่บริการรัฐต้องรองรับผู้คนมาก",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -8
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฤดูเพาะปลูกลุ่มไนล์",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "NGA": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "น้ำมันสามเหลี่ยมปากแม่น้ำ",
+      "descriptionTh": "แหล่งน้ำมันรองรับการส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "โครงสร้างพื้นฐานจำกัด",
+      "descriptionTh": "ไฟฟ้าและการขนส่งเพิ่มต้นทุนโรงงาน",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "พัฒนาโครงข่ายพลังงาน",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "DZA": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "ก๊าซแอฟริกาเหนือ",
+      "descriptionTh": "แหล่งก๊าซเชื่อมตลาดส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "gas",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ผลจากความขัดแย้งภายใน",
+      "descriptionTh": "การฟื้นตัวหลังความไม่สงบกดรายรับ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -10
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งส่งออกก๊าซ",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "gas",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "LBY": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "แหล่งน้ำมันทะเลทราย",
+      "descriptionTh": "แหล่งน้ำมันเป็นฐานการส่งออกสำคัญ",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "oil",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "การจัดหาอุตสาหกรรม",
+      "descriptionTh": "ข้อจำกัดภายนอกทำให้เครื่องบินรบผลิตแพง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": 25
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งแหล่งน้ำมันทะเลทราย",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "ETH": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรที่สูง",
+      "descriptionTh": "ภูมิอากาศพื้นที่สูงรองรับสินค้าเกษตร",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ผลของสงครามชายแดน",
+      "descriptionTh": "ภาระจากความขัดแย้งช่วงปี 2000 กดรายรับ",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "ฟื้นแผนเกษตรที่สูง",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "MAR": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรชายฝั่ง",
+      "descriptionTh": "ที่ราบชายฝั่งและภูมิอากาศหนุนสินค้าเกษตร",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 15
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานอุตสาหกรรมหนักจำกัด",
+      "descriptionTh": "ชิ้นส่วนอากาศยานยังต้องจัดหาจากภายนอก",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": 20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "โครงการเกษตรชายฝั่ง",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "AGO": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "แหล่งน้ำมันนอกฝั่ง",
+      "descriptionTh": "ทรัพยากรนอกชายฝั่งมีศักยภาพส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "สงครามกลางเมือง",
+      "descriptionTh": "ความขัดแย้งในปี 2000 กดการเก็บรายได้",
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -20
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งแหล่งน้ำมันนอกฝั่ง",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "oil",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "AUS": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เหมืองแร่เหล็ก",
+      "descriptionTh": "พื้นที่แหล่งแร่ขนาดใหญ่ช่วยผลผลิต",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "iron",
+          "percent": 25
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ระยะทางและค่าแรง",
+      "descriptionTh": "โครงข่ายห่างไกลทำให้โรงงานมีต้นทุนสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 15
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "เร่งเหมืองแร่ส่งออก",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "iron",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  },
+  "NZL": {
+    "strength": {
+      "icon": "🌍",
+      "nameTh": "เกษตรคุณภาพ",
+      "descriptionTh": "ฐานปศุสัตว์และอาหารเชื่อมตลาดส่งออก",
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "ฐานผลิตขนาดเล็ก",
+      "descriptionTh": "การผลิตอากาศยานในประเทศมีต้นทุนสูง",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "fighter",
+          "percent": 25
+        }
+      ]
+    },
+    "special": {
+      "icon": "✨",
+      "nameTh": "แผนส่งออกอาหารเกาะใต้",
+      "descriptionTh": "เร่งจุดเด่นชั่วคราว โดยยอมรับต้นทุนอีกด้าน",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "salePrice",
+          "target": "food",
+          "percent": 35
+        },
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": -5
+        }
+      ]
+    }
+  }
+}

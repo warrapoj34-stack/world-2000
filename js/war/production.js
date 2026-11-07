@@ -23,16 +23,17 @@ export async function loadRecipes(catalog) {
   catalog.recipes = recipes;
 }
 export function productionMissing(state, catalog, recipe) {
+  const cost=recipeCosts(state,catalog,recipe);
   const stats = state.countries[state.playerCountryId], missing = [];
   if (state.economy?.gameOver || state.victory?.finished) missing.push('เกมจบแล้ว');
   if (recipe.conditions.countries && !recipe.conditions.countries.includes(state.playerCountryId)) missing.push('ประเทศนี้ยังไม่ผ่านเงื่อนไขในสูตร');
   if (stats.tech < (recipe.conditions.minTech ?? 0)) missing.push(`ต้องมีเทคโนโลยี ${recipe.conditions.minTech}`);
   if (recipe.conditions.requiresCoast && catalog.militaryRules.landlocked.includes(state.playerCountryId)) missing.push('ต้องมีชายฝั่งทะเล');
-  for (const [id, amount] of Object.entries(recipe.resources)) {
+  for (const [id, amount] of Object.entries(cost.resources)) {
     const shortage = amount - (stats.resourceStock?.[id] ?? 0);
     if (shortage > 0) missing.push(`ขาด${catalog.resourceDefinitions.find(r=>r.id===id).nameTh} ${shortage} หน่วย`);
   }
-  if (stats.treasury * 1000 + 1e-8 < recipe.moneyMillions) missing.push(`ขาดเงิน ${Math.ceil(recipe.moneyMillions - stats.treasury*1000)} ล้าน`);
+  if (stats.treasury * 1000 + 1e-8 < cost.moneyMillions) missing.push(`ขาดเงิน ${Math.ceil(cost.moneyMillions - stats.treasury*1000)} ล้าน`);
   return missing;
 }
 export function updateProduction(state) {
@@ -53,8 +54,9 @@ export function enqueueProduction(state, catalog, recipeId) {
   if (!recipe || productionMissing(state,catalog,recipe).length) return false;
   updateProduction(state);
   const production = ensureProduction(state), stats = state.countries[state.playerCountryId];
-  for (const [id, amount] of Object.entries(recipe.resources)) stats.resourceStock[id] -= amount;
-  stats.treasury = Math.max(0, stats.treasury - recipe.moneyMillions / 1000);
+  const cost=recipeCosts(state,catalog,recipe);
+  for (const [id, amount] of Object.entries(cost.resources)) stats.resourceStock[id] -= amount;
+  stats.treasury = Math.max(0, stats.treasury - cost.moneyMillions / 1000);
   const startDay = Math.max(gameDay(state), ...production.queue.map(job=>job.endDay));
   production.queue.push({ id: production.nextId++, countryId: state.playerCountryId, nameTh: recipe.nameTh,
     icon: recipe.icon, unit: recipe.unit, startDay, endDay: startDay + recipe.days });
@@ -62,4 +64,10 @@ export function enqueueProduction(state, catalog, recipeId) {
 }
 export function productionProgress(state, job) {
   return Math.max(0, Math.min(100, Math.floor((gameDay(state)-job.startDay)/(job.endDay-job.startDay)*100)));
+}
+import { traitModifiers } from '../traits.js';
+export function recipeCosts(state,catalog,recipe) {
+  const modifiers=traitModifiers(state,catalog).productionCost;
+  const multiplier=(modifiers.all??1)*(modifiers[recipe.id]??1);
+  return { resources:Object.fromEntries(Object.entries(recipe.resources).map(([id,amount])=>[id,Math.ceil(amount*multiplier-1e-9)])), moneyMillions:Math.ceil(recipe.moneyMillions*multiplier-1e-9) };
 }

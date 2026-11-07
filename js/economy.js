@@ -1,3 +1,4 @@
+import { traitModifiers } from './traits.js';
 import { ensurePolicyCards, policyModifiers } from './policies.js';
 import { resourceEffects } from './resources.js';
 // สูตรเกมใช้ GDP รายปี หน่วยเงินเป็นพันล้านดอลลาร์
@@ -80,9 +81,12 @@ export function advanceQuarter(state, catalog, balance, random = Math.random) {
   let result;
   for (const country of catalog.countries) {
     if (state.countries[country.id].gdp <= 0) continue;
-    const effects = catalog.resourceLevels ? resourceEffects(state.countries[country.id],catalog.resourceLevels.get(country.id),catalog.resourceDefinitions,balance,random) : null;
+    const traits = traitModifiers(state,catalog,country.id);
+    const countryModifiers = country.id===state.playerCountryId && catalog.policies ? policyModifiers(economy.cards,catalog.policies) : {};
+    countryModifiers.revenue = (countryModifiers.revenue ?? 1) * traits.taxIncome;
+    const effects = catalog.resourceLevels ? resourceEffects(state.countries[country.id],catalog.resourceLevels.get(country.id),catalog.resourceDefinitions,balance,random,3,traits) : null;
     const outcome = simulateCountry(state.countries[country.id], country.government,
-      country.id === state.playerCountryId ? economy.policy : balance.defaultPolicy, balance, random, effects, country.id===state.playerCountryId && catalog.policies ? policyModifiers(economy.cards,catalog.policies) : {});
+      country.id === state.playerCountryId ? economy.policy : balance.defaultPolicy, balance, random, effects, countryModifiers);
     state.countries[country.id] = outcome.stats;
     if (country.id === state.playerCountryId) result = outcome;
   }
@@ -105,10 +109,13 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
   let result;
   for (const country of catalog.countries) {
     if (state.countries[country.id].gdp <= 0) continue;
-    const effects = catalog.resourceLevels ? resourceEffects(state.countries[country.id], catalog.resourceLevels.get(country.id), catalog.resourceDefinitions, balance, random, 1) : null;
+    const traits = traitModifiers(state,catalog,country.id);
+    const countryModifiers = country.id===state.playerCountryId && catalog.policies ? policyModifiers(economy.cards,catalog.policies) : {};
+    countryModifiers.revenue = (countryModifiers.revenue ?? 1) * traits.taxIncome;
+    const effects = catalog.resourceLevels ? resourceEffects(state.countries[country.id], catalog.resourceLevels.get(country.id), catalog.resourceDefinitions, balance, random, 1, traits) : null;
     const outcome = simulateCountry(state.countries[country.id], country.government,
       country.id === state.playerCountryId ? economy.policy : balance.defaultPolicy, balance, random, effects,
-      country.id === state.playerCountryId && catalog.policies ? policyModifiers(economy.cards, catalog.policies) : {}, 1);
+      countryModifiers, 1);
     state.countries[country.id] = outcome.stats;
     if (country.id === state.playerCountryId) result = outcome;
   }

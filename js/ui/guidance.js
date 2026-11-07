@@ -1,5 +1,6 @@
 import { formatNumber, renderStats } from './stats.js';
 import { renderArmy } from './army-screen.js';
+import { renderTraits } from './traits-screen.js';
 
 const KEY = 'world-2000:ui-preferences';
 const explanations = {
@@ -81,6 +82,7 @@ export function createGuidance({ catalog, getState, onRanking, onResources, onCh
     open(`ประเทศของคุณ • ${country.nameTh}`);
     text('ดูภาพรวมประเทศ หรือเปิดอันดับเพื่อเทียบกับประเทศอื่น');
     const dl = document.createElement('dl'); dl.className = 'stat-grid'; renderStats(dl, state.countries[country.id]); body.append(dl);
+    renderTraits(body,state,catalog,onChange,onRefresh);
     const history = state.events?.history ?? [];
     text('เหตุการณ์ที่ผ่านมา');
     if (!history.length) text('ยังไม่มีเหตุการณ์');
