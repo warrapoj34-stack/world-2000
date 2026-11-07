@@ -28,6 +28,7 @@ const APP_SHELL = [
   './data/recipes.json', './js/war/production.js', './js/ui/army-screen.js',
   './data/traits.json', './js/traits.js', './js/ui/traits-screen.js',
   './js/ui/trait-map.js', './css/trait-map.css',
+  './data/sea_grid.json', './data/trade_ports.json', './js/map/trade-data.js', './js/ui/trade-visuals.js', './css/trade.css',
 ];
 const APP_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 

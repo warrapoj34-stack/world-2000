@@ -24,6 +24,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let player = null;
   let frame = 0;
   let resourceColor = null;
+  let visualHitTest = null;
   let quality = 'high';
   let terrain = null;
   let terrainSource = '';
@@ -165,6 +166,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       center: [(width / 2 - transform.x) / transform.k, (height / 2 - transform.y) / transform.k] };
   }
   const view = {
+    setVisualHitTest: callback => { visualHitTest = callback; },
     setQuality: value => { quality = value === 'low' ? 'low' : 'high'; loadTerrain(); schedule(); },
     setResourceColors: resolver => { resourceColor = resolver; schedule(); },
     getViewState: viewState,
@@ -188,6 +190,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     reset: () => update({ k: fit, x: (width - map.width * fit) / 2, y: (height - map.height * fit) / 2 }),
     selectAt: (x, y) => {
       if (x < 0 || y < 0) { selectShape(null); return; }
+      if (visualHitTest?.(x,y)) return;
       const mx = (x - transform.x) / transform.k, my = (y - transform.y) / transform.k;
       context.save();
       context.resetTransform();

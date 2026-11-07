@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="./css/victory.css">
   <link rel="stylesheet" href="./css/time.css">
   <link rel="stylesheet" href="./css/trait-map.css">
+  <link rel="stylesheet" href="./css/trade.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
 </head>
@@ -120,10 +121,13 @@
           <div class="map-setting-menu" id="map-settings-menu" hidden>
             <label for="map-mode">โหมดแผนที่</label><select id="map-mode"><option value="political">การเมือง</option></select><div id="resource-legend" hidden></div>
             <label for="map-quality">คุณภาพภาพ</label><select id="map-quality"><option value="high">สูง</option><option value="low">ต่ำ</option></select>
+            <label class="trade-toggle"><input type="checkbox" id="trade-animation" checked> ภาพเรือและเครื่องบิน</label><p id="trade-animation-status">ภาพจากยอดขายรายเดือน</p>
+            <p class="trade-note">กดขายทรัพยากรแล้วภาพขนส่งจะเริ่มเดือนถัดไป เงินได้รับตอนขายแล้ว</p>
           </div>
         </div>
         <span class="player-pulse" id="player-pulse" hidden aria-hidden="true"><i></i><i></i></span>
         <canvas id="world-map" tabindex="0" role="img" aria-label="แผนที่โลก ลากเพื่อเลื่อน ใช้สองนิ้วหรือล้อเมาส์เพื่อซูม แตะเพื่อเลือกประเทศ หรือเลือกจากรายชื่อด้านข้าง"></canvas>
+        <canvas id="trade-canvas" aria-hidden="true"></canvas><aside id="trade-info" hidden><p id="trade-info-text"></p><button id="close-trade-info" class="map-button" type="button">ปิด</button></aside>
         <div class="trait-map-dock"><button id="map-special" type="button" aria-label="ใช้ความสามารถพิเศษ"><span class="special-ring" aria-hidden="true"><span id="map-special-days">✨</span></span><span><strong>ความสามารถพิเศษ</strong><span id="map-special-name"></span><span id="map-special-status"></span></span></button><p id="trait-map-summary" role="status" hidden></p></div>
         <aside id="missions" class="missions" aria-label="ภารกิจแนะนำ"><header><h3>ภารกิจแนะนำ</h3><button id="dismiss-missions" class="map-button" type="button" aria-label="ปิดภารกิจแนะนำ">×</button></header><ol id="mission-list"></ol></aside>
         <div class="map-caption" aria-hidden="true">แผนที่การเมือง <span>ปี 2000</span></div>

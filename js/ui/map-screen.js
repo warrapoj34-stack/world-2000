@@ -3,9 +3,10 @@ import { createWorldMap } from '../map/renderer.js';
 import { getRelation } from '../diplomacy/relations.js';
 import { renderStats, renderHUD, governmentName } from './stats.js';
 import { topResources, mapResourceLevel, RESOURCE_COLORS } from '../resources.js';
+import { loadTradeVisualData, createTradeVisuals } from './trade-visuals.js';
 
 export async function initializeMapScreen({ catalog, getState, onChange }) {
-  const world = await loadWorld();
+  const [world,tradeData] = await Promise.all([loadWorld(),loadTradeVisualData().catch(()=>null)]);
   if (world.countries.some(country => !catalog.byMapId.has(country.id))) throw new Error('ข้อมูลประเทศบนแผนที่ไม่ครบ');
   const picker = document.querySelector('#country-picker');
   const zoomIn = document.querySelector('#zoom-in');
@@ -120,8 +121,10 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
     onChange();
   }
   mode.addEventListener('change',changeMode);
+  const trade = createTradeVisuals({map,world,catalog,getState,onChange,data:tradeData});
   return {
     ...map,
+    destroy: () => { trade?.destroy();map.destroy(); },
     setSession(state) {
       restoring = true;
       const savedView = state.view;
