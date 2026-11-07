@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="./css/friendly.css">
   <link rel="stylesheet" href="./css/resources.css">
   <link rel="stylesheet" href="./css/events.css">
+  <link rel="stylesheet" href="./css/victory.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
 </head>
@@ -81,6 +82,7 @@
         <h2 id="draw-intro"></h2>
         <p id="draw-government"></p>
         <dl class="stat-grid" id="draw-stats"></dl>
+        <label class="victory-label" for="start-victory-path">เลือกเป้าหมายของประเทศ</label><select id="start-victory-path" class="victory-select"></select><p id="start-victory-detail" class="victory-detail"></p>
         <p class="estimate-note">เศรษฐกิจอ้างอิงปี 2000 · คะแนนและเงินคลังเป็นค่าประเมินสำหรับเกม</p>
       </section>
     </div>
@@ -101,6 +103,7 @@
       <div class="map-heading"><h2 id="player-name">ประเทศของคุณ</h2><span>WORLD 2000</span></div>
       <span class="year-badge" id="game-date">ม.ค. 2000</span>
     </header>
+    <div class="victory-bar"><span id="victory-name">เป้าหมาย</span><progress id="victory-progress" max="100" value="0"></progress><span id="victory-progress-text">0%</span><span id="victory-progress-detail"></span></div>
     <div class="country-hud" aria-label="สถานะประเทศของคุณ">
       <button type="button" class="hud-button" data-stat="treasury" aria-label="อธิบายเงินที่มี"><span class="hud-icon" aria-hidden="true">💰</span><span><span class="hud-label">เงินที่มี</span><strong id="hud-treasury">—</strong></span></button>
       <button type="button" class="hud-button" data-stat="gdp" aria-label="อธิบายเศรษฐกิจ"><span class="hud-icon" aria-hidden="true">💵</span><span><span class="hud-label">เศรษฐกิจ</span><strong id="hud-gdp">—</strong></span></button>

@@ -1,5 +1,6 @@
 import { rerollDraft } from '../state.js';
 import { renderStats, governmentName } from './stats.js';
+import { PATHS } from '../victory.js';
 
 export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
   const screen = document.querySelector('#start-screen');
@@ -10,6 +11,11 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
   const reroll = document.querySelector('#reroll-country');
   const picker = document.querySelector('#manual-country');
   const choose = document.querySelector('#choose-country');
+  const victorySelect = document.querySelector('#start-victory-path');
+  const victoryDetail = document.querySelector('#start-victory-detail');
+  victorySelect.append(...Object.entries(PATHS).map(([id, path]) => new Option(path.name, id)));
+  victorySelect.value = 'survival';
+  victorySelect.addEventListener('change', () => { victoryDetail.textContent = PATHS[victorySelect.value].detail; });
   let draft = null;
   let generation = 0;
   let busy = false;
@@ -64,7 +70,7 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
     onDraft(draft);
     render();
   });
-  accept.addEventListener('click', () => { if (!busy && draft) onAccept(draft.candidateId); });
+  accept.addEventListener('click', () => { if (!busy && draft) onAccept(draft.candidateId, victorySelect.value); });
   document.querySelector('#cancel-start').addEventListener('click', () => { cancel(); onBack(); });
   function cancel() {
     generation++;
@@ -75,6 +81,7 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
     show(value, { spin = false, replacesSave = false } = {}) {
       cancel();
       draft = value;
+      victorySelect.value = 'survival'; victoryDetail.textContent = PATHS.survival.detail;
       document.querySelector('#replace-save-note').hidden = !replacesSave;
       render();
       if (spin) animate();

@@ -1,0 +1,8 @@
+.victory-bar { display: flex; align-items: center; gap: 10px; min-height: 42px; padding: 6px 16px; background: #132b36; border-bottom: 1px solid #405d60; color: #dcebcf; font-size: 14px; }
+.victory-bar progress { width: clamp(90px, 18vw, 260px); height: 16px; accent-color: #b5d797; }
+#victory-progress-detail { color: #afc4bf; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.victory-label { display: block; margin-top: 18px; margin-bottom: 8px; font-size: 15px; }
+.victory-select { min-height: 48px; width: 100%; max-width: 460px; padding: 9px; border: 1px solid #73938f; border-radius: 7px; background: #193843; color: #eaf0e7; font-size: 15px; }
+.victory-detail { margin: 8px 0; color: #c3d7cf; font-size: 14px; line-height: 1.5; }
+.year-badge { font-weight: bold; font-size: 18px; }
+@media (max-width: 700px) { .victory-bar { gap: 5px; padding-inline: 8px; } #victory-progress-detail { display: none; } .year-badge { font-size: 15px; } }

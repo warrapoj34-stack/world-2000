@@ -13,6 +13,7 @@ import { ensureEconomy } from './economy.js';
 import { createGuidance } from './ui/guidance.js';
 import { createEconomyScreen } from './ui/economy-screen.js';
 import { createEventScreen } from './ui/event-screen.js';
+import { ensureVictory, selectVictoryPath, victoryProgress, PATHS } from './victory.js';
 
 showVersion(VERSION);
 registerServiceWorker(showOfflineStatus);
@@ -36,6 +37,14 @@ function showScreen(target) {
   startScreen.hidden = target !== 'start';
   mapScreen.hidden = target !== 'map';
   document.body.classList.toggle('map-mode', target === 'map');
+}
+function refreshVictory() {
+  if (!activeGame) return;
+  const victory = ensureVictory(activeGame), progress = victoryProgress(activeGame, catalog);
+  document.querySelector('#victory-name').textContent = PATHS[victory.path].name;
+  document.querySelector('#victory-progress').value = progress.percent;
+  document.querySelector('#victory-progress-text').textContent = `${Math.floor(progress.percent)}%`;
+  document.querySelector('#victory-progress-detail').textContent = progress.detail;
 }
 
 function reportSave(result) {
@@ -82,7 +91,9 @@ async function openMap() {
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
   ensurePolicyCards(activeGame,catalog.policies);
+  ensureVictory(activeGame);
   showScreen('map');
+  refreshVictory();
   economyUI.refresh();
   eventUI.resume();
   document.querySelector('#back-to-menu').focus({ preventScroll: true });
@@ -105,9 +116,10 @@ async function openMap() {
   } finally { pendingMap = null; }
 }
 
-function acceptCountry(id) {
+function acceptCountry(id, path) {
   startUI.cancel();
   activeGame = createGame(id, catalog);
+  selectVictoryPath(activeGame, path);
   const saved = writeSave('game', activeGame, catalog);
   reportSave(saved);
   if (saved.ok) removeDraft();
@@ -136,7 +148,7 @@ async function boot() {
     if (!eventsResponse.ok) throw new Error('โหลดเหตุการณ์ไม่สำเร็จ');
     catalog.events = await eventsResponse.json();
     economyUI = createEconomyScreen({ catalog, balance, getState: () => activeGame,
-      onChange: persistGame, onRefresh: () => map?.setSession(activeGame), onMenu: goMenu,
+      onChange: persistGame, onRefresh: () => { map?.setSession(activeGame); refreshVictory(); }, onMenu: goMenu,
       beforeTurn: () => eventUI.beforeTurn() });
     eventUI = createEventScreen({ catalog, getState: () => activeGame, onChange: persistGame,
       onRefresh: () => map?.setSession(activeGame), onContinue: economyUI.finishTurn });

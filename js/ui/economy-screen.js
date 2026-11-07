@@ -2,6 +2,7 @@ import { renderPolicyCards } from './policy-cards.js';
 import { resourceEffects } from '../resources.js';
 import { allocateBudget, advanceQuarter, ensureEconomy, fiscalForecast, worldRanking, BUDGET_KEYS, defeatReason } from '../economy.js';
 import { formatNumber, shortMoney, monthName, governmentName } from './stats.js';
+import { PATHS, ensureVictory, selectVictoryPath, updateVictory, victoryProgress } from '../victory.js';
 
 const labels = { military: 'ทหาร', education: 'การศึกษา', health: 'โรงพยาบาล', infrastructure: 'ถนนและสิ่งก่อสร้าง', welfare: 'ช่วยค่าครองชีพ' };
 const money = value => `${formatNumber(value)} พันล้าน $`;
@@ -16,7 +17,8 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
     screen = name;
     title.textContent = heading;
     content.replaceChildren();
-    close.textContent = name === 'over' ? 'กลับเมนู' : 'กลับแผนที่';
+    close.textContent = name === 'over' || (name === 'victory' && getState().victory.finished) ? 'กลับเมนู'
+      : name === 'victory' ? 'เล่นต่อแบบ Sandbox' : 'กลับแผนที่';
     if (!dialog.open) dialog.showModal();
   }
   function paragraph(text, className = '') {
@@ -31,6 +33,32 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
   function policies() {
     open('policy','นโยบายภายในประเทศ');
     renderPolicyCards(content,getState(),catalog,balance,()=>{onChange();document.dispatchEvent(new Event('policy-change'));});
+    const heading = document.createElement('label'); heading.textContent = 'ทางเลือกชัยชนะ'; heading.htmlFor = 'policy-victory-path'; content.append(heading);
+    const picker = document.createElement('select'); picker.id = 'policy-victory-path'; picker.className = 'victory-select';
+    picker.append(...Object.entries(PATHS).map(([id, path]) => new Option(path.name, id)));
+    picker.value = ensureVictory(getState()).path;
+    const note = paragraph(PATHS[picker.value].detail, 'victory-detail');
+    picker.addEventListener('change', () => { selectVictoryPath(getState(), picker.value); note.textContent = PATHS[picker.value].detail; onChange(); onRefresh(); });
+    content.append(picker);
+  }
+  function victorySummary() {
+    const state = getState(), victory = ensureVictory(state), stats = state.countries[state.playerCountryId];
+    open('victory', victory.finished ? 'สรุปประเทศ • ปี 2050' : 'คุณทำภารกิจสำเร็จ!');
+    paragraph(`${catalog.byId.get(state.playerCountryId).nameTh} • ${PATHS[victory.path].name}`);
+    paragraph(victory.finished ? `เดินทางมา ${state.economy.turns} เทิร์น • ${victory.won ? 'ทำเป้าหมายสำเร็จ' : 'สิ้นสุดการเดินทาง'}` : 'เป้าหมายสำเร็จก่อนปี 2050');
+    row('ขนาดเศรษฐกิจ', money(stats.gdp)); row('เงินคลัง', money(stats.treasury));
+    row('ความสุข', `${formatNumber(stats.happiness)}/100`); row('ความมั่นคง', `${formatNumber(stats.stability)}/100`);
+    const rank = worldRanking(state, catalog).findIndex(item => item.id === state.playerCountryId) + 1;
+    const score = Math.round((stats.happiness + stats.stability + stats.military + (1 - (rank - 1) / catalog.playable.length) * 100) / 4);
+    row('คะแนนรวม', `${score}/100`); row('อันดับเศรษฐกิจ', `${rank}/${catalog.playable.length}`);
+    row('ความคืบหน้า', `${Math.floor(victoryProgress(state, catalog).percent)}%`);
+    const history = state.events?.history ?? [];
+    paragraph(`เหตุการณ์ที่ตัดสินใจ ${history.length} ครั้ง`);
+    for (const item of history.slice(-8)) paragraph(`${item.icon} ${item.title} • ${item.option} (${item.date.month}/${item.date.year})`);
+    if (!victory.finished) {
+      const keep = document.createElement('button'); keep.type = 'button'; keep.className = 'map-button';
+      keep.textContent = 'เล่นต่อแบบ Sandbox'; keep.addEventListener('click', () => { victory.continued = true; onChange(); dialog.close(); }); content.append(keep);
+    }
   }
   function ranking() {
     const state = getState(), rows = worldRanking(state, catalog);
@@ -77,20 +105,26 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
   function refresh() {
     const state = getState(), economy = ensureEconomy(state, balance);
     economy.gameOver ||= defeatReason(state.countries[state.playerCountryId], balance);
-    end.disabled = Boolean(economy.gameOver) || busy;
+    const victory = ensureVictory(state);
+    end.disabled = Boolean(economy.gameOver || victory.finished) || busy;
     if (economy.gameOver) gameOver();
+    else if (victory.finished || (victory.won && !victory.continued)) victorySummary();
   }
-  close.addEventListener('click', () => { dialog.close(); if (screen === 'over') onMenu(); });
-  dialog.addEventListener('cancel', event => { if (screen === 'over') { event.preventDefault(); dialog.close(); onMenu(); } });
+  close.addEventListener('click', () => { if (screen === 'victory' && !getState().victory.finished) { getState().victory.continued = true; onChange(); }
+    dialog.close(); if (screen === 'over' || (screen === 'victory' && getState().victory.finished)) onMenu(); });
+  dialog.addEventListener('cancel', event => { if (screen === 'over' || (screen === 'victory' && getState().victory.finished)) { event.preventDefault(); dialog.close(); onMenu(); } });
   document.querySelector('#open-policy').addEventListener('click', policies);
   function finishTurn() {
-    if (busy || dialog.open || getState().economy.gameOver) return;
+    if (busy || dialog.open || getState().economy.gameOver || ensureVictory(getState()).finished) return;
     busy = true; end.disabled = true;
-    try { advanceQuarter(getState(), catalog, balance); onChange(); onRefresh(); if (getState().economy.gameOver) gameOver(); else report(); }
-    finally { busy = false; end.disabled = Boolean(getState().economy.gameOver); }
+    try { advanceQuarter(getState(), catalog, balance); updateVictory(getState(), catalog); onChange(); onRefresh();
+      if (getState().economy.gameOver) gameOver();
+      else if (getState().victory.finished || (getState().victory.won && !getState().victory.continued)) victorySummary();
+      else report(); }
+    finally { busy = false; end.disabled = Boolean(getState().economy.gameOver || getState().victory.finished); }
   }
   end.addEventListener('click', () => {
-    if (busy || dialog.open || getState().economy.gameOver) return;
+    if (busy || dialog.open || getState().economy.gameOver || ensureVictory(getState()).finished) return;
     if (!beforeTurn()) finishTurn();
   });
   return { refresh, ranking, finishTurn };

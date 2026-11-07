@@ -21,6 +21,7 @@ const APP_SHELL = [
   './js/ui/guidance.js', './css/friendly.css',
   './data/balance.json', './js/economy.js', './js/ui/economy-screen.js', './css/economy.css',
   './data/events.json', './js/events/engine.js', './js/ui/event-screen.js', './css/events.css',
+  './js/victory.js', './css/victory.css',
 ];
 const APP_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 
