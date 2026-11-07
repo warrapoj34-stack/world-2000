@@ -15,7 +15,7 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
   const victoryDetail = document.querySelector('#start-victory-detail');
   victorySelect.append(...Object.entries(PATHS).map(([id, path]) => new Option(path.name, id)));
   victorySelect.value = 'survival';
-  victorySelect.addEventListener('change', () => { victoryDetail.textContent = PATHS[victorySelect.value].detail; });
+  victorySelect.addEventListener('change', () => { victoryDetail.textContent = PATHS[victorySelect.value].detail.replaceAll('เศรษฐกิจ','ประเทศ'); });
   let draft = null;
   let generation = 0;
   let busy = false;

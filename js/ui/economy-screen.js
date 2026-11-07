@@ -1,11 +1,11 @@
 import { renderPolicyCards } from './policy-cards.js';
 import { resourceEffects } from '../resources.js';
 import { allocateBudget, advanceMonth, ensureEconomy, fiscalForecast, worldRanking, BUDGET_KEYS, defeatReason } from '../economy.js';
-import { formatNumber, shortMoney, monthName, governmentName } from './stats.js';
+import { formatMoney, formatNumber, shortMoney, monthName, governmentName } from './stats.js';
 import { PATHS, ensureVictory, selectVictoryPath, updateVictory, victoryProgress } from '../victory.js';
 
 const labels = { military: 'ทหาร', education: 'การศึกษา', health: 'โรงพยาบาล', infrastructure: 'ถนนและสิ่งก่อสร้าง', welfare: 'ช่วยค่าครองชีพ' };
-const money = value => `${formatNumber(value)} พันล้าน $`;
+const money = value => formatMoney(value);
 export function createEconomyScreen({ catalog, balance, getState, onChange, onRefresh, onMenu }) {
   const dialog = document.querySelector('#economy-dialog');
   const title = document.querySelector('#economy-title');
@@ -36,8 +36,8 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
     const picker = document.createElement('select'); picker.id = 'policy-victory-path'; picker.className = 'victory-select';
     picker.append(...Object.entries(PATHS).map(([id, path]) => new Option(path.name, id)));
     picker.value = ensureVictory(getState()).path;
-    const note = paragraph(PATHS[picker.value].detail, 'victory-detail');
-    picker.addEventListener('change', () => { selectVictoryPath(getState(), picker.value); note.textContent = PATHS[picker.value].detail; onChange(); onRefresh(); });
+    const note = paragraph(PATHS[picker.value].detail.replaceAll('เศรษฐกิจ','ประเทศ'), 'victory-detail');
+    picker.addEventListener('change', () => { selectVictoryPath(getState(), picker.value); note.textContent = PATHS[picker.value].detail.replaceAll('เศรษฐกิจ','ประเทศ'); onChange(); onRefresh(); });
     content.append(picker);
   }
   function victorySummary() {
@@ -45,11 +45,11 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
     open('victory', victory.finished ? 'สรุปประเทศ • ปี 2050' : 'คุณทำภารกิจสำเร็จ!');
     paragraph(`${catalog.byId.get(state.playerCountryId).nameTh} • ${PATHS[victory.path].name}`);
     paragraph(victory.finished ? `เดินทางมา ${state.economy.turns} เทิร์น • ${victory.won ? 'ทำเป้าหมายสำเร็จ' : 'สิ้นสุดการเดินทาง'}` : 'เป้าหมายสำเร็จก่อนปี 2050');
-    row('ขนาดเศรษฐกิจ', money(stats.gdp)); row('เงินคลัง', money(stats.treasury));
-    row('ความสุข', `${formatNumber(stats.happiness)}/100`); row('ความมั่นคง', `${formatNumber(stats.stability)}/100`);
+    row('เงินคลัง', money(stats.treasury));
+    row('ความสุข', `${formatNumber(stats.happiness)}/100`);
     const rank = worldRanking(state, catalog).findIndex(item => item.id === state.playerCountryId) + 1;
     const score = Math.round((stats.happiness + stats.stability + stats.military + (1 - (rank - 1) / catalog.playable.length) * 100) / 4);
-    row('คะแนนรวม', `${score}/100`); row('อันดับเศรษฐกิจ', `${rank}/${catalog.playable.length}`);
+    row('คะแนนรวม', `${score}/100`); row('อันดับประเทศ', `${rank}/${catalog.playable.length}`);
     row('ความคืบหน้า', `${Math.floor(victoryProgress(state, catalog).percent)}%`);
     const history = state.events?.history ?? [];
     paragraph(`เหตุการณ์ที่ตัดสินใจ ${history.length} ครั้ง`);
@@ -60,11 +60,11 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
     }
   }
   function ranking() {
-    const state = getState(), rows = worldRanking(state, catalog);
-    open('ranking', 'อันดับโลกตาม ขนาดเศรษฐกิจ');
+    const state = getState(), rows = catalog.playable.map(c=>({...c,treasury:state.countries[c.id].treasury})).sort((a,b)=>b.treasury-a.treasury);
+    open('ranking', 'อันดับเงินคลัง');
     paragraph(`ประเทศของคุณอยู่อันดับ ${rows.findIndex(row => row.id === state.playerCountryId) + 1} จาก ${rows.length} ประเทศ • ${monthName(state.date)}`);
-    paragraph('ขนาดเศรษฐกิจต่อปี หน่วยพันล้านดอลลาร์ • ไม่รวมดินแดนที่สุ่มเล่นไม่ได้');
-    rows.forEach((country, index) => row(`${index + 1}. ${country.nameTh}${country.id === state.playerCountryId ? ' ★ คุณ' : ''}`, money(country.gdp), country.id === state.playerCountryId ? 'player-rank' : ''));
+    paragraph('เงินคลังของประเทศ • ไม่รวมดินแดนที่สุ่มเล่นไม่ได้');
+    rows.forEach((country, index) => row(`${index + 1}. ${country.nameTh}${country.id === state.playerCountryId ? ' ★ คุณ' : ''}`, money(country.treasury), country.id === state.playerCountryId ? 'player-rank' : ''));
   }
   function report(detailed = false) {
     const r = getState().economy.lastReport;
@@ -83,7 +83,7 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
       return;
     }
     paragraph(`เข้าสู่ ${monthName(getState().date)} • ผลจากนโยบายของคุณ`);
-    for (const [key, label] of Object.entries({gdp: 'ขนาดเศรษฐกิจ', treasury: 'เงินที่มี', debt: 'หนี้ / ขนาดเศรษฐกิจ', happiness: 'ความสุข', stability: 'ความมั่นคง', military: 'ทหาร', tech: 'เทคโนโลยี'})) {
+    for (const [key, label] of Object.entries({treasury: 'เงินที่มี', debt: 'หนี้ / รายได้ประเทศ', happiness: 'ความสุข', military: 'ทหาร', tech: 'เทคโนโลยี'})) {
       const delta = r.after[key] - r.before[key];
       const unit = key === 'debt' ? '%' : ['gdp', 'treasury'].includes(key) ? ' พันล้าน $' : '/100';
       row(label, `${formatNumber(r.after[key])}${unit} (${delta > 0 ? '+' : ''}${formatNumber(delta)})`, delta === 0 ? '' : (key === 'debt' ? delta < 0 : delta > 0) ? 'good' : 'bad');
@@ -94,9 +94,9 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
   function gameOver() {
     const state = getState(), economy = state.economy, stats = state.countries[state.playerCountryId];
     open('over', 'สิ้นสุดการบริหารประเทศ • จบเกม');
-    paragraph(economy.gameOver === 'bankruptcy' ? `ประเทศล้มละลาย: หนี้เกิน ${balance.bankruptcyDebt}% ของ ขนาดเศรษฐกิจ` : 'รัฐบาลล่มสลาย: ความมั่นคงเหลือ 0', 'bad');
+    paragraph(economy.gameOver === 'bankruptcy' ? `ประเทศล้มละลาย: หนี้เกิน ${balance.bankruptcyDebt}% ของรายได้ประเทศ` : 'รัฐบาลล่มสลาย', 'bad');
     paragraph(`${catalog.byId.get(state.playerCountryId).nameTh} • บริหาร ${economy.turns} รอบ • ${monthName(state.date)}`);
-    row('ขนาดเศรษฐกิจ', money(stats.gdp)); row('หนี้ / ขนาดเศรษฐกิจ', `${formatNumber(stats.debt)}%`);
+     row('หนี้ / รายได้ประเทศ', `${formatNumber(stats.debt)}%`);
     row('ความสุข', `${formatNumber(stats.happiness)}/100`); row('ความมั่นคง', `${formatNumber(stats.stability)}/100`);
     row('อันดับโลก', `${worldRanking(state, catalog).findIndex(row => row.id === state.playerCountryId) + 1}`);
     paragraph('กลับเมนูแล้วเริ่มเกมใหม่เพื่อเลือกเส้นทางใหม่');

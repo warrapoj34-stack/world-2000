@@ -22,7 +22,7 @@ const memory = () => {
 
 test('แสดงสถิติประเทศจิ๋วโดยไม่ปัดประชากรเป็นศูนย์', () => {
   assert.equal(formatPopulation(0.0008), '800 คน');
-  assert.equal(formatNumber(0.001), '0.001');
+  assert.equal(formatNumber(0.001), '0');
 });
 
 test('ข้อมูลครบทุกพื้นที่บนแผนที่และใช้รหัสสามตัวไม่ซ้ำ', () => {

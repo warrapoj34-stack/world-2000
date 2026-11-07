@@ -62,7 +62,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       }
     },
     onZoom(zoom) {
-      zoomLevel.value = `${zoom.toFixed(1)}×`;
+      zoomLevel.value = `${Math.round(zoom)}×`;
       zoomIn.disabled = zoom >= world.settings.map.maxZoom - 0.001;
       zoomOut.disabled = zoom <= world.settings.map.minZoom + 0.001;
     },

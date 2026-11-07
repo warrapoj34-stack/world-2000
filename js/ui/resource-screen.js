@@ -1,10 +1,10 @@
 import { resourceProduction, resourceEffects, reinforceArmy, ensureResources } from '../resources.js';
-import { formatNumber } from './stats.js';
+import { formatNumber, formatMoney } from './stats.js';
 export function createResourceScreen({catalog,balance,getState,onChange,onRefresh}) {
   const dialog=document.querySelector('#resource-dialog'), body=document.querySelector('#resource-content');
   const title=document.querySelector('#resource-title');
   const defs=catalog.resourceDefinitions;
-  const addText=(text,className='')=>{const p=document.createElement('p');p.textContent=text;p.className=className;body.append(p);};
+  const addText=(text,className='')=>{const p=document.createElement('p');p.textContent=String(text).replaceAll('เศรษฐกิจ','ประเทศ');p.className=className;body.append(p);};
   function open(id) {
     const state=getState(); ensureResources(state);
     const stats=state.countries[state.playerCountryId], levels=catalog.resourceLevels.get(state.playerCountryId);
@@ -15,11 +15,11 @@ export function createResourceScreen({catalog,balance,getState,onChange,onRefres
     if(resource) {
       addText(resource.descriptionTh,'resource-description');
       addText(`ระดับ ${levels[id]}/5 ดาว • ผลผลิตประมาณ ${formatNumber(production[id])} หน่วยต่อเทิร์น`);
-      addText(`มีในคลัง ${formatNumber(stats.resourceStock[id])} หน่วย • ราคากลาง ${formatNumber(resource.basePrice*1000)} ล้านดอลลาร์ต่อหน่วย`);
+      addText(`มีในคลัง ${formatNumber(stats.resourceStock[id])} หน่วย • ราคากลาง ${formatMoney(resource.basePrice)}ต่อหน่วย`);
       addText('ผลผลิตและราคาเป็นหน่วยสมมติสำหรับเกม ไม่ใช่ตันหรือราคาซื้อขายจริง ธรรมชาติหมายถึงบริการจากระบบนิเวศ ไม่ใช่จำนวนสัตว์ที่นำมาขาย');
       if(id==='iron') {
         const b=balance.resources.reinforcement;
-        addText(`เสริมกำลังกองทัพ +${b.military} ใช้เหล็ก ${b.iron} หน่วยและเงิน ${formatNumber(b.money*1000)} ล้านดอลลาร์`);
+        addText(`เสริมกำลังกองทัพ +${b.military} ใช้เหล็ก ${b.iron} หน่วยและเงิน ${formatMoney(b.money)}`);
         const buy=document.createElement('button');buy.id='buy-reinforcement';buy.className='map-button';buy.type='button';buy.textContent='ใช้เหล็กเสริมกำลัง';
         buy.disabled=Boolean(state.economy?.gameOver)||stats.military>=100||stats.resourceStock.iron<b.iron||stats.treasury<b.money;
         buy.addEventListener('click',()=>{if(reinforceArmy(state,balance)){onChange();onRefresh();open('iron');addText('เสริมกำลังแล้ว','good');}});body.append(buy);
@@ -28,7 +28,7 @@ export function createResourceScreen({catalog,balance,getState,onChange,onRefres
       const back=document.createElement('button');back.className='map-button';back.type='button';back.id='all-resources';back.textContent='ดูทรัพยากรทั้งหมด';back.addEventListener('click',()=>open());body.append(back);
     } else {
       const effects=resourceEffects(stats,levels,defs,balance,()=>1);
-      addText(`รายได้จากทรัพยากรประมาณ ${formatNumber(effects.revenue*1000)} ล้านดอลลาร์ต่อเทิร์น • น้ำช่วยลดผลเสียภัยแล้ง ${Math.round(effects.protection*100)}%`);
+      addText(`รายได้จากทรัพยากรประมาณ ${formatMoney(effects.revenue)}ต่อเทิร์น • น้ำช่วยลดผลเสียภัยแล้ง ${Math.round(effects.protection*100)}%`);
       addText('0 ดาว = ไม่มี • 5 ดาว = มหาศาล • แตะการ์ดเพื่อดูประโยชน์ ผลผลิตขึ้นกับดาว ขนาดประชากร และเทคโนโลยี');
       const grid=document.createElement('div');grid.className='resource-grid';
       for(const r of defs) {

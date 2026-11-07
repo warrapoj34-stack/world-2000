@@ -56,3 +56,11 @@ button { min-width: 48px; }
   .missions ol { line-height: 1.5; }
   .turn-dock { min-height: 60px; padding: 6px 8px; }
 }
+
+.country-hud { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#hud-net { display: block; font-size: 14px; white-space: nowrap; }
+.victory-bar { min-height: 48px; max-height: 48px; flex-shrink: 0; cursor: pointer; white-space: nowrap; overflow: hidden; width: 100%; font-family: inherit; }
+.map-help summary { width: 48px; height: 48px; border: 1px solid #547477; border-radius: 8px; display: grid; place-items: center; cursor: pointer; }
+.map-help:not([open]) .map-guide { display: none; }
+.country-panel .map-credit { display: none; }
+#monthly-status { display: none; }

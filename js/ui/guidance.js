@@ -10,7 +10,7 @@ const explanations = {
 };
 const lessons = [
   ['🗺️', 'ประเทศนี้อยู่ในมือคุณ', 'ลากแผนที่เพื่อเลื่อน กางสองนิ้วเพื่อซูม แตะประเทศเพื่อดูข้อมูล ขอบเรืองแสงคือประเทศของคุณ'],
-  ['💰', 'ดูแค่ค่าหลักก่อน', 'แถบบนบอกเงิน เศรษฐกิจ ความสุข ความมั่นคง และทหาร แตะหรือกดค้างที่รูปเพื่ออ่านความหมาย ไม่ต้องจำทุกตัวเลข'],
+  ['💰', 'ดูแค่ค่าหลักก่อน', 'แถบบนบอกเงิน ความสุข และทหาร แตะหรือกดค้างที่รูปเพื่ออ่านความหมาย ไม่ต้องจำทุกตัวเลข'],
   ['🎚️', 'เลือกว่าจะดูแลอะไร', 'เปิดนโยบายด้านล่าง ลดภาษีช่วยให้คนสุขขึ้น แต่เงินเข้าน้อยลง แบ่งงบให้โรงเรียน โรงพยาบาล ถนน และเรื่องที่คุณอยากพัฒนา'],
   ['📅', 'เวลาเดินเอง', 'ดูวันที่มุมขวาบน กดหยุดหรือเร่งเวลาได้ เกมคำนวณเงินทุกเดือน และหยุดเมื่อมีเหตุการณ์ให้เลือก'],
 ];
@@ -25,6 +25,14 @@ export function createGuidance({ catalog, getState, onRanking, onResources }) {
   const close = document.querySelector('#close-help');
   const missions = document.querySelector('#missions');
   let lesson = -1;
+  let missionSeconds = 0, missionLast = performance.now();
+  setInterval(() => {
+    const now = performance.now(), state = getState();
+    if (state && !document.hidden && !document.querySelector('#map-screen').hidden && !document.querySelector('dialog[open]') && !state.clock?.userPaused && !state.economy?.gameOver && !state.victory?.finished) missionSeconds += (now - missionLast) / 1000 * (state.clock?.speed ?? 1);
+    missionLast = now;
+    if (missionSeconds >= 10 && !prefs.missionsHidden) { prefs.missionsHidden = true; remember(); missions.hidden = true; }
+  }, 200);
+  document.querySelector('#victory-toggle').addEventListener('click', () => { open('เป้าหมายของประเทศ'); text(document.querySelector('#victory-name').textContent); text(document.querySelector('#victory-progress-detail').textContent); });
   function remember() {
     try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch { /* จำได้เฉพาะรอบนี้เมื่อพื้นที่ถูกปิด */ }
   }
@@ -95,7 +103,7 @@ export function createGuidance({ catalog, getState, onRanking, onResources }) {
     });
   }
   for (const [key, [heading, copy]] of Object.entries(explanations)) {
-    const target = document.querySelector(`[data-stat="${key}"]`); let timer;
+    const target = document.querySelector(`[data-stat="${key}"]`); if (!target) continue; let timer;
     const show = () => { open(heading); text(copy); };
     target.addEventListener('click', () => { clearTimeout(timer); if (!dialog.open) show(); });
     target.addEventListener('pointerdown', () => { timer = setTimeout(show, 500); });
