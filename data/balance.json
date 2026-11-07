@@ -108,6 +108,23 @@
       "iron": 10,
       "money": 0.02,
       "military": 2
+    },
+    "unitsPerStarPerMonth": 2,
+    "saleBatchSize": 10,
+    "salePricesMillions": {
+      "oil": 3,
+      "gas": 2,
+      "coal": 1,
+      "iron": 2,
+      "rare_earths": 8,
+      "gold": 10,
+      "forest": 1,
+      "freshwater": 1,
+      "food": 1,
+      "fish": 2,
+      "biodiversity": 1,
+      "copper": 3,
+      "uranium": 12
     }
   }
 }

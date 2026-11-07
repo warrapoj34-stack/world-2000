@@ -1,36 +1,42 @@
-export const RESOURCE_IDS = ['oil','gas','coal','iron','rare_earths','gold','forest','freshwater','food','fish','biodiversity','copper'];
+export const RESOURCE_IDS = ['oil','gas','coal','iron','rare_earths','gold','forest','freshwater','food','fish','biodiversity','copper','uranium'];
 export const RESOURCE_COLORS = ['#dce9ec','#c3dfc5','#9cc99c','#70ae75','#44894f','#216138'];
 const clamp = (value,min,max) => Math.max(min,Math.min(max,value));
 export function validResourceStock(stock) {
-  return stock === undefined || Boolean(stock && RESOURCE_IDS.every(id => Number.isFinite(stock[id]) && stock[id] >= 0));
+  return stock === undefined || Boolean(stock && RESOURCE_IDS.every(id => id === 'uranium' && stock[id] === undefined
+    || Number.isFinite(stock[id]) && stock[id] >= 0 && (stock.uranium === undefined || Number.isSafeInteger(stock[id]))));
 }
 export function ensureResources(state) {
   for (const stats of Object.values(state.countries)) {
-    if (!stats.resourceStock) stats.resourceStock = Object.fromEntries(RESOURCE_IDS.map(id=>[id,0]));
+    stats.resourceStock = Object.fromEntries(RESOURCE_IDS.map(id => [id, Math.floor(stats.resourceStock?.[id] ?? 0)]));
   }
 }
 export function resourceProduction(stats, levels, balance) {
-  const b = balance.resources;
-  const scale = stats.gdp <= 0 || stats.population <= 0 ? 0 : clamp(Math.sqrt(stats.population / b.populationDivisor),b.minScale,b.maxScale);
-  return Object.fromEntries(RESOURCE_IDS.map(id => [id, levels[id] * b.unitsPerStar * scale * (b.baseEfficiency + stats.tech / 100)]));
+  return Object.fromEntries(RESOURCE_IDS.map(id => [id, Math.floor((levels[id] ?? 0) * balance.resources.unitsPerStarPerMonth)]));
 }
 export function resourceEffects(stats, levels, definitions, balance, random = Math.random, months = 3) {
   const b = balance.resources, production = resourceProduction(stats,levels,balance);
-  for (const id of RESOURCE_IDS) production[id] *= months / 3;
+  for (const id of RESOURCE_IDS) production[id] *= months;
   const drought = random() < b.droughtChance * months / 3;
   const protection = clamp(levels.freshwater * b.waterProtectionPerStar,0,1);
   const damage = drought ? 1 - protection : 0;
-  production.food *= 1 - damage * b.droughtFoodLoss;
-  const gross = definitions.reduce((sum,r)=>sum+production[r.id]*r.basePrice*(b.exportShares[r.id] ?? 0),0);
-  const revenue = Math.min(gross,stats.gdp*b.maxExportGDPShare*months/3);
-  const sold = Object.fromEntries(RESOURCE_IDS.map(id=>[id,production[id]*(b.exportShares[id]??0)*(gross>0?revenue/gross:0)]));
-  const stock = Object.fromEntries(RESOURCE_IDS.map(id=>[id,Math.min(b.maxStock,(stats.resourceStock?.[id]??0)+production[id]-sold[id])]));
+  const revenue = 0;
+  const stock = Object.fromEntries(RESOURCE_IDS.map(id=>[id,Math.min(b.maxStock,Math.floor(stats.resourceStock?.[id]??0)+production[id])]));
   return {production,stock,revenue,drought,protection,
     energyGrowth:(levels.oil+levels.gas+levels.coal)*b.energyGrowthPerStar,
     droughtGrowthLoss:damage*b.droughtGrowthLoss,
     happiness:((levels.food*(1-damage*b.droughtFoodLoss)+levels.fish*b.fishFoodWeight)*b.foodHappinessPerStar-damage*b.droughtHappinessLoss)*months/3,
     tech:levels.rare_earths*b.techPerStar*months/3,
     reputation:levels.biodiversity*b.reputationPerStar*months/3};
+}
+export function sellResource(state, id, balance) {
+  if (!RESOURCE_IDS.includes(id) || state.economy?.gameOver || state.victory?.finished) return null;
+  ensureResources(state);
+  const stats = state.countries[state.playerCountryId], batch = balance.resources.saleBatchSize;
+  const price = balance.resources.salePricesMillions[id];
+  if (!Number.isSafeInteger(batch) || batch <= 0 || !Number.isSafeInteger(price) || price < 0 || stats.resourceStock[id] < batch) return null;
+  const income = batch * price / 1000;
+  stats.resourceStock[id] -= batch; stats.treasury += income;
+  return income;
 }
 export function topResources(levels, definitions) {
   return [...definitions].sort((a,b)=>levels[b.id]-levels[a.id]||RESOURCE_IDS.indexOf(a.id)-RESOURCE_IDS.indexOf(b.id)).filter(r=>levels[r.id]>0).slice(0,3);

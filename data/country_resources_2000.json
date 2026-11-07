@@ -13,7 +13,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 157
@@ -32,7 +33,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 642058
@@ -51,7 +53,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1249380
@@ -70,7 +73,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 84
@@ -89,7 +93,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 761
@@ -108,7 +113,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 28337
@@ -127,7 +133,8 @@
       "food": 0,
       "fish": 0,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 441
@@ -146,7 +153,8 @@
       "food": 0,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 71265
@@ -165,7 +173,8 @@
       "food": 5,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 2
+      "copper": 2,
+      "uranium": 2
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 2782703
@@ -184,7 +193,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 29568
@@ -203,7 +213,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 119
@@ -222,7 +233,8 @@
       "food": 0,
       "fish": 0,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 12256364
@@ -241,7 +253,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 6977
@@ -260,7 +273,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 433
@@ -279,7 +293,8 @@
       "food": 4,
       "fish": 3,
       "biodiversity": 5,
-      "copper": 4
+      "copper": 4,
+      "uranium": 5
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 7706012
@@ -298,7 +313,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 83901
@@ -317,7 +333,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 86400
@@ -336,7 +353,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 27217
@@ -355,7 +373,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 30627
@@ -374,7 +393,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 116553
@@ -393,7 +413,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 273690
@@ -412,7 +433,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 135674
@@ -431,7 +453,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 112424
@@ -450,7 +473,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 544
@@ -469,7 +493,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 12657
@@ -488,7 +513,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 51690
@@ -507,7 +533,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 25
@@ -526,7 +553,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 206698
@@ -545,7 +573,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 22770
@@ -564,7 +593,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 65
@@ -583,7 +613,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1090271
@@ -602,7 +633,8 @@
       "food": 5,
       "fish": 3,
       "biodiversity": 5,
-      "copper": 2
+      "copper": 2,
+      "uranium": 3
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 8499400
@@ -621,7 +653,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 388
@@ -640,7 +673,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 5669
@@ -659,7 +693,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 39870
@@ -678,7 +713,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 580622
@@ -697,7 +733,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 620987
@@ -716,7 +753,8 @@
       "food": 4,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 4
+      "copper": 4,
+      "uranium": 5
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 9872102
@@ -735,7 +773,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 41215
@@ -754,7 +793,8 @@
       "food": 3,
       "fish": 5,
       "biodiversity": 3,
-      "copper": 5
+      "copper": 5,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 737442
@@ -773,7 +813,8 @@
       "food": 5,
       "fish": 5,
       "biodiversity": 5,
-      "copper": 4
+      "copper": 4,
+      "uranium": 3
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 9371225
@@ -792,7 +833,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 322298
@@ -811,7 +853,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 465902
@@ -830,7 +873,8 @@
       "food": 4,
       "fish": 3,
       "biodiversity": 5,
-      "copper": 4
+      "copper": 4,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 2334703
@@ -849,7 +893,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 346857
@@ -868,7 +913,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 62
@@ -887,7 +933,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 5,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1139434
@@ -906,7 +953,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 1582
@@ -925,7 +973,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 3587
@@ -944,7 +993,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 51511
@@ -963,7 +1013,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 109285
@@ -982,7 +1033,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 429
@@ -1001,7 +1053,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 303
@@ -1020,7 +1073,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 5710
@@ -1039,7 +1093,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 2
     },
     "basis": "regional_estimate",
     "areaKm2": 78487
@@ -1058,7 +1113,8 @@
       "food": 4,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 1
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 356163
@@ -1077,7 +1133,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 21693
@@ -1096,7 +1153,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 688
@@ -1115,7 +1173,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 42411
@@ -1134,7 +1193,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 48592
@@ -1153,7 +1213,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 2
+      "copper": 2,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 2322788
@@ -1172,7 +1233,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 5,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 255658
@@ -1191,7 +1253,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1003707
@@ -1210,7 +1273,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 123678
@@ -1229,7 +1293,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 90820
@@ -1248,7 +1313,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 506178
@@ -1267,7 +1333,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 45442
@@ -1286,7 +1353,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 1131761
@@ -1305,7 +1373,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 2
+      "copper": 2,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 330482
@@ -1324,7 +1393,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 18398
@@ -1343,7 +1413,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 11390
@@ -1362,7 +1433,8 @@
       "food": 5,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 1
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 635064
@@ -1381,7 +1453,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 1036
@@ -1400,7 +1473,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 524
@@ -1419,7 +1493,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 4,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 260715
@@ -1438,7 +1513,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 239616
@@ -1457,7 +1533,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 69297
@@ -1476,7 +1553,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 49
@@ -1495,7 +1573,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 239589
@@ -1514,7 +1593,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 244938
@@ -1533,7 +1613,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 10324
@@ -1552,7 +1633,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 32044
@@ -1571,7 +1653,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 26637
@@ -1590,7 +1673,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 130177
@@ -1609,7 +1693,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 288
@@ -1628,7 +1713,8 @@
       "food": 0,
       "fish": 3,
       "biodiversity": 1,
-      "copper": 2
+      "copper": 2,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 2154754
@@ -1647,7 +1733,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 108520
@@ -1666,7 +1753,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 482
@@ -1685,7 +1773,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 211930
@@ -1704,7 +1793,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 1029
@@ -1723,7 +1813,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 419
@@ -1742,7 +1833,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 113531
@@ -1761,7 +1853,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 54414
@@ -1780,7 +1873,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 26822
@@ -1799,7 +1893,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 92966
@@ -1818,7 +1913,8 @@
       "food": 4,
       "fish": 4,
       "biodiversity": 5,
-      "copper": 4
+      "copper": 4,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1872242
@@ -1837,7 +1933,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 562
@@ -1856,7 +1953,8 @@
       "food": 5,
       "fish": 4,
       "biodiversity": 5,
-      "copper": 2
+      "copper": 2,
+      "uranium": 2
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 3155807
@@ -1875,7 +1973,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 133
@@ -1894,7 +1993,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 68700
@@ -1913,7 +2013,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 4
+      "copper": 4,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1622847
@@ -1932,7 +2033,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 437462
@@ -1951,7 +2053,8 @@
       "food": 1,
       "fish": 5,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 101161
@@ -1970,7 +2073,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 22284
@@ -1989,7 +2093,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 300267
@@ -2008,7 +2113,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 10935
@@ -2027,7 +2133,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 127
@@ -2046,7 +2153,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 88856
@@ -2065,7 +2173,8 @@
       "food": 3,
       "fish": 5,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 370074
@@ -2084,7 +2193,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 4
+      "copper": 4,
+      "uranium": 5
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 2712747
@@ -2103,7 +2213,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 594848
@@ -2122,7 +2233,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 198661
@@ -2141,7 +2253,8 @@
       "food": 3,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 181373
@@ -2160,7 +2273,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 941
@@ -2179,7 +2293,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 234
@@ -2198,7 +2313,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 97165
@@ -2217,7 +2333,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 17330
@@ -2236,7 +2353,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 228928
@@ -2255,7 +2373,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 10010
@@ -2274,7 +2393,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 95648
@@ -2293,7 +2413,8 @@
       "food": 0,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1626369
@@ -2312,7 +2433,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 552
@@ -2331,7 +2453,8 @@
       "food": 0,
       "fish": 0,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 138
@@ -2350,7 +2473,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 66046
@@ -2369,7 +2493,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 30020
@@ -2388,7 +2513,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 64519
@@ -2407,7 +2533,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 2614
@@ -2426,7 +2553,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 64254
@@ -2445,7 +2573,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 23
@@ -2464,7 +2593,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 50
@@ -2483,7 +2613,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 582378
@@ -2502,7 +2633,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 12
@@ -2521,7 +2653,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 33115
@@ -2540,7 +2673,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 594622
@@ -2559,7 +2693,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 67
@@ -2578,7 +2713,8 @@
       "food": 4,
       "fish": 3,
       "biodiversity": 5,
-      "copper": 4
+      "copper": 4,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1962279
@@ -2597,7 +2733,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 236
@@ -2616,7 +2753,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 25366
@@ -2635,7 +2773,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1258185
@@ -2654,7 +2793,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 276
@@ -2673,7 +2813,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 662746
@@ -2692,7 +2833,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 2
     },
     "basis": "regional_estimate",
     "areaKm2": 1560428
@@ -2711,7 +2853,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 395
@@ -2730,7 +2873,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 790643
@@ -2749,7 +2893,8 @@
       "food": 1,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1038352
@@ -2768,7 +2913,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 82
@@ -2787,7 +2933,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 1880
@@ -2806,7 +2953,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 119763
@@ -2825,7 +2973,8 @@
       "food": 3,
       "fish": 2,
       "biodiversity": 5,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 327621
@@ -2844,7 +2993,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 5
     },
     "basis": "regional_estimate",
     "areaKm2": 824750
@@ -2863,7 +3013,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 18648
@@ -2882,7 +3033,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 4
     },
     "basis": "regional_estimate",
     "areaKm2": 1185111
@@ -2901,7 +3053,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 42
@@ -2920,7 +3073,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 911496
@@ -2939,7 +3093,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 129225
@@ -2958,7 +3113,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 197
@@ -2977,7 +3133,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 37132
@@ -2996,7 +3153,8 @@
       "food": 1,
       "fish": 5,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 384264
@@ -3015,7 +3173,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 147193
@@ -3034,7 +3193,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 28
@@ -3053,7 +3213,8 @@
       "food": 4,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 266828
@@ -3072,7 +3233,8 @@
       "food": 1,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 312041
@@ -3091,7 +3253,8 @@
       "food": 4,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 873772
@@ -3110,7 +3273,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 74235
@@ -3129,7 +3293,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 40
@@ -3148,7 +3313,8 @@
       "food": 3,
       "fish": 5,
       "biodiversity": 5,
-      "copper": 5
+      "copper": 5,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1296279
@@ -3167,7 +3333,8 @@
       "food": 3,
       "fish": 4,
       "biodiversity": 5,
-      "copper": 3
+      "copper": 3,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 290318
@@ -3186,7 +3353,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 343
@@ -3205,7 +3373,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 5,
-      "copper": 4
+      "copper": 4,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 464271
@@ -3224,7 +3393,8 @@
       "food": 3,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 4
+      "copper": 4,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 312566
@@ -3243,7 +3413,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 8936
@@ -3262,7 +3433,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 122496
@@ -3281,7 +3453,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 90766
@@ -3300,7 +3473,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 400900
@@ -3319,7 +3493,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 6336
@@ -3338,7 +3513,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 2618
@@ -3357,7 +3533,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 11076
@@ -3376,7 +3553,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 1
     },
     "basis": "regional_estimate",
     "areaKm2": 235752
@@ -3395,7 +3573,8 @@
       "food": 4,
       "fish": 4,
       "biodiversity": 1,
-      "copper": 4
+      "copper": 4,
+      "uranium": 5
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 16879701
@@ -3414,7 +3593,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 25377
@@ -3433,7 +3613,8 @@
       "food": 1,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1925871
@@ -3452,7 +3633,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 2
+      "copper": 2,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 2487025
@@ -3471,7 +3653,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 197300
@@ -3490,7 +3673,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 484
@@ -3509,7 +3693,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 3670
@@ -3528,7 +3713,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 188
@@ -3547,7 +3733,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 25732
@@ -3566,7 +3753,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 71877
@@ -3585,7 +3773,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 20401
@@ -3604,7 +3793,8 @@
       "food": 0,
       "fish": 0,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 70
@@ -3623,7 +3813,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 473622
@@ -3642,7 +3833,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 207
@@ -3661,7 +3853,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 979
@@ -3680,7 +3873,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 145559
@@ -3699,7 +3893,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 48337
@@ -3718,7 +3913,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 20198
@@ -3737,7 +3933,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 3
+      "copper": 3,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 442970
@@ -3756,7 +3953,8 @@
       "food": 1,
       "fish": 0,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 17007
@@ -3775,7 +3973,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 42
@@ -3794,7 +3993,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 172
@@ -3813,7 +4013,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 185733
@@ -3832,7 +4033,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 331
@@ -3851,7 +4053,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 1270927
@@ -3870,7 +4073,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 57156
@@ -3889,7 +4093,8 @@
       "food": 5,
       "fish": 4,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 515720
@@ -3908,7 +4113,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 142300
@@ -3927,7 +4133,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 470600
@@ -3946,7 +4153,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 15018
@@ -3965,7 +4173,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 431
@@ -3984,7 +4193,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 5102
@@ -4003,7 +4213,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 156653
@@ -4022,7 +4233,8 @@
       "food": 2,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 779797
@@ -4041,7 +4253,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 36005
@@ -4060,7 +4273,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 945781
@@ -4079,7 +4293,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 242568
@@ -4098,7 +4313,8 @@
       "food": 5,
       "fish": 3,
       "biodiversity": 3,
-      "copper": 1
+      "copper": 1,
+      "uranium": 3
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 570135
@@ -4117,7 +4333,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 177569
@@ -4136,7 +4353,8 @@
       "food": 5,
       "fish": 4,
       "biodiversity": 4,
-      "copper": 5
+      "copper": 5,
+      "uranium": 4
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 9439424
@@ -4155,7 +4373,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 4
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 447381
@@ -4174,7 +4393,8 @@
       "food": 0,
       "fish": 0,
       "biodiversity": 0,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 1
@@ -4193,7 +4413,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 312
@@ -4212,7 +4433,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 5,
-      "copper": 1
+      "copper": 1,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 914310
@@ -4231,7 +4453,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 135
@@ -4250,7 +4473,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 318
@@ -4269,7 +4493,8 @@
       "food": 4,
       "fish": 4,
       "biodiversity": 4,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 328959
@@ -4288,7 +4513,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 11266
@@ -4307,7 +4533,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 129
@@ -4326,7 +4553,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 2705
@@ -4345,7 +4573,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 142
@@ -4364,7 +4593,8 @@
       "food": 0,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 3472
@@ -4383,7 +4613,8 @@
       "food": 1,
       "fish": 1,
       "biodiversity": 1,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 2128
@@ -4402,7 +4633,8 @@
       "food": 2,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 168483
@@ -4421,7 +4653,8 @@
       "food": 1,
       "fish": 2,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 454139
@@ -4440,7 +4673,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 2,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 102058
@@ -4459,7 +4693,8 @@
       "food": 3,
       "fish": 3,
       "biodiversity": 4,
-      "copper": 1
+      "copper": 1,
+      "uranium": 4
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 1221609
@@ -4478,7 +4713,8 @@
       "food": 3,
       "fish": 1,
       "biodiversity": 4,
-      "copper": 5
+      "copper": 5,
+      "uranium": 0
     },
     "basis": "regional_estimate_with_overrides",
     "areaKm2": 755593
@@ -4497,7 +4733,8 @@
       "food": 2,
       "fish": 1,
       "biodiversity": 3,
-      "copper": 0
+      "copper": 0,
+      "uranium": 0
     },
     "basis": "regional_estimate",
     "areaKm2": 390202

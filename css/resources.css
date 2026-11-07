@@ -22,3 +22,8 @@
   .resource-card { padding: 10px; font-size: 14px; }
   .missions { top: 160px; max-height: 140px; overflow-y: auto; }
 }
+
+.resource-open { width: 100%; text-align: left; }
+.sell-resource { width: 100%; min-height: 48px; margin-top: auto; background: #aac98e; color: #102733; }
+.sell-resource:disabled { background: #243e45; color: #99aaa7; }
+#resource-feedback { color: #bde6a6; min-height: 24px; }

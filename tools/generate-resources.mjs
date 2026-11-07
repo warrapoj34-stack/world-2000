@@ -17,7 +17,7 @@ const rows = countries.map(country => {
     forest: arid || polar ? 0 : Math.min(4,size+(tropical?1:0)),
     freshwater: arid ? 0 : Math.min(4,size),food:polar?0:Math.max(0,size-(arid?1:0)),
     fish:landlocked.has(country.id)?(size>1?1:0):Math.max(1,Math.min(3,size)),
-    biodiversity:polar?1:Math.min(4,size+(tropical?1:0)),copper:Math.max(0,size-2)};
+    uranium:0,biodiversity:polar?1:Math.min(4,size+(tropical?1:0)),copper:Math.max(0,size-2)};
   Object.assign(levels,overrides[country.id]);
   return {id:country.id,levels,basis:overrides[country.id]?'regional_estimate_with_overrides':'regional_estimate',areaKm2:Math.round(area)};
 });
