@@ -5,7 +5,7 @@ import { formatNumber, shortMoney, monthName, governmentName } from './stats.js'
 
 const labels = { military: 'ทหาร', education: 'การศึกษา', health: 'โรงพยาบาล', infrastructure: 'ถนนและสิ่งก่อสร้าง', welfare: 'ช่วยค่าครองชีพ' };
 const money = value => `${formatNumber(value)} พันล้าน $`;
-export function createEconomyScreen({ catalog, balance, getState, onChange, onRefresh, onMenu }) {
+export function createEconomyScreen({ catalog, balance, getState, onChange, onRefresh, onMenu, beforeTurn = () => false }) {
   const dialog = document.querySelector('#economy-dialog');
   const title = document.querySelector('#economy-title');
   const content = document.querySelector('#economy-content');
@@ -83,11 +83,15 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
   close.addEventListener('click', () => { dialog.close(); if (screen === 'over') onMenu(); });
   dialog.addEventListener('cancel', event => { if (screen === 'over') { event.preventDefault(); dialog.close(); onMenu(); } });
   document.querySelector('#open-policy').addEventListener('click', policies);
-  end.addEventListener('click', () => {
+  function finishTurn() {
     if (busy || dialog.open || getState().economy.gameOver) return;
     busy = true; end.disabled = true;
     try { advanceQuarter(getState(), catalog, balance); onChange(); onRefresh(); if (getState().economy.gameOver) gameOver(); else report(); }
     finally { busy = false; end.disabled = Boolean(getState().economy.gameOver); }
+  }
+  end.addEventListener('click', () => {
+    if (busy || dialog.open || getState().economy.gameOver) return;
+    if (!beforeTurn()) finishTurn();
   });
-  return { refresh, ranking };
+  return { refresh, ranking, finishTurn };
 }

@@ -1,0 +1,17 @@
+.event-dialog { width: min(620px, calc(100vw - 28px)); max-height: calc(100dvh - 24px); overflow-y: auto; box-sizing: border-box; padding: 24px; border: 1px solid #799a96; border-radius: 14px; background: #102936; color: #eaf0e7; box-shadow: 0 16px 60px #02101bd9; text-align: center; }
+.event-dialog::backdrop { background: #03101bd9; }
+.event-icon { font-size: 60px; line-height: 1.2; }
+.event-dialog h2 { margin: 8px 0 12px; font-size: 25px; }
+.event-dialog p { font-size: 16px; line-height: 1.7; }
+#event-options { display: grid; gap: 10px; margin-top: 20px; }
+.event-choice { min-height: 64px; padding: 12px 16px; border: 1px solid #73938f; border-radius: 9px; background: #1b3a46; color: #f1f2e9; text-align: left; cursor: pointer; }
+.event-choice:active { background: #30585b; }
+.event-choice strong { display: block; font-size: 17px; }
+.event-effects { display: block; margin-top: 6px; color: #c8dfd3; font-size: 14px; line-height: 1.6; }
+#event-summary { color: #cfe5bb; }
+#event-next { min-height: 48px; margin-top: 8px; }
+.hud-button > span:last-child { position: relative; }
+.event-float { position: absolute; left: 50%; top: 0; color: #b5edaa; font-weight: bold; pointer-events: none; animation: event-rise 1.8s ease-out forwards; }
+.event-float.negative { color: #ffaaa2; }
+@keyframes event-rise { to { transform: translate(-50%, -45px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .event-float { animation: none; display: none; } }

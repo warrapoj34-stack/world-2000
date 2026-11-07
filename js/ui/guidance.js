@@ -72,6 +72,10 @@ export function createGuidance({ catalog, getState, onRanking, onResources }) {
     open(`ประเทศของคุณ • ${country.nameTh}`);
     text('ดูภาพรวมประเทศ หรือเปิดอันดับเพื่อเทียบกับประเทศอื่น');
     const dl = document.createElement('dl'); dl.className = 'stat-grid'; renderStats(dl, state.countries[country.id]); body.append(dl);
+    const history = state.events?.history ?? [];
+    text('เหตุการณ์ที่ผ่านมา');
+    if (!history.length) text('ยังไม่มีเหตุการณ์');
+    for (const event of history.slice(-12).reverse()) text(`${event.icon} ${event.title} • ${event.option} • ${event.date.month}/${event.date.year}`);
     button('อันดับโลก', () => { finish(); onRanking(); }, 'open-ranking');
     button('อ่านวิธีเล่นอีกครั้ง', () => { lesson = 0; tutorial(); }, 'replay-tutorial');
     button(prefs.missionsHidden ? 'แสดงภารกิจแนะนำ' : 'ซ่อนภารกิจแนะนำ', () => { prefs.missionsHidden = !prefs.missionsHidden; remember(); finish(); refresh(); }, 'toggle-missions');

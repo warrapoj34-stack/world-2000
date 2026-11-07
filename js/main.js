@@ -12,6 +12,7 @@ import { createStartScreen } from './ui/start-screen.js';
 import { ensureEconomy } from './economy.js';
 import { createGuidance } from './ui/guidance.js';
 import { createEconomyScreen } from './ui/economy-screen.js';
+import { createEventScreen } from './ui/event-screen.js';
 
 showVersion(VERSION);
 registerServiceWorker(showOfflineStatus);
@@ -26,7 +27,7 @@ const newButton = document.querySelector('#new-game');
 const continueButton = document.querySelector('#continue-game');
 const feedback = document.querySelector('#menu-feedback');
 let catalog, startUI, activeGame, activeDraft;
-let balance, economyUI;
+let balance, economyUI, eventUI;
 let map = null, pendingMap = null, saveTimer = 0;
 
 function showScreen(target) {
@@ -83,6 +84,7 @@ async function openMap() {
   ensurePolicyCards(activeGame,catalog.policies);
   showScreen('map');
   economyUI.refresh();
+  eventUI.resume();
   document.querySelector('#back-to-menu').focus({ preventScroll: true });
   if (map) { map.setSession(activeGame); return; }
   if (pendingMap) return;
@@ -130,8 +132,14 @@ async function boot() {
     const response = await fetch(new URL('../data/balance.json', import.meta.url));
     if (!response.ok) throw new Error('โหลดค่าระบบเศรษฐกิจไม่สำเร็จ');
     balance = await response.json();
+    const eventsResponse = await fetch(new URL('../data/events.json', import.meta.url));
+    if (!eventsResponse.ok) throw new Error('โหลดเหตุการณ์ไม่สำเร็จ');
+    catalog.events = await eventsResponse.json();
     economyUI = createEconomyScreen({ catalog, balance, getState: () => activeGame,
-      onChange: persistGame, onRefresh: () => map?.setSession(activeGame), onMenu: goMenu });
+      onChange: persistGame, onRefresh: () => map?.setSession(activeGame), onMenu: goMenu,
+      beforeTurn: () => eventUI.beforeTurn() });
+    eventUI = createEventScreen({ catalog, getState: () => activeGame, onChange: persistGame,
+      onRefresh: () => map?.setSession(activeGame), onContinue: economyUI.finishTurn });
     const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open });
     startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
