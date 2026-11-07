@@ -1,4 +1,5 @@
 import { GOVERNMENTS } from '../data/countries.js';
+import { militaryScore } from '../war/military.js';
 
 const number = new Intl.NumberFormat('th-TH', { maximumFractionDigits: 0 });
 export const formatNumber = value => number.format(Math.round(value));
@@ -14,7 +15,7 @@ export function renderStats(container, stats, compact = false) {
   const rows = [
     ['เงิน', formatMoney(stats.treasury)],
     ['ประชากร', formatPopulation(stats.population)], ['หนี้', `${formatNumber(stats.debt)}%`],
-    ['ทหาร', `${formatNumber(stats.military)}/100`],
+    ...(stats.units ? [['รถถัง', `${formatNumber(stats.units.tanks)} คัน`], ['เรือรบ', `${formatNumber(stats.units.ships)} ลำ`], ['เครื่องบินรบ', `${formatNumber(stats.units.aircraft)} ลำ`]] : []),
     ['ความสุข', `${formatNumber(stats.happiness)}/100`], ['เทคโนโลยี', `${formatNumber(stats.tech)}/100`],
     ['ชื่อเสียง', `${formatNumber(stats.reputation)}/100`],
   ];
@@ -41,6 +42,6 @@ export function renderHUD(state, catalog) {
   income.className = net >= 0 ? 'good' : 'bad';
   for (const key of ['treasury', 'happiness', 'military']) {
     const node = document.querySelector(`#hud-${key}`);
-    node.textContent = key === 'treasury' || key === 'gdp' ? shortMoney(stats[key]) : `${Math.round(stats[key])}/100`;
+    node.textContent = key === 'treasury' ? shortMoney(stats[key]) : key === 'military' ? `${militaryScore(state, catalog)}/100` : `${Math.round(stats[key])}/100`;
   }
 }

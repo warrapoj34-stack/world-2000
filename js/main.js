@@ -7,6 +7,7 @@ import { showVersion, showOfflineStatus } from './ui/menu.js';
 import { registerServiceWorker } from './pwa.js';
 import { loadCatalog } from './data/countries.js';
 import { loadPlayable } from './data/playable.js';
+import { loadMilitary, ensureMilitary } from './war/military.js';
 import { createDraft, createGame } from './state.js';
 import { readSave, writeSave, removeDraft } from './save/storage.js';
 import { createStartScreen } from './ui/start-screen.js';
@@ -93,6 +94,7 @@ function goMenu() {
 async function openMap() {
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
+  ensureMilitary(activeGame, catalog);
   ensurePolicyCards(activeGame,catalog.policies);
   ensureVictory(activeGame);
   ensureClock(activeGame);
@@ -124,6 +126,7 @@ async function openMap() {
 function acceptCountry(id, path) {
   startUI.cancel();
   activeGame = createGame(id, catalog);
+  ensureMilitary(activeGame, catalog);
   selectVictoryPath(activeGame, path);
   const saved = writeSave('game', activeGame, catalog);
   reportSave(saved);
@@ -143,6 +146,7 @@ async function boot() {
   try {
     catalog = await loadCatalog();
     await loadPlayable(catalog);
+    await loadMilitary(catalog);
     await loadResources(catalog);
     const policiesResponse=await fetch(new URL('../data/policies.json',import.meta.url));
     if(!policiesResponse.ok)throw Error('โหลดนโยบายไม่สำเร็จ');

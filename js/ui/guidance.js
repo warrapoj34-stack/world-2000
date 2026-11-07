@@ -1,4 +1,5 @@
 import { formatNumber, renderStats } from './stats.js';
+import { militaryScore, militaryRank } from '../war/military.js';
 
 const KEY = 'world-2000:ui-preferences';
 const explanations = {
@@ -6,7 +7,7 @@ const explanations = {
   gdp: ['💵 ขนาดเศรษฐกิจ', 'มูลค่าสิ่งที่ประเทศผลิตได้ในหนึ่งปี หรือ GDP ยิ่งมาก ยิ่งเก็บภาษีได้มาก ลงทุนเรื่องการศึกษาและถนนช่วยให้เติบโต'],
   happiness: ['😊 ความสุข', 'ประชาชนอยู่ดีแค่ไหน จาก 0 ถึง 100 ลดภาษีหรือเพิ่มงบดูแลประชาชนช่วยได้ คนมีความสุขช่วยให้ประเทศมั่นคง'],
   stability: ['🛡️ ความมั่นคง', 'รัฐบาลดูแลประเทศได้ดีแค่ไหน จาก 0 ถึง 100 ความสุขช่วยเพิ่มค่านี้ แต่หนี้สูงทำให้ลดลง ถ้าเหลือ 0 จะจบเกม'],
-  military: ['⚔️ กำลังทหาร', 'ความพร้อมของกองทัพ จาก 0 ถึง 100 งบทหารช่วยรักษาค่านี้ รุ่นนี้ยังสั่งรบไม่ได้'],
+  military: ['⚔️ กำลังทหาร', 'คะแนนรวมจำนวนรถถัง เรือรบ และเครื่องบินรบ ถ่วงน้ำหนักเทียบกับประเทศอันดับ 1 = 100 เปิดกองทัพเพื่อดูจำนวนและอันดับแต่ละเหล่า'],
 };
 const lessons = [
   ['🗺️', 'ประเทศนี้อยู่ในมือคุณ', 'ลากแผนที่เพื่อเลื่อน กางสองนิ้วเพื่อซูม แตะประเทศเพื่อดูข้อมูล ขอบเรืองแสงคือประเทศของคุณ'],
@@ -93,8 +94,17 @@ export function createGuidance({ catalog, getState, onRanking, onResources }) {
     document.querySelector(`#open-${name}`).addEventListener('click', () => {
       const stats = getState().countries[getState().playerCountryId];
       if (name === 'army') {
-        open('กองทัพ'); text(`⚔️ กำลังทหาร ${formatNumber(stats.military)} / 100`, 'help-heading');
-        text('ปรับงบทหารได้ในหน้านโยบาย แล้วรอดูผลเดือนถัดไป'); text('ระบบสั่งรบ • เร็วๆ นี้', 'coming-soon'); button('ใช้เหล็กเสริมกำลัง', () => { finish(); onResources('iron'); });
+        const state = getState();
+        open('กองทัพ'); text(`⚔️ กำลังทหาร ${militaryScore(state, catalog)} / 100`, 'help-heading');
+        for (const [key, icon, label, unit] of [['tanks','🪖','ทัพบก • รถถัง','คัน'],['ships','🚢','ทัพเรือ • เรือรบ','ลำ'],['aircraft','✈️','ทัพอากาศ • เครื่องบินรบ','ลำ']]) {
+          const card = document.createElement('div'); card.className = 'army-unit-row';
+          const name = document.createElement('strong'); name.textContent = `${icon} ${label}`;
+          const count = document.createElement('span'); count.textContent = `${formatNumber(stats.units[key])} ${unit}`;
+          const rank = document.createElement('small'); rank.textContent = `อันดับโลก ${militaryRank(state, catalog, key)} / ${catalog.playable.length}${stats.units[key] === 0 ? ' • ไม่มีหน่วยประเภทนี้' : ''}`;
+          card.append(name,count,rank); body.append(card);
+        }
+        text('จำนวนประมาณปี 2000 • ไม่รวมรถเกราะทั่วไป เรือเล็ก เครื่องบินฝึกและขนส่ง');
+        text('ระบบซื้อ ผลิต และสั่งรบจะเพิ่มภายหลัง');
       } else {
         open(name === 'market' ? 'ตลาด' : 'คมนาคม');
         text(name === 'market' ? '⚖️' : '🚆', 'help-emblem'); text('เร็วๆ นี้', 'coming-soon');

@@ -64,3 +64,7 @@ button { min-width: 48px; }
 .map-help:not([open]) .map-guide { display: none; }
 .country-panel .map-credit { display: none; }
 #monthly-status { display: none; }
+
+.army-unit-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin: 12px 0; padding: 18px; background: #193943; border: 1px solid #577b7b; border-radius: 10px; }
+.army-unit-row strong, .army-unit-row > span { font-size: 20px; }
+.army-unit-row small { grid-column: 1 / -1; font-size: 14px; color: #b8cfc7; }

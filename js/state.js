@@ -1,6 +1,7 @@
 import { RESOURCE_IDS } from './resources.js';
 import { STAT_KEYS, validStats } from './data/countries.js';
 import { validPolicy } from './economy.js';
+import { validUnits } from './war/military.js';
 
 export function chooseCountry(catalog, previousId, random = Math.random) {
   const pool = (catalog.newGameCountries ?? catalog.playable).filter(country => country.id !== previousId);
@@ -45,6 +46,7 @@ export function validGame(state, catalog) {
       && [1, 2, 4].includes(state.clock.speed) && typeof state.clock.userPaused === 'boolean'))
     && (state.selectedCountryId === null || catalog.byId.has(state.selectedCountryId))
     && state.countries && catalog.countries.every(country => validStats(state.countries[country.id]))
+    && catalog.countries.every(country => state.countries[country.id].units === undefined || validUnits(state.countries[country.id].units))
     && (state.view === null || (Number.isFinite(state.view?.zoom) && state.view.zoom >= 1 && state.view.zoom <= 12
       && Array.isArray(state.view.center) && state.view.center.length === 2
       && state.view.center.every(Number.isFinite)

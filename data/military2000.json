@@ -1,0 +1,302 @@
+{
+  "USA": {
+    "tanks": 7500,
+    "ships": 110,
+    "aircraft": 3500
+  },
+  "CAN": {
+    "tanks": 114,
+    "ships": 16,
+    "aircraft": 120
+  },
+  "MEX": {
+    "tanks": 0,
+    "ships": 8,
+    "aircraft": 70
+  },
+  "BRA": {
+    "tanks": 450,
+    "ships": 18,
+    "aircraft": 220
+  },
+  "ARG": {
+    "tanks": 350,
+    "ships": 9,
+    "aircraft": 120
+  },
+  "COL": {
+    "tanks": 0,
+    "ships": 4,
+    "aircraft": 40
+  },
+  "CHL": {
+    "tanks": 300,
+    "ships": 8,
+    "aircraft": 100
+  },
+  "PER": {
+    "tanks": 300,
+    "ships": 7,
+    "aircraft": 100
+  },
+  "VEN": {
+    "tanks": 130,
+    "ships": 6,
+    "aircraft": 80
+  },
+  "RUS": {
+    "tanks": 15000,
+    "ships": 90,
+    "aircraft": 2500
+  },
+  "GBR": {
+    "tanks": 550,
+    "ships": 32,
+    "aircraft": 450
+  },
+  "FRA": {
+    "tanks": 1000,
+    "ships": 32,
+    "aircraft": 500
+  },
+  "DEU": {
+    "tanks": 2800,
+    "ships": 18,
+    "aircraft": 500
+  },
+  "ITA": {
+    "tanks": 1200,
+    "ships": 20,
+    "aircraft": 350
+  },
+  "ESP": {
+    "tanks": 550,
+    "ships": 16,
+    "aircraft": 180
+  },
+  "NLD": {
+    "tanks": 330,
+    "ships": 16,
+    "aircraft": 140
+  },
+  "BEL": {
+    "tanks": 140,
+    "ships": 3,
+    "aircraft": 120
+  },
+  "SWE": {
+    "tanks": 600,
+    "ships": 10,
+    "aircraft": 280
+  },
+  "CHE": {
+    "tanks": 550,
+    "ships": 0,
+    "aircraft": 90
+  },
+  "AUT": {
+    "tanks": 170,
+    "ships": 0,
+    "aircraft": 24
+  },
+  "POL": {
+    "tanks": 1700,
+    "ships": 5,
+    "aircraft": 250
+  },
+  "UKR": {
+    "tanks": 4000,
+    "ships": 12,
+    "aircraft": 700
+  },
+  "TUR": {
+    "tanks": 4200,
+    "ships": 23,
+    "aircraft": 450
+  },
+  "GRC": {
+    "tanks": 1700,
+    "ships": 15,
+    "aircraft": 400
+  },
+  "NOR": {
+    "tanks": 170,
+    "ships": 6,
+    "aircraft": 60
+  },
+  "DNK": {
+    "tanks": 230,
+    "ships": 3,
+    "aircraft": 60
+  },
+  "FIN": {
+    "tanks": 230,
+    "ships": 0,
+    "aircraft": 60
+  },
+  "PRT": {
+    "tanks": 180,
+    "ships": 6,
+    "aircraft": 40
+  },
+  "CZE": {
+    "tanks": 750,
+    "ships": 0,
+    "aircraft": 100
+  },
+  "ROU": {
+    "tanks": 1500,
+    "ships": 6,
+    "aircraft": 120
+  },
+  "YUG": {
+    "tanks": 1200,
+    "ships": 4,
+    "aircraft": 100
+  },
+  "CHN": {
+    "tanks": 7000,
+    "ships": 60,
+    "aircraft": 2500
+  },
+  "JPN": {
+    "tanks": 1100,
+    "ships": 55,
+    "aircraft": 330
+  },
+  "IND": {
+    "tanks": 3500,
+    "ships": 35,
+    "aircraft": 700
+  },
+  "KOR": {
+    "tanks": 2300,
+    "ships": 40,
+    "aircraft": 500
+  },
+  "PRK": {
+    "tanks": 3500,
+    "ships": 8,
+    "aircraft": 600
+  },
+  "IDN": {
+    "tanks": 300,
+    "ships": 17,
+    "aircraft": 90
+  },
+  "THA": {
+    "tanks": 700,
+    "ships": 12,
+    "aircraft": 140
+  },
+  "TWN": {
+    "tanks": 1200,
+    "ships": 30,
+    "aircraft": 400
+  },
+  "MYS": {
+    "tanks": 0,
+    "ships": 6,
+    "aircraft": 60
+  },
+  "PHL": {
+    "tanks": 0,
+    "ships": 3,
+    "aircraft": 20
+  },
+  "VNM": {
+    "tanks": 1300,
+    "ships": 7,
+    "aircraft": 200
+  },
+  "PAK": {
+    "tanks": 2300,
+    "ships": 8,
+    "aircraft": 350
+  },
+  "BGD": {
+    "tanks": 200,
+    "ships": 4,
+    "aircraft": 70
+  },
+  "IRN": {
+    "tanks": 1400,
+    "ships": 5,
+    "aircraft": 300
+  },
+  "IRQ": {
+    "tanks": 2200,
+    "ships": 0,
+    "aircraft": 300
+  },
+  "SAU": {
+    "tanks": 1055,
+    "ships": 4,
+    "aircraft": 417
+  },
+  "ISR": {
+    "tanks": 3900,
+    "ships": 3,
+    "aircraft": 450
+  },
+  "KAZ": {
+    "tanks": 900,
+    "ships": 0,
+    "aircraft": 150
+  },
+  "ARE": {
+    "tanks": 331,
+    "ships": 2,
+    "aircraft": 101
+  },
+  "ZAF": {
+    "tanks": 170,
+    "ships": 0,
+    "aircraft": 60
+  },
+  "EGY": {
+    "tanks": 3700,
+    "ships": 9,
+    "aircraft": 550
+  },
+  "NGA": {
+    "tanks": 250,
+    "ships": 2,
+    "aircraft": 70
+  },
+  "DZA": {
+    "tanks": 1000,
+    "ships": 3,
+    "aircraft": 180
+  },
+  "LBY": {
+    "tanks": 2000,
+    "ships": 5,
+    "aircraft": 400
+  },
+  "ETH": {
+    "tanks": 400,
+    "ships": 0,
+    "aircraft": 70
+  },
+  "MAR": {
+    "tanks": 650,
+    "ships": 2,
+    "aircraft": 100
+  },
+  "AGO": {
+    "tanks": 300,
+    "ships": 0,
+    "aircraft": 60
+  },
+  "AUS": {
+    "tanks": 100,
+    "ships": 12,
+    "aircraft": 140
+  },
+  "NZL": {
+    "tanks": 0,
+    "ships": 4,
+    "aircraft": 20
+  }
+}
