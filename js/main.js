@@ -6,6 +6,7 @@ import { VERSION } from './version.js';
 import { showVersion, showOfflineStatus } from './ui/menu.js';
 import { registerServiceWorker } from './pwa.js';
 import { loadCatalog } from './data/countries.js';
+import { loadPlayable } from './data/playable.js';
 import { createDraft, createGame } from './state.js';
 import { readSave, writeSave, removeDraft } from './save/storage.js';
 import { createStartScreen } from './ui/start-screen.js';
@@ -141,6 +142,7 @@ async function boot() {
   feedback.textContent = 'กำลังเตรียมข้อมูลประเทศ…';
   try {
     catalog = await loadCatalog();
+    await loadPlayable(catalog);
     await loadResources(catalog);
     const policiesResponse=await fetch(new URL('../data/policies.json',import.meta.url));
     if(!policiesResponse.ok)throw Error('โหลดนโยบายไม่สำเร็จ');

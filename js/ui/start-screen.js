@@ -19,8 +19,14 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
   let draft = null;
   let generation = 0;
   let busy = false;
-  const sorted = [...catalog.playable].sort((a, b) => a.nameTh.localeCompare(b.nameTh, 'th'));
-  picker.append(...sorted.map(country => new Option(country.nameTh, country.id)));
+  const eligible = catalog.newGameCountries ?? catalog.playable;
+  if (catalog.newGameRegions) {
+    for (const [region, ids] of Object.entries(catalog.newGameRegions)) {
+      const group = document.createElement('optgroup'); group.label = region;
+      group.append(...ids.map(id => catalog.byId.get(id)).sort((a,b) => a.nameTh.localeCompare(b.nameTh,'th')).map(country => new Option(country.nameTh, country.id)));
+      picker.append(group);
+    }
+  } else picker.append(...eligible.map(country => new Option(country.nameTh, country.id)));
 
   function render() {
     const country = catalog.byId.get(draft.candidateId);
@@ -48,7 +54,7 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
     const steps = reduced ? 1 : 15;
     for (let step = 0; step < steps; step++) {
       if (current !== generation) return;
-      name.textContent = catalog.playable[Math.floor(Math.random() * catalog.playable.length)].nameTh;
+      name.textContent = eligible[Math.floor(Math.random() * eligible.length)].nameTh;
       await new Promise(resolve => setTimeout(resolve, reduced ? 0 : 45 + step * 9));
     }
     if (current !== generation) return;
@@ -65,7 +71,7 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
     animate();
   });
   choose.addEventListener('click', () => {
-    if (busy || !catalog.byId.get(picker.value)?.playable) return;
+    if (busy || !eligible.some(country => country.id === picker.value)) return;
     draft = { ...draft, candidateId: picker.value, manual: true };
     onDraft(draft);
     render();
@@ -81,6 +87,9 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
     show(value, { spin = false, replacesSave = false } = {}) {
       cancel();
       draft = value;
+      if (!eligible.some(country => country.id === draft.candidateId)) {
+        draft = { ...draft, candidateId: 'USA', manual: false }; onDraft(draft);
+      }
       victorySelect.value = 'survival'; victoryDetail.textContent = PATHS.survival.detail;
       document.querySelector('#replace-save-note').hidden = !replacesSave;
       render();

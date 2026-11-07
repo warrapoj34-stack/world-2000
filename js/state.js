@@ -3,7 +3,7 @@ import { STAT_KEYS, validStats } from './data/countries.js';
 import { validPolicy } from './economy.js';
 
 export function chooseCountry(catalog, previousId, random = Math.random) {
-  const pool = catalog.playable.filter(country => country.id !== previousId);
+  const pool = (catalog.newGameCountries ?? catalog.playable).filter(country => country.id !== previousId);
   const roll = Math.max(0, Math.min(0.999999999, random()));
   return pool[Math.floor(roll * pool.length)].id;
 }
@@ -26,6 +26,7 @@ export function validDraft(draft, catalog) {
 
 export function createGame(countryId, catalog) {
   if (!catalog.byId.get(countryId)?.playable) throw new Error('ประเทศนี้ไม่อยู่ในชุดผู้เล่น');
+  if (catalog.newGameCountries && !catalog.newGameCountries.some(country => country.id === countryId)) throw new Error('ประเทศนี้เป็น AI สำหรับเกมใหม่');
   const countries = Object.fromEntries(catalog.countries.map(country => [country.id, {
     ...Object.fromEntries(STAT_KEYS.map(key => [key, country[key]])), resources: { ...country.resources },
   }]));

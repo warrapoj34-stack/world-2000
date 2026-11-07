@@ -23,6 +23,7 @@ const APP_SHELL = [
   './data/events.json', './js/events/engine.js', './js/ui/event-screen.js', './css/events.css',
   './js/victory.js', './css/victory.css',
   './js/time.js', './js/ui/time-screen.js', './css/time.css',
+  './data/playable.json', './data/playable_regions.json', './js/data/playable.js',
 ];
 const APP_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 

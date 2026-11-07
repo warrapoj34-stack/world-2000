@@ -1,0 +1,72 @@
+{
+  "อเมริกา": [
+    "USA",
+    "CAN",
+    "MEX",
+    "BRA",
+    "ARG",
+    "COL",
+    "CHL",
+    "PER",
+    "VEN"
+  ],
+  "ยุโรป": [
+    "RUS",
+    "GBR",
+    "FRA",
+    "DEU",
+    "ITA",
+    "ESP",
+    "NLD",
+    "BEL",
+    "SWE",
+    "CHE",
+    "AUT",
+    "POL",
+    "UKR",
+    "TUR",
+    "GRC",
+    "NOR",
+    "DNK",
+    "FIN",
+    "PRT",
+    "CZE",
+    "ROU",
+    "YUG"
+  ],
+  "เอเชีย": [
+    "CHN",
+    "JPN",
+    "IND",
+    "KOR",
+    "PRK",
+    "IDN",
+    "THA",
+    "TWN",
+    "MYS",
+    "PHL",
+    "VNM",
+    "PAK",
+    "BGD",
+    "IRN",
+    "IRQ",
+    "SAU",
+    "ISR",
+    "KAZ",
+    "ARE"
+  ],
+  "แอฟริกา": [
+    "ZAF",
+    "EGY",
+    "NGA",
+    "DZA",
+    "LBY",
+    "ETH",
+    "MAR",
+    "AGO"
+  ],
+  "โอเชียเนีย": [
+    "AUS",
+    "NZL"
+  ]
+}
