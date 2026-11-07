@@ -9,10 +9,10 @@ export function eligibleEvents(state, catalog) {
   const events = ensureEvents(state);
   const stats = state.countries[state.playerCountryId];
   const levels = catalog.resourceLevels.get(state.playerCountryId);
-  const turns = state.economy.turns;
+  const months = state.economy.months ?? state.economy.turns * 3;
   return catalog.events.filter(event => {
     const rule = event.when;
-    if (events.history.some(item => item.id === event.id && turns - item.turn < 12)) return false;
+    if (events.history.some(item => item.id === event.id && months - (item.monthIndex ?? item.turn * 3) < 36)) return false;
     return (!rule.resource || levels[rule.resource] >= rule.minLevel)
       && (rule.happinessBelow == null || stats.happiness < rule.happinessBelow)
       && (rule.treasuryBelow == null || stats.treasury < stats.gdp * rule.treasuryBelow)
@@ -51,7 +51,8 @@ export function chooseEvent(state, catalog, optionId) {
     stats.resourceStock[id] = Math.max(0, (stats.resourceStock[id] ?? 0) + amount);
   }
   const entry = { id: event.id, title: event.title, icon: event.icon, option: option.text,
-    turn: state.economy.turns, date: { ...state.date }, changes: { ...option.effects, treasury: treasuryDelta } };
+    turn: state.economy.turns, monthIndex: state.economy.months ?? state.economy.turns * 3,
+    date: { ...state.date }, changes: { ...option.effects, treasury: treasuryDelta } };
   events.history.push(entry);
   events.pending = null;
   events.ready = entry.id;

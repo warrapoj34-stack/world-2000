@@ -74,5 +74,5 @@ export function createEventScreen({ catalog, getState, onChange, onContinue, onR
     const id = events.pending;
     if (id) show(catalog.events.find(item => item.id === id));
   }
-  return { beforeTurn, resume };
+  return { beforeTurn, resume, monthly: beforeTurn };
 }

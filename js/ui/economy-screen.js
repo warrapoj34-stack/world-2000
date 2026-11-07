@@ -1,17 +1,16 @@
 import { renderPolicyCards } from './policy-cards.js';
 import { resourceEffects } from '../resources.js';
-import { allocateBudget, advanceQuarter, ensureEconomy, fiscalForecast, worldRanking, BUDGET_KEYS, defeatReason } from '../economy.js';
+import { allocateBudget, advanceMonth, ensureEconomy, fiscalForecast, worldRanking, BUDGET_KEYS, defeatReason } from '../economy.js';
 import { formatNumber, shortMoney, monthName, governmentName } from './stats.js';
 import { PATHS, ensureVictory, selectVictoryPath, updateVictory, victoryProgress } from '../victory.js';
 
 const labels = { military: 'ทหาร', education: 'การศึกษา', health: 'โรงพยาบาล', infrastructure: 'ถนนและสิ่งก่อสร้าง', welfare: 'ช่วยค่าครองชีพ' };
 const money = value => `${formatNumber(value)} พันล้าน $`;
-export function createEconomyScreen({ catalog, balance, getState, onChange, onRefresh, onMenu, beforeTurn = () => false }) {
+export function createEconomyScreen({ catalog, balance, getState, onChange, onRefresh, onMenu }) {
   const dialog = document.querySelector('#economy-dialog');
   const title = document.querySelector('#economy-title');
   const content = document.querySelector('#economy-content');
   const close = document.querySelector('#close-economy');
-  const end = document.querySelector('#end-turn');
   let screen = '', busy = false;
   function open(name, heading) {
     screen = name;
@@ -70,7 +69,7 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
   function report(detailed = false) {
     const r = getState().economy.lastReport;
     if (!r) return;
-    open('report', `สรุป 3 เดือนที่ผ่านมา • ${monthName(r.period)}`);
+    open('report', `สรุปเดือนที่ผ่านมา • ${monthName(r.period)}`);
     if (!detailed) {
       const summary = document.createElement('div'); summary.className = 'report-summary'; content.append(summary);
       const delta = r.after.treasury - r.before.treasury;
@@ -106,7 +105,6 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
     const state = getState(), economy = ensureEconomy(state, balance);
     economy.gameOver ||= defeatReason(state.countries[state.playerCountryId], balance);
     const victory = ensureVictory(state);
-    end.disabled = Boolean(economy.gameOver || victory.finished) || busy;
     if (economy.gameOver) gameOver();
     else if (victory.finished || (victory.won && !victory.continued)) victorySummary();
   }
@@ -114,18 +112,14 @@ export function createEconomyScreen({ catalog, balance, getState, onChange, onRe
     dialog.close(); if (screen === 'over' || (screen === 'victory' && getState().victory.finished)) onMenu(); });
   dialog.addEventListener('cancel', event => { if (screen === 'over' || (screen === 'victory' && getState().victory.finished)) { event.preventDefault(); dialog.close(); onMenu(); } });
   document.querySelector('#open-policy').addEventListener('click', policies);
-  function finishTurn() {
+  function finishMonth() {
     if (busy || dialog.open || getState().economy.gameOver || ensureVictory(getState()).finished) return;
-    busy = true; end.disabled = true;
-    try { advanceQuarter(getState(), catalog, balance); updateVictory(getState(), catalog); onChange(); onRefresh();
+    busy = true;
+    try { const result = advanceMonth(getState(), catalog, balance); updateVictory(getState(), catalog); onChange(); onRefresh();
       if (getState().economy.gameOver) gameOver();
       else if (getState().victory.finished || (getState().victory.won && !getState().victory.continued)) victorySummary();
-      else report(); }
-    finally { busy = false; end.disabled = Boolean(getState().economy.gameOver || getState().victory.finished); }
+      else if (result) document.querySelector('#monthly-status').textContent = `เดือนล่าสุด: เงิน${result.fiscal.net >= 0 ? 'เพิ่ม' : 'ลด'} ${shortMoney(Math.abs(result.fiscal.net))}`; }
+    finally { busy = false; }
   }
-  end.addEventListener('click', () => {
-    if (busy || dialog.open || getState().economy.gameOver || ensureVictory(getState()).finished) return;
-    if (!beforeTurn()) finishTurn();
-  });
-  return { refresh, ranking, finishTurn };
+  return { refresh, ranking, finishMonth };
 }

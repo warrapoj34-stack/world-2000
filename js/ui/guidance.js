@@ -12,7 +12,7 @@ const lessons = [
   ['🗺️', 'ประเทศนี้อยู่ในมือคุณ', 'ลากแผนที่เพื่อเลื่อน กางสองนิ้วเพื่อซูม แตะประเทศเพื่อดูข้อมูล ขอบเรืองแสงคือประเทศของคุณ'],
   ['💰', 'ดูแค่ค่าหลักก่อน', 'แถบบนบอกเงิน เศรษฐกิจ ความสุข ความมั่นคง และทหาร แตะหรือกดค้างที่รูปเพื่ออ่านความหมาย ไม่ต้องจำทุกตัวเลข'],
   ['🎚️', 'เลือกว่าจะดูแลอะไร', 'เปิดนโยบายด้านล่าง ลดภาษีช่วยให้คนสุขขึ้น แต่เงินเข้าน้อยลง แบ่งงบให้โรงเรียน โรงพยาบาล ถนน และเรื่องที่คุณอยากพัฒนา'],
-  ['📅', 'พร้อมแล้ว จบเทิร์น', 'กดจบเทิร์นที่มุมขวาล่าง เวลาเดินไป 3 เดือน แล้วอ่านสรุปเงินเข้าออก ลองปรับนโยบายและดูผลในรอบถัดไป'],
+  ['📅', 'เวลาเดินเอง', 'ดูวันที่มุมขวาบน กดหยุดหรือเร่งเวลาได้ เกมคำนวณเงินทุกเดือน และหยุดเมื่อมีเหตุการณ์ให้เลือก'],
 ];
 
 export function createGuidance({ catalog, getState, onRanking, onResources }) {
@@ -60,7 +60,7 @@ export function createGuidance({ catalog, getState, onRanking, onResources }) {
     if (stats.happiness < 55) tips.push(policy?.tax > 20 ? 'ลองลดภาษีให้ประชาชนสุขขึ้น' : 'ลองเพิ่มงบโรงพยาบาลหรือช่วยค่าครองชีพ');
     else if (stats.debt > 100 || stats.treasury < stats.gdp * .03) tips.push('เปิดนโยบาย ดูว่าเงินเข้าพอกับรายจ่ายไหม');
     else tips.push('ลองเลือกเรื่องที่อยากพัฒนาในหน้านโยบาย');
-    tips.push('จบเทิร์นเพื่อดูผลในอีก 3 เดือน');
+    tips.push('ปล่อยเวลาเดินเพื่อดูผลในเดือนถัดไป');
     document.querySelector('#mission-list').replaceChildren(...tips.map(tip => { const li = document.createElement('li'); li.textContent = tip; return li; }));
     if (!prefs.tutorialDone && !dialog.open && !document.querySelector('#economy-dialog').open && !state.economy?.gameOver) { lesson = 0; tutorial(); }
   }
@@ -86,7 +86,7 @@ export function createGuidance({ catalog, getState, onRanking, onResources }) {
       const stats = getState().countries[getState().playerCountryId];
       if (name === 'army') {
         open('กองทัพ'); text(`⚔️ กำลังทหาร ${formatNumber(stats.military)} / 100`, 'help-heading');
-        text('ปรับงบทหารได้ในหน้านโยบาย แล้วจบเทิร์นเพื่อดูผล'); text('ระบบสั่งรบ • เร็วๆ นี้', 'coming-soon'); button('ใช้เหล็กเสริมกำลัง', () => { finish(); onResources('iron'); });
+        text('ปรับงบทหารได้ในหน้านโยบาย แล้วรอดูผลเดือนถัดไป'); text('ระบบสั่งรบ • เร็วๆ นี้', 'coming-soon'); button('ใช้เหล็กเสริมกำลัง', () => { finish(); onResources('iron'); });
       } else {
         open(name === 'market' ? 'ตลาด' : 'คมนาคม');
         text(name === 'market' ? '⚖️' : '🚆', 'help-emblem'); text('เร็วๆ นี้', 'coming-soon');

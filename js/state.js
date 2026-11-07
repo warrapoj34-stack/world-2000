@@ -39,6 +39,9 @@ export function validGame(state, catalog) {
     && validEconomy(state.economy)
     && Number.isInteger(state.date?.year) && state.date.year >= 2000 && state.date.year <= 9999
     && Number.isInteger(state.date.month) && state.date.month >= 1 && state.date.month <= 12
+    && (state.date.day === undefined || (Number.isInteger(state.date.day) && state.date.day >= 1 && state.date.day <= 31))
+    && (state.clock === undefined || (Number.isFinite(state.clock.progress) && state.clock.progress >= 0 && state.clock.progress < 1
+      && [1, 2, 4].includes(state.clock.speed) && typeof state.clock.userPaused === 'boolean'))
     && (state.selectedCountryId === null || catalog.byId.has(state.selectedCountryId))
     && state.countries && catalog.countries.every(country => validStats(state.countries[country.id]))
     && (state.view === null || (Number.isFinite(state.view?.zoom) && state.view.zoom >= 1 && state.view.zoom <= 12

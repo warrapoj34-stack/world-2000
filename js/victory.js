@@ -27,7 +27,7 @@ export function victoryProgress(state, catalog) {
 export function updateVictory(state, catalog) {
   const v = ensureVictory(state), stats = state.countries[state.playerCountryId];
   if (stats.happiness < 50) v.happinessHeld = false;
-  if (v.path === 'economic' && !v.won) {
+  if (v.path === 'economic' && !v.won && (state.economy.months ?? state.economy.turns * 3) % 3 === 0) {
     const bestGDP = Math.max(...catalog.playable.map(c => state.countries[c.id].gdp));
     const bestMoney = Math.max(...catalog.playable.map(c => state.countries[c.id].treasury));
     v.economicStreak = stats.gdp >= bestGDP && stats.treasury >= bestMoney ? v.economicStreak + 1 : 0;

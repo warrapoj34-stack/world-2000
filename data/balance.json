@@ -11,6 +11,7 @@
   },
   "taxMax": 60,
   "quartersPerYear": 4,
+  "secondsPerGameYear": 480,
   "spendingRate": 0.25,
   "interestRate": 0.04,
   "growth": {

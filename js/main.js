@@ -14,6 +14,8 @@ import { createGuidance } from './ui/guidance.js';
 import { createEconomyScreen } from './ui/economy-screen.js';
 import { createEventScreen } from './ui/event-screen.js';
 import { ensureVictory, selectVictoryPath, victoryProgress, PATHS } from './victory.js';
+import { ensureClock } from './time.js';
+import { createTimeScreen } from './ui/time-screen.js';
 
 showVersion(VERSION);
 registerServiceWorker(showOfflineStatus);
@@ -28,7 +30,7 @@ const newButton = document.querySelector('#new-game');
 const continueButton = document.querySelector('#continue-game');
 const feedback = document.querySelector('#menu-feedback');
 let catalog, startUI, activeGame, activeDraft;
-let balance, economyUI, eventUI;
+let balance, economyUI, eventUI, timeUI;
 let map = null, pendingMap = null, saveTimer = 0;
 
 function showScreen(target) {
@@ -92,7 +94,9 @@ async function openMap() {
   ensureResources(activeGame);
   ensurePolicyCards(activeGame,catalog.policies);
   ensureVictory(activeGame);
+  ensureClock(activeGame);
   showScreen('map');
+  timeUI.refresh();
   refreshVictory();
   economyUI.refresh();
   eventUI.resume();
@@ -148,10 +152,15 @@ async function boot() {
     if (!eventsResponse.ok) throw new Error('โหลดเหตุการณ์ไม่สำเร็จ');
     catalog.events = await eventsResponse.json();
     economyUI = createEconomyScreen({ catalog, balance, getState: () => activeGame,
-      onChange: persistGame, onRefresh: () => { map?.setSession(activeGame); refreshVictory(); }, onMenu: goMenu,
-      beforeTurn: () => eventUI.beforeTurn() });
+      onChange: persistGame, onRefresh: () => { map?.setSession(activeGame); refreshVictory(); }, onMenu: goMenu });
     eventUI = createEventScreen({ catalog, getState: () => activeGame, onChange: persistGame,
-      onRefresh: () => map?.setSession(activeGame), onContinue: economyUI.finishTurn });
+      onRefresh: () => map?.setSession(activeGame), onContinue: () => timeUI.refresh() });
+    timeUI = createTimeScreen({ catalog, balance, getState: () => activeGame, onChange: scheduleSave,
+      onMonth: () => {
+        economyUI.finishMonth();
+        if (!document.querySelector('dialog[open]') && !activeGame.economy.gameOver && !activeGame.victory.finished) eventUI.monthly();
+        return !document.querySelector('dialog[open]');
+      } });
     const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open });
     startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });

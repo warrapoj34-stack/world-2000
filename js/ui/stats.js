@@ -8,6 +8,7 @@ export const formatPopulation = value => value > 0 && value < 0.01
   ? `${formatNumber(Math.round(value * 1000000))} คน` : `${formatNumber(value)} ล้านคน`;
 export const governmentName = country => country.governmentLabelTh ?? GOVERNMENTS[country.government];
 export const monthName = date => `${['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'][date.month - 1]} ${date.year}`;
+export const fullDateName = date => `${Math.floor(date.day ?? 1)} ${monthName(date)}`;
 
 export function renderStats(container, stats, compact = false) {
   const rows = [
@@ -33,7 +34,7 @@ export function renderHUD(state, catalog) {
   const country = catalog.byId.get(state.playerCountryId);
   const stats = state.countries[country.id];
   document.querySelector('#player-name').textContent = country.nameTh;
-  document.querySelector('#game-date').textContent = monthName(state.date);
+  document.querySelector('#game-date').textContent = fullDateName(state.date);
   for (const key of ['treasury', 'gdp', 'happiness', 'stability', 'military']) {
     const node = document.querySelector(`#hud-${key}`);
     node.textContent = key === 'treasury' || key === 'gdp' ? shortMoney(stats[key]) : `${Math.round(stats[key])}/100`;

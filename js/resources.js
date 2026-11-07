@@ -14,22 +14,23 @@ export function resourceProduction(stats, levels, balance) {
   const scale = stats.gdp <= 0 || stats.population <= 0 ? 0 : clamp(Math.sqrt(stats.population / b.populationDivisor),b.minScale,b.maxScale);
   return Object.fromEntries(RESOURCE_IDS.map(id => [id, levels[id] * b.unitsPerStar * scale * (b.baseEfficiency + stats.tech / 100)]));
 }
-export function resourceEffects(stats, levels, definitions, balance, random = Math.random) {
+export function resourceEffects(stats, levels, definitions, balance, random = Math.random, months = 3) {
   const b = balance.resources, production = resourceProduction(stats,levels,balance);
-  const drought = random() < b.droughtChance;
+  for (const id of RESOURCE_IDS) production[id] *= months / 3;
+  const drought = random() < b.droughtChance * months / 3;
   const protection = clamp(levels.freshwater * b.waterProtectionPerStar,0,1);
   const damage = drought ? 1 - protection : 0;
   production.food *= 1 - damage * b.droughtFoodLoss;
   const gross = definitions.reduce((sum,r)=>sum+production[r.id]*r.basePrice*(b.exportShares[r.id] ?? 0),0);
-  const revenue = Math.min(gross,stats.gdp*b.maxExportGDPShare);
+  const revenue = Math.min(gross,stats.gdp*b.maxExportGDPShare*months/3);
   const sold = Object.fromEntries(RESOURCE_IDS.map(id=>[id,production[id]*(b.exportShares[id]??0)*(gross>0?revenue/gross:0)]));
   const stock = Object.fromEntries(RESOURCE_IDS.map(id=>[id,Math.min(b.maxStock,(stats.resourceStock?.[id]??0)+production[id]-sold[id])]));
   return {production,stock,revenue,drought,protection,
     energyGrowth:(levels.oil+levels.gas+levels.coal)*b.energyGrowthPerStar,
     droughtGrowthLoss:damage*b.droughtGrowthLoss,
-    happiness:(levels.food*(1-damage*b.droughtFoodLoss)+levels.fish*b.fishFoodWeight)*b.foodHappinessPerStar-damage*b.droughtHappinessLoss,
-    tech:levels.rare_earths*b.techPerStar,
-    reputation:levels.biodiversity*b.reputationPerStar};
+    happiness:((levels.food*(1-damage*b.droughtFoodLoss)+levels.fish*b.fishFoodWeight)*b.foodHappinessPerStar-damage*b.droughtHappinessLoss)*months/3,
+    tech:levels.rare_earths*b.techPerStar*months/3,
+    reputation:levels.biodiversity*b.reputationPerStar*months/3};
 }
 export function topResources(levels, definitions) {
   return [...definitions].sort((a,b)=>levels[b.id]-levels[a.id]||RESOURCE_IDS.indexOf(a.id)-RESOURCE_IDS.indexOf(b.id)).filter(r=>levels[r.id]>0).slice(0,3);

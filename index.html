@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./css/resources.css">
   <link rel="stylesheet" href="./css/events.css">
   <link rel="stylesheet" href="./css/victory.css">
+  <link rel="stylesheet" href="./css/time.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
 </head>
@@ -101,7 +102,7 @@
     <header class="map-header">
       <button class="map-button back-button" id="back-to-menu" type="button">← กลับเมนู</button>
       <div class="map-heading"><h2 id="player-name">ประเทศของคุณ</h2><span>WORLD 2000</span></div>
-      <span class="year-badge" id="game-date">ม.ค. 2000</span>
+      <div class="time-controls"><span class="year-badge" id="game-date">1 ม.ค. 2000</span><button type="button" class="map-button" data-time-speed="pause" aria-label="หยุดเวลา">⏸</button><button type="button" class="map-button" data-time-speed="1">×1</button><button type="button" class="map-button" data-time-speed="2">×2</button><button type="button" class="map-button" data-time-speed="4">×4</button><span id="time-status">ความเร็ว ×1</span></div>
     </header>
     <div class="victory-bar"><span id="victory-name">เป้าหมาย</span><progress id="victory-progress" max="100" value="0"></progress><span id="victory-progress-text">0%</span><span id="victory-progress-detail"></span></div>
     <div class="country-hud" aria-label="สถานะประเทศของคุณ">
@@ -159,7 +160,7 @@
         <p class="map-credit">ข้อมูลแผนที่ Natural Earth · 1:50m<br>ปรับซูดาน ยูโกสลาเวีย และติมอร์-เลสเตตามโจทย์ปี 2000</p>
       </aside>
     </div>
-    <div class="turn-dock"><button id="end-turn" class="map-button end-turn" type="button">จบเทิร์น +3 เดือน</button></div>
+    <div class="turn-dock" id="monthly-status" role="status">เวลาในเกมกำลังเดิน</div>
     <nav class="turn-bar" aria-label="บริหารประเทศ"><button id="open-country" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🏛️</span>ประเทศ</button>
 <button id="open-resources" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🌾</span>ทรัพยากร</button>
 <button id="open-army" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">⚔️</span>กองทัพ</button>
@@ -168,7 +169,7 @@
 <button id="open-policy" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🎚️</span>นโยบาย</button></nav>
   </main>
   <dialog id="resource-dialog" class="economy-dialog" aria-labelledby="resource-title"><header><h2 id="resource-title">ทรัพยากรของประเทศ</h2><button id="close-resources" class="map-button" type="button">กลับแผนที่</button></header><section id="resource-content"></section></dialog>
-  <dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title"><div id="event-icon" class="event-icon"></div><h2 id="event-title"></h2><p id="event-story"></p><div id="event-options"></div><p id="event-summary" hidden></p><button id="event-next" class="map-button" type="button" hidden>ดูผลและจบเทิร์น</button></dialog>
+  <dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title"><div id="event-icon" class="event-icon"></div><h2 id="event-title"></h2><p id="event-story"></p><div id="event-options"></div><p id="event-summary" hidden></p><button id="event-next" class="map-button" type="button" hidden>เล่นต่อ</button></dialog>
   <dialog id="help-dialog" class="economy-dialog help-dialog" aria-labelledby="help-title"><header><h2 id="help-title"></h2><button id="close-help" class="map-button" type="button">กลับแผนที่</button></header><section id="help-content"></section></dialog>
   <dialog id="economy-dialog" class="economy-dialog" aria-labelledby="economy-title">
     <header><h2 id="economy-title"></h2><button id="close-economy" class="map-button" type="button">กลับแผนที่</button></header>

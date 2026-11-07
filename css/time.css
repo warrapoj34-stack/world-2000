@@ -1,0 +1,7 @@
+.time-controls { display: flex; align-items: center; justify-content: flex-end; gap: 5px; flex-wrap: wrap; }
+.time-controls .year-badge { margin-right: 10px; }
+.time-controls .map-button { min-width: 48px; min-height: 48px; padding: 6px 8px; border-radius: 7px; font-weight: bold; }
+.time-controls .map-button[aria-pressed="true"] { background: #b7c995; color: #122b29; }
+#time-status { min-width: 86px; text-align: center; color: #cde0c8; font-size: 14px; }
+#monthly-status { color: #b9d4cb; font-size: 14px; }
+@media (max-width: 700px) { .map-heading { display: none; } .map-header .back-button { padding-inline: 6px; } .time-controls { gap: 2px; flex-wrap: nowrap; } .time-controls .year-badge { margin-right: 2px; white-space: nowrap; } .time-controls .map-button { min-width: 48px; min-height: 48px; padding-inline: 4px; } #time-status { display: none; } }

@@ -23,7 +23,7 @@ export function createResourceScreen({catalog,balance,getState,onChange,onRefres
         const buy=document.createElement('button');buy.id='buy-reinforcement';buy.className='map-button';buy.type='button';buy.textContent='ใช้เหล็กเสริมกำลัง';
         buy.disabled=Boolean(state.economy?.gameOver)||stats.military>=100||stats.resourceStock.iron<b.iron||stats.treasury<b.money;
         buy.addEventListener('click',()=>{if(reinforceArmy(state,balance)){onChange();onRefresh();open('iron');addText('เสริมกำลังแล้ว','good');}});body.append(buy);
-        if(buy.disabled)addText(stats.military>=100?'กองทัพพร้อมเต็มที่แล้ว':state.economy?.gameOver?'เกมนี้จบแล้ว':'เหล็กหรือเงินยังไม่พอ จบเทิร์นเพื่อรับผลผลิตก่อน');
+        if(buy.disabled)addText(stats.military>=100?'กองทัพพร้อมเต็มที่แล้ว':state.economy?.gameOver?'เกมนี้จบแล้ว':'เหล็กหรือเงินยังไม่พอ รอผลผลิตเดือนถัดไปก่อน');
       }
       const back=document.createElement('button');back.className='map-button';back.type='button';back.id='all-resources';back.textContent='ดูทรัพยากรทั้งหมด';back.addEventListener('click',()=>open());body.append(back);
     } else {
