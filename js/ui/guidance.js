@@ -1,5 +1,5 @@
 import { formatNumber, renderStats } from './stats.js';
-import { militaryScore, militaryRank } from '../war/military.js';
+import { renderArmy } from './army-screen.js';
 
 const KEY = 'world-2000:ui-preferences';
 const explanations = {
@@ -16,7 +16,7 @@ const lessons = [
   ['📅', 'เวลาเดินเอง', 'ดูวันที่มุมขวาบน กดหยุดหรือเร่งเวลาได้ เกมคำนวณเงินทุกเดือน และหยุดเมื่อมีเหตุการณ์ให้เลือก'],
 ];
 
-export function createGuidance({ catalog, getState, onRanking, onResources }) {
+export function createGuidance({ catalog, getState, onRanking, onResources, onChange, onRefresh }) {
   let prefs = {};
   try { prefs = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { /* ใช้ค่าชั่วคราวเมื่ออ่านไม่ได้ */ }
   if (typeof prefs !== 'object' || Array.isArray(prefs)) prefs = {};
@@ -94,17 +94,7 @@ export function createGuidance({ catalog, getState, onRanking, onResources }) {
     document.querySelector(`#open-${name}`).addEventListener('click', () => {
       const stats = getState().countries[getState().playerCountryId];
       if (name === 'army') {
-        const state = getState();
-        open('กองทัพ'); text(`⚔️ กำลังทหาร ${militaryScore(state, catalog)} / 100`, 'help-heading');
-        for (const [key, icon, label, unit] of [['tanks','🪖','ทัพบก • รถถัง','คัน'],['ships','🚢','ทัพเรือ • เรือรบ','ลำ'],['aircraft','✈️','ทัพอากาศ • เครื่องบินรบ','ลำ']]) {
-          const card = document.createElement('div'); card.className = 'army-unit-row';
-          const name = document.createElement('strong'); name.textContent = `${icon} ${label}`;
-          const count = document.createElement('span'); count.textContent = `${formatNumber(stats.units[key])} ${unit}`;
-          const rank = document.createElement('small'); rank.textContent = `อันดับโลก ${militaryRank(state, catalog, key)} / ${catalog.playable.length}${stats.units[key] === 0 ? ' • ไม่มีหน่วยประเภทนี้' : ''}`;
-          card.append(name,count,rank); body.append(card);
-        }
-        text('จำนวนประมาณปี 2000 • ไม่รวมรถเกราะทั่วไป เรือเล็ก เครื่องบินฝึกและขนส่ง');
-        text('ระบบซื้อ ผลิต และสั่งรบจะเพิ่มภายหลัง');
+        open('กองทัพ'); renderArmy(body, getState(), catalog, onChange, onRefresh);
       } else {
         open(name === 'market' ? 'ตลาด' : 'คมนาคม');
         text(name === 'market' ? '⚖️' : '🚆', 'help-emblem'); text('เร็วๆ นี้', 'coming-soon');

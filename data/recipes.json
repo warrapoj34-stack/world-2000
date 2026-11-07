@@ -1,0 +1,92 @@
+[
+  {
+    "id": "tank",
+    "icon": "🪖",
+    "nameTh": "รถถัง",
+    "unit": "tanks",
+    "days": 10,
+    "resources": {
+      "iron": 5,
+      "oil": 2
+    },
+    "moneyMillions": 0,
+    "conditions": {},
+    "branchTh": "ทัพบก",
+    "countUnitTh": "คัน"
+  },
+  {
+    "id": "warship",
+    "icon": "🚢",
+    "nameTh": "เรือรบ",
+    "unit": "ships",
+    "days": 45,
+    "resources": {
+      "iron": 20,
+      "oil": 5
+    },
+    "moneyMillions": 0,
+    "conditions": {
+      "requiresCoast": true
+    },
+    "branchTh": "ทัพเรือ",
+    "countUnitTh": "ลำ"
+  },
+  {
+    "id": "fighter",
+    "icon": "✈️",
+    "nameTh": "เครื่องบินรบ",
+    "unit": "aircraft",
+    "days": 20,
+    "resources": {
+      "iron": 8,
+      "rare_earths": 3
+    },
+    "moneyMillions": 0,
+    "conditions": {},
+    "branchTh": "ทัพอากาศ",
+    "countUnitTh": "ลำ"
+  },
+  {
+    "id": "warhead",
+    "icon": "☢️",
+    "nameTh": "หัวรบนิวเคลียร์",
+    "unit": "warheads",
+    "days": 90,
+    "resources": {
+      "uranium": 20
+    },
+    "moneyMillions": 500,
+    "conditions": {
+      "countries": [
+        "USA",
+        "RUS",
+        "GBR",
+        "FRA",
+        "CHN",
+        "IND",
+        "PAK",
+        "ISR"
+      ],
+      "minTech": 40
+    },
+    "branchTh": "อาวุธยุทธศาสตร์",
+    "countUnitTh": "ลูก"
+  },
+  {
+    "id": "cargo",
+    "icon": "🚢",
+    "nameTh": "เรือสินค้า",
+    "unit": "cargoShips",
+    "days": 30,
+    "resources": {
+      "iron": 10,
+      "oil": 3
+    },
+    "moneyMillions": 0,
+    "conditions": {
+      "requiresCoast": true
+    },
+    "branchTh": "เรือสินค้า",
+    "countUnitTh": "ลำ"
+  }
+]

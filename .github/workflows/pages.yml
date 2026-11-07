@@ -25,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Test country data and saves
-        run: node --test tests/world.test.mjs tests/game.test.mjs tests/economy.test.mjs tests/resources.test.mjs tests/policies.test.mjs tests/playable.test.mjs tests/military.test.mjs
+        run: node --test tests/world.test.mjs tests/game.test.mjs tests/economy.test.mjs tests/resources.test.mjs tests/policies.test.mjs tests/playable.test.mjs tests/military.test.mjs tests/production.test.mjs
       - name: Prepare static files
         run: node tools/prepare-pages.mjs
       - name: Configure Pages

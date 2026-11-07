@@ -1,6 +1,7 @@
 export const UNIT_KEYS = ['tanks', 'ships', 'aircraft'];
 export function validUnits(units) {
-  return Boolean(units && UNIT_KEYS.every(key => Number.isSafeInteger(units[key]) && units[key] >= 0));
+  return Boolean(units && UNIT_KEYS.every(key => Number.isSafeInteger(units[key]) && units[key] >= 0)
+    && ['warheads','cargoShips'].every(key=>units[key]===undefined || Number.isSafeInteger(units[key]) && units[key]>=0));
 }
 export function attachMilitary(catalog, rows, rules) {
   if (Object.keys(rows).length !== 60 || catalog.newGameCountries.some(c => !validUnits(rows[c.id]))

@@ -8,6 +8,7 @@ import { registerServiceWorker } from './pwa.js';
 import { loadCatalog } from './data/countries.js';
 import { loadPlayable } from './data/playable.js';
 import { loadMilitary, ensureMilitary } from './war/military.js';
+import { loadRecipes, ensureProduction, updateProduction } from './war/production.js';
 import { createDraft, createGame } from './state.js';
 import { readSave, writeSave, removeDraft } from './save/storage.js';
 import { createStartScreen } from './ui/start-screen.js';
@@ -95,6 +96,7 @@ async function openMap() {
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
   ensureMilitary(activeGame, catalog);
+  ensureProduction(activeGame); updateProduction(activeGame);
   ensurePolicyCards(activeGame,catalog.policies);
   ensureVictory(activeGame);
   ensureClock(activeGame);
@@ -148,6 +150,7 @@ async function boot() {
     await loadPlayable(catalog);
     await loadMilitary(catalog);
     await loadResources(catalog);
+    await loadRecipes(catalog);
     const policiesResponse=await fetch(new URL('../data/policies.json',import.meta.url));
     if(!policiesResponse.ok)throw Error('โหลดนโยบายไม่สำเร็จ');
     catalog.policies=await policiesResponse.json();
@@ -168,7 +171,8 @@ async function boot() {
         return !document.querySelector('dialog[open]');
       } });
     const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
-    createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open });
+    createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
+      onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();
   } catch {

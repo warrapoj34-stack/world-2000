@@ -68,3 +68,10 @@ button { min-width: 48px; }
 .army-unit-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin: 12px 0; padding: 18px; background: #193943; border: 1px solid #577b7b; border-radius: 10px; }
 .army-unit-row strong, .army-unit-row > span { font-size: 20px; }
 .army-unit-row small { grid-column: 1 / -1; font-size: 14px; color: #b8cfc7; }
+
+.army-unit-row > p { margin: 4px 0; font-size: 16px; }
+.army-unit-row > p:nth-child(n+3) { grid-column: 1 / -1; }
+.produce-button { min-height: 48px; background: #aecb91; color: #102b29; }
+.produce-button:disabled { background: #263e46; color: #a9b5b7; }
+.production-job { margin: 12px 0; padding: 12px; border: 1px solid #527473; border-radius: 8px; }
+.production-job progress { width: 100%; height: 20px; accent-color: #b0d597; }
