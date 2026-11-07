@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./css/events.css">
   <link rel="stylesheet" href="./css/victory.css">
   <link rel="stylesheet" href="./css/time.css">
+  <link rel="stylesheet" href="./css/trait-map.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
 </head>
@@ -82,6 +83,7 @@
         <p class="eyebrow">หน้าที่ใหม่ของคุณ</p>
         <h2 id="draw-intro"></h2>
         <p id="draw-government"></p>
+        <div id="start-traits" aria-label="จุดเด่นของประเทศ"></div>
         <dl class="stat-grid" id="draw-stats"></dl>
         <label class="victory-label" for="start-victory-path">เลือกเป้าหมายของประเทศ</label><select id="start-victory-path" class="victory-select"></select><p id="start-victory-detail" class="victory-detail"></p>
         <p class="estimate-note">ข้อมูลอ้างอิงปี 2000 · คะแนนและเงินคลังเป็นค่าประเมินสำหรับเกม</p>
@@ -122,6 +124,7 @@
         </div>
         <span class="player-pulse" id="player-pulse" hidden aria-hidden="true"><i></i><i></i></span>
         <canvas id="world-map" tabindex="0" role="img" aria-label="แผนที่โลก ลากเพื่อเลื่อน ใช้สองนิ้วหรือล้อเมาส์เพื่อซูม แตะเพื่อเลือกประเทศ หรือเลือกจากรายชื่อด้านข้าง"></canvas>
+        <div class="trait-map-dock"><button id="map-special" type="button" aria-label="ใช้ความสามารถพิเศษ"><span class="special-ring" aria-hidden="true"><span id="map-special-days">✨</span></span><span><strong>ความสามารถพิเศษ</strong><span id="map-special-name"></span><span id="map-special-status"></span></span></button><p id="trait-map-summary" role="status" hidden></p></div>
         <aside id="missions" class="missions" aria-label="ภารกิจแนะนำ"><header><h3>ภารกิจแนะนำ</h3><button id="dismiss-missions" class="map-button" type="button" aria-label="ปิดภารกิจแนะนำ">×</button></header><ol id="mission-list"></ol></aside>
         <div class="map-caption" aria-hidden="true">แผนที่การเมือง <span>ปี 2000</span></div>
         <div class="map-tools" aria-label="ควบคุมแผนที่">

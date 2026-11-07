@@ -1,6 +1,7 @@
 import { GOVERNMENTS } from '../data/countries.js';
 import { militaryScore } from '../war/military.js';
 import { updateProduction } from '../war/production.js';
+import { renderTraitMap } from './trait-map.js';
 
 const number = new Intl.NumberFormat('th-TH', { maximumFractionDigits: 0 });
 export const formatNumber = value => number.format(Math.round(value));
@@ -34,6 +35,7 @@ export function renderStats(container, stats, compact = false) {
 
 export function renderHUD(state, catalog) {
   updateProduction(state);
+  renderTraitMap(state,catalog);
   const country = catalog.byId.get(state.playerCountryId);
   const stats = state.countries[country.id];
   document.querySelector('#player-name').textContent = country.nameTh;

@@ -1,0 +1,23 @@
+#start-traits { display: grid; gap: 8px; margin: 14px 0; }
+.start-trait-card { padding: 10px 12px; border: 1px solid; border-radius: 8px; background: #112b35; min-width: 0; }
+.start-trait-card strong, .start-trait-card p { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 14px; line-height: 1.6; margin: 0; }
+.start-trait-card[data-trait="strength"] { border-color: #76bb8b; color: #b8e7bf; }
+.start-trait-card[data-trait="weakness"] { border-color: #bf7770; color: #f3b6b0; }
+.start-trait-card[data-trait="special"] { border-color: #c8aa60; color: #f2d68a; }
+.trait-map-dock { position: absolute; z-index: 3; top: 14px; right: 14px; width: min(270px, calc(100% - 28px)); pointer-events: none; }
+#map-special { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 88px; padding: 12px; text-align: left; border: 1px solid #a58e57; border-radius: 12px; background: #102b36f5; color: #eedba9; cursor: pointer; pointer-events: auto; }
+#map-special > span:last-child { min-width: 0; flex: 1; }
+#map-special strong { display: block; font-size: 16px; }
+#map-special-name, #map-special-status { display: block; font-size: 14px; line-height: 1.6; }
+#map-special-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#map-special:disabled { cursor: default; border-color: #597277; color: #c2d0c9; }
+#map-special.special-ready { box-shadow: 0 0 20px #e9be5c66; border-color: #e6c477; animation: special-ready 2.6s ease-in-out infinite; }
+.special-ring { display: grid; place-items: center; flex: 0 0 58px; width: 58px; height: 58px; border-radius: 50%; background: conic-gradient(#f1cc76 var(--cooldown-angle,360deg), #34505a 0); }
+.special-ring > span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #142e39; font-size: 14px; white-space: nowrap; }
+#trait-map-summary { padding: 12px; border: 1px solid #d8bd7a; border-radius: 8px; color: #ffe4a4; background: #142e39f5; font-size: 14px; line-height: 1.6; }
+.map-viewport.special-burst::after { content: ''; position: absolute; z-index: 2; inset: 0; border: 3px solid #f1d085; background: radial-gradient(ellipse, #f8d57b30, transparent 70%); pointer-events: none; animation: special-burst 1.8s ease-out forwards; }
+.map-loading { z-index: 10; }
+@keyframes special-ready { 50% { box-shadow: 0 0 30px #e9be5c99; } }
+@keyframes special-burst { from { opacity: 1; box-shadow: inset 0 0 80px #ffd97a88; } to { opacity: 0; box-shadow: inset 0 0 6px #ffd97a00; } }
+@media(max-width:700px) { .trait-map-dock { top: 68px; right: 8px; width: min(240px, calc(100% - 16px)); } #map-special { min-height: 78px; padding: 8px; } }
+@media(prefers-reduced-motion:reduce) { #map-special.special-ready { animation: none; } .map-viewport.special-burst::after { animation: none; opacity: .3; } }
