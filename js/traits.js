@@ -24,6 +24,7 @@ export function activateTrait(state, catalog) {
   const anniversaryDay=Math.min(state.date.day??1,new Date(Date.UTC(targetYear,state.date.month,0)).getUTCDate());
   state.traitState[id]={ activeUntil:traitDay(state)+data.special.durationDays,
     cooldownUntil:Math.floor(Date.UTC(targetYear,state.date.month-1,anniversaryDay)/86400000) };
+  addMarketEffects(state,data.special.marketEffects,`special:${id}`,data.special.durationDays);
   return true;
 }
 export async function loadTraits(catalog) {
@@ -43,3 +44,4 @@ export async function loadTraits(catalog) {
   }
   catalog.traits=data;
 }
+import { addMarketEffects } from './market-effects.js';

@@ -5,7 +5,7 @@ import { createCatalog } from '../js/data/countries.js';
 import { attachResources } from '../js/data/resources.js';
 import { createGame, validGame } from '../js/state.js';
 import { ensureEconomy, advanceQuarter, advanceMonth, simulateCountry } from '../js/economy.js';
-import { RESOURCE_IDS, resourceProduction, resourceEffects, ensureResources, sellResource, reinforceArmy, topResources, mapResourceLevel } from '../js/resources.js';
+import { RESOURCE_IDS, resourceProduction, resourceEffects, ensureResources, resourceSalePrice, sellResource, reinforceArmy, topResources, mapResourceLevel } from '../js/resources.js';
 import { readSave,writeSave } from '../js/save/storage.js';
 const read=async name=>JSON.parse(await readFile(new URL(`../data/${name}.json`,import.meta.url)));
 const [countries,relations,defs,rows,balance]=await Promise.all(['countries_2000','relations_2000','resources','country_resources_2000','balance'].map(read));
@@ -69,7 +69,7 @@ test('ขุดรายเดือน ขาย 10 หน่วยรับเ
  assert.equal(stats.resourceStock.uranium,0);
  const current=s.countries.AUS;assert.equal(current.resourceStock.uranium,10);
  const before=current.treasury,income=sellResource(s,'uranium',balance);
- assert.equal(income,10*balance.resources.salePricesMillions.uranium/1000);
+ assert.equal(income,10*resourceSalePrice(s,'uranium',balance)/1000);
  assert.equal(current.resourceStock.uranium,0);assert.equal(current.treasury,before+income);
  assert.equal(sellResource(s,'uranium',balance),null);assert.equal(current.treasury,before+income);
  assert(RESOURCE_IDS.every(id=>Number.isInteger(current.resourceStock[id])));

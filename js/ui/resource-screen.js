@@ -1,5 +1,4 @@
 import { traitModifiers } from '../traits.js';
-import { recordExport } from '../map/trade-data.js';
 import { resourceProduction, ensureResources, sellResource, resourceSalePrice } from '../resources.js';
 import { formatNumber, formatMoney } from './stats.js';
 export function createResourceScreen({ catalog, balance, getState, onChange, onRefresh }) {
@@ -25,7 +24,6 @@ export function createResourceScreen({ catalog, balance, getState, onChange, onR
       sell.disabled = stats.resourceStock[r.id] < balance.resources.saleBatchSize || Boolean(state.economy?.gameOver || state.victory?.finished);
       sell.onclick = () => {
         const income = sellResource(state, r.id, balance, catalog); if (income === null) return;
-        recordExport(state,r.id,balance.resources.saleBatchSize,income);
         onChange(); onRefresh(); open(id);
         document.querySelector('#resource-feedback').textContent = `ขาย${r.nameTh}แล้ว +${formatMoney(income)}`;
       };

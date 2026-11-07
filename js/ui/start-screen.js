@@ -1,7 +1,7 @@
 import { rerollDraft } from '../state.js';
 import { renderStats, governmentName } from './stats.js';
 import { PATHS } from '../victory.js';
-import { traitEffectText } from './traits-screen.js';
+import { traitCardEffectText } from './traits-screen.js';
 
 export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
   const screen = document.querySelector('#start-screen');
@@ -38,7 +38,7 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
     const traits=catalog.traits?.[country.id];
     if(traits) for(const [key,label] of [['strength','จุดเด่น'],['weakness','จุดอ่อน'],['special','ความสามารถพิเศษ']]) {
       const card=traits[key],box=document.createElement('article');box.className='start-trait-card';box.dataset.trait=key;
-      const effects=card.effects.map(e=>traitEffectText(e,catalog)).join(' • ');
+      const effects=traitCardEffectText(card,catalog);
       const heading=document.createElement('strong');heading.textContent=`${card.icon} ${card.nameTh} • ${effects}`;
       box.title=`${label} • ${card.nameTh}\n${card.descriptionTh}\n${effects}`;box.setAttribute('aria-label',box.title);box.append(heading);preview.append(box);
     }

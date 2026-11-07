@@ -27,6 +27,7 @@ export function drawEvent(state, catalog, random = Math.random) {
   if (!pool.length) return null;
   const selected = pool[Math.min(pool.length - 1, Math.floor(random() * pool.length))];
   events.pending = selected.id;
+  addMarketEffects(state,selected.marketEffects,`event:${selected.id}`);
   return selected;
 }
 
@@ -35,6 +36,7 @@ export function chooseEvent(state, catalog, optionId) {
   const event = catalog.events.find(item => item.id === events.pending);
   const option = event?.options.find(item => item.id === optionId);
   if (!option) throw new Error('ไม่มีตัวเลือกเหตุการณ์นี้');
+  addMarketEffects(state,option.marketEffects,`choice:${event.id}:${option.id}`);
   const stats = state.countries[state.playerCountryId];
   const before = { ...stats };
   const cost = Math.max(0, option.cost * stats.gdp);
@@ -58,3 +60,4 @@ export function chooseEvent(state, catalog, optionId) {
   events.ready = entry.id;
   return entry;
 }
+import { addMarketEffects } from '../market-effects.js';

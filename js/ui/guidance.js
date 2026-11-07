@@ -92,7 +92,7 @@ export function createGuidance({ catalog, getState, onRanking, onResources, onCh
     button(prefs.missionsHidden ? 'แสดงภารกิจแนะนำ' : 'ซ่อนภารกิจแนะนำ', () => { prefs.missionsHidden = !prefs.missionsHidden; remember(); finish(); refresh(); }, 'toggle-missions');
   });
   document.querySelector('#open-resources').addEventListener('click', onResources);
-  for (const name of ['army', 'market', 'transport']) {
+  for (const name of ['army', 'transport']) {
     document.querySelector(`#open-${name}`).addEventListener('click', () => {
       const stats = getState().countries[getState().playerCountryId];
       if (name === 'army') {

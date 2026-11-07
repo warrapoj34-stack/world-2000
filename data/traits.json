@@ -86,6 +86,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "forest",
+          "percent": -10
+        }
       ]
     }
   },
@@ -176,6 +182,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": -10
+        }
       ]
     }
   },
@@ -220,6 +232,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
         }
       ]
     }
@@ -266,6 +284,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
+        }
       ]
     }
   },
@@ -310,6 +334,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "copper",
+          "percent": -10
         }
       ]
     }
@@ -356,6 +386,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "fish",
+          "percent": -10
+        }
       ]
     }
   },
@@ -401,6 +437,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": 10
+        }
       ]
     }
   },
@@ -445,6 +487,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "gas",
+          "percent": -10
         }
       ]
     }
@@ -671,6 +719,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
+        }
       ]
     }
   },
@@ -805,6 +859,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "iron",
+          "percent": 10
         }
       ]
     }
@@ -986,6 +1046,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": -10
+        }
       ]
     }
   },
@@ -1121,6 +1187,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": 10
+        }
       ]
     }
   },
@@ -1166,6 +1238,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
+        }
       ]
     }
   },
@@ -1210,6 +1288,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "forest",
+          "percent": -10
         }
       ]
     }
@@ -1345,6 +1429,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": -10
         }
       ]
     }
@@ -1661,6 +1751,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "forest",
+          "percent": -10
+        }
       ]
     }
   },
@@ -1705,6 +1801,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
         }
       ]
     }
@@ -1886,6 +1988,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": -10
+        }
       ]
     }
   },
@@ -1976,6 +2084,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": -10
+        }
       ]
     }
   },
@@ -2020,6 +2134,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": 10
         }
       ]
     }
@@ -2066,6 +2186,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": -10
+        }
       ]
     }
   },
@@ -2110,6 +2236,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": 10
         }
       ]
     }
@@ -2201,6 +2333,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "uranium",
+          "percent": -10
+        }
       ]
     }
   },
@@ -2291,6 +2429,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "gold",
+          "percent": 10
+        }
       ]
     }
   },
@@ -2335,6 +2479,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": -10
         }
       ]
     }
@@ -2381,6 +2531,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": 10
+        }
       ]
     }
   },
@@ -2425,6 +2581,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "gas",
+          "percent": 10
         }
       ]
     }
@@ -2471,6 +2633,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": -10
+        }
       ]
     }
   },
@@ -2515,6 +2683,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
         }
       ]
     }
@@ -2561,6 +2735,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
+        }
       ]
     }
   },
@@ -2605,6 +2785,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "oil",
+          "percent": 10
         }
       ]
     }
@@ -2651,6 +2837,12 @@
           "target": "all",
           "percent": -5
         }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "iron",
+          "percent": -10
+        }
       ]
     }
   },
@@ -2695,6 +2887,12 @@
           "type": "taxIncome",
           "target": "all",
           "percent": -5
+        }
+      ],
+      "marketEffects": [
+        {
+          "resourceId": "food",
+          "percent": 10
         }
       ]
     }

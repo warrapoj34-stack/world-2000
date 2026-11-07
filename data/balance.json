@@ -126,5 +126,13 @@
       "copper": 3,
       "uranium": 12
     }
+  },
+  "market": {
+    "monthlyVolatility": 0.05,
+    "minMultiplier": 0.5,
+    "maxMultiplier": 2,
+    "historyMonths": 12,
+    "cargoUnitsPerShip": 20,
+    "railCapacity": 10
   }
 }

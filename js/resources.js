@@ -1,4 +1,7 @@
-export const RESOURCE_IDS = ['oil','gas','coal','iron','rare_earths','gold','forest','freshwater','food','fish','biodiversity','copper','uranium'];
+import { RESOURCE_IDS } from './data/resource-ids.js';
+import { ensureMarket, marketPriceMillions, exportCapacity } from './market.js';
+import { recordExport } from './map/trade-data.js';
+export { RESOURCE_IDS } from './data/resource-ids.js';
 export const RESOURCE_COLORS = ['#dce9ec','#c3dfc5','#9cc99c','#70ae75','#44894f','#216138'];
 const clamp = (value,min,max) => Math.max(min,Math.min(max,value));
 export function validResourceStock(stock) {
@@ -29,17 +32,41 @@ export function resourceEffects(stats, levels, definitions, balance, random = Ma
     reputation:levels.biodiversity*b.reputationPerStar*months/3};
 }
 export function resourceSalePrice(state, id, balance, catalog) {
-  return balance.resources.salePricesMillions[id] * (traitModifiers(state,catalog).salePrice[id] ?? 1);
+  return marketPriceMillions(state,id,balance) * (traitModifiers(state,catalog).salePrice[id] ?? 1);
+}
+function settleSale(state,id,units,balance,catalog,stats,quoteState=state) {
+  const price=resourceSalePrice(quoteState,id,balance,catalog);
+  if(!Number.isSafeInteger(units)||units<=0||!Number.isFinite(price)||price<0||stats.resourceStock[id]<units)return null;
+  const income=units*price/1000;
+  stats.resourceStock[id]-=units;stats.treasury+=income;
+  recordExport(state,id,units,income);
+  return income;
 }
 export function sellResource(state, id, balance, catalog) {
   if (!RESOURCE_IDS.includes(id) || state.economy?.gameOver || state.victory?.finished) return null;
   ensureResources(state);
   const stats = state.countries[state.playerCountryId], batch = balance.resources.saleBatchSize;
-  const price = resourceSalePrice(state,id,balance,catalog);
-  if (!Number.isSafeInteger(batch) || batch <= 0 || !Number.isFinite(price) || price < 0 || stats.resourceStock[id] < batch) return null;
-  const income = batch * price / 1000;
-  stats.resourceStock[id] -= batch; stats.treasury += income;
-  return income;
+  return settleSale(state,id,batch,balance,catalog,stats);
+}
+export function processAutoExports(state,catalog,balance,production,stock) {
+  const market=ensureMarket(state,balance),source=state.countries[state.playerCountryId];
+  const stats={...source,resourceStock:{...stock}},capacity=exportCapacity(state,catalog,balance);
+  if(market.lastExports?.month===market.lastMonth)return {stats,income:0};
+  const wanted=Object.fromEntries(RESOURCE_IDS.map(id=>[id,market.exports[id].enabled?Math.min(stats.resourceStock[id],Math.floor((production[id]??0)*market.exports[id].share)):0]));
+  const allocated=Object.fromEntries(RESOURCE_IDS.map(id=>[id,0]));let available=capacity.units,changed=true;
+  // แบ่งพื้นที่ทีละหน่วยและสลับผู้เริ่มทุกเดือน
+  while(available>0&&changed){changed=false;for(let i=0;i<RESOURCE_IDS.length&&available>0;i++){
+    const id=RESOURCE_IDS[(i+market.lastMonth%RESOURCE_IDS.length)%RESOURCE_IDS.length];
+    if(allocated[id]<wanted[id]){allocated[id]++;available--;changed=true;}
+  }}
+  const quoteState={...state,date:{year:Math.floor(market.lastMonth/12),month:market.lastMonth%12+1,day:1}},items=[];
+  let income=0;
+  for(const id of RESOURCE_IDS)if(allocated[id]){
+    const value=settleSale(state,id,allocated[id],balance,catalog,stats,quoteState);
+    if(value!==null){income+=value;items.push({resourceId:id,units:allocated[id],value});}
+  }
+  market.lastExports={month:market.lastMonth,units:capacity.units-available,income,capacity:capacity.units,mode:capacity.mode,items};
+  return {stats,income};
 }
 export function topResources(levels, definitions) {
   return [...definitions].sort((a,b)=>levels[b.id]-levels[a.id]||RESOURCE_IDS.indexOf(a.id)-RESOURCE_IDS.indexOf(b.id)).filter(r=>levels[r.id]>0).slice(0,3);

@@ -4,6 +4,13 @@ export function traitEffectText(effect, catalog) {
   const label={salePrice:'ราคาขาย',productionCost:'ต้นทุนผลิต',taxIncome:'รายได้ภาษี',resourceOutput:'ผลผลิต'}[effect.type];
   return `${label}${effect.type==='taxIncome'?'':target} ${effect.percent>0?'+':''}${effect.percent}%`;
 }
+export function marketEffectText(effect, catalog) {
+  const resource=catalog.resourceDefinitions.find(r=>r.id===effect.resourceId);
+  return `ตลาดโลก ${resource?.icon??''}${resource?.nameTh??effect.resourceId} ${effect.percent>0?'+':''}${effect.percent}%`;
+}
+export function traitCardEffectText(card,catalog) {
+  return [...card.effects.map(e=>traitEffectText(e,catalog)),...(card.marketEffects??[]).map(e=>marketEffectText(e,catalog))].join(' • ');
+}
 export function renderTraits(parent,state,catalog,onChange,onRefresh) {
   const data=catalog.traits?.[state.playerCountryId]; if(!data)return;
   const section=document.createElement('section');section.id='country-traits';parent.append(section);
@@ -11,7 +18,7 @@ export function renderTraits(parent,state,catalog,onChange,onRefresh) {
     const card=data[key],box=document.createElement('article');box.className='trait-card';box.dataset.trait=key;
     const h=document.createElement('h3');h.textContent=`${card.icon} ${label} • ${card.nameTh}`;
     const p=document.createElement('p');p.textContent=card.descriptionTh;
-    const effects=document.createElement('p');effects.className='trait-effects';effects.textContent=card.effects.map(e=>traitEffectText(e,catalog)).join(' • ');
+    const effects=document.createElement('p');effects.className='trait-effects';effects.textContent=traitCardEffectText(card,catalog);
     box.append(h,p,effects);section.append(box);
     if(key==='special') {
       const entry=state.traitState?.[state.playerCountryId],day=traitDay(state);

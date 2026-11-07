@@ -1,4 +1,4 @@
-import { VERSION } from './version.js';
+import { VERSION, CACHE_REVISION } from './version.js';
 
 export async function registerServiceWorker(showStatus) {
   if (!('serviceWorker' in navigator)) {
@@ -18,7 +18,7 @@ export async function registerServiceWorker(showStatus) {
 
   try {
     const registration = await navigator.serviceWorker.register(
-      new URL(`../sw.js?v=${VERSION}`, import.meta.url),
+      new URL(`../sw.js?v=${VERSION}&r=${CACHE_REVISION}`, import.meta.url),
       { type: 'module', updateViaCache: 'none' },
     );
     await navigator.serviceWorker.ready;

@@ -1,6 +1,7 @@
 import { traitModifiers } from './traits.js';
 import { ensurePolicyCards, policyModifiers } from './policies.js';
-import { resourceEffects } from './resources.js';
+import { resourceEffects, processAutoExports } from './resources.js';
+import { advanceMarketMonth } from './market.js';
 // สูตรเกมใช้ GDP รายปี หน่วยเงินเป็นพันล้านดอลลาร์
 export const BUDGET_KEYS = ['military', 'education', 'health', 'infrastructure', 'welfare'];
 const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
@@ -106,18 +107,30 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
   if (economy.gameOver) return null;
   const before = state.countries[state.playerCountryId];
   if (defeatReason(before, balance)) { economy.gameOver = defeatReason(before, balance); return null; }
+  advanceMarketMonth(state,balance,random);
   let result;
+  let exportIncome=0;
   for (const country of catalog.countries) {
     if (state.countries[country.id].gdp <= 0) continue;
     const traits = traitModifiers(state,catalog,country.id);
     const countryModifiers = country.id===state.playerCountryId && catalog.policies ? policyModifiers(economy.cards,catalog.policies) : {};
     countryModifiers.revenue = (countryModifiers.revenue ?? 1) * traits.taxIncome;
     const effects = catalog.resourceLevels ? resourceEffects(state.countries[country.id], catalog.resourceLevels.get(country.id), catalog.resourceDefinitions, balance, random, 1, traits) : null;
-    const outcome = simulateCountry(state.countries[country.id], country.government,
+    let input=state.countries[country.id];
+    if(country.id===state.playerCountryId&&effects){
+      // รับเงินส่งออกก่อนคำนวณเงินกู้ โดยเก็บภาพก่อนเดือนเดิมไว้
+      const exported=processAutoExports(state,catalog,balance,effects.production,effects.stock);
+      input=exported.stats;effects.stock=input.resourceStock;exportIncome=exported.income;
+    }
+    const outcome = simulateCountry(input, country.government,
       country.id === state.playerCountryId ? economy.policy : balance.defaultPolicy, balance, random, effects,
       countryModifiers, 1);
     state.countries[country.id] = outcome.stats;
-    if (country.id === state.playerCountryId) result = outcome;
+    if (country.id === state.playerCountryId) {
+      // รวมยอดรายงานเท่านั้น เงินเข้าจากการขายแล้ว
+      outcome.fiscal.net+=exportIncome;outcome.fiscal.resourceIncome=exportIncome;
+      result = outcome;
+    }
   }
   const period = { ...state.date };
   state.date.month++;
@@ -126,7 +139,7 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
   economy.months++;
   economy.turns = Math.floor(economy.months / 3);
   economy.lastReport = { period, before: { ...before }, after: { ...result.stats }, fiscal: result.fiscal,
-    resourceSummary: result.resources ? { income: result.resources.revenue, drought: result.resources.drought, protection: result.resources.protection } : null };
+    resourceSummary: result.resources ? { income: exportIncome, drought: result.resources.drought, protection: result.resources.protection } : null };
   economy.gameOver = defeatReason(result.stats, balance);
   return economy.lastReport;
 }

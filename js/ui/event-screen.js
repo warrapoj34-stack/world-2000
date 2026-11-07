@@ -1,5 +1,6 @@
 import { formatMoney, formatNumber } from './stats.js';
 import { chooseEvent, drawEvent, ensureEvents } from '../events/engine.js';
+import { marketEffectText } from './traits-screen.js';
 
 const icons = { treasury: '💰', happiness: '😊', stability: '🛡️', military: '⚔️', resource: '📦' };
 const names = { treasury: 'เงิน', happiness: 'ความสุข', stability: 'ความมั่นคง', military: 'ทหาร', resource: 'ทรัพยากร' };
@@ -12,9 +13,10 @@ export function createEventScreen({ catalog, getState, onChange, onContinue, onR
   const options = document.querySelector('#event-options');
   const summary = document.querySelector('#event-summary');
   const next = document.querySelector('#event-next');
+  const storyText=event=>[event.story,...(event.marketEffects??[]).map(effect=>`${marketEffectText(effect,catalog)} • ${effect.durationDays??90} วัน`)].join(' ');
   function showResult(entry) {
     const event = catalog.events.find(item => item.id === entry.id);
-    icon.textContent = event.icon; title.textContent = event.title; story.textContent = event.story;
+    icon.textContent = event.icon; title.textContent = event.title; story.textContent = storyText(event);
     options.replaceChildren();
     summary.textContent = `${event.icon} ${entry.option} • ${Object.entries(entry.changes).filter(([key]) => key !== 'resource' && key !== 'stability').map(([key, value]) => key === 'treasury' ? `💰 ${value >= 0 ? '+' : ''}${formatMoney(value)}` : `${icons[key]} ${value >= 0 ? '+' : ''}${formatNumber(value)}`).join(' · ')}`;
     summary.hidden = false; next.hidden = false;
@@ -26,7 +28,7 @@ export function createEventScreen({ catalog, getState, onChange, onContinue, onR
     return `${icons[key]}${value >= 0 ? '▲' : '▼'} ${names[key]} ${amount}`;
   }
   function show(event) {
-    icon.textContent = event.icon; title.textContent = event.title; story.textContent = event.story;
+    icon.textContent = event.icon; title.textContent = event.title; story.textContent = storyText(event);
     options.replaceChildren(); summary.hidden = true; next.hidden = true;
     const state = getState(), gdp = state.countries[state.playerCountryId].gdp;
     for (const option of event.options) {

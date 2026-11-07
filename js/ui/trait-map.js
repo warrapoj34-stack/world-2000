@@ -1,5 +1,5 @@
 import { activateTrait, traitDay } from '../traits.js';
-import { traitEffectText } from './traits-screen.js';
+import { traitCardEffectText } from './traits-screen.js';
 export function renderTraitMap(state,catalog) {
   const button=document.querySelector('#map-special'); if(!button)return;
   const special=catalog.traits?.[state.playerCountryId]?.special;
@@ -14,7 +14,7 @@ export function renderTraitMap(state,catalog) {
   document.querySelector('#map-special-days').textContent=wait?`${wait}วัน`:'✨';
   document.querySelector('#map-special-name').textContent=special.nameTh;
   document.querySelector('#map-special-status').textContent=ended?'สิ้นสุดการเล่น':wait?(active?`กำลังใช้ • เหลือ ${active} วัน`:`คูลดาวน์อีก ${wait} วัน`):'พร้อมใช้ • แตะเพื่อใช้ทันที';
-  button.title=`${special.nameTh} • ${special.effects.map(e=>traitEffectText(e,catalog)).join(' • ')} • มีผล ${special.durationDays} วัน`;
+  button.title=`${special.nameTh} • ${traitCardEffectText(special,catalog)} • มีผล ${special.durationDays} วัน`;
 }
 export function createTraitMap({getState,catalog,onChange,onRefresh}) {
   const button=document.querySelector('#map-special'),viewport=document.querySelector('.map-viewport'),summary=document.querySelector('#trait-map-summary');
@@ -23,7 +23,7 @@ export function createTraitMap({getState,catalog,onChange,onRefresh}) {
     const state=getState();if(!state||!activateTrait(state,catalog))return;
     onChange();onRefresh();renderTraitMap(state,catalog);
     const special=catalog.traits[state.playerCountryId].special;
-    summary.textContent=`✨ ${special.nameTh} • ${special.effects.map(e=>traitEffectText(e,catalog)).join(' • ')} • ${special.durationDays} วัน`;
+    summary.textContent=`✨ ${special.nameTh} • ${traitCardEffectText(special,catalog)} • ${special.durationDays} วัน`;
     summary.hidden=false;viewport.classList.remove('special-burst');void viewport.offsetWidth;viewport.classList.add('special-burst');
     clearTimeout(effectTimer);clearTimeout(messageTimer);
     effectTimer=setTimeout(()=>viewport.classList.remove('special-burst'),1800);

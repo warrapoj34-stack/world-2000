@@ -11,6 +11,8 @@ import { loadMilitary, ensureMilitary } from './war/military.js';
 import { loadRecipes, ensureProduction, updateProduction } from './war/production.js';
 import { loadTraits } from './traits.js';
 import { createTraitMap } from './ui/trait-map.js';
+import { createMarketScreen } from './ui/market-screen.js';
+import { ensureMarket } from './market.js';
 import { createDraft, createGame } from './state.js';
 import { readSave, writeSave, removeDraft } from './save/storage.js';
 import { createStartScreen } from './ui/start-screen.js';
@@ -97,6 +99,7 @@ function goMenu() {
 async function openMap() {
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
+  ensureMarket(activeGame,balance);
   ensureMilitary(activeGame, catalog);
   ensureProduction(activeGame); updateProduction(activeGame);
   ensurePolicyCards(activeGame,catalog.policies);
@@ -175,6 +178,8 @@ async function boot() {
         return !document.querySelector('dialog[open]');
       } });
     const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
+    const marketUI = createMarketScreen({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:()=>map?.setSession(activeGame)});
+    document.querySelector('#open-market').addEventListener('click',marketUI.open);
     createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
       onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });

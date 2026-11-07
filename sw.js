@@ -1,7 +1,7 @@
-import { VERSION } from './js/version.js';
+import { VERSION, CACHE_REVISION } from './js/version.js';
 
 const CACHE_PREFIX = `world-2000:${self.registration.scope}:`;
-const CACHE_NAME = `${CACHE_PREFIX}${VERSION}`;
+const CACHE_NAME = `${CACHE_PREFIX}${VERSION}:${CACHE_REVISION}`;
 const APP_SHELL = [
   './', './index.html', './css/main.css', './js/main.js',
   './js/version.js', './js/ui/menu.js', './js/pwa.js',
@@ -29,6 +29,7 @@ const APP_SHELL = [
   './data/traits.json', './js/traits.js', './js/ui/traits-screen.js',
   './js/ui/trait-map.js', './css/trait-map.css',
   './data/sea_grid.json', './data/trade_ports.json', './js/map/trade-data.js', './js/ui/trade-visuals.js', './css/trade.css',
+  './js/data/resource-ids.js', './js/market.js', './js/market-effects.js', './js/ui/market-screen.js', './css/market.css',
 ];
 const APP_URLS = new Set(APP_SHELL.map(path => new URL(path, self.registration.scope).href));
 
