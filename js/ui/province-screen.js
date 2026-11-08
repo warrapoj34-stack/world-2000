@@ -7,14 +7,14 @@ function provinceRows(state,catalog,balance){
   const saved=ensureProvinces(state,catalog);if(!saved)return [];
   const stats=state.countries[state.playerCountryId],country=catalog.byId.get(state.playerCountryId),b=catalog.provinceData.balance;
   const revenue=fiscalForecast(stats,country.government,state.economy.policy,balance,1).revenue*traitModifiers(state,catalog).taxIncome*(catalog.policies?policyModifiers(state.economy.cards,catalog.policies).revenue:1);
-  return catalog.provinceData.countries[state.playerCountryId].map(p=>{const region=saved.regions[p.id],l=region.levels;return {...p,region,population:stats.population*1e6*p.populationShare,income:revenue*p.incomeShare*(1+l.roads*b.roadIncomeBonus+l.factory*b.factoryIncomeBonus+l.port*b.portIncomeBonus)};});
+  return catalog.provinceData.countries[state.playerCountryId].map(p=>{const region=saved.regions[p.id],l=region.levels;return {...p,region,population:stats.population*1e6*p.populationShare,income:revenue*p.incomeShare*(1+l.roads*b.roadIncomeBonus+l.factory*b.factoryIncomeBonus+l.port*b.portIncomeBonus+(region.legacy?.income??0))};});
 }
 export function renderProvinceList(parent,{state,catalog,balance,onSelect}){
   const rows=provinceRows(state,catalog,balance),note=document.createElement('p');
   note.textContent=rows.length?'เรียงตามความสำคัญทางรายได้ • แตะจังหวัดเพื่อซูมและสั่งก่อสร้าง':'จังหวัดทดลองเปิดเฉพาะไทย สหรัฐฯ ญี่ปุ่น ฝรั่งเศส และจีน';parent.append(note);
   if(!rows.length)return;
   const sum=document.createElement('p');sum.textContent=`รายได้จังหวัดรวม +${formatMoney(rows.reduce((n,p)=>n+p.income,0))}/เดือน ก่อนหักรายจ่ายประเทศ • ความสุขเฉลี่ยถ่วงตามประชากร`;parent.append(sum);
-  const hint=document.createElement('p');hint.textContent='ประชากรและระดับความเจริญเป็นค่าประเมินเกม สัดส่วนจังหวัดรวมตรงกับประเทศ';parent.append(hint);
+  const hint=document.createElement('p');hint.textContent='ประชากรอิงสำมะโน ปรับยอดรวมให้ตรงประเทศ • ดาวความเจริญเป็นดัชนีเกม';parent.append(hint);
   const list=document.createElement('div');list.className='province-list';parent.append(list);
   for(const p of rows.sort((a,b)=>b.income-a.income)){
     const button=document.createElement('button');button.type='button';button.className='province-row';button.dataset.province=p.id;
@@ -32,9 +32,11 @@ export function createProvinceScreen({catalog,balance,getState,onChange,onRefres
     const state=getState(),saved=ensureProvinces(state,catalog);if(!saved)return;
     onFocus(province);title.textContent=province.nameTh;body.replaceChildren();
     const current=provinceRows(state,catalog,balance).find(p=>p.id===province.id),p=document.createElement('p');p.textContent=`👥 ${formatNumber(current.population)} คน • 😊 ${formatNumber(current.region.happiness)}/100 • +${formatMoney(current.income)}/เดือน`;body.append(p);
-    const resource=catalog.resourceDefinitions.find(r=>r.id===province.resourceId),production=document.createElement('p');production.textContent=`โรงงานจังหวัด: ${resource.icon} ${resource.nameTh} +${Math.round(current.region.levels.factory*catalog.provinceData.balance.factoryUnits*(traitModifiers(state,catalog).resourceOutput[province.resourceId]??1))} หน่วย/เดือน${province.coastal?' • มีชายฝั่งทะเล':' • ไม่มีชายฝั่งทะเล'}`;body.append(production);
-    const job=saved.queue.find(j=>j.provinceId===province.id);
-    if(job){const label=document.createElement('p');label.textContent=`🏗️ ${catalog.provinceData.projects[job.project].nameTh} • ${constructionProgress(state,job)}%`;const bar=document.createElement('progress');bar.id='province-progress';bar.max=100;bar.value=constructionProgress(state,job);bar.setAttribute('aria-label',label.textContent);body.append(label,bar);}
+    const resource=catalog.resourceDefinitions.find(r=>r.id===(province.factoryResourceId??province.resourceId)),production=document.createElement('p');production.textContent=`โรงงานจังหวัด: ${resource.icon} ${resource.nameTh} +${Math.round(Math.max(0,current.region.levels.factory*catalog.provinceData.balance.factoryUnits+(current.region.legacy?.output[province.factoryResourceId??province.resourceId]??0))*(traitModifiers(state,catalog).resourceOutput[province.factoryResourceId??province.resourceId]??1))} หน่วย/เดือน${province.coastal?' • มีชายฝั่งทะเล':' • ไม่มีชายฝั่งทะเล'}`;body.append(production);
+    const jobs=saved.queue.filter(j=>j.provinceId===province.id);
+    for(const job of jobs){const label=document.createElement('p');label.textContent=`🏗️ ${catalog.provinceData.projects[job.project].nameTh} • ${constructionProgress(state,job)}%`;const bar=document.createElement('progress');bar.className='province-progress';bar.dataset.job=job.id;if(job===jobs[0])bar.id='province-progress';bar.max=100;bar.value=constructionProgress(state,job);bar.setAttribute('aria-label',label.textContent);body.append(label,bar);}
+    const capital=document.createElement('p');capital.textContent='เมืองหลวงจังหวัด: '+province.capital+(province.hasPort?' • มีท่าเรือ':' • ไม่มีท่าเรือที่ระบุ')+' • ทรัพยากรเด่น: '+(catalog.resourceDefinitions.find(r=>r.id===province.resourceId)?.nameTh??'ไม่มีที่ระบุ');body.append(capital);
+    if(current.region.legacy&&Object.values(current.region.legacy.built).some(n=>n>0)){const kept=document.createElement('p');kept.textContent='รวมผลสิ่งปลูกสร้างจากเซฟเดิมไว้แล้ว';body.append(kept);}
     const actions=document.createElement('div');actions.className='province-actions';body.append(actions);
     for(const project of PROVINCE_PROJECTS.filter(k=>k!=='port'||province.coastal)){
       const rule=catalog.provinceData.projects[project],cost=projectCost(state,catalog,province.id,project),missing=projectMissing(state,catalog,province.id,project);

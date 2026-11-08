@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 2,
+  "balance": {
+    "roadIncomeBonus": 0.08,
+    "factoryIncomeBonus": 0.04,
+    "portIncomeBonus": 0.03,
+    "servicesHappiness": 0.12,
+    "neglectHappinessLoss": 0.15,
+    "factoryUnits": 2,
+    "alertHappiness": 40,
+    "alertCooldownMonths": 6
+  },
+  "projects": {
+    "roads": {
+      "icon": "🛣️",
+      "nameTh": "ถนนและโครงสร้างพื้นฐาน",
+      "days": 30,
+      "gdpShare": 8e-05,
+      "minMoney": 0.01,
+      "maxMoney": 0.25,
+      "resources": {
+        "iron": 4,
+        "oil": 2
+      },
+      "description": "รายได้จังหวัด +8% ต่อระดับ"
+    },
+    "services": {
+      "icon": "🏥",
+      "nameTh": "โรงพยาบาลและโรงเรียน",
+      "days": 45,
+      "gdpShare": 0.0001,
+      "minMoney": 0.01,
+      "maxMoney": 0.25,
+      "resources": {
+        "iron": 3,
+        "forest": 3
+      },
+      "description": "ช่วยให้ความสุขจังหวัดเพิ่มขึ้นทุกเดือน"
+    },
+    "factory": {
+      "icon": "🏭",
+      "nameTh": "โรงงานจังหวัด",
+      "days": 60,
+      "gdpShare": 0.00015,
+      "minMoney": 0.02,
+      "maxMoney": 0.5,
+      "resources": {
+        "iron": 8,
+        "oil": 3
+      },
+      "description": "ผลิตทรัพยากรจังหวัด +2 หน่วย/เดือน และรายได้ +4% ต่อระดับ"
+    },
+    "port": {
+      "icon": "⚓",
+      "nameTh": "ท่าเรือและศูนย์ส่งกำลัง",
+      "days": 90,
+      "gdpShare": 0.0002,
+      "minMoney": 0.03,
+      "maxMoney": 1,
+      "resources": {
+        "iron": 15,
+        "oil": 5
+      },
+      "description": "เพิ่มเรือสินค้า 1 ลำ และรายได้จังหวัด +3% ต่อระดับ"
+    }
+  },
+  "files": {
+    "THA": "th.json",
+    "CHN": "cn.json",
+    "USA": "us.json",
+    "JPN": "jp.json",
+    "FRA": "fr.json"
+  },
+  "counts": {
+    "THA": 76,
+    "CHN": 31,
+    "USA": 50,
+    "JPN": 47,
+    "FRA": 22
+  }
+}

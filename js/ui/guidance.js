@@ -79,6 +79,7 @@ export function createGuidance({ catalog, balance, onProvinceFocus, getState, on
   dialog.addEventListener('cancel', event => { event.preventDefault(); finish(); });
   document.querySelector('#dismiss-missions').addEventListener('click', () => { prefs.missionsHidden = true; remember(); refresh(); });
   const provinceUI=createProvinceScreen({catalog,balance,getState,onChange,onRefresh,onFocus:onProvinceFocus,onBack:()=>countryScreen('provinces')});
+  document.addEventListener('open-province',event=>{const p=catalog.provinceData?.countries[getState()?.playerCountryId]?.find(p=>p.id===event.detail);if(p){dialog.close();provinceUI.open(p);}});
   function countryScreen(tab='overview') {
     const state = getState(), country = catalog.byId.get(state.playerCountryId);
     open(`ประเทศของคุณ • ${country.nameTh}`);

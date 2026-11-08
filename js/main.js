@@ -1,4 +1,4 @@
-import { loadProvinces, ensureProvinces, updateProvinceConstruction } from './provinces.js';
+import { loadProvinces, loadProvinceCountry, ensureProvinces, updateProvinceConstruction } from './provinces.js';
 import { createNewsScreen } from './ui/news-screen.js';
 import { setupPerformance } from './ui/performance.js';
 import { ensurePolicyCards } from './policies.js';
@@ -101,6 +101,7 @@ function goMenu() {
 }
 
 async function openMap() {
+  try{await loadProvinceCountry(catalog,activeGame.playerCountryId);}catch(error){goMenu();feedback.textContent=error.message;return;}
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
   ensureProvinces(activeGame,catalog);
@@ -187,7 +188,7 @@ async function boot() {
     const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     const marketUI = createMarketScreen({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:()=>map?.setSession(activeGame)});
     document.querySelector('#open-market').addEventListener('click',marketUI.open);
-    createGuidance({ catalog, balance, onProvinceFocus:p=>map?.focusPoint(p.point,p.nameTh), getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
+    createGuidance({ catalog, balance, onProvinceFocus:p=>map?.focusPoint(p.point,p.nameTh,p.id), getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
       onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     startUI = createStartScreen({ catalog, balance, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();

@@ -8,7 +8,8 @@ const output = resolve(root, '_site');
 const worker = await readFile(resolve(root, 'sw.js'), 'utf8');
 const declaration = worker.match(/const APP_SHELL = \[([\s\S]*?)\];/);
 if (!declaration) throw new Error('ไม่พบรายการทรัพยากรออฟไลน์');
-const files = new Set([...declaration[1].matchAll(/'([^']+)'/g)]
+const optional = worker.match(/const OPTIONAL_ASSETS = \[([\s\S]*?)\];/);
+const files = new Set([...((declaration[1])+(optional?.[1]??'')).matchAll(/'([^']+)'/g)]
   .map(match => match[1] === './' ? 'index.html' : match[1].replace(/^\.\//, '')));
 for (const file of ['sw.js', '.nojekyll', 'lib/d3-LICENSE.txt', 'lib/topojson-client-LICENSE.txt',
   'data/world-atlas-LICENSE.txt', 'data/cldr-LICENSE.txt', 'data/SOURCES.md', 'data/RESOURCE_SOURCES.md']) files.add(file);

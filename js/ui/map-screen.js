@@ -2,7 +2,7 @@ import { defaultQuality } from './performance.js';
 import { loadWorld } from '../data/world.js';
 import { createWorldMap } from '../map/renderer.js';
 import { getRelation } from '../diplomacy/relations.js';
-import { renderStats, renderHUD, governmentName } from './stats.js';
+import { renderStats, renderHUD, governmentName, formatNumber } from './stats.js';
 import { topResources, mapResourceLevel, RESOURCE_COLORS } from '../resources.js';
 import { loadTradeVisualData, createTradeVisuals } from './trade-visuals.js';
 
@@ -63,7 +63,14 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
         onChange();
       }
     },
+    onProvinceSelect(province){
+      const card=document.querySelector('#province-map-card');card.hidden=!province;if(!province)return;
+      document.querySelector('#province-map-name').textContent=province.nameTh;
+      document.querySelector('#province-map-info').textContent=province.capital+' • '+formatNumber(province.population)+' คน • '+'★'.repeat(province.development);
+      document.querySelector('#province-map-manage').onclick=()=>document.dispatchEvent(new CustomEvent('open-province',{detail:province.id}));
+    },
     onZoom(zoom) {
+      if(zoom<3)document.querySelector('#province-map-card').hidden=true;
       zoomLevel.value = `${Math.round(zoom)}×`;
       zoomIn.disabled = zoom >= world.settings.map.maxZoom - 0.001;
       zoomOut.disabled = zoom <= world.settings.map.minZoom + 0.001;
@@ -135,6 +142,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
         return;
       }
       session=state;
+      map.setProvinceFeatures(catalog.provinceFeatures?.features??[]);
       restoring = true;
       const savedView = state.view;
       map.resize();

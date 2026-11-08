@@ -4,23 +4,25 @@ import {createGame,validGame} from '../js/state.js';import {ensureEconomy,advanc
 import {ensureProvinces,provinceMultiplier,syncProvinceHappiness,projectCost,projectMissing,buildProvince,updateProvinceConstruction,constructionProgress,validProvinces} from '../js/provinces.js';
 import {writeSave,readSave} from '../js/save/storage.js';import {exportCapacity,setExportSetting} from '../js/market.js';
 const read=async f=>JSON.parse(await readFile(new URL(`../data/${f}.json`,import.meta.url)));
-const [countries,relations,ids,regions,military,rules,traits,policies,balance,defs,levels,provinceData]=await Promise.all(['countries_2000','relations_2000','playable','playable_regions','military2000','military_rules','traits','policies','balance','resources','country_resources_2000','provinces_2000'].map(read));
+const [countries,relations,ids,regions,military,rules,traits,policies,balance,defs,levels,config]=await Promise.all(['countries_2000','relations_2000','playable','playable_regions','military2000','military_rules','traits','policies','balance','resources','country_resources_2000','provinces/config'].map(read));
+const maps=Object.fromEntries(await Promise.all(Object.entries(config.files).map(async([id,file])=>[id,await read('provinces/'+file.replace('.json',''))])));
+const provinceData={...config,countries:Object.fromEntries(Object.entries(maps).map(([id,data])=>[id,data.features.map(f=>f.properties)]))};
 function setup(id='THA'){
- const c=attachPlayable(createCatalog(countries,relations),ids,regions);attachMilitary(c,military,rules);attachResources(c,defs,levels);Object.assign(c,{traits,policies,provinceData});
+ const c=attachPlayable(createCatalog(countries,relations),ids,regions);attachMilitary(c,military,rules);attachResources(c,defs,levels);Object.assign(c,{traits,policies,provinceData,provinceMigration:maps[id]?.migration});
  const s=createGame(id,c);ensureEconomy(s,balance);ensurePolicyCards(s,policies);ensureMilitary(s,c);ensureResources(s);s.date.day=1;
  for(const key of Object.keys(s.countries[id].resourceStock))s.countries[id].resourceStock[key]=100;
  return {s,c,stats:s.countries[id],list:provinceData.countries[id]};
 }
 function addDays(s,days){const d=new Date(Date.UTC(s.date.year,s.date.month-1,s.date.day+days));s.date={year:d.getUTCFullYear(),month:d.getUTCMonth()+1,day:d.getUTCDate()};}
 const near=(a,b)=>assert(Math.abs(a-b)<1e-8,`${a} != ${b}`);
-test('5 ประเทศครบ 301 เขตตามขอบเขตปี 2000 สัดส่วนประชากรและรายได้ครบ 100%',()=>{
- for(const [id,count]of Object.entries({THA:76,USA:51,JPN:47,FRA:96,CHN:31})){
+test('5 ประเทศครบ 226 เขตตามขอบเขตปี 2000 สัดส่วนประชากรและรายได้ครบ 100%',()=>{
+ for(const [id,count]of Object.entries({THA:76,USA:50,JPN:47,FRA:22,CHN:31})){
   const {s,c,stats,list}=setup(id),before=structuredClone(stats);assert.equal(list.length,count);assert.equal(new Set(list.map(p=>p.id)).size,count);
   assert(list.every(p=>p.nameTh&&p.point.every(Number.isFinite)&&p.development>=1&&p.development<=5));
   near(list.reduce((n,p)=>n+p.populationShare,0),1);near(list.reduce((n,p)=>n+p.incomeShare,0),1);
   ensureProvinces(s,c);near(provinceMultiplier(s,c),1);assert.deepEqual(stats,before);assert(validGame(s,c));
  }
- assert(!provinceData.countries.THA.some(p=>p.id==='TH-38'));assert(provinceData.countries.USA.some(p=>p.id==='US-DC'));
+ assert(!provinceData.countries.THA.some(p=>p.id==='TH-38'));assert(!provinceData.countries.USA.some(p=>p.id==='US-DC'));
 });
 test('ถนนหักเงินจริงและทรัพยากรครั้งเดียว งานเดินตามวันที่ และเพิ่มรายได้เฉพาะเมื่อเสร็จ',()=>{
  for(const id of ['THA','USA']){
@@ -78,7 +80,7 @@ test('ปฏิเสธเซฟจังหวัดหรือคิวเ�
  }
 });
 test('ผลผลิตโรงงานขายผ่านส่งออกเดิมตามกำลังเรือ และเงินเข้าครั้งเดียว',()=>{
- const {s,c,stats,list}=setup();ensureProvinces(s,c);const p=list.find(p=>p.resourceId==='iron');
+ const {s,c,stats,list}=setup();ensureProvinces(s,c);const p=list.find(p=>p.factoryResourceId==='iron');
  s.provinces.regions[p.id].levels.factory=1;s.provinces.regions[p.id].levels.roads=1;stats.units.cargoShips=1;
  setExportSetting(s,'iron',{enabled:true,share:1},balance);const output=countryResourceProduction(s,c,balance),cash=stats.treasury,stock=stats.resourceStock.iron;
  const report=advanceMonth(s,c,balance,()=>.5),sale=s.market.lastExports.items.find(item=>item.resourceId==='iron');

@@ -2,7 +2,7 @@ import { defaultQuality, powerSaving } from '../ui/performance.js';
 import { geoEquirectangular, geoPath, geoGraticule10, rgb } from '../../lib/d3-7.9.0.js';
 import { bindMapControls } from './controls.js';
 
-export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {} }) {
+export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {}, onProvinceSelect = () => {} }) {
   const context = canvas.getContext('2d', { alpha: false });
   if (!context) throw new Error('เบราว์เซอร์นี้ไม่รองรับแผนที่ Canvas');
   const { map } = world.settings;
@@ -25,19 +25,31 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let transform = { x: 0, y: 0, k: 1 };
   let selected = null;
   let provinceMarker=null;
+  let provinceShapes=[],provinceMesh=null,selectedProvince=null;
+  // รวมเส้นลงชั้นสีเดิม แท็บเล็ตจึงไม่ต้องวาดภาพเพิ่มระหว่างเลื่อน
+  function paintProvinces(ctx,k){
+    ctx.save();ctx.clip(player.path);
+    ctx.strokeStyle='#102d40b3';ctx.lineWidth=Math.max(.3,.7/k);
+    if(provinceMesh)ctx.stroke(provinceMesh);else for(const p of provinceShapes)ctx.stroke(p.path);
+    if(selectedProvince){ctx.globalAlpha=.3;ctx.fillStyle='#ffe498';ctx.fill(selectedProvince.path);ctx.globalAlpha=1;ctx.strokeStyle='#fff2a8';ctx.lineWidth=2/k;ctx.stroke(selectedProvince.path);}
+    ctx.restore();
+  }
   let player = null;
   let frame = 0;
   let resourceColor = null;
   let visualHitTest = null;
   let quality = defaultQuality;
   let terrain = null;
-  let countryLayer=null;
+  let countryLayer=null,provinceLayerKey='';
   function landLayer(){
-    if(countryLayer)return countryLayer;
+    const show=provinceShapes.length>0&&player&&transform.k/fit>=3;
+    const key=show?`${selectedProvince?.feature.id??''}:${Math.round(Math.log2(transform.k)*2)}`:'hidden';
+    if(countryLayer&&provinceLayerKey===key)return countryLayer;
     const layer=document.createElement('canvas');layer.width=2048;layer.height=1024;const ctx=layer.getContext('2d');
     ctx.scale(layer.width/map.width,layer.height/map.height);
     for(const shape of shapes){ctx.globalAlpha=.6;ctx.fillStyle=resourceColor?resourceColor(shape.country):shape.muted;ctx.fill(shape.path);ctx.globalAlpha=1;ctx.lineWidth=.7;ctx.strokeStyle='#d0d6bd99';ctx.stroke(shape.path);}
-    countryLayer=layer;return layer;
+    if(show)paintProvinces(ctx,transform.k);
+    provinceLayerKey=key;countryLayer=layer;return layer;
   }
   let terrainSource = '';
   function loadTerrain() {
@@ -128,6 +140,11 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.stroke(player.path);
       context.restore();
     }
+    const showProvinces=provinceShapes.length>0&&k/fit>=3;
+    if(canvas.dataset.provinceVisible!==String(showProvinces))canvas.dataset.provinceVisible=String(showProvinces);
+    if(showProvinces&&player&&quality==='high'&&!powerSaving()){
+      context.save();context.shadowBlur=0;context.filter='none';paintProvinces(context,k);context.restore();
+    }
     // วาดชื่อด้วยขนาดคงที่และเว้นช่องว่างไม่ให้ทับกัน
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     context.shadowBlur=0;
@@ -181,7 +198,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     update({ k, x: width / 2 - center[0] * k, y: height / 2 - center[1] * k });
   }
   function selectShape(shape) {
-    selected = shape ?? null;provinceMarker=null;
+    selected = shape ?? null;provinceMarker=null;selectedProvince=null;countryLayer=null;onProvinceSelect(null);
     onSelect(selected?.country ?? null);
     schedule();
   }
@@ -190,7 +207,15 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       center: [(width / 2 - transform.x) / transform.k, (height / 2 - transform.y) / transform.k] };
   }
   const view = {
-    focusPoint: (point,name) => {
+    setProvinceFeatures: features=>{
+      provinceShapes=features.map(f=>({feature:f,path:new Path2D(path(f)),bounds:path.bounds(f)}));
+      provinceMesh=new Path2D();
+      if(typeof provinceMesh.addPath==='function')for(const p of provinceShapes)provinceMesh.addPath(p.path);else provinceMesh=null;
+      selectedProvince=null;provinceMarker=null;countryLayer=null;canvas.dataset.provinceCount=String(features.length);onProvinceSelect(null);schedule();
+    },
+    focusPoint: (point,name,id) => {
+      selectedProvince=provinceShapes.find(p=>p.feature.properties.id===id)??null;
+      countryLayer=null;
       provinceMarker={point:[...point],name};const [px,py]=projection(point),k=fit*8;
       update({k,x:width/2-px*k,y:height/2-py*k});
     },
@@ -205,6 +230,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     setPlayerCountry: id => {
       if(player?.country.id===id)return;
       player = shapes.find(shape => shape.country.id === id) ?? null;
+      countryLayer=null;
       canvas.dataset.playerCountryId = player?.country.id ?? '';
       schedule();
     },
@@ -223,6 +249,13 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       const mx = (x - transform.x) / transform.k, my = (y - transform.y) / transform.k;
       context.save();
       context.resetTransform();
+      if(transform.k/fit>=3&&player){
+        const province=provinceShapes.find(p=>mx>=p.bounds[0][0]&&mx<=p.bounds[1][0]&&my>=p.bounds[0][1]&&my<=p.bounds[1][1]&&context.isPointInPath(p.path,mx,my));
+        if(province&&context.isPointInPath(player.path,mx,my)){
+          selected=player;onSelect(player.country);selectedProvince=province;countryLayer=null;provinceMarker={point:province.feature.properties.point,name:province.feature.properties.nameTh};
+          context.restore();schedule();onProvinceSelect(province.feature.properties);return;
+        }
+      }
       const shape = shapes.find(item => {
         const [[x0, y0], [x1, y1]] = item.bounds;
         return mx >= x0 && mx <= x1 && my >= y0 && my <= y1 && context.isPointInPath(item.path, mx, my);
