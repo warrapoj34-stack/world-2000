@@ -3,6 +3,7 @@ import { VERSION, CACHE_REVISION } from './js/version.js';
 const CACHE_PREFIX = `world-2000:${self.registration.scope}:`;
 const CACHE_NAME = `${CACHE_PREFIX}${VERSION}:${CACHE_REVISION}`;
 const APP_SHELL = [
+  './data/provinces_2000.json', './js/provinces.js', './js/ui/province-screen.js', './css/provinces.css',
   './js/data/starting.js', './js/ui/country-cards.js', './css/country-cards.css',
   './js/events/news.js', './js/ui/news-screen.js', './css/news.css',
   './js/ui/performance.js', './css/performance.css',

@@ -1,3 +1,4 @@
+import { provinceMultiplier, provinceOutput, syncProvinceHappiness, updateProvinceConstruction } from './provinces.js';
 import { traitModifiers } from './traits.js';
 import { ensurePolicyCards, policyModifiers } from './policies.js';
 import { resourceEffects, processAutoExports } from './resources.js';
@@ -107,6 +108,7 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
   if (economy.gameOver) return null;
   const before = state.countries[state.playerCountryId];
   if (defeatReason(before, balance)) { economy.gameOver = defeatReason(before, balance); return null; }
+  updateProvinceConstruction(state,catalog);
   advanceMarketMonth(state,balance,random);
   let result;
   let exportIncome=0;
@@ -116,6 +118,13 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
     const countryModifiers = country.id===state.playerCountryId && catalog.policies ? policyModifiers(economy.cards,catalog.policies) : {};
     countryModifiers.revenue = (countryModifiers.revenue ?? 1) * traits.taxIncome;
     const effects = catalog.resourceLevels ? resourceEffects(state.countries[country.id], catalog.resourceLevels.get(country.id), catalog.resourceDefinitions, balance, random, 1, traits) : null;
+    if(country.id===state.playerCountryId){
+      countryModifiers.revenue*=provinceMultiplier(state,catalog);
+      if(effects)for(const [id,amount]of Object.entries(provinceOutput(state,catalog))){
+        const added=Math.round(amount*(traits.resourceOutput[id]??1));
+        effects.production[id]+=added;effects.stock[id]=Math.min(balance.resources.maxStock,effects.stock[id]+added);
+      }
+    }
     let input=state.countries[country.id];
     if(country.id===state.playerCountryId&&effects){
       // รับเงินส่งออกก่อนคำนวณเงินกู้ โดยเก็บภาพก่อนเดือนเดิมไว้
@@ -127,6 +136,8 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
       countryModifiers, 1);
     state.countries[country.id] = outcome.stats;
     if (country.id === state.playerCountryId) {
+      const proposed=outcome.stats.happiness;syncProvinceHappiness(state,catalog,true);
+      outcome.stats.stability=clamp(outcome.stats.stability+(outcome.stats.happiness-proposed)*balance.stability.happiness/3,0,100);
       // รวมยอดรายงานเท่านั้น เงินเข้าจากการขายแล้ว
       outcome.fiscal.net+=exportIncome;outcome.fiscal.resourceIncome=exportIncome;
       result = outcome;

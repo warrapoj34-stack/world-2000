@@ -1,6 +1,5 @@
 import { ensureMarket, marketPriceMillions, marketHistory, exportCapacity, setExportSetting } from '../market.js';
-import { ensureResources, resourceProduction, resourceSalePrice } from '../resources.js';
-import { traitModifiers } from '../traits.js';
+import { ensureResources, countryResourceProduction, resourceSalePrice } from '../resources.js';
 import { formatMoney, formatNumber } from './stats.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
@@ -48,7 +47,7 @@ export function createMarketScreen({ catalog, balance, getState, onChange, onRef
     const state = getState(); if (!state) return;
     ensureResources(state);
     const market = ensureMarket(state, balance), stats = state.countries[state.playerCountryId];
-    const production = resourceProduction(stats, catalog.resourceLevels.get(state.playerCountryId), balance, traitModifiers(state, catalog));
+    const production = countryResourceProduction(state,catalog,balance);
     const capacity = exportCapacity(state, catalog, balance);
     const ended = Boolean(state.economy?.gameOver || state.victory?.finished);
     title.textContent = 'ตลาดโลกและการส่งออก';

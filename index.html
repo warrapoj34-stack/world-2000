@@ -25,6 +25,7 @@
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
   <link rel="stylesheet" href="./css/performance.css">
+  <link rel="stylesheet" href="./css/provinces.css">
 </head>
 <body>
   <header class="masthead" id="menu-header">
@@ -180,6 +181,7 @@
 <button id="open-policy" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🎚️</span>นโยบาย</button></nav>
   </main>
   <dialog id="resource-dialog" class="economy-dialog" aria-labelledby="resource-title"><header><h2 id="resource-title">ทรัพยากรของประเทศ</h2><button id="close-resources" class="map-button" type="button">กลับแผนที่</button></header><section id="resource-content"></section></dialog>
+  <dialog id="province-dialog" class="economy-dialog province-dialog" aria-labelledby="province-title"><header><h2 id="province-title">จังหวัด</h2><button id="close-province" class="map-button" type="button">กลับแผนที่</button></header><section id="province-content"></section></dialog>
   <dialog id="news-dialog" class="economy-dialog" aria-labelledby="news-title"><header><h2 id="news-title">ข่าวล่าสุด 20 รายการ</h2><button id="close-news" class="map-button" type="button">กลับแผนที่</button></header><ol id="news-history"></ol></dialog>
   <dialog id="market-dialog" class="economy-dialog" aria-labelledby="market-title"><header><h2 id="market-title">ตลาดโลก</h2><button id="close-market" class="map-button" type="button">กลับแผนที่</button></header><section id="market-content"></section></dialog>
   <dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title"><div id="event-icon" class="event-icon"></div><h2 id="event-title"></h2><p id="event-story"></p><div id="event-options"></div><p id="event-summary" hidden></p><button id="event-next" class="map-button" type="button" hidden>เล่นต่อ</button></dialog>

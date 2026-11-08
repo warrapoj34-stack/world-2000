@@ -24,6 +24,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let width = 0, height = 0, ratio = 1, fit = 1;
   let transform = { x: 0, y: 0, k: 1 };
   let selected = null;
+  let provinceMarker=null;
   let player = null;
   let frame = 0;
   let resourceColor = null;
@@ -152,6 +153,11 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       if (resourceColor) context.strokeText(text, px, py);
       context.fillText(text, px, py);
     }
+    if(provinceMarker){
+      const [mx,my]=projection(provinceMarker.point),px=mx*k+x,py=my*k+y;
+      context.fillStyle='#ffd782';context.beginPath();context.arc(px,py,6,0,Math.PI*2);context.fill();
+      context.font='bold 14px Tahoma, sans-serif';context.strokeStyle='#082331';context.lineWidth=3;context.strokeText(provinceMarker.name,px,py-16);context.fillText(provinceMarker.name,px,py-16);
+    }
     if (player) {
       const [lx, ly] = player.label;
       onPlayerPosition({ x: lx * k + x, y: ly * k + y, visible: player.area * k * k < 1800 });
@@ -175,7 +181,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     update({ k, x: width / 2 - center[0] * k, y: height / 2 - center[1] * k });
   }
   function selectShape(shape) {
-    selected = shape ?? null;
+    selected = shape ?? null;provinceMarker=null;
     onSelect(selected?.country ?? null);
     schedule();
   }
@@ -184,6 +190,10 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       center: [(width / 2 - transform.x) / transform.k, (height / 2 - transform.y) / transform.k] };
   }
   const view = {
+    focusPoint: (point,name) => {
+      provinceMarker={point:[...point],name};const [px,py]=projection(point),k=fit*8;
+      update({k,x:width/2-px*k,y:height/2-py*k});
+    },
     setVisualHitTest: callback => { visualHitTest = callback; },
     setQuality: value => { quality = ['high','medium','low'].includes(value)?value:defaultQuality; loadTerrain(); resize(); schedule(); },
     setResourceColors: resolver => { resourceColor = resolver; countryLayer=null; schedule(); },

@@ -1,3 +1,4 @@
+import { provinceOutput } from './provinces.js';
 import { addNews } from './events/news.js';
 import { RESOURCE_IDS } from './data/resource-ids.js';
 import { ensureMarket, marketPriceMillions, exportCapacity } from './market.js';
@@ -16,6 +17,11 @@ export function ensureResources(state) {
 }
 export function resourceProduction(stats, levels, balance, modifiers = {}) {
   return Object.fromEntries(RESOURCE_IDS.map(id => [id, Math.round((levels[id] ?? 0) * balance.resources.unitsPerStarPerMonth * (modifiers.resourceOutput?.[id] ?? 1))]));
+}
+export function countryResourceProduction(state,catalog,balance) {
+  const modifiers=traitModifiers(state,catalog),result=resourceProduction(state.countries[state.playerCountryId],catalog.resourceLevels.get(state.playerCountryId),balance,modifiers);
+  for(const [id,amount]of Object.entries(provinceOutput(state,catalog)))result[id]+=Math.round(amount*(modifiers.resourceOutput[id]??1));
+  return result;
 }
 export function resourceEffects(stats, levels, definitions, balance, random = Math.random, months = 3, modifiers = {}) {
   const b = balance.resources, production = resourceProduction(stats,levels,balance,modifiers);

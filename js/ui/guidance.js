@@ -1,3 +1,4 @@
+import { createProvinceScreen, renderProvinceList } from './province-screen.js';
 import { formatNumber, renderStats } from './stats.js';
 import { renderArmy } from './army-screen.js';
 import { renderTraits } from './traits-screen.js';
@@ -17,7 +18,7 @@ const lessons = [
   ['📅', 'เวลาเดินเอง', 'ดูวันที่มุมขวาบน กดหยุดหรือเร่งเวลาได้ เกมคำนวณเงินทุกเดือน และหยุดเมื่อมีเหตุการณ์ให้เลือก'],
 ];
 
-export function createGuidance({ catalog, getState, onRanking, onResources, onChange, onRefresh }) {
+export function createGuidance({ catalog, balance, onProvinceFocus, getState, onRanking, onResources, onChange, onRefresh }) {
   let prefs = {};
   try { prefs = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { /* ใช้ค่าชั่วคราวเมื่ออ่านไม่ได้ */ }
   if (typeof prefs !== 'object' || Array.isArray(prefs)) prefs = {};
@@ -77,9 +78,14 @@ export function createGuidance({ catalog, getState, onRanking, onResources, onCh
   close.addEventListener('click', finish);
   dialog.addEventListener('cancel', event => { event.preventDefault(); finish(); });
   document.querySelector('#dismiss-missions').addEventListener('click', () => { prefs.missionsHidden = true; remember(); refresh(); });
-  document.querySelector('#open-country').addEventListener('click', () => {
+  const provinceUI=createProvinceScreen({catalog,balance,getState,onChange,onRefresh,onFocus:onProvinceFocus,onBack:()=>countryScreen('provinces')});
+  function countryScreen(tab='overview') {
     const state = getState(), country = catalog.byId.get(state.playerCountryId);
     open(`ประเทศของคุณ • ${country.nameTh}`);
+    const tabs=document.createElement('nav');tabs.className='country-tabs';tabs.setAttribute('role','tablist');
+    for(const [id,label]of [['overview','ภาพรวม'],['provinces','จังหวัด']]){const b=document.createElement('button');b.type='button';b.className='map-button';b.id=`country-tab-${id}`;b.textContent=label;b.setAttribute('role','tab');b.setAttribute('aria-selected',String(tab===id));b.onclick=()=>countryScreen(id);tabs.append(b);}
+    body.append(tabs);
+    if(tab==='provinces'){renderProvinceList(body,{state,catalog,balance,onSelect:p=>{dialog.close();provinceUI.open(p);}});return;}
     text('ดูภาพรวมประเทศ หรือเปิดอันดับเพื่อเทียบกับประเทศอื่น');
     const dl = document.createElement('dl'); dl.className = 'stat-grid'; renderStats(dl, state.countries[country.id]); body.append(dl);
     renderTraits(body,state,catalog,onChange,onRefresh);
@@ -90,7 +96,8 @@ export function createGuidance({ catalog, getState, onRanking, onResources, onCh
     button('อันดับโลก', () => { finish(); onRanking(); }, 'open-ranking');
     button('อ่านวิธีเล่นอีกครั้ง', () => { lesson = 0; tutorial(); }, 'replay-tutorial');
     button(prefs.missionsHidden ? 'แสดงภารกิจแนะนำ' : 'ซ่อนภารกิจแนะนำ', () => { prefs.missionsHidden = !prefs.missionsHidden; remember(); finish(); refresh(); }, 'toggle-missions');
-  });
+  }
+  document.querySelector('#open-country').addEventListener('click',()=>countryScreen());
   document.querySelector('#open-resources').addEventListener('click', onResources);
   for (const name of ['army', 'transport']) {
     document.querySelector(`#open-${name}`).addEventListener('click', () => {

@@ -1,5 +1,4 @@
-import { traitModifiers } from '../traits.js';
-import { resourceProduction, ensureResources, sellResource, resourceSalePrice } from '../resources.js';
+import { countryResourceProduction, ensureResources, sellResource, resourceSalePrice } from '../resources.js';
 import { formatNumber, formatMoney } from './stats.js';
 export function createResourceScreen({ catalog, balance, getState, onChange, onRefresh }) {
   const dialog = document.querySelector('#resource-dialog'), body = document.querySelector('#resource-content');
@@ -7,7 +6,7 @@ export function createResourceScreen({ catalog, balance, getState, onChange, onR
   function open(id) {
     const state = getState(); ensureResources(state);
     const stats = state.countries[state.playerCountryId], levels = catalog.resourceLevels.get(state.playerCountryId);
-    const production = resourceProduction(stats, levels, balance, traitModifiers(state,catalog)), resource = defs.find(r => r.id === id);
+    const production = countryResourceProduction(state,catalog,balance), resource = defs.find(r => r.id === id);
     title.textContent = resource ? `${resource.icon} ${resource.nameTh}` : 'คลังทรัพยากรของประเทศ';
     body.replaceChildren();
     const intro = document.createElement('p'); intro.textContent = resource ? resource.descriptionTh : 'ผลผลิตเข้าคลังทุกเดือน ขายครั้งละ 10 หน่วยเพื่อรับเงินทันที'; body.append(intro);
