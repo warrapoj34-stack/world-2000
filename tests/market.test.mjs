@@ -178,6 +178,7 @@ test('ประเทศไม่มีชายฝั่งใช้รถไ�
 test('เงินส่งออกเข้าครั้งเดียว รวมในรายรับสุทธิ และลดเงินกู้เมื่อเงินไม่พอ', () => {
   for (const treasury of [100, .001]) {
     const { state, catalog } = setup(); state.countries.AUS.treasury = treasury;
+    if(treasury===.001)state.economy.policy.tax=0;
     const withoutExports = structuredClone(state); allExports(state);
     const originalStats = state.countries.AUS, snapshot = structuredClone(originalStats);
     const report = advanceMonth(state, catalog, balance, () => .5);

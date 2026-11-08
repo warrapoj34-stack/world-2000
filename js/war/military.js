@@ -4,7 +4,7 @@ export function validUnits(units) {
     && ['warheads','cargoShips'].every(key=>units[key]===undefined || Number.isSafeInteger(units[key]) && units[key]>=0));
 }
 export function attachMilitary(catalog, rows, rules) {
-  if (Object.keys(rows).length !== 60 || catalog.newGameCountries.some(c => !validUnits(rows[c.id]))
+  if (!rows || Object.values(rows).some(row=>!validUnits(row)) || catalog.newGameCountries.some(c => !validUnits(rows[c.id]))
     || UNIT_KEYS.some(key => !Number.isFinite(rules.weights[key]) || rules.weights[key] <= 0)
     || !Array.isArray(rules.landlocked)) throw new Error('ข้อมูลกองทัพไม่ถูกต้อง');
   catalog.militaryRules = rules;

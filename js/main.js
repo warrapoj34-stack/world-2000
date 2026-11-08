@@ -186,7 +186,7 @@ async function boot() {
     document.querySelector('#open-market').addEventListener('click',marketUI.open);
     createGuidance({ catalog, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
       onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
-    startUI = createStartScreen({ catalog, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
+    startUI = createStartScreen({ catalog, balance, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();
   } catch {
     catalog = null;

@@ -20,12 +20,12 @@ test('รายรับเป็นรายไตรมาส เงินห�
   const stats = {...catalog.byId.get('THA'), gdp:100, treasury:0, debt:100};
   const p = {...copyPolicy(policy), tax:0};
   const f = fiscalForecast(stats, 'democracy', p, balance);
-  assert.equal(f.revenue, 0); assert.equal(f.spending, 6.5625); assert.equal(f.interest, 1);
+  assert.equal(f.revenue, 0); assert.equal(f.spending, 4.2); assert.equal(f.interest, 1);
   const result = simulateCountry(stats, 'democracy', p, balance, () => .5);
-  assert.equal(result.stats.treasury, 0); assert.equal(result.fiscal.borrowed, 7.5625);
-  assert(Math.abs(result.stats.debt * result.stats.gdp / 100 - 107.5625) < 1e-10);
+  assert.equal(result.stats.treasury, 0); assert.equal(result.fiscal.borrowed, 5.2);
+  assert(Math.abs(result.stats.debt * result.stats.gdp / 100 - 105.2) < 1e-10);
   const rich = simulateCountry({...stats, treasury:20}, 'democracy', p, balance, () => .5);
-  assert.equal(rich.fiscal.borrowed, 0); assert.equal(rich.stats.treasury, 12.4375);
+  assert.equal(rich.fiscal.borrowed, 0); assert.equal(rich.stats.treasury, 14.8);
 });
 test('ภาษีและระบอบส่งผลจริง การลงทุนเพิ่มเทคโนโลยีและ GDP', () => {
   const s = catalog.byId.get('THA');

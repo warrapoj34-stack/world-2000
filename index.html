@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/map.css">
   <link rel="stylesheet" href="./css/game.css">
+  <link rel="stylesheet" href="./css/country-cards.css">
   <link rel="stylesheet" href="./css/economy.css">
   <link rel="stylesheet" href="./css/friendly.css">
   <link rel="stylesheet" href="./css/resources.css">
@@ -87,7 +88,7 @@
         <p class="eyebrow">หน้าที่ใหม่ของคุณ</p>
         <h2 id="draw-intro"></h2>
         <p id="draw-government"></p>
-        <div id="start-traits" aria-label="จุดเด่นของประเทศ"></div>
+        <p id="start-balance"></p><div id="start-traits" aria-label="จุดเด่นของประเทศ"></div>
         <dl class="stat-grid" id="draw-stats"></dl>
         <label class="victory-label" for="start-victory-path">เลือกเป้าหมายของประเทศ</label><select id="start-victory-path" class="victory-select"></select><p id="start-victory-detail" class="victory-detail"></p>
         <p class="estimate-note">ข้อมูลอ้างอิงปี 2000 · คะแนนและเงินคลังเป็นค่าประเมินสำหรับเกม</p>
@@ -98,6 +99,7 @@
       <button class="map-button" id="reroll-country" type="button" disabled>สุ่มใหม่ (3/3)</button>
       <p id="replace-save-note" hidden>เมื่อรับตำแหน่ง เกมใหม่นี้จะถูกบันทึกแทนเกมเดิม</p>
     </div>
+    <section id="country-choices" aria-label="เลือกประเทศจาก 40 ประเทศ แบ่งตามภูมิภาค"><h2>เลือกประเทศ • แตะดูจุดเด่นและจุดอ่อน</h2></section>
     <details class="manual-choice">
       <summary>เลือกประเทศเอง (สำหรับทดสอบ)</summary>
       <div><label for="manual-country">ประเทศที่ต้องการ</label><select id="manual-country" disabled></select><button class="map-button" id="choose-country" type="button" disabled>เลือกประเทศนี้</button></div>

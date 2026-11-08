@@ -10,9 +10,9 @@ import { advanceMonth } from '../js/economy.js';
 const read = async name => JSON.parse(await readFile(new URL(`../data/${name}.json`, import.meta.url)));
 const [countries, relations, ids, regions, military, rules, balance] = await Promise.all(['countries_2000','relations_2000','playable','playable_regions','military2000','military_rules','balance'].map(read));
 function setup() { const c=attachPlayable(createCatalog(countries,relations),ids,regions); attachMilitary(c,military,rules); return c; }
-test('60 ประเทศมีสามจำนวนเต็มและประเทศไม่มีทะเลมีเรือศูนย์ รวม AI นอกรายการ', () => {
+test('40 ประเทศมีสามจำนวนเต็มและประเทศไม่มีทะเลมีเรือศูนย์ รวม AI นอกรายการ', () => {
   const c=setup(),s=createGame('USA',c);ensureMilitary(s,c);
-  assert.equal(Object.keys(military).length,60);
+  assert(ids.every(id=>validUnits(military[id])));
   assert.deepEqual(s.countries.USA.units,{tanks:7500,ships:110,aircraft:3500});
   for (const country of c.countries) {
     assert(validUnits(s.countries[country.id].units));

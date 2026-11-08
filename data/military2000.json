@@ -298,5 +298,10 @@
     "tanks": 0,
     "ships": 4,
     "aircraft": 20
+  },
+  "CUB": {
+    "tanks": 650,
+    "ships": 3,
+    "aircraft": 90
   }
 }

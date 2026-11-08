@@ -1,2 +1,2 @@
-export const VERSION = '0.9.3';
-export const CACHE_REVISION = 'time-news-1';
+export const VERSION = '0.9.4';
+export const CACHE_REVISION = 'starting-balance-1';

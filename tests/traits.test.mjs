@@ -13,8 +13,8 @@ import { readSave, writeSave } from '../js/save/storage.js';
 const read=async n=>JSON.parse(await readFile(new URL(`../data/${n}.json`,import.meta.url)));
 const [countries,relations,defs,levels,military,rules,recipes,traits,balance,ids]=await Promise.all(['countries_2000','relations_2000','resources','country_resources_2000','military2000','military_rules','recipes','traits','balance','playable'].map(read));
 function setup(id){const c=createCatalog(countries,relations);c.newGameCountries=ids.map(id=>c.byId.get(id));attachResources(c,defs,levels);attachMilitary(c,military,rules);c.recipes=recipes;c.traits=traits;const s=createGame(id,c);ensureMilitary(s,c);ensureResources(s);ensureEconomy(s,balance);s.date.day=1;for(const k of Object.keys(s.countries[id].resourceStock))s.countries[id].resourceStock[k]=100;return{s,c,stats:s.countries[id]};}
-test('ครบ 60 ประเทศ แต่ละประเทศมีผลดีและผลเสียด้วยชนิดมาตรฐาน',()=>{
- assert.equal(Object.keys(traits).length,60);for(const id of ids){const data=traits[id];for(const key of ['strength','weakness','special'])assert(data[key].effects.every(e=>TRAIT_TYPES.includes(e.type)));
+test('ครบ 40 ประเทศ แต่ละประเทศมีผลดีและผลเสียด้วยชนิดมาตรฐาน',()=>{
+ assert(ids.every(id=>traits[id]));for(const id of ids){const data=traits[id];for(const key of ['strength','weakness','special'])assert(data[key].effects.every(e=>TRAIT_TYPES.includes(e.type)));
  const good=data.strength.effects[0],bad=data.weakness.effects[0];assert(good.type==='productionCost'?good.percent<0:good.percent>0);assert(bad.type==='productionCost'?bad.percent>0:bad.percent<0);assert.equal(data.special.cooldownYears,2);}
 });
 test('ซาอุดีอาระเบีย ขายน้ำมัน +20% จริง และภาษีลดจริง',()=>{

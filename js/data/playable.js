@@ -1,8 +1,8 @@
 export function attachPlayable(catalog, ids, regions) {
-  if (!Array.isArray(ids) || ids.length !== 60 || new Set(ids).size !== 60
+  if (!Array.isArray(ids) || ids.length !== 40 || new Set(ids).size !== 40
     || ids.some(id => !catalog.byId.get(id)?.playable)) throw new Error('รายการประเทศเริ่มเกมไม่ถูกต้อง');
   const grouped = Object.values(regions).flat();
-  if (grouped.length !== 60 || new Set(grouped).size !== 60 || grouped.some(id => !ids.includes(id))) throw new Error('กลุ่มประเทศไม่ครบ');
+  if (grouped.length !== 40 || new Set(grouped).size !== 40 || grouped.some(id => !ids.includes(id))) throw new Error('กลุ่มประเทศไม่ครบ');
   catalog.newGameCountries = ids.map(id => catalog.byId.get(id));
   catalog.newGameRegions = regions;
   return catalog;

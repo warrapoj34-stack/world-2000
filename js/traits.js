@@ -31,7 +31,7 @@ export async function loadTraits(catalog) {
   const response=await fetch(new URL('../data/traits.json',import.meta.url));
   if(!response.ok)throw new Error('โหลดจุดเด่นประเทศไม่สำเร็จ');
   const data=await response.json();
-  if(Object.keys(data).length!==60 || catalog.newGameCountries.some(c=>!data[c.id]))throw new Error('จุดเด่นประเทศไม่ครบ');
+  if(!data || catalog.newGameCountries.some(c=>!data[c.id]))throw new Error('จุดเด่นประเทศไม่ครบ');
   for(const item of Object.values(data)) {
     for(const key of ['strength','weakness','special']) {
       const card=item[key];

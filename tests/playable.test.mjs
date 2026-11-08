@@ -7,9 +7,9 @@ import { createGame, createDraft, rerollDraft, validGame } from '../js/state.js'
 import { writeSave, readSave } from '../js/save/storage.js';
 const read = async name => JSON.parse(await readFile(new URL(`../data/${name}.json`, import.meta.url)));
 const [countries, relations, ids, regions] = await Promise.all(['countries_2000','relations_2000','playable','playable_regions'].map(read));
-test('60 ประเทศเริ่มเกมครบและจัดกลุ่มไม่ซ้ำ ยูโกสลาเวียตรงกับแผนที่', () => {
+test('40 ประเทศเริ่มเกมครบและจัดกลุ่มไม่ซ้ำ ยูโกสลาเวียตรงกับแผนที่', () => {
   const catalog = attachPlayable(createCatalog(countries,relations),ids,regions);
-  assert.equal(catalog.newGameCountries.length,60);
+  assert.equal(catalog.newGameCountries.length,40);
   assert.equal(catalog.byId.get('YUG').mapId,'YUG');
   assert.equal(Object.keys(regions).length,5);
   for (let i=0;i<100;i++) {

@@ -13,7 +13,7 @@ test('เก็บยอดขายจริงโดยไม่เปลี�
  state.date.month=2;const exports=takeMonthlyExports(state);assert.equal(exports.length,2);assert.equal(exports[0].units,20);assert.equal(exports[0].value,.066);assert.equal(exportVisualCount(exports),3);assert.deepEqual(takeMonthlyExports(state),[]);
  assert.equal(exportVisualCount([{units:10000}]),30);assert.equal(exportVisualCount([]),0);assert.equal(exportVisualCount([{units:10000}],8),8);
 });
-test('ท่าเรือครบ 60 ประเทศและเส้นทางอยู่บนเครือข่ายทะเลที่เชื่อมต่อได้',()=>{
+test('ท่าเรือครบ 40 ประเทศและเส้นทางอยู่บนเครือข่ายทะเลที่เชื่อมต่อได้',()=>{
  for(const id of ids){assert(ports[id]);const start=nearestSea(grid,ports[id].point);assert.equal(grid.water[start],'1');const path=seaRoute(grid,start,nearestSea(grid,ports.USA.point));assert(path.length>=2,id);const sample=pathSampler(curvedSeaPath(path));assert(sample(.5).every(Number.isFinite));}
  const route=seaRoute(grid,nearestSea(grid,ports.CHN.point),nearestSea(grid,ports.USA.point));assert(route.some(p=>p[0]===-79.7&&p[1]===9.1));
 });

@@ -5,10 +5,8 @@
     "MEX",
     "BRA",
     "ARG",
-    "COL",
-    "CHL",
-    "PER",
-    "VEN"
+    "VEN",
+    "CUB"
   ],
   "ยุโรป": [
     "RUS",
@@ -17,21 +15,10 @@
     "DEU",
     "ITA",
     "ESP",
-    "NLD",
-    "BEL",
-    "SWE",
-    "CHE",
-    "AUT",
     "POL",
     "UKR",
     "TUR",
-    "GRC",
-    "NOR",
-    "DNK",
-    "FIN",
-    "PRT",
-    "CZE",
-    "ROU",
+    "SWE",
     "YUG"
   ],
   "เอเชีย": [
@@ -42,31 +29,24 @@
     "PRK",
     "IDN",
     "THA",
-    "TWN",
-    "MYS",
-    "PHL",
     "VNM",
+    "PHL",
+    "MYS",
     "PAK",
-    "BGD",
     "IRN",
     "IRQ",
     "SAU",
     "ISR",
-    "KAZ",
-    "ARE"
+    "KAZ"
   ],
   "แอฟริกา": [
-    "ZAF",
     "EGY",
+    "ZAF",
     "NGA",
-    "DZA",
-    "LBY",
     "ETH",
-    "MAR",
-    "AGO"
+    "LBY"
   ],
   "โอเชียเนีย": [
-    "AUS",
-    "NZL"
+    "AUS"
   ]
 }

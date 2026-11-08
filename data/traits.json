@@ -1019,7 +1019,7 @@
     },
     "weakness": {
       "icon": "⚠️",
-      "nameTh": "ช่วงเปลี่ยนผ่าน",
+      "nameTh": "รัฐกำลังปรับโครงสร้าง",
       "descriptionTh": "ระบบรัฐหลังโซเวียตยังปรับตัว",
       "effects": [
         {
@@ -2160,12 +2160,12 @@
     "weakness": {
       "icon": "⚠️",
       "nameTh": "ผลจากข้อจำกัดการค้า",
-      "descriptionTh": "สภาพการค้าในปี 2000 กดรายรับรัฐ",
+      "descriptionTh": "ข้อจำกัดการค้าทำให้จัดหาอุปกรณ์ผลิตได้ยาก",
       "effects": [
         {
-          "type": "taxIncome",
+          "type": "productionCost",
           "target": "all",
-          "percent": -20
+          "percent": 25
         }
       ]
     },
@@ -2893,6 +2893,51 @@
         {
           "resourceId": "food",
           "percent": 10
+        }
+      ]
+    }
+  },
+  "CUB": {
+    "strength": {
+      "icon": "🌾",
+      "nameTh": "ไร่อ้อยแคริบเบียน",
+      "descriptionTh": "ฐานเพาะปลูกอ้อยช่วยเพิ่มผลผลิตอาหาร",
+      "effects": [
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": 20
+        }
+      ]
+    },
+    "weakness": {
+      "icon": "⚠️",
+      "nameTh": "เครื่องจักรนำเข้าหายาก",
+      "descriptionTh": "ข้อจำกัดการค้าทำให้จัดหาชิ้นส่วนผลิตยากขึ้น",
+      "effects": [
+        {
+          "type": "productionCost",
+          "target": "all",
+          "percent": 25
+        }
+      ]
+    },
+    "special": {
+      "icon": "🏖️",
+      "nameTh": "เปิดฤดูท่องเที่ยวแคริบเบียน",
+      "descriptionTh": "รับรายได้เพิ่มชั่วคราว แต่แรงงานในไร่ลดลง",
+      "durationDays": 120,
+      "cooldownYears": 2,
+      "effects": [
+        {
+          "type": "taxIncome",
+          "target": "all",
+          "percent": 15
+        },
+        {
+          "type": "resourceOutput",
+          "target": "food",
+          "percent": -15
         }
       ]
     }

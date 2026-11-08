@@ -1,9 +1,12 @@
+import { createCountryCards } from './country-cards.js';
+import { startingOutlook } from '../data/starting.js';
+import { formatMoney } from './stats.js';
 import { rerollDraft } from '../state.js';
 import { renderStats, governmentName } from './stats.js';
 import { PATHS } from '../victory.js';
 import { traitCardEffectText } from './traits-screen.js';
 
-export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
+export function createStartScreen({ catalog, balance, onDraft, onAccept, onBack }) {
   const screen = document.querySelector('#start-screen');
   const name = document.querySelector('#draw-name');
   const status = document.querySelector('#draw-status');
@@ -29,9 +32,13 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
     }
   } else picker.append(...eligible.map(country => new Option(country.nameTh, country.id)));
 
+  const cards=createCountryCards(catalog,balance,id=>{if(!busy){picker.value=id;choose.click();}});
   function render() {
     const country = catalog.byId.get(draft.candidateId);
     name.textContent = country.nameTh;
+    cards.select(country.id);cards.setBusy(busy);
+    const outlook=startingOutlook(country,catalog,balance);
+    document.querySelector('#start-balance').textContent=`ระดับความยาก: ${outlook.difficulty} • รับสุทธิต่อเดือน +${formatMoney(outlook.fiscal.net)}`;
     document.querySelector('#draw-code').textContent = `${country.id} · ${country.nameEn}`;
     document.querySelector('#draw-government').textContent = governmentName(country);
     const preview=document.querySelector('#start-traits');preview.replaceChildren();
@@ -43,10 +50,10 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
       box.title=`${label} • ${card.nameTh}\n${card.descriptionTh}\n${effects}`;box.setAttribute('aria-label',box.title);box.append(heading);preview.append(box);
     }
     document.querySelector('#draw-intro').textContent = `คุณคือผู้นำของ ${country.nameTh} ปี ค.ศ. 2000`;
-    renderStats(document.querySelector('#draw-stats'), country);
+    renderStats(document.querySelector('#draw-stats'), {...country,units:outlook.units});
     picker.value = country.id;
     result.hidden = false;
-    status.textContent = draft.manual ? 'เลือกประเทศเองสำหรับทดสอบ' : 'ประเทศของคุณพร้อมแล้ว';
+    status.textContent = draft.manual ? 'เลือกประเทศของคุณแล้ว' : 'ประเทศของคุณพร้อมแล้ว';
     reroll.textContent = `สุ่มใหม่ (${draft.rerollsRemaining}/3)`;
     reroll.disabled = busy || draft.rerollsRemaining === 0;
     accept.disabled = choose.disabled = picker.disabled = busy;
@@ -54,7 +61,7 @@ export function createStartScreen({ catalog, onDraft, onAccept, onBack }) {
 
   async function animate() {
     const current = ++generation;
-    busy = true;
+    busy = true;cards.setBusy(true);
     result.hidden = true;
     accept.disabled = reroll.disabled = choose.disabled = picker.disabled = true;
     status.textContent = 'กำลังหมุนชะตาประเทศของคุณ…';
