@@ -1,0 +1,2 @@
+.power-saving *, .power-saving *::before, .power-saving *::after { animation: none !important; transition: none !important; box-shadow: none !important; text-shadow: none !important; backdrop-filter: none !important; }
+.power-saving .event-float, .power-saving .special-burst::after { display: none !important; }

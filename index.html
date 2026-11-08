@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="./css/market.css">
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
+  <link rel="stylesheet" href="./css/performance.css">
 </head>
 <body>
   <header class="masthead" id="menu-header">
@@ -121,7 +122,8 @@
           <button class="map-setting-trigger" id="toggle-map-quality" type="button" aria-label="เปิดคุณภาพภาพ" aria-controls="map-settings-menu" aria-expanded="false">◐</button>
           <div class="map-setting-menu" id="map-settings-menu" hidden>
             <label for="map-mode">โหมดแผนที่</label><select id="map-mode"><option value="political">การเมือง</option></select><div id="resource-legend" hidden></div>
-            <label for="map-quality">คุณภาพภาพ</label><select id="map-quality"><option value="high">สูง</option><option value="low">ต่ำ</option></select>
+            <label for="map-quality">คุณภาพภาพ</label><select id="map-quality"><option value="high">สูง</option><option value="medium">กลาง</option><option value="low">ต่ำ</option></select>
+            <label class="trade-toggle"><input type="checkbox" id="power-saving"> โหมดประหยัด (เปิดอัตโนมัติเมื่อเครื่องช้า)</label>
             <label class="trade-toggle"><input type="checkbox" id="trade-animation" checked> ภาพเรือและเครื่องบิน</label><p id="trade-animation-status">ภาพจากยอดขายรายเดือน</p>
             <p class="trade-note">ภาพเชื่อมยอดขายมือและส่งออกอัตโนมัติ เงินได้รับตอนขายแล้ว ไม่บวกซ้ำเมื่อถึงปลายทาง</p>
           </div>

@@ -1,4 +1,5 @@
-import { geoEquirectangular, geoPath, geoGraticule10 } from '../../lib/d3-7.9.0.js';
+import { defaultQuality, powerSaving } from '../ui/performance.js';
+import { geoEquirectangular, geoPath, geoGraticule10, rgb } from '../../lib/d3-7.9.0.js';
 import { bindMapControls } from './controls.js';
 
 export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {} }) {
@@ -12,8 +13,10 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     const polygons = country.geometry.type === 'Polygon' ? [country.geometry.coordinates] : country.geometry.coordinates;
     const largest = polygons.map(coordinates => ({ type: 'Polygon', coordinates }))
       .sort((a, b) => path.area(b) - path.area(a))[0];
+    const color=rgb(country.properties.color);const gray=(color.r+color.g+color.b)/3;
+    color.r=color.r*.75+gray*.25;color.g=color.g*.75+gray*.25;color.b=color.b*.75+gray*.25;
     return {
-      country, path: new Path2D(path(country)), bounds: path.bounds(country),
+      muted:color.formatRgb(), country, path: new Path2D(path(country)), bounds: path.bounds(country),
       label: path.centroid(largest), area: path.area(largest), labelBounds: path.bounds(largest),
     };
   });
@@ -25,11 +28,19 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let frame = 0;
   let resourceColor = null;
   let visualHitTest = null;
-  let quality = 'high';
+  let quality = defaultQuality;
   let terrain = null;
+  let countryLayer=null;
+  function landLayer(){
+    if(countryLayer)return countryLayer;
+    const layer=document.createElement('canvas');layer.width=2048;layer.height=1024;const ctx=layer.getContext('2d');
+    ctx.scale(layer.width/map.width,layer.height/map.height);
+    for(const shape of shapes){ctx.globalAlpha=.6;ctx.fillStyle=resourceColor?resourceColor(shape.country):shape.muted;ctx.fill(shape.path);ctx.globalAlpha=1;ctx.lineWidth=.7;ctx.strokeStyle='#d0d6bd99';ctx.stroke(shape.path);}
+    countryLayer=layer;return layer;
+  }
   let terrainSource = '';
   function loadTerrain() {
-    const file = quality === 'high' ? 'world-high.jpg' : 'world-low.jpg';
+    const file = quality === 'high'&&!powerSaving() ? 'world-high.jpg' : 'world-low.jpg';
     if (terrainSource === file && terrain?.complete) { schedule(); return; }
     terrainSource = file;
     const image = new Image();
@@ -59,6 +70,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     frame = 0;
     if (!width || !height) return;
     const { x, y, k } = transform;
+    context.shadowBlur=0;context.filter='none';
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     const ocean = context.createLinearGradient(0, 0, width * .7, height);
     ocean.addColorStop(0, '#123a63'); ocean.addColorStop(.55, '#0b2a4a'); ocean.addColorStop(1, '#123a63');
@@ -78,16 +90,19 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       return x1 * k + x >= 0 && x0 * k + x <= width && y1 * k + y >= 0 && y0 * k + y <= height;
     });
     context.lineJoin = 'round';
-    for (const shape of visible) {
+    if(quality!=='high'||powerSaving())context.drawImage(landLayer(),0,0,map.width,map.height);
+    else for (const shape of visible) {
       context.save();
+      if(quality==='high'&&!powerSaving()){
       context.shadowColor = '#020b16aa'; context.shadowBlur = (quality === 'high' ? 4 : 1.5) / k;
       context.lineWidth = (quality === 'high' ? 2 : 1) / k; context.strokeStyle = '#07152299'; context.stroke(shape.path);
       context.shadowColor = '#70c6e277'; context.shadowBlur = (quality === 'high' ? 13 : 4) / k;
       context.lineWidth = (quality === 'high' ? 9 : 3) / k; context.strokeStyle = '#5eb7d544'; context.stroke(shape.path);
+      }
       context.shadowBlur = 0;
       context.globalAlpha = .6;
-      context.filter = resourceColor ? 'none' : 'saturate(.75)';
-      context.fillStyle = resourceColor ? resourceColor(shape.country) : shape.country.properties.color;
+      context.filter = 'none';
+      context.fillStyle = resourceColor ? resourceColor(shape.country) : shape.muted;
       context.fill(shape.path); context.globalAlpha = 1;
       context.filter = 'none';
       context.lineWidth = .8 / k; context.strokeStyle = '#d0d6bd99'; context.stroke(shape.path);
@@ -99,7 +114,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.fill(selected.path);
       context.globalAlpha = 1;
       context.strokeStyle = map.highlightColor;
-      context.shadowColor = map.highlightColor; context.shadowBlur = (quality === 'high' ? 18 : 6) / k;
+      context.shadowColor = map.highlightColor; context.shadowBlur = (quality === 'high'&&!powerSaving() ? 18 : 0) / k;
       context.lineWidth = 3.4 / k;
       context.stroke(selected.path);
     }
@@ -107,13 +122,14 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.save();
       context.strokeStyle = '#91f2d0';
       context.shadowColor = '#5deec5';
-      context.shadowBlur = 12 * ratio;
+      context.shadowBlur = quality==='high'&&!powerSaving()?12*ratio:0;
       context.lineWidth = 2.8 / k;
       context.stroke(player.path);
       context.restore();
     }
     // วาดชื่อด้วยขนาดคงที่และเว้นช่องว่างไม่ให้ทับกัน
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    context.shadowBlur=0;
     context.font = '14px Tahoma, sans-serif';
     context.textAlign = 'center';
     context.textBaseline = 'middle';
@@ -149,7 +165,9 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       : [map.width / 2, map.height / 2];
     width = rect.width;
     height = rect.height;
-    ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const nextRatio=powerSaving()?1:Math.min(window.devicePixelRatio||1,quality==='high'?2:1.25);
+    if(canvas.width===Math.round(width*nextRatio)&&canvas.height===Math.round(height*nextRatio))return;
+    ratio=nextRatio;
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     fit = Math.min(width / map.width, height / map.height);
@@ -167,14 +185,15 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   }
   const view = {
     setVisualHitTest: callback => { visualHitTest = callback; },
-    setQuality: value => { quality = value === 'low' ? 'low' : 'high'; loadTerrain(); schedule(); },
-    setResourceColors: resolver => { resourceColor = resolver; schedule(); },
+    setQuality: value => { quality = ['high','medium','low'].includes(value)?value:defaultQuality; loadTerrain(); resize(); schedule(); },
+    setResourceColors: resolver => { resourceColor = resolver; countryLayer=null; schedule(); },
     getViewState: viewState,
     setViewState: saved => {
       const k = fit * saved.zoom;
       update({ k, x: width / 2 - saved.center[0] * k, y: height / 2 - saved.center[1] * k });
     },
     setPlayerCountry: id => {
+      if(player?.country.id===id)return;
       player = shapes.find(shape => shape.country.id === id) ?? null;
       canvas.dataset.playerCountryId = player?.country.id ?? '';
       schedule();
@@ -216,9 +235,11 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     },
     resize,
   };
+  const powerChanged=()=>{loadTerrain();resize();schedule();};
+  document.addEventListener('power-saving-change',powerChanged);
   const unbind = bindMapControls(canvas, view, map);
   const observer = new ResizeObserver(resize);
   observer.observe(canvas);
   resize();
-  return { ...view, destroy: () => { unbind(); observer.disconnect(); cancelAnimationFrame(frame); } };
+  return { ...view, destroy: () => { document.removeEventListener('power-saving-change',powerChanged);unbind(); observer.disconnect(); cancelAnimationFrame(frame); } };
 }

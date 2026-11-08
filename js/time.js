@@ -1,6 +1,6 @@
 export function ensureClock(state) {
   state.date.day ??= 1;
-  state.clock ??= { progress: 0, speed: 1, userPaused: false };
+  state.clock ??= { progress: 0, speed: 4, userPaused: false };
   return state.clock;
 }
 export function daysInMonth(date) { return new Date(Date.UTC(date.year, date.month, 0)).getUTCDate(); }

@@ -1,3 +1,4 @@
+import { powerSaving } from './performance.js';
 import { geoCentroid } from '../../lib/d3-7.9.0.js';
 import { takeMonthlyExports, exportVisualCount, nearestSea, seaRoute, curvedSeaPath, flightPath, pathSampler } from '../map/trade-data.js';
 import { formatMoney } from './stats.js';
@@ -8,7 +9,7 @@ export function createTradeVisuals({map,world,catalog,getState,onChange,data}) {
   const canvas=document.querySelector('#trade-canvas'),ctx=canvas.getContext('2d'),toggle=document.querySelector('#trade-animation'),status=document.querySelector('#trade-animation-status'),info=document.querySelector('#trade-info');
   if(!ctx||!data){toggle.disabled=true;status.textContent='ภาพส่งออกยังไม่พร้อม';return;}
   const [grid,ports]=data,partners=catalog.newGameCountries,highValue=new Set(['gold','rare_earths','uranium']);
-  const routeCache=new Map(),locations=new Map();let stateRef=null,vessels=[],pending=[],floats=[],frame=0,last=performance.now(),width=0,height=0,ratio=1,cap=30,average=16,slowFrames=0;
+  const routeCache=new Map(),locations=new Map();let stateRef=null,vessels=[],pending=[],floats=[],frame=0,painted=false,lastView='',lastTick=0,last=performance.now(),width=0,height=0,ratio=1,cap=12,average=16,slowFrames=0;
   let seed=crypto.getRandomValues(new Uint32Array(1))[0];const random=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/4294967296;};
   let enabled=true;try{enabled=localStorage.getItem('world-2000:trade-animation')!=='off';}catch{/* ใช้ค่าชั่วคราว */}toggle.checked=enabled;
   function location(id){
@@ -39,7 +40,7 @@ export function createTradeVisuals({map,world,catalog,getState,onChange,data}) {
     for(const item of floats){const [x,y]=project(item.point,transform);ctx.globalAlpha=Math.max(0,1-item.age/2);ctx.fillStyle='#9cf5a2';ctx.strokeStyle='#06322a';ctx.lineWidth=3;const text=`+${formatMoney(item.value)}`;ctx.strokeText(text,x,y-item.age*16);ctx.fillText(text,x,y-item.age*16);}ctx.globalAlpha=1;
   }
   function tick(now){
-    frame=0;const raw=(now-last)/1000;last=now;const state=getState();
+    frame=0;if(now-lastTick<33){frame=requestAnimationFrame(tick);return;}lastTick=now;const raw=(now-last)/1000;last=now;const state=getState();
     if(state!==stateRef){stateRef=state;vessels=[];pending=[];floats=[];info.hidden=true;}
     if(state){const entries=takeMonthlyExports(state);if(entries.length){addMonthly(entries);onChange();}
       const delta=blocked(state)?0:Math.max(0,raw)*(state.clock?.speed??1);
@@ -52,10 +53,14 @@ export function createTradeVisuals({map,world,catalog,getState,onChange,data}) {
     }
     if(canvas.dataset.vessels!==String(vessels.length))canvas.dataset.vessels=String(vessels.length);
     const caption=`ภาพจากยอดขายรายเดือน • ${vessels.length} เที่ยว • จำกัด ${cap}`;if(status.textContent!==caption)status.textContent=caption;
-    if(!document.hidden&&!document.querySelector('#map-screen').hidden)draw();
-    if(enabled)frame=requestAnimationFrame(tick);
+    const zoom=map.getViewState().zoom,view=JSON.stringify(map.getTransform());
+    const visible=!document.hidden&&!document.querySelector('#map-screen').hidden&&zoom>1.2;
+    if(visible&&((state&&!blocked(state)&&(vessels.length||floats.length))||view!==lastView)){draw();painted=true;}
+    else if(painted&&(!visible||!vessels.length&&!floats.length)){ctx.clearRect(0,0,canvas.width,canvas.height);painted=false;}
+    lastView=view;
+    if(enabled&&!powerSaving())frame=requestAnimationFrame(tick);
   }
-  function hit(x,y){if(!enabled)return false;const ship=[...vessels].reverse().find(v=>v.screen&&Math.hypot(v.screen[0]-x,v.screen[1]-y)<=22);if(!ship)return false;
+  function hit(x,y){if(!enabled||powerSaving()||map.getViewState().zoom<=1.2)return false;const ship=[...vessels].reverse().find(v=>v.screen&&Math.hypot(v.screen[0]-x,v.screen[1]-y)<=22);if(!ship)return false;
     const resource=catalog.resourceDefinitions.find(r=>r.id===ship.resourceId),destination=catalog.byId.get(ship.to);
     document.querySelector('#trade-info-text').textContent=`${ship.air?'✈️':'🚢'} ${resource.nameTh} ${ship.units} หน่วย → ${destination.nameTh} • ${formatMoney(ship.value)}${ship.air?'':` • ${location(ship.countryId).nameTh} → ${location(ship.to).nameTh}`} • ภาพประกอบยอดขายที่รับเงินแล้ว ไม่บวกเงินซ้ำ`;
     info.hidden=false;return true;
@@ -64,9 +69,15 @@ export function createTradeVisuals({map,world,catalog,getState,onChange,data}) {
   document.querySelector('#close-trade-info').addEventListener('click',()=>{info.hidden=true;});
   function resize(){const box=document.querySelector('#world-map').getBoundingClientRect();width=box.width;height=box.height;ratio=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);if(enabled)draw();}
   const observer=new ResizeObserver(resize);observer.observe(document.querySelector('#world-map'));resize();
-  toggle.addEventListener('change',()=>{enabled=toggle.checked;canvas.hidden=!enabled;cancelAnimationFrame(frame);frame=0;if(!enabled){vessels=[];pending=[];floats=[];info.hidden=true;}else{if(getState())takeMonthlyExports(getState());last=performance.now();frame=requestAnimationFrame(tick);}try{localStorage.setItem('world-2000:trade-animation',enabled?'on':'off');}catch{/* ใช้ค่าชั่วคราว */}status.textContent=enabled?'เปิดภาพส่งออก':'ปิดภาพส่งออก • ประหยัดแบต';});
-  document.querySelector('#map-quality').addEventListener('change',event=>{cap=event.target.value==='low'?12:30;vessels=vessels.slice(0,cap);pending=pending.slice(0,Math.max(0,cap-vessels.length));});
+  toggle.addEventListener('change',()=>{enabled=toggle.checked;canvas.hidden=!enabled||powerSaving();cancelAnimationFrame(frame);frame=0;if(!enabled){vessels=[];pending=[];floats=[];info.hidden=true;}else if(!powerSaving()){if(getState())takeMonthlyExports(getState());last=performance.now();frame=requestAnimationFrame(tick);}try{localStorage.setItem('world-2000:trade-animation',enabled?'on':'off');}catch{/* ใช้ค่าชั่วคราว */}status.textContent=enabled?'เปิดภาพส่งออก':'ปิดภาพส่งออก • ประหยัดแบต';});
+  document.querySelector('#map-quality').addEventListener('change',event=>{cap=event.target.value==='low'?8:12;vessels=vessels.slice(0,cap);pending=pending.slice(0,Math.max(0,cap-vessels.length));});
   document.addEventListener('visibilitychange',()=>{last=performance.now();});
-  canvas.hidden=!enabled;if(enabled)frame=requestAnimationFrame(tick);else status.textContent='ปิดภาพส่งออก • ประหยัดแบต';
-  return {destroy:()=>{cancelAnimationFrame(frame);observer.disconnect();map.setVisualHitTest(null);}};
+  function powerChanged(){
+    cancelAnimationFrame(frame);frame=0;vessels=[];pending=[];floats=[];info.hidden=true;
+    canvas.hidden=!enabled||powerSaving();if(getState())takeMonthlyExports(getState());last=performance.now();
+    if(enabled&&!powerSaving())frame=requestAnimationFrame(tick);
+  }
+  document.addEventListener('power-saving-change',powerChanged);
+  canvas.hidden=!enabled||powerSaving();if(enabled&&!powerSaving())frame=requestAnimationFrame(tick);else status.textContent='ปิดภาพส่งออก • ประหยัดแบต';
+  return {destroy:()=>{document.removeEventListener('power-saving-change',powerChanged);cancelAnimationFrame(frame);observer.disconnect();map.setVisualHitTest(null);}};
 }

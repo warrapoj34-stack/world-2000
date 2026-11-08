@@ -1,3 +1,4 @@
+import { setupPerformance } from './ui/performance.js';
 import { ensurePolicyCards } from './policies.js';
 import { loadResources } from './data/resources.js';
 import { ensureResources } from './resources.js';
@@ -25,6 +26,7 @@ import { ensureClock } from './time.js';
 import { createTimeScreen } from './ui/time-screen.js';
 
 showVersion(VERSION);
+setupPerformance();
 registerServiceWorker(showOfflineStatus);
 
 const menu = document.querySelector('#menu-screen');
@@ -104,7 +106,7 @@ async function openMap() {
   ensureProduction(activeGame); updateProduction(activeGame);
   ensurePolicyCards(activeGame,catalog.policies);
   ensureVictory(activeGame);
-  ensureClock(activeGame);
+  ensureClock(activeGame).speed = 4;
   showScreen('map');
   timeUI.refresh();
   refreshVictory();

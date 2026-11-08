@@ -1,3 +1,4 @@
+import { defaultQuality } from './performance.js';
 import { loadWorld } from '../data/world.js';
 import { createWorldMap } from '../map/renderer.js';
 import { getRelation } from '../diplomacy/relations.js';
@@ -91,6 +92,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   });
   const mode = document.querySelector('#map-mode'), legend = document.querySelector('#resource-legend');
   const quality = document.querySelector('#map-quality');
+  quality.value=defaultQuality;
   quality.addEventListener('change', () => map.setQuality(quality.value));
   const closeSettings = () => {
     settingsMenu.hidden = true;
@@ -122,10 +124,17 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   }
   mode.addEventListener('change',changeMode);
   const trade = createTradeVisuals({map,world,catalog,getState,onChange,data:tradeData});
+  let session=null;
   return {
     ...map,
     destroy: () => { trade?.destroy();map.destroy(); },
     setSession(state) {
+      if(session===state){
+        renderHUD(state,catalog);
+        if(state.selectedCountryId)renderStats(document.querySelector('#country-stats'),state.countries[state.selectedCountryId],true);
+        return;
+      }
+      session=state;
       restoring = true;
       const savedView = state.view;
       map.resize();

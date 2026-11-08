@@ -4,7 +4,7 @@ import { renderHUD } from './stats.js';
 export function createTimeScreen({ catalog, balance, getState, onMonth, onChange }) {
   const buttons = [...document.querySelectorAll('[data-time-speed]')];
   const clockLabel = document.querySelector('#time-status');
-  let previous = performance.now(), frame = 0, lastSave = 0;
+  let previous = performance.now(), frame = 0, lastSave = 0, lastUI = 0;
   function blocked() {
     return document.hidden || document.querySelector('#map-screen').hidden || Boolean(document.querySelector('dialog[open]'));
   }
@@ -12,17 +12,20 @@ export function createTimeScreen({ catalog, balance, getState, onMonth, onChange
     const state = getState(); if (!state) return;
     const clock = ensureClock(state);
     const paused = clock.userPaused || blocked() || state.economy.gameOver || state.victory?.finished;
-    clockLabel.textContent = paused ? 'หยุด' : `ความเร็ว ×${clock.speed}`;
-    for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.timeSpeed === (clock.userPaused ? 'pause' : String(clock.speed))));
+    const label=paused ? 'หยุด' : `ความเร็ว ×${clock.speed}`;
+    if(clockLabel.textContent!==label)clockLabel.textContent=label;
+    for (const button of buttons) { const pressed=String(button.dataset.timeSpeed === (clock.userPaused ? 'pause' : String(clock.speed))); if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed); }
   }
   function tick(now) {
+    if(now-lastUI<250){frame=requestAnimationFrame(tick);return;}
+    lastUI=now;
     const elapsed = Math.max(0, (now - previous) / 1000); previous = now;
     const state = getState();
     if (state && !blocked() && !ensureClock(state).userPaused && !state.economy.gameOver && !state.victory?.finished) {
-      const before = state.date.day;
+      const before = state.date.day, beforeMonth=state.date.month;
       advanceClock(state, elapsed, balance.secondsPerGameYear, onMonth);
       if (state.date.day !== before) {
-        renderHUD(state, catalog);
+        if(state.date.month===beforeMonth)renderHUD(state, catalog);
         if (now - lastSave >= 1000) { lastSave = now; onChange(); }
       }
     }
