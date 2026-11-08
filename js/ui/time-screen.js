@@ -1,10 +1,11 @@
+import { advanceNews } from '../events/news.js';
 import { advanceClock, ensureClock } from '../time.js';
 import { renderHUD } from './stats.js';
 
-export function createTimeScreen({ catalog, balance, getState, onMonth, onChange }) {
+export function createTimeScreen({ catalog, balance, getState, onMonth, onChange, onTick = ()=>{} }) {
   const buttons = [...document.querySelectorAll('[data-time-speed]')];
   const clockLabel = document.querySelector('#time-status');
-  let previous = performance.now(), frame = 0, lastSave = 0, lastUI = 0;
+  let previous = performance.now(), frame = 0, lastSave = 0, lastUI = 0, lastBar = 0;
   function blocked() {
     return document.hidden || document.querySelector('#map-screen').hidden || Boolean(document.querySelector('dialog[open]'));
   }
@@ -17,17 +18,28 @@ export function createTimeScreen({ catalog, balance, getState, onMonth, onChange
     for (const button of buttons) { const pressed=String(button.dataset.timeSpeed === (clock.userPaused ? 'pause' : String(clock.speed))); if(button.getAttribute('aria-pressed')!==pressed)button.setAttribute('aria-pressed',pressed); }
   }
   function tick(now) {
-    if(now-lastUI<250){frame=requestAnimationFrame(tick);return;}
-    lastUI=now;
+    if(now-lastBar<100){frame=requestAnimationFrame(tick);return;}
+    lastBar=now;
+
     const elapsed = Math.max(0, (now - previous) / 1000); previous = now;
     const state = getState();
     if (state && !blocked() && !ensureClock(state).userPaused && !state.economy.gameOver && !state.victory?.finished) {
-      const before = state.date.day, beforeMonth=state.date.month;
-      advanceClock(state, elapsed, balance.secondsPerGameYear, onMonth);
-      if (state.date.day !== before) {
+      const beforeMonth=state.date.month;
+      advanceClock(state, elapsed, balance.secondsPerGameMonth, onMonth);
+      advanceNews(state,elapsed*state.clock.speed);
+      if (now-lastUI>=250) {
+        lastUI=now;
         if(state.date.month===beforeMonth)renderHUD(state, catalog);
         if (now - lastSave >= 1000) { lastSave = now; onChange(); }
       }
+    }
+    if(state){
+      const progress=Math.max(0,Math.min(1,ensureClock(state).progress)),bar=document.querySelector('#month-progress');
+      const transform=`scaleX(${progress})`;
+      if(bar.style.transform!==transform)bar.style.transform=transform;
+      const track=document.querySelector('#month-track'),percent=String(Math.floor(progress*100));
+      if(track.getAttribute('aria-valuenow')!==percent)track.setAttribute('aria-valuenow',percent);
+      onTick();
     }
     refresh(); frame = requestAnimationFrame(tick);
   }

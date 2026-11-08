@@ -13,7 +13,7 @@ test('คำนวณทุก 250 มิลลิวินาทีให้เ
   function run(step){
     const state={date:{year:2000,month:1,day:1},economy:{},clock:{progress:0,speed:4,userPaused:false}};
     let months=0;
-    for(let i=0;i<Math.round(65/step);i++)advanceClock(state,step,480,()=>{
+    for(let i=0;i<Math.round(65/step);i++)advanceClock(state,step,12,()=>{
       months++;state.date.month++;if(state.date.month>12){state.date.month=1;state.date.year++;}return true;
     });
     return {state,months};
@@ -22,4 +22,14 @@ test('คำนวณทุก 250 มิลลิวินาทีให้เ
   assert.equal(batched.months,fine.months);
   assert.deepEqual(batched.state.date,fine.state.date);
   assert(Math.abs(batched.state.clock.progress-fine.state.clock.progress)<1e-9);
+});
+test('เดือนละ 12 วินาทีที่ x1 และคูณ x2/x4 รวมทั้งข้ามธันวาคมและหยุดเมื่อมีเหตุการณ์',()=>{
+  for(const speed of [1,2,4]){
+    const state={date:{year:2000,month:12,day:1},economy:{},clock:{progress:0,speed,userPaused:false}};
+    let months=0;
+    const finish=()=>{months++;state.date={year:2001,month:1,day:1};return true;};
+    advanceClock(state,6/speed,12,finish);assert.equal(months,0);assert.equal(state.clock.progress,.5);
+    advanceClock(state,6/speed,12,finish);assert.equal(months,1);assert.equal(state.clock.progress,0);assert.equal(state.date.year,2001);
+    advanceClock(state,100,12,()=>{months++;return false;});assert.equal(months,2);assert.equal(state.clock.progress,0);
+  }
 });

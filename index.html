@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./css/events.css">
   <link rel="stylesheet" href="./css/victory.css">
   <link rel="stylesheet" href="./css/time.css">
+  <link rel="stylesheet" href="./css/news.css">
   <link rel="stylesheet" href="./css/trait-map.css">
   <link rel="stylesheet" href="./css/trade.css">
   <link rel="stylesheet" href="./css/market.css">
@@ -107,9 +108,9 @@
     <header class="map-header">
       <button class="map-button back-button" id="back-to-menu" type="button">← กลับเมนู</button>
       <div class="map-heading"><h2 id="player-name">ประเทศของคุณ</h2><span>WORLD 2000</span></div>
-      <div class="time-controls"><span class="year-badge" id="game-date">1 ม.ค. 2000</span><button type="button" class="map-button" data-time-speed="pause" aria-label="หยุดเวลา">⏸</button><button type="button" class="map-button" data-time-speed="1">×1</button><button type="button" class="map-button" data-time-speed="2">×2</button><button type="button" class="map-button" data-time-speed="4">×4</button><span id="time-status">ความเร็ว ×1</span></div>
+      <div class="time-controls"><div class="month-clock"><span class="year-badge" id="game-date">1 มกราคม 2000</span><div id="month-track" role="progressbar" aria-label="ความคืบหน้าของเดือน" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="month-progress"></span></div></div><button type="button" class="map-button" data-time-speed="pause" aria-label="หยุดเวลา">⏸</button><button type="button" class="map-button" data-time-speed="1">×1</button><button type="button" class="map-button" data-time-speed="2">×2</button><button type="button" class="map-button" data-time-speed="4">×4</button><span id="time-status">ความเร็ว ×4</span><button type="button" class="map-button victory-chip" id="victory-toggle" aria-label="รายละเอียดเป้าหมาย"><span aria-hidden="true">🏆</span> <span id="victory-progress-text">0%</span><span id="victory-name" hidden>เป้าหมาย</span><span id="victory-progress-detail" hidden></span></button></div>
     </header>
-    <button type="button" class="victory-bar" id="victory-toggle"><span id="victory-name">เป้าหมาย</span><progress id="victory-progress" max="100" value="0"></progress><span id="victory-progress-text">0%</span><span id="victory-progress-detail" hidden></span></button>
+    <button type="button" id="news-ticker" aria-label="เปิดประวัติข่าว 20 รายการล่าสุด">📰 ยังไม่มีข่าวใหม่</button>
     <div class="country-hud" aria-label="สถานะประเทศของคุณ">
       <button type="button" class="hud-button" data-stat="treasury" aria-label="อธิบายเงินที่มี"><span class="hud-icon" aria-hidden="true">💰</span><span><span class="hud-label">เงินที่มี</span><strong id="hud-treasury">—</strong><small id="hud-net"></small></span></button>
       <button type="button" class="hud-button" data-stat="happiness" aria-label="อธิบายความสุข"><span class="hud-icon" aria-hidden="true">😊</span><span><span class="hud-label">ความสุข</span><strong id="hud-happiness">—</strong></span></button>
@@ -177,6 +178,7 @@
 <button id="open-policy" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🎚️</span>นโยบาย</button></nav>
   </main>
   <dialog id="resource-dialog" class="economy-dialog" aria-labelledby="resource-title"><header><h2 id="resource-title">ทรัพยากรของประเทศ</h2><button id="close-resources" class="map-button" type="button">กลับแผนที่</button></header><section id="resource-content"></section></dialog>
+  <dialog id="news-dialog" class="economy-dialog" aria-labelledby="news-title"><header><h2 id="news-title">ข่าวล่าสุด 20 รายการ</h2><button id="close-news" class="map-button" type="button">กลับแผนที่</button></header><ol id="news-history"></ol></dialog>
   <dialog id="market-dialog" class="economy-dialog" aria-labelledby="market-title"><header><h2 id="market-title">ตลาดโลก</h2><button id="close-market" class="map-button" type="button">กลับแผนที่</button></header><section id="market-content"></section></dialog>
   <dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title"><div id="event-icon" class="event-icon"></div><h2 id="event-title"></h2><p id="event-story"></p><div id="event-options"></div><p id="event-summary" hidden></p><button id="event-next" class="map-button" type="button" hidden>เล่นต่อ</button></dialog>
   <dialog id="help-dialog" class="economy-dialog help-dialog" aria-labelledby="help-title"><header><h2 id="help-title"></h2><button id="close-help" class="map-button" type="button">กลับแผนที่</button></header><section id="help-content"></section></dialog>

@@ -1,3 +1,4 @@
+import { addNews } from './events/news.js';
 import { RESOURCE_IDS } from './data/resource-ids.js';
 import { ensureMarket, marketPriceMillions, exportCapacity } from './market.js';
 import { recordExport } from './map/trade-data.js';
@@ -66,6 +67,7 @@ export function processAutoExports(state,catalog,balance,production,stock) {
     if(value!==null){income+=value;items.push({resourceId:id,units:allocated[id],value});}
   }
   market.lastExports={month:market.lastMonth,units:capacity.units-available,income,capacity:capacity.units,mode:capacity.mode,items};
+  if(income>0)addNews(state,{id:`export:${market.lastMonth}`,icon:'🚢',text:`ส่งออกสำเร็จ ${capacity.units-available} หน่วย ได้เงิน ${Math.round(income*1000)} ล้าน`});
   return {stats,income};
 }
 export function topResources(levels, definitions) {

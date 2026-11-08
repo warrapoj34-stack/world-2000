@@ -1,3 +1,4 @@
+import { validNews } from './events/news.js';
 import { RESOURCE_IDS } from './resources.js';
 import { STAT_KEYS, validStats } from './data/countries.js';
 import { validPolicy } from './economy.js';
@@ -45,7 +46,7 @@ export function validGame(state, catalog) {
     && validEconomy(state.economy)
     && validProduction(state.production, catalog)
     && validTraitState(state.traitState,catalog)
-    && validMarket(state.market) && validMarketEffects(state.marketEffects)
+    && validNews(state.news) && validMarket(state.market) && validMarketEffects(state.marketEffects)
     && Number.isInteger(state.date?.year) && state.date.year >= 2000 && state.date.year <= 9999
     && Number.isInteger(state.date.month) && state.date.month >= 1 && state.date.month <= 12
     && (state.date.day === undefined || (Number.isInteger(state.date.day) && state.date.day >= 1 && state.date.day <= 31))

@@ -1,3 +1,4 @@
+import { createNewsScreen } from './ui/news-screen.js';
 import { setupPerformance } from './ui/performance.js';
 import { ensurePolicyCards } from './policies.js';
 import { loadResources } from './data/resources.js';
@@ -39,7 +40,7 @@ const newButton = document.querySelector('#new-game');
 const continueButton = document.querySelector('#continue-game');
 const feedback = document.querySelector('#menu-feedback');
 let catalog, startUI, activeGame, activeDraft;
-let balance, economyUI, eventUI, timeUI;
+let balance, economyUI, eventUI, timeUI, newsUI;
 let map = null, pendingMap = null, saveTimer = 0;
 
 function showScreen(target) {
@@ -52,8 +53,8 @@ function showScreen(target) {
 function refreshVictory() {
   if (!activeGame) return;
   const victory = ensureVictory(activeGame), progress = victoryProgress(activeGame, catalog);
+  document.querySelector('#victory-toggle').setAttribute('aria-label',`เป้าหมาย ${PATHS[victory.path].name} ${Math.floor(progress.percent)}%`);
   document.querySelector('#victory-name').textContent = PATHS[victory.path].name;
-  document.querySelector('#victory-progress').value = progress.percent;
   document.querySelector('#victory-progress-text').textContent = `${Math.floor(progress.percent)}%`;
   document.querySelector('#victory-progress-detail').textContent = progress.detail;
 }
@@ -108,7 +109,7 @@ async function openMap() {
   ensureVictory(activeGame);
   ensureClock(activeGame).speed = 4;
   showScreen('map');
-  timeUI.refresh();
+  timeUI.refresh();newsUI.refresh();
   refreshVictory();
   economyUI.refresh();
   eventUI.resume();
@@ -173,7 +174,8 @@ async function boot() {
       onChange: persistGame, onRefresh: () => { map?.setSession(activeGame); refreshVictory(); }, onMenu: goMenu });
     eventUI = createEventScreen({ catalog, getState: () => activeGame, onChange: persistGame,
       onRefresh: () => map?.setSession(activeGame), onContinue: () => timeUI.refresh() });
-    timeUI = createTimeScreen({ catalog, balance, getState: () => activeGame, onChange: scheduleSave,
+    newsUI = createNewsScreen(()=>activeGame);
+    timeUI = createTimeScreen({ catalog, balance, getState: () => activeGame, onChange: scheduleSave, onTick:()=>newsUI.refresh(),
       onMonth: () => {
         economyUI.finishMonth();
         if (!document.querySelector('dialog[open]') && !activeGame.economy.gameOver && !activeGame.victory.finished) eventUI.monthly();

@@ -1,14 +1,14 @@
 export function ensureClock(state) {
   state.date.day ??= 1;
-  state.clock ??= { progress: 0, speed: 4, userPaused: false };
+  state.clock ??= { progress: (state.date.day-1)/daysInMonth(state.date), speed: 4, userPaused: false };
   return state.clock;
 }
 export function daysInMonth(date) { return new Date(Date.UTC(date.year, date.month, 0)).getUTCDate(); }
-export function advanceClock(state, elapsedSeconds, secondsPerGameYear, onMonth) {
+export function advanceClock(state, elapsedSeconds, secondsPerGameMonth, onMonth) {
   const clock = ensureClock(state);
-  clock.progress += elapsedSeconds * clock.speed * 12 / secondsPerGameYear;
-  while (clock.progress >= 1) {
-    clock.progress -= 1;
+  clock.progress += elapsedSeconds * clock.speed / secondsPerGameMonth;
+  while (clock.progress >= 1-1e-9) {
+    clock.progress = Math.max(0,clock.progress-1);
     const keepGoing = onMonth();
     if (keepGoing === false || state.economy.gameOver || state.victory?.finished || state.events?.pending) {
       clock.progress = 0;

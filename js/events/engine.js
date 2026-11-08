@@ -1,3 +1,4 @@
+import { addNews } from './news.js';
 const clamp = (value, max = 100) => Math.max(0, Math.min(max, value));
 
 export function ensureEvents(state) {
@@ -27,6 +28,7 @@ export function drawEvent(state, catalog, random = Math.random) {
   if (!pool.length) return null;
   const selected = pool[Math.min(pool.length - 1, Math.floor(random() * pool.length))];
   events.pending = selected.id;
+  addNews(state,{id:`event:${selected.id}:${state.date.year}:${state.date.month}`,icon:selected.icon,text:selected.title});
   addMarketEffects(state,selected.marketEffects,`event:${selected.id}`);
   return selected;
 }

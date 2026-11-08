@@ -1,3 +1,4 @@
+import { addNews } from '../events/news.js';
 export const OUTPUTS = ['tanks','ships','aircraft','warheads','cargoShips'];
 export const gameDay = state => Math.floor(Date.UTC(state.date.year, state.date.month - 1, state.date.day ?? 1) / 86400000);
 export function ensureProduction(state) {
@@ -44,6 +45,7 @@ export function updateProduction(state) {
     if (day >= job.endDay) {
       const units = state.countries[job.countryId].units;
       units[job.unit] = (units[job.unit] ?? 0) + 1; completed++;
+      if(job.countryId===state.playerCountryId)addNews(state,{id:`production:${job.id}`,icon:job.icon,text:`ผลิต${job.nameTh}เสร็จแล้ว 1 หน่วย`});
     } else remaining.push(job);
   }
   state.production.queue = remaining;

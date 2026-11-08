@@ -11,7 +11,7 @@ export const formatPopulation = value => value > 0 && value < 1
   ? `${formatNumber(Math.round(value * 1000000))} คน` : `${formatNumber(value)} ล้านคน`;
 export const governmentName = country => country.governmentLabelTh ?? GOVERNMENTS[country.government];
 export const monthName = date => `${['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'][date.month - 1]} ${date.year}`;
-export const fullDateName = date => `${Math.floor(date.day ?? 1)} ${monthName(date)}`;
+export const fullDateName = date => `${Math.floor(date.day ?? 1)} ${['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'][date.month-1]} ${date.year}`;
 
 export function renderStats(container, stats, compact = false) {
   const rows = [
