@@ -2,7 +2,7 @@ import { defaultQuality, powerSaving } from '../ui/performance.js';
 import { geoEquirectangular, geoPath, geoGraticule10, rgb } from '../../lib/d3-7.9.0.js';
 import { bindMapControls } from './controls.js';
 
-export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {}, onProvinceSelect = () => {}, onProvinceMarkerPosition = () => {} }) {
+export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {}, onProvinceSelect = () => {}, onProvinceMarkerPosition = () => {}, onWarOverlay = () => {} }) {
   const context = canvas.getContext('2d', { alpha: false });
   if (!context) throw new Error('เบราว์เซอร์นี้ไม่รองรับแผนที่ Canvas');
   const { map } = world.settings;
@@ -27,6 +27,16 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let provinceMarker=null;
   let provinceShapes=[],provinceMesh=null,selectedProvince=null;
   let ownerOf=p=>p.owner,ownerColor=()=>null,provinceCountry=()=>null,ownerRevision=-1,provinceAlert=null;
+  let warModels=[];
+  const warView=()=>({x:transform.x,y:transform.y,k:transform.k,width,height,zoom:transform.k/fit});
+  function updateWarOverlay(){
+    const byId=new Map(provinceShapes.map(p=>[p.feature.id,p]));
+    const wars=warModels.map(w=>{const target=byId.get(w.target),sources=w.from.map(id=>byId.get(id)).filter(Boolean);let arrow=null;
+      if(target&&sources.length){sources.sort((a,b)=>Math.hypot(a.label[0]-target.label[0],a.label[1]-target.label[1])-Math.hypot(b.label[0]-target.label[0],b.label[1]-target.label[1]));arrow=[sources[0].label,target.label];}
+      return {id:w.id,path:w.fronts.map(id=>byId.get(id)?.pathString??'').join(''),arrow};
+    });
+    onWarOverlay({wars,view:warView()});
+  }
   // รวมเส้นลงชั้นสีเดิม แท็บเล็ตจึงไม่ต้องวาดภาพเพิ่มระหว่างเลื่อน
   function paintProvinces(ctx,k){
     ctx.save();
@@ -184,6 +194,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
     } else onPlayerPosition(null);
     if(provinceAlert){const [mx,my]=provinceAlert.label,px=mx*k+x,py=my*k+y;onProvinceMarkerPosition({x:px,y:py,visible:px>=0&&px<=width&&py>=0&&py<=height});}
     else onProvinceMarkerPosition(null);
+    if(warModels.length)onWarOverlay({view:warView()});
   }
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -213,11 +224,12 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   }
   const view = {
     setProvinceFeatures: features=>{
-      provinceShapes=features.map(f=>{const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;const largest=polygons.map(coordinates=>({type:'Polygon',coordinates})).sort((a,b)=>path.area(b)-path.area(a))[0];return {feature:f,path:new Path2D(path(f)),bounds:path.bounds(f),label:path.centroid(largest)};});
+      provinceShapes=features.map(f=>{const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;const largest=polygons.map(coordinates=>({type:'Polygon',coordinates})).sort((a,b)=>path.area(b)-path.area(a))[0],pathString=path(f);return {feature:f,pathString,path:new Path2D(pathString),bounds:path.bounds(f),label:path.centroid(largest)};});
       provinceMesh=new Path2D();
       if(typeof provinceMesh.addPath==='function')for(const p of provinceShapes)provinceMesh.addPath(p.path);else provinceMesh=null;
       selectedProvince=null;provinceMarker=null;countryLayer=null;canvas.dataset.provinceCount=String(features.length);onProvinceSelect(null);schedule();
     },
+    setWarFronts:models=>{warModels=models;updateWarOverlay();schedule();},
     setProvinceOwners:(revision,resolve,color,country=()=>null)=>{ownerOf=resolve;ownerColor=color;provinceCountry=country;if(ownerRevision===revision)return;ownerRevision=revision;countryLayer=null;schedule();},
     setProvinceAlert:id=>{const shape=provinceShapes.find(p=>p.feature.id===id)??null;if(provinceAlert===shape)return;provinceAlert=shape;schedule();},
     focusProvince:id=>{const shape=provinceShapes.find(p=>p.feature.id===id);if(shape)view.focusPoint(projection.invert(shape.label),shape.feature.properties.nameTh,id);},

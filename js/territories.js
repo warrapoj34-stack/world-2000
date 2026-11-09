@@ -1,3 +1,4 @@
+import { occupationFactor } from './war/occupation.js';
 export const territoryMonth = state => state.date.year * 12 + state.date.month - 1;
 export const provinceOwner = (state, province) => state.territories?.owners[province.id] ?? province.owner;
 export function ensureTerritories(state) {
@@ -26,7 +27,7 @@ export function territorySummary(state, catalog, countryId = state.playerCountry
 }
 export function territorySources(state, catalog, countryId) {
   const result = new Map([[countryId, catalog.territoryData?.countries[countryId] ? 0 : 1]]);
-  for (const p of catalog.territoryById?.values() ?? []) if (provinceOwner(state,p) === countryId) result.set(p.owner,(result.get(p.owner) ?? 0) + p.share / 100);
+  for (const p of catalog.territoryById?.values() ?? []) if (provinceOwner(state,p) === countryId) result.set(p.owner,(result.get(p.owner) ?? 0) + p.share / 100*occupationFactor(state,p.id,countryId));
   return result;
 }
 export function territoryIncomeMultiplier(state,catalog,countryId) {
@@ -70,7 +71,7 @@ export function distributeTerritoryProduction(state,catalog,base) {
     if (!rows) owners.set(source,1);
     else for (const p of rows) {
       const factor = (state.provinceEvents?.effects ?? []).filter(e=>e.provinceId===p.id && e.untilMonth>month).reduce((n,e)=>n*e.production,1);
-      const owner = provinceOwner(state,p); owners.set(owner,(owners.get(owner)??0)+p.share/100*factor);
+      const owner = provinceOwner(state,p); owners.set(owner,(owners.get(owner)??0)+p.share/100*factor*occupationFactor(state,p.id,owner));
     }
     const totalShare = [...owners.values()].reduce((a,b)=>a+b,0);
     for (const [resource,amount] of Object.entries(production)) {

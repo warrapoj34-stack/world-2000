@@ -42,7 +42,7 @@ for f in features:
         foreign.append(shapely.make_valid(shape(f['geometry'])));foreign_owners.append(code)
 for id,g in full.items():foreign.append(g);foreign_owners.append(metadata[id]['owner'])
 foreign_tree=STRtree(foreign)
-cross={id:[] for id in full};ids=list(full);province_tree=STRtree(list(full.values()))
+cross={id:[] for id in full};all_neighbors={id:[] for id in full};ids=list(full);province_tree=STRtree(list(full.values()))
 def shares_line(a,b):
     return a.boundary.intersection(b.boundary).length>.002 or a.boundary.intersection(b.buffer(.002)).length>.012
 for id,g in full.items():
@@ -53,12 +53,17 @@ for id,g in full.items():
     p['coastal']=len(coast_tree.query(g.buffer(.01),predicate='intersects'))>0
     for j in province_tree.query(g.buffer(.002),predicate='intersects'):
         other=ids[j]
-        if metadata[other]['owner']!=p['owner'] and shares_line(g,full[other]):cross[id].append(other)
+        if other!=id and shares_line(g,full[other]):
+            all_neighbors[id].append(other)
+            if metadata[other]['owner']!=p['owner']:cross[id].append(other)
 index['adjacency']={id:sorted(set(others)) for id,others in cross.items() if others}
 # กราฟต้องสมมาตร ไม่ให้ทิศทางโจมตีขึ้นกับลำดับข้อมูล
 for id,neighbors in list(index['adjacency'].items()):
     for other in neighbors:index['adjacency'].setdefault(other,[]).append(id)
 index['adjacency']={id:sorted(set(rows)) for id,rows in index['adjacency'].items()}
+for id,neighbors in list(all_neighbors.items()):
+    for other in list(neighbors):all_neighbors[other].append(id)
+index['provinceNeighbors']={id:sorted(set(rows)) for id,rows in all_neighbors.items()}
 def rounded(v):
     if isinstance(v,(tuple,list)):return [rounded(x) for x in v]
     if isinstance(v,float):return round(v,4)

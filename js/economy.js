@@ -1,4 +1,5 @@
 import { territoryIncomeMultiplier } from './territories.js';
+import { processWarMonth } from './war/engine.js';
 import { traitModifiers } from './traits.js';
 import { ensurePolicyCards, policyModifiers } from './policies.js';
 import { resourceEffects, processAutoExports, allCountryResourceProduction } from './resources.js';
@@ -108,8 +109,9 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
   economy.months ??= economy.turns * 3;
   if (catalog.policies) ensurePolicyCards(state, catalog.policies);
   if (economy.gameOver) return null;
-  const before = state.countries[state.playerCountryId];
+  const before = structuredClone(state.countries[state.playerCountryId]);
   if (defeatReason(before, balance)) { economy.gameOver = defeatReason(before, balance); return null; }
+  const warResult=processWarMonth(state,catalog,balance,random);
   advanceMarketMonth(state,balance,random);
   const territoryIncome = Object.fromEntries(catalog.countries.map(c=>[c.id,territoryIncomeMultiplier(state,catalog,c.id)]));
   const production = catalog.resourceLevels ? allCountryResourceProduction(state,catalog,balance) : null;
@@ -133,7 +135,9 @@ export function advanceMonth(state, catalog, balance, random = Math.random) {
     state.countries[country.id] = outcome.stats;
     if (country.id === state.playerCountryId) {
       // รวมยอดรายงานเท่านั้น เงินเข้าจากการขายแล้ว
-      outcome.fiscal.net+=exportIncome;outcome.fiscal.resourceIncome=exportIncome;
+      outcome.fiscal.warSpending=warResult.costs[state.playerCountryId]??0;
+      outcome.fiscal.borrowed+=warResult.borrowed[state.playerCountryId]??0;
+      outcome.fiscal.net+=exportIncome-outcome.fiscal.warSpending;outcome.fiscal.resourceIncome=exportIncome;
       result = outcome;
     }
   }

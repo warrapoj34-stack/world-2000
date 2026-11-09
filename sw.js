@@ -3,6 +3,7 @@ import { VERSION, CACHE_REVISION } from './js/version.js';
 const CACHE_PREFIX = `world-2000:${self.registration.scope}:`;
 const CACHE_NAME = `${CACHE_PREFIX}${VERSION}:${CACHE_REVISION}`;
 const APP_SHELL = [
+  './js/war/engine.js', './js/war/occupation.js', './js/war/validation.js', './js/ui/war-screen.js', './js/ui/war-map.js', './css/war.css',
   './data/TERRITORY_LICENSES.html', './data/provinces/index.json', './js/data/territories.js', './js/territories.js', './data/events-province.json', './js/events/province-events.js', './js/ui/territory-events.js', './css/territories.css',
   './js/data/starting.js', './js/ui/country-cards.js', './css/country-cards.css',
   './js/events/news.js', './js/ui/news-screen.js', './css/news.css',

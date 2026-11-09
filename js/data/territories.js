@@ -11,6 +11,7 @@ export async function loadTerritories(catalog) {
     }
   }
   for(const [id,neighbors]of Object.entries(data.adjacency??{}))if(!byId.has(id)||neighbors.some(other=>!byId.has(other)||byId.get(other).owner===byId.get(id).owner||!data.adjacency[other]?.includes(id)))throw new Error('ข้อมูลจังหวัดชายแดนไม่ถูกต้อง');
+  for(const [id,neighbors]of Object.entries(data.provinceNeighbors??{}))if(!byId.has(id)||neighbors.some(other=>other===id||!byId.has(other)||!data.provinceNeighbors[other]?.includes(id)))throw new Error('ข้อมูลจังหวัดติดกันไม่ถูกต้อง');
   catalog.territoryData=data; catalog.territoryById=byId; catalog.territoryMaps=new Map();
 }
 export async function loadTerritoryMaps(state,catalog,{opponents=[],includeNeighbors=true}={}) {

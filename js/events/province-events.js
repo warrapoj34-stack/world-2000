@@ -58,6 +58,7 @@ export const provinceEventCost=(state,option)=>option.cost?Math.max(.001,state.c
 export function chooseProvinceEvent(state,catalog,balance,optionId) {
   const data=ensureProvinceEvents(state),pending=data.pending,event=catalog.provinceEvents.events.find(e=>e.id===pending?.eventId),option=event?.options.find(o=>o.id===optionId);
   if(!option)return null;
+  if(option.effects.war&&!state.warfare?.wars.some(w=>w.enemy===pending.claimant&&w.target===pending.provinceId))return null;
   const p=catalog.territoryById.get(pending.provinceId),stats=state.countries[state.playerCountryId],cost=provinceEventCost(state,option);
   if(provinceOwner(state,p)!==state.playerCountryId||stats.treasury+1e-9<cost)return null;
   stats.treasury=Math.max(0,stats.treasury-cost);

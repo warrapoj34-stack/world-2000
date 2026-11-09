@@ -1,6 +1,7 @@
 import { drawProvinceEvent,chooseProvinceEvent,provinceEventCost } from '../events/province-events.js';
 import { formatMoney } from './stats.js';
-export function createTerritoryEvents({catalog,balance,getState,onChange,onRefresh,onFocus}) {
+import { warEligibility } from '../war/engine.js';
+export function createTerritoryEvents({catalog,balance,getState,onChange,onRefresh,onFocus,onForce}) {
   const dialog=document.querySelector('#territory-event-dialog'),body=document.querySelector('#territory-event-content');
   function position(){const rect=document.querySelector('#world-map').getBoundingClientRect(),top=Math.max(12,rect.top+8);dialog.style.top=top+'px';dialog.style.maxHeight=Math.max(200,Math.min(rect.height-16,innerHeight-top-12))+'px';}
   window.addEventListener('resize',()=>{if(dialog.open)position();});
@@ -17,6 +18,7 @@ export function createTerritoryEvents({catalog,balance,getState,onChange,onRefre
       const effect=[cost?`💰 −${formatMoney(cost)}`:'ไม่เสียเงิน',e.happiness?`😊 ${e.happiness>0?'+':''}${e.happiness}`:'',e.resource?`⛏️ +${e.resource}`:'',e.production?`ผลผลิตพื้นที่ −${Math.round((1-e.production)*100)}% ${e.durationMonths} เดือน`:'',e.cede?'🚩 โอนดินแดนให้เพื่อนบ้าน':'',e.unrest?'⚠️ เสี่ยงแยกตัวถ้าทิ้งไว้หลายเดือน':''].filter(Boolean).join(' • ');
       const label=document.createElement('strong');label.textContent=option.text;const detail=document.createElement('span');detail.textContent=effect;b.append(label,detail);
       b.disabled=state.countries[state.playerCountryId].treasury+1e-9<cost;
+      if(e.war){const eligibility=warEligibility(state,catalog,pending.claimant,balance),existing=state.warfare?.wars.some(w=>w.enemy===pending.claimant);b.disabled=!existing&&!eligibility.ok;detail.textContent=b.disabled?eligibility.reason:'เริ่มสงครามและป้องกันจังหวัดนี้ • ต้องยืนยัน 2 ขั้น';b.onclick=()=>onForce?.(pending,()=>{if(chooseProvinceEvent(state,catalog,balance,option.id)){dialog.close();onChange();onRefresh();}});body.append(b);continue;}
       if(b.disabled)detail.textContent+=' • เงินไม่พอ';
       b.onclick=()=>{if(chooseProvinceEvent(state,catalog,balance,option.id)){onChange();onRefresh();dialog.close();}};body.append(b);
     }

@@ -1,2 +1,2 @@
-export const VERSION = '0.10.0';
-export const CACHE_REVISION = 'territory-borders-1';
+export const VERSION = '0.10.1';
+export const CACHE_REVISION = 'province-warfare-1';

@@ -68,9 +68,9 @@ test('เหตุการณ์เหมาะกับพื้นที่: 
  s.date.month=8;const pool=eligibleProvinceEvents(s,c);assert(pool.some(x=>x.event.id==='thai-central-flood'&&x.province.id==='TH-14'));assert(!pool.some(x=>x.event.id==='japan-quake'));assert(pool.filter(x=>x.event.id==='border-claim').every(x=>x.province.borders.length));assert(!pool.some(x=>x.event.id==='border-claim'&&x.province.id==='TH-14'));
  const japan=setup('JPN');assert(eligibleProvinceEvents(japan.s,japan.c).some(x=>x.event.id==='japan-quake'));assert(!eligibleProvinceEvents(japan.s,japan.c).some(x=>x.event.id==='border-claim'));
 });
-test('ข้อพิพาทมี 3 ตัวเลือกจริง ใช้กำลังยังปิด โอนได้จริง และไม่เกิดซ้ำภายในเดือนแม้เซฟ/โหลด',()=>{
+test('ข้อพิพาทเปิดใช้กำลังได้หลังยืนยันสงครามเท่านั้น โอนได้จริง และไม่เกิดซ้ำในเดือน',()=>{
  const {s,c}=setup();c.provinceEvents.chance=1;c.provinceEvents.events=c.provinceEvents.events.filter(e=>e.id==='border-claim');
- const pending=drawProvinceEvent(s,c,()=>0),p=c.territoryById.get(pending.provinceId);assert(p.borders.includes(pending.claimant));assert.equal(c.provinceEvents.events[0].options.length,3);assert(c.provinceEvents.events[0].disabledChoice.includes('รอบสงคราม'));assert.equal(chooseProvinceEvent(s,c,balance,'force'),null);
+ const pending=drawProvinceEvent(s,c,()=>0),p=c.territoryById.get(pending.provinceId);assert(p.borders.includes(pending.claimant));assert.equal(c.provinceEvents.events[0].options.length,4);assert(!c.provinceEvents.events[0].disabledChoice);assert.equal(chooseProvinceEvent(s,c,balance,'force'),null);
  const entry=chooseProvinceEvent(s,c,balance,'cede');assert(entry);assert.equal(provinceOwner(s,p),pending.claimant);assert(s.news.history.some(n=>n.provinceId===p.id));assert.equal(drawProvinceEvent(s,c,()=>0),null);
  const store=storage();assert(writeSave('game',s,c,store).ok);const loaded=readSave('game',c,store);assert.equal(loaded.status,'valid');assert.equal(provinceOwner(loaded.state,p),pending.claimant);assert.equal(drawProvinceEvent(loaded.state,c,()=>0),null);
 });

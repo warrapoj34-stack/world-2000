@@ -1,5 +1,7 @@
 import { defaultQuality } from './performance.js';
 import { provinceOwner,territorySummary } from '../territories.js';
+import { warOverlayState,warTargets } from '../war/engine.js';
+import { createWarMapOverlay } from './war-map.js';
 import { loadWorld } from '../data/world.js';
 import { createWorldMap } from '../map/renderer.js';
 import { getRelation } from '../diplomacy/relations.js';
@@ -7,7 +9,7 @@ import { renderStats, renderHUD, governmentName } from './stats.js';
 import { topResources, mapResourceLevel, RESOURCE_COLORS } from '../resources.js';
 import { loadTradeVisualData, createTradeVisuals } from './trade-visuals.js';
 
-export async function initializeMapScreen({ catalog, getState, onChange }) {
+export async function initializeMapScreen({ catalog, balance, getState, onChange }) {
   const [world,tradeData] = await Promise.all([loadWorld(),loadTradeVisualData().catch(()=>null)]);
   if (world.countries.some(country => !catalog.byMapId.has(country.id))) throw new Error('ข้อมูลประเทศบนแผนที่ไม่ครบ');
   const picker = document.querySelector('#country-picker');
@@ -23,6 +25,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   const qualityToggle = document.querySelector('#toggle-map-quality');
   const settingsMenu = document.querySelector('#map-settings-menu');
   let restoring = true;
+  const warOverlay=createWarMapOverlay(document.querySelector('#war-map-overlay'));
   let selectedProvince=null;
   function renderProvinceCard(province){
     selectedProvince=province;const card=document.querySelector('#province-map-card');card.hidden=!province;if(!province)return;
@@ -30,6 +33,9 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
     const owner=provinceOwner(getState(),province),resource=catalog.resourceDefinitions.find(r=>r.id===province.resourceId);
     card.dataset.owner=owner;
     document.querySelector('#province-map-info').textContent=`ผู้ครอง: ${catalog.byId.get(owner).nameTh} • ${resource?resource.icon+' '+resource.nameTh:'ไม่มีทรัพยากรเด่นที่ระบุ'}`;
+    const s=getState(),war=s.warfare?.wars.find(w=>w.enemy===owner),targetButton=document.querySelector('#war-target-province');
+    targetButton.hidden=!war||!warTargets(s,catalog,s.playerCountryId,owner,balance).some(t=>t.province.id===province.id);
+    targetButton.onclick=()=>document.dispatchEvent(new CustomEvent('war-province-target',{detail:province.id}));
   }
   const map = createWorldMap(document.querySelector('#world-map'), world, {
     onSelect(country) {
@@ -62,7 +68,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       stats.hidden = relation.hidden = !record;
       if (record && state) {
         renderStats(stats, state.countries[record.id], true);
-        const friendship = getRelation(catalog, state.playerCountryId, record.id);
+        const friendship = getRelation(catalog, state.playerCountryId, record.id,state);
         relation.dataset.value = friendship.value;
         relation.className = friendship.value < -20 ? 'relation negative' : friendship.value > 20 ? 'relation positive' : 'relation';
         document.querySelector('#relation-label').textContent = record.id === state.playerCountryId
@@ -73,8 +79,10 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
         state.selectedCountryId = record?.id ?? null;
         onChange();
       }
+      document.dispatchEvent(new CustomEvent('war-country',{detail:record?.id??null}));
     },
     onProvinceSelect:renderProvinceCard,
+    onWarOverlay:warOverlay.update,
     onProvinceMarkerPosition(point){const marker=document.querySelector('#territory-alert');marker.hidden=!point?.visible;if(point){marker.style.left=point.x+'px';marker.style.top=point.y+'px';}},
     onZoom(zoom) {
       if(zoom<3)document.querySelector('#province-map-card').hidden=true;
@@ -139,21 +147,26 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   }
   mode.addEventListener('change',changeMode);
   const trade = createTradeVisuals({map,world,catalog,getState,onChange,data:tradeData});
-  let session=null;
+  let session=null,featureSet=null,warRevision=-1;
   return {
     ...map,
     destroy: () => { trade?.destroy();map.destroy(); },
     setSession(state) {
+      const changedFeatures=featureSet!==catalog.territoryFeatures,newSession=session!==state;
+      if(changedFeatures){featureSet=catalog.territoryFeatures;map.setProvinceFeatures(featureSet??[]);}
+      if(changedFeatures||newSession||warRevision!==(state.warfare?.revision??0)){warRevision=state.warfare?.revision??0;map.setWarFronts(warOverlayState(state,catalog,balance));}
       map.setProvinceOwners(state.territories?.revision??0,p=>provinceOwner(state,p),id=>world.countries.find(c=>c.id===catalog.byId.get(id)?.mapId)?.properties.color,p=>world.countries.find(c=>c.id===catalog.byId.get(provinceOwner(state,p))?.mapId));
       if(selectedProvince)renderProvinceCard(selectedProvince);
       if(session===state){
         map.setProvinceAlert(state.provinceEvents?.pending?.provinceId);
         renderHUD(state,catalog);
-        if(state.selectedCountryId){renderStats(document.querySelector('#country-stats'),state.countries[state.selectedCountryId],true);const t=territorySummary(state,catalog,state.selectedCountryId),label=document.querySelector('#country-territory');label.hidden=!t.total&&!t.acquired;label.textContent=`ดินแดน ${t.held}/${t.total} ${t.wholeCountry?'หน่วย':'จังหวัด'} (${Math.round(t.percent)}%)`;}
+        if(state.selectedCountryId){renderStats(document.querySelector('#country-stats'),state.countries[state.selectedCountryId],true);const t=territorySummary(state,catalog,state.selectedCountryId),label=document.querySelector('#country-territory');label.hidden=!t.total&&!t.acquired;label.textContent=`ดินแดน ${t.held}/${t.total} ${t.wholeCountry?'หน่วย':'จังหวัด'} (${Math.round(t.percent)}%)`;
+          const friendship=getRelation(catalog,state.playerCountryId,state.selectedCountryId,state),relation=document.querySelector('#country-relation');relation.dataset.value=friendship.value;relation.className=friendship.value < -20?'relation negative':friendship.value>20?'relation positive':'relation';
+          document.querySelector('#relation-label').textContent=state.selectedCountryId===state.playerCountryId?'ประเทศของคุณ':`ความสัมพันธ์: ${friendship.value>0?'+':''}${friendship.value} · ${friendship.label}`;document.querySelector('#relation-reason').textContent=friendship.reasonTh;
+        }
         return;
       }
       session=state;
-      map.setProvinceFeatures(catalog.territoryFeatures??[]);
       map.setProvinceAlert(state.provinceEvents?.pending?.provinceId);
       restoring = true;
       const savedView = state.view;

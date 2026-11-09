@@ -1,3 +1,5 @@
+import { ensureWarfare,warOpponents } from './war/engine.js';
+import { createWarScreen } from './ui/war-screen.js';
 import { loadTerritories,loadTerritoryMaps } from './data/territories.js';
 import { ensureTerritories } from './territories.js';
 import { createTerritoryEvents } from './ui/territory-events.js';
@@ -43,7 +45,7 @@ const newButton = document.querySelector('#new-game');
 const continueButton = document.querySelector('#continue-game');
 const feedback = document.querySelector('#menu-feedback');
 let catalog, startUI, activeGame, activeDraft;
-let balance, economyUI, eventUI, territoryUI, timeUI, newsUI;
+let balance, economyUI, eventUI, territoryUI, timeUI, newsUI,warUI;
 let map = null, pendingMap = null, saveTimer = 0;
 
 function showScreen(target) {
@@ -102,11 +104,13 @@ function goMenu() {
   newButton.focus({ preventScroll: true });
 }
 
+function refreshGameViews(){if(!activeGame)return;map?.setSession(activeGame);refreshVictory();newsUI?.refresh();warUI?.refresh();}
+function resumePending(){if(!activeGame||document.querySelector('dialog[open]'))return;if(!warUI?.resume()&&!territoryUI?.resume())eventUI?.resume();}
 async function openMap() {
-  try{await loadTerritoryMaps(activeGame,catalog);}catch(error){goMenu();feedback.textContent=error.message;return;}
+  try{await loadTerritoryMaps(activeGame,catalog,{opponents:warOpponents(activeGame)});}catch(error){goMenu();feedback.textContent=error.message;return;}
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
-  ensureTerritories(activeGame);
+  ensureTerritories(activeGame);ensureWarfare(activeGame);
   ensureMarket(activeGame,balance);
   ensureMilitary(activeGame, catalog);
   ensureProduction(activeGame); updateProduction(activeGame);
@@ -114,10 +118,10 @@ async function openMap() {
   ensureVictory(activeGame);
   ensureClock(activeGame).speed = 4;
   showScreen('map');
-  timeUI.refresh();newsUI.refresh();
+  timeUI.refresh();newsUI.refresh();warUI.refresh();
   refreshVictory();
   economyUI.refresh();
-  if(!territoryUI.resume())eventUI.resume();
+  resumePending();
   document.querySelector('#back-to-menu').focus({ preventScroll: true });
   if (map) { map.setSession(activeGame); return; }
   if (pendingMap) return;
@@ -126,7 +130,7 @@ async function openMap() {
   document.querySelector('#map-load-message').textContent = 'กำลังเตรียมแผนที่โลก…';
   try {
     pendingMap = import('./ui/map-screen.js').then(module => module.initializeMapScreen({
-      catalog, getState: () => activeGame, onChange: scheduleSave,
+      catalog, balance, getState: () => activeGame, onChange: scheduleSave,
     }));
     map = await pendingMap;
     loading.hidden = true;
@@ -165,7 +169,7 @@ async function boot() {
     await loadResources(catalog);
     await loadRecipes(catalog);
     await loadTraits(catalog);
-    createTraitMap({catalog,getState:()=>activeGame,onChange:persistGame,onRefresh:()=>map?.setSession(activeGame)});
+    createTraitMap({catalog,getState:()=>activeGame,onChange:persistGame,onRefresh:refreshGameViews});
     const policiesResponse=await fetch(new URL('../data/policies.json',import.meta.url));
     if(!policiesResponse.ok)throw Error('โหลดนโยบายไม่สำเร็จ');
     catalog.policies=await policiesResponse.json();
@@ -180,22 +184,23 @@ async function boot() {
     if (!eventsResponse.ok) throw new Error('โหลดเหตุการณ์ไม่สำเร็จ');
     catalog.events = await eventsResponse.json();
     economyUI = createEconomyScreen({ catalog, balance, getState: () => activeGame,
-      onChange: persistGame, onRefresh: () => { map?.setSession(activeGame); refreshVictory(); }, onMenu: goMenu });
+      onChange: persistGame, onRefresh: refreshGameViews, onMenu: goMenu });
     eventUI = createEventScreen({ catalog, getState: () => activeGame, onChange: persistGame,
-      onRefresh: () => map?.setSession(activeGame), onContinue: () => timeUI.refresh() });
+      onRefresh: refreshGameViews, onContinue: () => timeUI.refresh() });
     newsUI = createNewsScreen(()=>activeGame);
-    territoryUI=createTerritoryEvents({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:()=>{map?.setSession(activeGame);newsUI.refresh();},onFocus:id=>map?.focusProvince(id)});
+    warUI=createWarScreen({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:refreshGameViews,onDone:resumePending,onFocus:id=>map?.focusProvince(id)});
+    territoryUI=createTerritoryEvents({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:refreshGameViews,onFocus:id=>map?.focusProvince(id),onForce:(pending,done)=>warUI.confirmWar(pending.claimant,{provinceId:pending.provinceId,onSuccess:done})});
     timeUI = createTimeScreen({ catalog, balance, getState: () => activeGame, onChange: scheduleSave, onTick:()=>newsUI.refresh(),
       onMonth: () => {
         economyUI.finishMonth();
-        if (!document.querySelector('dialog[open]') && !activeGame.economy.gameOver && !activeGame.victory.finished && !territoryUI.monthly()) eventUI.monthly();
+        if (!document.querySelector('dialog[open]') && !activeGame.economy.gameOver && !activeGame.victory.finished && !warUI.resume() && !territoryUI.monthly()) eventUI.monthly();
         return !document.querySelector('dialog[open]');
       } });
-    const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
-    const marketUI = createMarketScreen({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:()=>map?.setSession(activeGame)});
+    const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: refreshGameViews });
+    const marketUI = createMarketScreen({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:refreshGameViews});
     document.querySelector('#open-market').addEventListener('click',marketUI.open);
     createGuidance({ catalog, balance, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
-      onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
+      onChange: persistGame, onRefresh: refreshGameViews });
     startUI = createStartScreen({ catalog, balance, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();
   } catch {

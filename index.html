@@ -26,6 +26,7 @@
   <title>World 2000</title>
   <link rel="stylesheet" href="./css/performance.css">
   <link rel="stylesheet" href="./css/territories.css">
+  <link rel="stylesheet" href="./css/war.css">
 </head>
 <body>
   <header class="masthead" id="menu-header">
@@ -114,6 +115,7 @@
       <div class="time-controls"><div class="month-clock"><span class="year-badge" id="game-date">1 มกราคม 2000</span><div id="month-track" role="progressbar" aria-label="ความคืบหน้าของเดือน" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="month-progress"></span></div></div><button type="button" class="map-button" data-time-speed="pause" aria-label="หยุดเวลา">⏸</button><button type="button" class="map-button" data-time-speed="1">×1</button><button type="button" class="map-button" data-time-speed="2">×2</button><button type="button" class="map-button" data-time-speed="4">×4</button><span id="time-status">ความเร็ว ×4</span><button type="button" class="map-button victory-chip" id="victory-toggle" aria-label="รายละเอียดเป้าหมาย"><span aria-hidden="true">🏆</span> <span id="victory-progress-text">0%</span><span id="victory-name" hidden>เป้าหมาย</span><span id="victory-progress-detail" hidden></span></button></div>
     </header>
     <button type="button" id="news-ticker" aria-label="เปิดประวัติข่าว 20 รายการล่าสุด">📰 ยังไม่มีข่าวใหม่</button>
+    <section id="war-strip" hidden aria-label="สถานะสงคราม"><label for="war-select">⚔️</label><select id="war-select" aria-label="เลือกสงคราม"></select><span id="war-months"></span><div class="war-strip-target"><span id="war-target-label"></span><progress id="war-progress" max="100" value="0"></progress></div><button id="war-manage" class="map-button" type="button">จัดการสงคราม</button></section>
     <div class="country-hud" aria-label="สถานะประเทศของคุณ">
       <button type="button" class="hud-button" data-stat="treasury" aria-label="อธิบายเงินที่มี"><span class="hud-icon" aria-hidden="true">💰</span><span><span class="hud-label">เงินที่มี</span><strong id="hud-treasury">—</strong><small id="hud-net"></small></span></button>
       <button type="button" class="hud-button" data-stat="happiness" aria-label="อธิบายความสุข"><span class="hud-icon" aria-hidden="true">😊</span><span><span class="hud-label">ความสุข</span><strong id="hud-happiness">—</strong></span></button>
@@ -134,8 +136,8 @@
         </div>
         <span class="player-pulse" id="player-pulse" hidden aria-hidden="true"><i></i><i></i></span>
         <canvas id="world-map" tabindex="0" role="img" aria-label="แผนที่โลก ลากเพื่อเลื่อน ใช้สองนิ้วหรือล้อเมาส์เพื่อซูม แตะเพื่อเลือกประเทศ หรือเลือกจากรายชื่อด้านข้าง"></canvas>
-        <button id="territory-alert" type="button" hidden aria-label="เหตุการณ์ดินแดน">⚠️</button><aside id="province-map-card" hidden><strong id="province-map-name"></strong><p id="province-map-info"></p></aside>
-        <canvas id="trade-canvas" aria-hidden="true"></canvas><aside id="trade-info" hidden><p id="trade-info-text"></p><button id="close-trade-info" class="map-button" type="button">ปิด</button></aside>
+        <button id="territory-alert" type="button" hidden aria-label="เหตุการณ์ดินแดน">⚠️</button><aside id="province-map-card" hidden><strong id="province-map-name"></strong><p id="province-map-info"></p><button id="war-target-province" type="button" class="map-button" hidden>บุกจังหวัดนี้</button></aside>
+        <svg id="war-map-overlay" aria-hidden="true" hidden></svg><canvas id="trade-canvas" aria-hidden="true"></canvas><aside id="trade-info" hidden><p id="trade-info-text"></p><button id="close-trade-info" class="map-button" type="button">ปิด</button></aside>
         <div class="trait-map-dock"><button id="map-special" type="button" aria-label="ใช้ความสามารถพิเศษ"><span class="special-ring" aria-hidden="true"><span id="map-special-days">✨</span></span><span><strong>ความสามารถพิเศษ</strong><span id="map-special-name"></span><span id="map-special-status"></span></span></button><p id="trait-map-summary" role="status" hidden></p></div>
         <aside id="missions" class="missions" aria-label="ภารกิจแนะนำ"><header><h3>ภารกิจแนะนำ</h3><button id="dismiss-missions" class="map-button" type="button" aria-label="ปิดภารกิจแนะนำ">×</button></header><ol id="mission-list"></ol></aside>
         <div class="map-caption" aria-hidden="true">แผนที่การเมือง <span>ปี 2000</span></div>
@@ -162,7 +164,7 @@
           <div id="country-top-resources"></div>
           <p id="country-note">แตะพื้นที่บนแผนที่ เพื่อดูชื่อประเทศและไฮไลต์พรมแดน</p>
           <div id="country-relation" class="relation" hidden><strong id="relation-label"></strong><p id="relation-reason"></p></div>
-          <details><summary>ดูตัวเลขของประเทศนี้</summary><dl id="country-stats" class="stat-grid compact-stats" hidden></dl></details>
+          <button id="declare-war" class="map-button" type="button" hidden>ประกาศสงคราม</button><p id="war-declare-reason" hidden></p><details><summary>ดูตัวเลขของประเทศนี้</summary><dl id="country-stats" class="stat-grid compact-stats" hidden></dl></details>
         </div>
         <details class="map-help"><summary aria-label="วิธีสำรวจ">?</summary><div class="map-guide">
           <h3>วิธีสำรวจ</h3>
@@ -182,6 +184,7 @@
 <button id="open-policy" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🎚️</span>นโยบาย</button></nav>
   </main>
   <dialog id="resource-dialog" class="economy-dialog" aria-labelledby="resource-title"><header><h2 id="resource-title">ทรัพยากรของประเทศ</h2><button id="close-resources" class="map-button" type="button">กลับแผนที่</button></header><section id="resource-content"></section></dialog>
+  <dialog id="war-dialog" class="economy-dialog" aria-labelledby="war-title"><header><h2 id="war-title">สงคราม</h2><button id="close-war" type="button" class="map-button">กลับแผนที่</button></header><section id="war-content"></section></dialog>
   <dialog id="territory-event-dialog" class="economy-dialog" aria-labelledby="territory-event-title"><header><h2 id="territory-event-title">เหตุการณ์ดินแดน</h2></header><section id="territory-event-content"></section></dialog>
   <dialog id="news-dialog" class="economy-dialog" aria-labelledby="news-title"><header><h2 id="news-title">ข่าวล่าสุด 20 รายการ</h2><button id="close-news" class="map-button" type="button">กลับแผนที่</button></header><ol id="news-history"></ol></dialog>
   <dialog id="market-dialog" class="economy-dialog" aria-labelledby="market-title"><header><h2 id="market-title">ตลาดโลก</h2><button id="close-market" class="map-button" type="button">กลับแผนที่</button></header><section id="market-content"></section></dialog>

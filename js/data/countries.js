@@ -37,7 +37,7 @@ export function createCatalog(countries, relations) {
   }
   const playable = countries.filter(country => country.playable);
   if (playable.length < 2) throw new Error('ประเทศสำหรับสุ่มไม่เพียงพอ');
-  return { countries, byId, byMapId, playable, relationPairs };
+  return { countries, byId, byMapId, playable, relationPairs, relationGroups:relations.groups??{} };
 }
 
 let pending;
