@@ -1,4 +1,4 @@
-import { createProvinceScreen, renderProvinceList } from './province-screen.js';
+import { territorySummary } from '../territories.js';
 import { formatNumber, renderStats } from './stats.js';
 import { renderArmy } from './army-screen.js';
 import { renderTraits } from './traits-screen.js';
@@ -18,7 +18,7 @@ const lessons = [
   ['📅', 'เวลาเดินเอง', 'ดูวันที่มุมขวาบน กดหยุดหรือเร่งเวลาได้ เกมคำนวณเงินทุกเดือน และหยุดเมื่อมีเหตุการณ์ให้เลือก'],
 ];
 
-export function createGuidance({ catalog, balance, onProvinceFocus, getState, onRanking, onResources, onChange, onRefresh }) {
+export function createGuidance({ catalog, balance, getState, onRanking, onResources, onChange, onRefresh }) {
   let prefs = {};
   try { prefs = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { /* ใช้ค่าชั่วคราวเมื่ออ่านไม่ได้ */ }
   if (typeof prefs !== 'object' || Array.isArray(prefs)) prefs = {};
@@ -78,16 +78,11 @@ export function createGuidance({ catalog, balance, onProvinceFocus, getState, on
   close.addEventListener('click', finish);
   dialog.addEventListener('cancel', event => { event.preventDefault(); finish(); });
   document.querySelector('#dismiss-missions').addEventListener('click', () => { prefs.missionsHidden = true; remember(); refresh(); });
-  const provinceUI=createProvinceScreen({catalog,balance,getState,onChange,onRefresh,onFocus:onProvinceFocus,onBack:()=>countryScreen('provinces')});
-  document.addEventListener('open-province',event=>{const p=catalog.provinceData?.countries[getState()?.playerCountryId]?.find(p=>p.id===event.detail);if(p){dialog.close();provinceUI.open(p);}});
-  function countryScreen(tab='overview') {
-    const state = getState(), country = catalog.byId.get(state.playerCountryId);
+  function countryScreen() {
+    const state=getState(),country=catalog.byId.get(state.playerCountryId);
     open(`ประเทศของคุณ • ${country.nameTh}`);
-    const tabs=document.createElement('nav');tabs.className='country-tabs';tabs.setAttribute('role','tablist');
-    for(const [id,label]of [['overview','ภาพรวม'],['provinces','จังหวัด']]){const b=document.createElement('button');b.type='button';b.className='map-button';b.id=`country-tab-${id}`;b.textContent=label;b.setAttribute('role','tab');b.setAttribute('aria-selected',String(tab===id));b.onclick=()=>countryScreen(id);tabs.append(b);}
-    body.append(tabs);
-    if(tab==='provinces'){renderProvinceList(body,{state,catalog,balance,onSelect:p=>{dialog.close();provinceUI.open(p);}});return;}
-    text('ดูภาพรวมประเทศ หรือเปิดอันดับเพื่อเทียบกับประเทศอื่น');
+    const territory=territorySummary(state,catalog);
+    if(territory.total||territory.acquired)text(`ดินแดน ${territory.held}/${territory.total} จังหวัด (${Math.round(territory.percent)}%)`,'territory-summary');
     const dl = document.createElement('dl'); dl.className = 'stat-grid'; renderStats(dl, state.countries[country.id]); body.append(dl);
     renderTraits(body,state,catalog,onChange,onRefresh);
     const history = state.events?.history ?? [];

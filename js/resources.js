@@ -1,4 +1,4 @@
-import { provinceOutput } from './provinces.js';
+import { distributeTerritoryProduction } from './territories.js';
 import { addNews } from './events/news.js';
 import { RESOURCE_IDS } from './data/resource-ids.js';
 import { ensureMarket, marketPriceMillions, exportCapacity } from './market.js';
@@ -18,13 +18,15 @@ export function ensureResources(state) {
 export function resourceProduction(stats, levels, balance, modifiers = {}) {
   return Object.fromEntries(RESOURCE_IDS.map(id => [id, Math.round((levels[id] ?? 0) * balance.resources.unitsPerStarPerMonth * (modifiers.resourceOutput?.[id] ?? 1))]));
 }
-export function countryResourceProduction(state,catalog,balance) {
-  const modifiers=traitModifiers(state,catalog),result=resourceProduction(state.countries[state.playerCountryId],catalog.resourceLevels.get(state.playerCountryId),balance,modifiers);
-  for(const [id,amount]of Object.entries(provinceOutput(state,catalog)))result[id]+=Math.round(amount*(modifiers.resourceOutput[id]??1));
-  return result;
+export function allCountryResourceProduction(state,catalog,balance) {
+  const base=Object.fromEntries(catalog.countries.map(c=>[c.id,resourceProduction(state.countries[c.id],catalog.resourceLevels.get(c.id),balance,traitModifiers(state,catalog,c.id))]));
+  return distributeTerritoryProduction(state,catalog,base);
 }
-export function resourceEffects(stats, levels, definitions, balance, random = Math.random, months = 3, modifiers = {}) {
-  const b = balance.resources, production = resourceProduction(stats,levels,balance,modifiers);
+export function countryResourceProduction(state,catalog,balance) {
+  return allCountryResourceProduction(state,catalog,balance)[state.playerCountryId];
+}
+export function resourceEffects(stats, levels, definitions, balance, random = Math.random, months = 3, modifiers = {}, territoryProduction = null) {
+  const b = balance.resources, production = {...(territoryProduction ?? resourceProduction(stats,levels,balance,modifiers))};
   for (const id of RESOURCE_IDS) production[id] *= months;
   const drought = random() < b.droughtChance * months / 3;
   const protection = clamp(levels.freshwater * b.waterProtectionPerStar,0,1);

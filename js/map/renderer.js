@@ -2,7 +2,7 @@ import { defaultQuality, powerSaving } from '../ui/performance.js';
 import { geoEquirectangular, geoPath, geoGraticule10, rgb } from '../../lib/d3-7.9.0.js';
 import { bindMapControls } from './controls.js';
 
-export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {}, onProvinceSelect = () => {} }) {
+export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange = () => {}, onPlayerPosition = () => {}, onProvinceSelect = () => {}, onProvinceMarkerPosition = () => {} }) {
   const context = canvas.getContext('2d', { alpha: false });
   if (!context) throw new Error('เบราว์เซอร์นี้ไม่รองรับแผนที่ Canvas');
   const { map } = world.settings;
@@ -26,9 +26,12 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let selected = null;
   let provinceMarker=null;
   let provinceShapes=[],provinceMesh=null,selectedProvince=null;
+  let ownerOf=p=>p.owner,ownerColor=()=>null,ownerRevision=-1,provinceAlert=null;
   // รวมเส้นลงชั้นสีเดิม แท็บเล็ตจึงไม่ต้องวาดภาพเพิ่มระหว่างเลื่อน
   function paintProvinces(ctx,k){
-    ctx.save();ctx.clip(player.path);
+    ctx.save();
+    for(const shape of provinceShapes)if(ownerOf(shape.feature.properties)!==shape.feature.properties.owner){ctx.globalAlpha=.7;ctx.fillStyle=ownerColor(ownerOf(shape.feature.properties))??'#b59f83';ctx.fill(shape.path);}
+    ctx.globalAlpha=1;
     ctx.strokeStyle='#102d40b3';ctx.lineWidth=Math.max(.3,.7/k);
     if(provinceMesh)ctx.stroke(provinceMesh);else for(const p of provinceShapes)ctx.stroke(p.path);
     if(selectedProvince){ctx.globalAlpha=.3;ctx.fillStyle='#ffe498';ctx.fill(selectedProvince.path);ctx.globalAlpha=1;ctx.strokeStyle='#fff2a8';ctx.lineWidth=2/k;ctx.stroke(selectedProvince.path);}
@@ -121,9 +124,10 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.lineWidth = .8 / k; context.strokeStyle = '#d0d6bd99'; context.stroke(shape.path);
       context.restore();
     }
+    const showProvinces=provinceShapes.length>0&&k/fit>=3;
     if (selected) {
       context.fillStyle = map.highlightColor;
-      context.globalAlpha = resourceColor ? 0 : 0.52;
+      context.globalAlpha = resourceColor||showProvinces ? 0 : 0.52;
       context.fill(selected.path);
       context.globalAlpha = 1;
       context.strokeStyle = map.highlightColor;
@@ -140,7 +144,6 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.stroke(player.path);
       context.restore();
     }
-    const showProvinces=provinceShapes.length>0&&k/fit>=3;
     if(canvas.dataset.provinceVisible!==String(showProvinces))canvas.dataset.provinceVisible=String(showProvinces);
     if(showProvinces&&player&&quality==='high'&&!powerSaving()){
       context.save();context.shadowBlur=0;context.filter='none';paintProvinces(context,k);context.restore();
@@ -179,6 +182,8 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       const [lx, ly] = player.label;
       onPlayerPosition({ x: lx * k + x, y: ly * k + y, visible: player.area * k * k < 1800 });
     } else onPlayerPosition(null);
+    if(provinceAlert){const [mx,my]=provinceAlert.label,px=mx*k+x,py=my*k+y;onProvinceMarkerPosition({x:px,y:py,visible:px>=0&&px<=width&&py>=0&&py<=height});}
+    else onProvinceMarkerPosition(null);
   }
   function resize() {
     const rect = canvas.getBoundingClientRect();
@@ -208,11 +213,14 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   }
   const view = {
     setProvinceFeatures: features=>{
-      provinceShapes=features.map(f=>({feature:f,path:new Path2D(path(f)),bounds:path.bounds(f)}));
+      provinceShapes=features.map(f=>{const polygons=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;const largest=polygons.map(coordinates=>({type:'Polygon',coordinates})).sort((a,b)=>path.area(b)-path.area(a))[0];return {feature:f,path:new Path2D(path(f)),bounds:path.bounds(f),label:path.centroid(largest)};});
       provinceMesh=new Path2D();
       if(typeof provinceMesh.addPath==='function')for(const p of provinceShapes)provinceMesh.addPath(p.path);else provinceMesh=null;
       selectedProvince=null;provinceMarker=null;countryLayer=null;canvas.dataset.provinceCount=String(features.length);onProvinceSelect(null);schedule();
     },
+    setProvinceOwners:(revision,resolve,color)=>{ownerOf=resolve;ownerColor=color;if(ownerRevision===revision)return;ownerRevision=revision;countryLayer=null;schedule();},
+    setProvinceAlert:id=>{const shape=provinceShapes.find(p=>p.feature.id===id)??null;if(provinceAlert===shape)return;provinceAlert=shape;schedule();},
+    focusProvince:id=>{const shape=provinceShapes.find(p=>p.feature.id===id);if(shape)view.focusPoint(projection.invert(shape.label),shape.feature.properties.nameTh,id);},
     focusPoint: (point,name,id) => {
       selectedProvince=provinceShapes.find(p=>p.feature.properties.id===id)??null;
       countryLayer=null;
@@ -251,8 +259,8 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       context.resetTransform();
       if(transform.k/fit>=3&&player){
         const province=provinceShapes.find(p=>mx>=p.bounds[0][0]&&mx<=p.bounds[1][0]&&my>=p.bounds[0][1]&&my<=p.bounds[1][1]&&context.isPointInPath(p.path,mx,my));
-        if(province&&context.isPointInPath(player.path,mx,my)){
-          selected=player;onSelect(player.country);selectedProvince=province;countryLayer=null;provinceMarker={point:province.feature.properties.point,name:province.feature.properties.nameTh};
+        if(province){
+          selected=player;onSelect(player.country);selectedProvince=province;countryLayer=null;provinceMarker={point:projection.invert(province.label),name:province.feature.properties.nameTh};
           context.restore();schedule();onProvinceSelect(province.feature.properties);return;
         }
       }

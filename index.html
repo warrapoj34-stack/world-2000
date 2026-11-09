@@ -25,7 +25,7 @@
   <script type="module" src="./js/main.js"></script>
   <title>World 2000</title>
   <link rel="stylesheet" href="./css/performance.css">
-  <link rel="stylesheet" href="./css/provinces.css">
+  <link rel="stylesheet" href="./css/territories.css">
 </head>
 <body>
   <header class="masthead" id="menu-header">
@@ -134,7 +134,7 @@
         </div>
         <span class="player-pulse" id="player-pulse" hidden aria-hidden="true"><i></i><i></i></span>
         <canvas id="world-map" tabindex="0" role="img" aria-label="แผนที่โลก ลากเพื่อเลื่อน ใช้สองนิ้วหรือล้อเมาส์เพื่อซูม แตะเพื่อเลือกประเทศ หรือเลือกจากรายชื่อด้านข้าง"></canvas>
-        <aside id="province-map-card" hidden><strong id="province-map-name"></strong><p id="province-map-info"></p><button id="province-map-manage" type="button" class="map-button">บริหารจังหวัด</button></aside>
+        <button id="territory-alert" type="button" hidden aria-label="เหตุการณ์ดินแดน">⚠️</button><aside id="province-map-card" hidden><strong id="province-map-name"></strong><p id="province-map-info"></p></aside>
         <canvas id="trade-canvas" aria-hidden="true"></canvas><aside id="trade-info" hidden><p id="trade-info-text"></p><button id="close-trade-info" class="map-button" type="button">ปิด</button></aside>
         <div class="trait-map-dock"><button id="map-special" type="button" aria-label="ใช้ความสามารถพิเศษ"><span class="special-ring" aria-hidden="true"><span id="map-special-days">✨</span></span><span><strong>ความสามารถพิเศษ</strong><span id="map-special-name"></span><span id="map-special-status"></span></span></button><p id="trait-map-summary" role="status" hidden></p></div>
         <aside id="missions" class="missions" aria-label="ภารกิจแนะนำ"><header><h3>ภารกิจแนะนำ</h3><button id="dismiss-missions" class="map-button" type="button" aria-label="ปิดภารกิจแนะนำ">×</button></header><ol id="mission-list"></ol></aside>
@@ -157,7 +157,7 @@
         <select id="country-picker" disabled><option value="">เลือกประเทศหรือดินแดน</option></select>
         <div class="country-detail" id="country-detail" aria-live="polite" aria-atomic="true">
           <div class="country-swatch" id="country-swatch" hidden aria-hidden="true"></div>
-          <p class="detail-eyebrow" id="country-category">ประเทศและดินแดน</p>
+          <p id="country-territory" hidden></p><p class="detail-eyebrow" id="country-category">ประเทศและดินแดน</p>
           <h3 id="country-name">เลือกประเทศ</h3>
           <div id="country-top-resources"></div>
           <p id="country-note">แตะพื้นที่บนแผนที่ เพื่อดูชื่อประเทศและไฮไลต์พรมแดน</p>
@@ -182,7 +182,7 @@
 <button id="open-policy" class="map-button" type="button"><span class="nav-icon" aria-hidden="true">🎚️</span>นโยบาย</button></nav>
   </main>
   <dialog id="resource-dialog" class="economy-dialog" aria-labelledby="resource-title"><header><h2 id="resource-title">ทรัพยากรของประเทศ</h2><button id="close-resources" class="map-button" type="button">กลับแผนที่</button></header><section id="resource-content"></section></dialog>
-  <dialog id="province-dialog" class="economy-dialog province-dialog" aria-labelledby="province-title"><header><h2 id="province-title">จังหวัด</h2><button id="close-province" class="map-button" type="button">กลับแผนที่</button></header><section id="province-content"></section></dialog>
+  <dialog id="territory-event-dialog" class="economy-dialog" aria-labelledby="territory-event-title"><header><h2 id="territory-event-title">เหตุการณ์ดินแดน</h2></header><section id="territory-event-content"></section></dialog>
   <dialog id="news-dialog" class="economy-dialog" aria-labelledby="news-title"><header><h2 id="news-title">ข่าวล่าสุด 20 รายการ</h2><button id="close-news" class="map-button" type="button">กลับแผนที่</button></header><ol id="news-history"></ol></dialog>
   <dialog id="market-dialog" class="economy-dialog" aria-labelledby="market-title"><header><h2 id="market-title">ตลาดโลก</h2><button id="close-market" class="map-button" type="button">กลับแผนที่</button></header><section id="market-content"></section></dialog>
   <dialog id="event-dialog" class="event-dialog" aria-labelledby="event-title"><div id="event-icon" class="event-icon"></div><h2 id="event-title"></h2><p id="event-story"></p><div id="event-options"></div><p id="event-summary" hidden></p><button id="event-next" class="map-button" type="button" hidden>เล่นต่อ</button></dialog>

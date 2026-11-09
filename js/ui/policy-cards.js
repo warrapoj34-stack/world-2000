@@ -1,3 +1,4 @@
+import { territoryIncomeMultiplier } from '../territories.js';
 import {traitModifiers} from '../traits.js';
 import {ensurePolicyCards,choosePolicy,policyModifiers} from '../policies.js';
 import {simulateCountry} from '../economy.js';
@@ -12,7 +13,7 @@ export function renderPolicyCards(container,state,catalog,balance,onChange){
   const candidate=structuredClone(state);if(!choosePolicy(candidate,data,government,group,id,slot))return;
   container.replaceChildren();container.scrollTop=0;container.parentElement.scrollTop=0;text('ตัวอย่างผลเทิร์นหน้า');
   const traits=traitModifiers(state,catalog);
-  const modifiers=policyModifiers(candidate.economy.cards,data);modifiers.revenue*=traits.taxIncome;
+  const modifiers=policyModifiers(candidate.economy.cards,data);modifiers.revenue*=traits.taxIncome*territoryIncomeMultiplier(state,catalog,state.playerCountryId);
   const stats=state.countries[state.playerCountryId],resources=resourceEffects(stats,catalog.resourceLevels.get(state.playerCountryId),catalog.resourceDefinitions,balance,()=>1,3,traits);
   const result=simulateCountry(stats,government,candidate.economy.policy,balance,()=>.5,resources,modifiers);
   text('เงินคงเหลือประมาณ '+formatMoney(result.stats.treasury));

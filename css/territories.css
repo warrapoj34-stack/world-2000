@@ -1,0 +1,13 @@
+#province-map-card {position:absolute;z-index:4;left:12px;bottom:82px;max-width:min(320px,calc(100% - 24px));padding:12px;border:1px solid #b3cfa2;border-radius:8px;background:#102936f5;color:#e7eedf;font-size:14px;pointer-events:none;}
+#province-map-card p {margin:8px 0 0;font-size:14px;}
+.territory-summary {font-size:16px;color:#cfdfb4;}
+#territory-alert {position:absolute;z-index:5;min-width:48px;min-height:48px;transform:translate(-50%,-50%);border:2px solid #ffdb77;border-radius:50%;background:#273b46;color:#ffe5a0;font-size:22px;animation:territory-blink 1.5s steps(2,end) infinite;}
+@keyframes territory-blink {50% {opacity:.6;}}
+@media(prefers-reduced-motion:reduce){#territory-alert{animation:none;}}
+#territory-event-content {padding:16px;font-size:16px;line-height:1.6;}
+#territory-event-dialog {position:fixed;left:auto;right:12px;top:16%;margin:0;width:min(420px,calc(100vw - 24px));max-height:78vh;z-index:20;}
+.territory-choice {display:flex;flex-direction:column;gap:8px;width:100%;min-height:64px;margin:12px 0;padding:14px;text-align:left;background:#183845;color:#e6efdf;border:1px solid #72928d;border-radius:8px;font-size:16px;cursor:pointer;}
+.territory-choice span {font-size:14px;}
+.territory-choice:disabled,.territory-disabled {opacity:.6;cursor:default;}
+.territory-disabled {font-size:14px;border:1px solid #657271;border-radius:8px;padding:14px;}
+.news-province {min-height:48px;font-size:14px;}

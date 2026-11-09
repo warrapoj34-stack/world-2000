@@ -1,8 +1,9 @@
 import { defaultQuality } from './performance.js';
+import { provinceOwner,territorySummary } from '../territories.js';
 import { loadWorld } from '../data/world.js';
 import { createWorldMap } from '../map/renderer.js';
 import { getRelation } from '../diplomacy/relations.js';
-import { renderStats, renderHUD, governmentName, formatNumber } from './stats.js';
+import { renderStats, renderHUD, governmentName } from './stats.js';
 import { topResources, mapResourceLevel, RESOURCE_COLORS } from '../resources.js';
 import { loadTradeVisualData, createTradeVisuals } from './trade-visuals.js';
 
@@ -22,6 +23,14 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
   const qualityToggle = document.querySelector('#toggle-map-quality');
   const settingsMenu = document.querySelector('#map-settings-menu');
   let restoring = true;
+  let selectedProvince=null;
+  function renderProvinceCard(province){
+    selectedProvince=province;const card=document.querySelector('#province-map-card');card.hidden=!province;if(!province)return;
+    document.querySelector('#province-map-name').textContent=province.nameTh;
+    const owner=provinceOwner(getState(),province),resource=catalog.resourceDefinitions.find(r=>r.id===province.resourceId);
+    card.dataset.owner=owner;
+    document.querySelector('#province-map-info').textContent=`ผู้ครอง: ${catalog.byId.get(owner).nameTh} • ${resource?resource.icon+' '+resource.nameTh:'ไม่มีทรัพยากรเด่นที่ระบุ'}`;
+  }
   const map = createWorldMap(document.querySelector('#world-map'), world, {
     onSelect(country) {
       const state = getState();
@@ -40,6 +49,8 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       detail.dataset.countryId = country?.id ?? '';
       picker.value = country?.id ?? '';
       document.querySelector('#country-name').textContent = info?.nameTh ?? 'เลือกประเทศ';
+      const territory=record&&state?territorySummary(state,catalog,record.id):null,label=document.querySelector('#country-territory');
+      label.hidden=!territory?.total&&!territory?.acquired;label.textContent=territory?`ดินแดน ${territory.held}/${territory.total} จังหวัด (${Math.round(territory.percent)}%)`:'';
       document.querySelector('#country-category').textContent = record ? `${record.id} · ${governmentName(record)}` : 'ประเทศและดินแดน';
       document.querySelector('#country-note').textContent = info?.noteTh
         ?? (country ? (record.statusTh ?? record.nameEn)
@@ -63,12 +74,8 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
         onChange();
       }
     },
-    onProvinceSelect(province){
-      const card=document.querySelector('#province-map-card');card.hidden=!province;if(!province)return;
-      document.querySelector('#province-map-name').textContent=province.nameTh;
-      document.querySelector('#province-map-info').textContent=province.capital+' • '+formatNumber(province.population)+' คน • '+'★'.repeat(province.development);
-      document.querySelector('#province-map-manage').onclick=()=>document.dispatchEvent(new CustomEvent('open-province',{detail:province.id}));
-    },
+    onProvinceSelect:renderProvinceCard,
+    onProvinceMarkerPosition(point){const marker=document.querySelector('#territory-alert');marker.hidden=!point?.visible;if(point){marker.style.left=point.x+'px';marker.style.top=point.y+'px';}},
     onZoom(zoom) {
       if(zoom<3)document.querySelector('#province-map-card').hidden=true;
       zoomLevel.value = `${Math.round(zoom)}×`;
@@ -84,6 +91,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       if (point) { pulse.style.left = `${point.x}px`; pulse.style.top = `${point.y}px`; }
     },
   });
+  document.querySelector('#territory-alert').onclick=()=>{const id=getState()?.provinceEvents?.pending?.provinceId;if(id)document.dispatchEvent(new CustomEvent('open-territory-event',{detail:id}));};
   const options = [...world.countries].sort((a, b) => a.properties.nameTh.localeCompare(b.properties.nameTh, 'th'))
     .map(country => new Option(country.properties.nameTh, country.id));
   picker.append(...options);
@@ -136,13 +144,17 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
     ...map,
     destroy: () => { trade?.destroy();map.destroy(); },
     setSession(state) {
+      map.setProvinceOwners(state.territories?.revision??0,p=>provinceOwner(state,p),id=>world.countries.find(c=>c.id===catalog.byId.get(id)?.mapId)?.properties.color);
+      if(selectedProvince)renderProvinceCard(selectedProvince);
       if(session===state){
+        map.setProvinceAlert(state.provinceEvents?.pending?.provinceId);
         renderHUD(state,catalog);
-        if(state.selectedCountryId)renderStats(document.querySelector('#country-stats'),state.countries[state.selectedCountryId],true);
+        if(state.selectedCountryId){renderStats(document.querySelector('#country-stats'),state.countries[state.selectedCountryId],true);const t=territorySummary(state,catalog,state.selectedCountryId),label=document.querySelector('#country-territory');label.hidden=!t.total&&!t.acquired;label.textContent=`ดินแดน ${t.held}/${t.total} จังหวัด (${Math.round(t.percent)}%)`;}
         return;
       }
       session=state;
-      map.setProvinceFeatures(catalog.provinceFeatures?.features??[]);
+      map.setProvinceFeatures(catalog.territoryFeatures??[]);
+      map.setProvinceAlert(state.provinceEvents?.pending?.provinceId);
       restoring = true;
       const savedView = state.view;
       map.resize();

@@ -1,4 +1,6 @@
-import { loadProvinces, loadProvinceCountry, ensureProvinces, updateProvinceConstruction } from './provinces.js';
+import { loadTerritories,loadTerritoryMaps } from './data/territories.js';
+import { ensureTerritories } from './territories.js';
+import { createTerritoryEvents } from './ui/territory-events.js';
 import { createNewsScreen } from './ui/news-screen.js';
 import { setupPerformance } from './ui/performance.js';
 import { ensurePolicyCards } from './policies.js';
@@ -41,7 +43,7 @@ const newButton = document.querySelector('#new-game');
 const continueButton = document.querySelector('#continue-game');
 const feedback = document.querySelector('#menu-feedback');
 let catalog, startUI, activeGame, activeDraft;
-let balance, economyUI, eventUI, timeUI, newsUI;
+let balance, economyUI, eventUI, territoryUI, timeUI, newsUI;
 let map = null, pendingMap = null, saveTimer = 0;
 
 function showScreen(target) {
@@ -101,10 +103,10 @@ function goMenu() {
 }
 
 async function openMap() {
-  try{await loadProvinceCountry(catalog,activeGame.playerCountryId);}catch(error){goMenu();feedback.textContent=error.message;return;}
+  try{await loadTerritoryMaps(activeGame,catalog);}catch(error){goMenu();feedback.textContent=error.message;return;}
   ensureEconomy(activeGame, balance);
   ensureResources(activeGame);
-  ensureProvinces(activeGame,catalog);
+  ensureTerritories(activeGame);
   ensureMarket(activeGame,balance);
   ensureMilitary(activeGame, catalog);
   ensureProduction(activeGame); updateProduction(activeGame);
@@ -115,7 +117,7 @@ async function openMap() {
   timeUI.refresh();newsUI.refresh();
   refreshVictory();
   economyUI.refresh();
-  eventUI.resume();
+  if(!territoryUI.resume())eventUI.resume();
   document.querySelector('#back-to-menu').focus({ preventScroll: true });
   if (map) { map.setSession(activeGame); return; }
   if (pendingMap) return;
@@ -128,7 +130,7 @@ async function openMap() {
     }));
     map = await pendingMap;
     loading.hidden = true;
-    if (!mapScreen.hidden) map.setSession(activeGame);
+    if (!mapScreen.hidden) {map.setSession(activeGame);if(activeGame.provinceEvents?.pending)map.focusProvince(activeGame.provinceEvents.pending.provinceId);}
   } catch (error) {
     document.querySelector('#map-load-message').textContent = 'โหลดแผนที่ไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง';
     retry.hidden = false;
@@ -170,7 +172,10 @@ async function boot() {
     const response = await fetch(new URL('../data/balance.json', import.meta.url));
     if (!response.ok) throw new Error('โหลดค่าระบบเศรษฐกิจไม่สำเร็จ');
     balance = await response.json();
-    await loadProvinces(catalog);
+    await loadTerritories(catalog);
+    const provinceEventsResponse=await fetch(new URL('../data/events-province.json',import.meta.url));
+    if(!provinceEventsResponse.ok)throw new Error('โหลดเหตุการณ์ดินแดนไม่สำเร็จ');
+    catalog.provinceEvents=await provinceEventsResponse.json();
     const eventsResponse = await fetch(new URL('../data/events.json', import.meta.url));
     if (!eventsResponse.ok) throw new Error('โหลดเหตุการณ์ไม่สำเร็จ');
     catalog.events = await eventsResponse.json();
@@ -179,16 +184,17 @@ async function boot() {
     eventUI = createEventScreen({ catalog, getState: () => activeGame, onChange: persistGame,
       onRefresh: () => map?.setSession(activeGame), onContinue: () => timeUI.refresh() });
     newsUI = createNewsScreen(()=>activeGame);
-    timeUI = createTimeScreen({ catalog, balance, getState: () => activeGame, onChange: scheduleSave, onTick:()=>{if(activeGame&&updateProvinceConstruction(activeGame,catalog))scheduleSave();newsUI.refresh();},
+    territoryUI=createTerritoryEvents({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:()=>{map?.setSession(activeGame);newsUI.refresh();},onFocus:id=>map?.focusProvince(id)});
+    timeUI = createTimeScreen({ catalog, balance, getState: () => activeGame, onChange: scheduleSave, onTick:()=>newsUI.refresh(),
       onMonth: () => {
         economyUI.finishMonth();
-        if (!document.querySelector('dialog[open]') && !activeGame.economy.gameOver && !activeGame.victory.finished) eventUI.monthly();
+        if (!document.querySelector('dialog[open]') && !activeGame.economy.gameOver && !activeGame.victory.finished && !territoryUI.monthly()) eventUI.monthly();
         return !document.querySelector('dialog[open]');
       } });
     const resourceUI = createResourceScreen({ catalog, balance, getState: () => activeGame, onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     const marketUI = createMarketScreen({catalog,balance,getState:()=>activeGame,onChange:persistGame,onRefresh:()=>map?.setSession(activeGame)});
     document.querySelector('#open-market').addEventListener('click',marketUI.open);
-    createGuidance({ catalog, balance, onProvinceFocus:p=>map?.focusPoint(p.point,p.nameTh,p.id), getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
+    createGuidance({ catalog, balance, getState: () => activeGame, onRanking: economyUI.ranking, onResources: resourceUI.open,
       onChange: persistGame, onRefresh: () => map?.setSession(activeGame) });
     startUI = createStartScreen({ catalog, balance, onDraft: persistDraft, onAccept: acceptCountry, onBack: goMenu });
     refreshMenu();

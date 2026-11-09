@@ -14,6 +14,7 @@ export function readSave(kind, catalog, storage) {
     if (!record || typeof record !== 'object') return { status: 'corrupt' };
     if (record.saveVersion !== SAVE_VERSION) return { status: 'incompatible' };
     if (record.kind !== kind || !valid(kind, record.state, catalog)) return { status: 'corrupt' };
+    if (kind === 'game') delete record.state.provinces;
     return { status: 'valid', state: record.state, savedAt: record.savedAt };
   } catch {
     return { status: 'unavailable' };
@@ -24,7 +25,7 @@ export function writeSave(kind, state, catalog, storage) {
   if (!valid(kind, state, catalog)) return { ok: false, reason: 'invalid' };
   try {
     const record = { saveVersion: SAVE_VERSION, gameVersion: VERSION, kind,
-      savedAt: new Date().toISOString(), state };
+      savedAt: new Date().toISOString(), state: kind === 'game' ? Object.fromEntries(Object.entries(state).filter(([key])=>key!=='provinces')) : state };
     (storage ?? globalThis.localStorage).setItem(SAVE_KEYS[kind], JSON.stringify(record));
     return { ok: true };
   } catch {

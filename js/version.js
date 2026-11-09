@@ -1,2 +1,2 @@
-export const VERSION = '0.9.7';
-export const CACHE_REVISION = 'province-admin1-2';
+export const VERSION = '0.9.8';
+export const CACHE_REVISION = 'territories-1';
