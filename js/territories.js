@@ -10,12 +10,19 @@ export function validTerritories(value, catalog) {
     && value.owners && Object.entries(value.owners).every(([id, owner]) => catalog.byId.has(owner) && (!catalog.territoryById || catalog.territoryById.has(id)))
     && value.populationBase && Object.entries(value.populationBase).every(([id,n]) => catalog.byId.has(id) && Number.isFinite(n) && n >= 0));
 }
+export function territoryUnits(catalog,countryId){
+  if(catalog.territoryData?.countries[countryId])return catalog.territoryData.countries[countryId];
+  const country=catalog.byId.get(countryId);if(!country)return [];
+  return [{id:`COUNTRY:${countryId}`,nameTh:country.nameTh,owner:countryId,share:100,resourceId:null,borders:[],coastal:null,terrain:null,capturable:false}];
+}
+export const isTerritoryCapturable=(catalog,id)=>Boolean(catalog.territoryById?.has(id));
+export const crossBorderProvinces=(catalog,id)=>(catalog.territoryData?.adjacency?.[id]??[]).map(id=>catalog.territoryById.get(id));
 export function territorySummary(state, catalog, countryId = state.playerCountryId) {
-  const home = catalog.territoryData?.countries[countryId] ?? [];
+  const home = territoryUnits(catalog,countryId);
   const held = home.filter(p => provinceOwner(state,p) === countryId);
   const additions = [...(catalog.territoryById?.values() ?? [])].filter(p => p.owner !== countryId && provinceOwner(state,p) === countryId);
   const addedShare=additions.reduce((n,p)=>n+Math.round(p.share*100),0),denominator=(home.length?10000:0)+addedShare;
-  return { held: held.length + additions.length, total: home.length + additions.length, percent: denominator?(held.reduce((n,p)=>n+Math.round(p.share*100),0)+addedShare)/denominator*100:0, acquired:additions.length };
+  return { held: held.length + additions.length, total: home.length + additions.length, percent: denominator?(held.reduce((n,p)=>n+Math.round(p.share*100),0)+addedShare)/denominator*100:0, acquired:additions.length,wholeCountry:!catalog.territoryData?.countries[countryId] };
 }
 export function territorySources(state, catalog, countryId) {
   const result = new Map([[countryId, catalog.territoryData?.countries[countryId] ? 0 : 1]]);

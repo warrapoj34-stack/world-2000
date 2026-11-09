@@ -82,7 +82,7 @@ export function createGuidance({ catalog, balance, getState, onRanking, onResour
     const state=getState(),country=catalog.byId.get(state.playerCountryId);
     open(`ประเทศของคุณ • ${country.nameTh}`);
     const territory=territorySummary(state,catalog);
-    if(territory.total||territory.acquired)text(`ดินแดน ${territory.held}/${territory.total} จังหวัด (${Math.round(territory.percent)}%)`,'territory-summary');
+    if(territory.total||territory.acquired)text(`ดินแดน ${territory.held}/${territory.total} ${territory.wholeCountry?'หน่วย':'จังหวัด'} (${Math.round(territory.percent)}%)`,'territory-summary');
     const dl = document.createElement('dl'); dl.className = 'stat-grid'; renderStats(dl, state.countries[country.id]); body.append(dl);
     renderTraits(body,state,catalog,onChange,onRefresh);
     const history = state.events?.history ?? [];

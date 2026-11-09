@@ -1,4 +1,5 @@
 import { feature, merge, neighbors } from '../../lib/topojson-client-3.1.0.js';
+import { geoContains } from '../../lib/d3-7.9.0.js';
 
 async function readJSON(file) {
   const response = await fetch(new URL(`../../data/${file}`, import.meta.url));
@@ -58,6 +59,16 @@ export function prepareWorld(topology, names, settings) {
     countries.push(country);
   }
 
+  // คืนดินแดนตามปีเริ่มเกม โดยไม่แก้ topology ต้นฉบับ
+  for(const transfer of settings.transfers2000??[]){
+    const source=geometries.find(g=>String(g.id)===transfer.from),target=geometries.find(g=>String(g.id)===transfer.to);
+    if(!source||!target||source.type!=='MultiPolygon')throw new Error('ไม่พบข้อมูลปรับเขตปี 2000');
+    const pieces=source.arcs.map(arcs=>({type:'Polygon',arcs}));
+    const selected=pieces.filter(p=>geoContains(feature(topology,p),transfer.anchor));
+    if(selected.length!==1)throw new Error('ระบุพื้นที่ปรับเขตปี 2000 ไม่ได้');
+    countries.find(c=>c.id===transfer.from).geometry=feature(topology,{...source,arcs:source.arcs.filter((_,i)=>pieces[i]!==selected[0])}).geometry;
+    countries.find(c=>c.id===transfer.to).geometry=merge(topology,[target,...selected]);
+  }
   // เลือกสีโดยหลีกเลี่ยงสีเดียวกับประเทศที่ติดกัน
   const adjacency = new Map(countries.map(country => [country.id, new Set()]));
   neighbors(geometries).forEach((items, index) => {

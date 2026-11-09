@@ -3,7 +3,7 @@ import { VERSION, CACHE_REVISION } from './js/version.js';
 const CACHE_PREFIX = `world-2000:${self.registration.scope}:`;
 const CACHE_NAME = `${CACHE_PREFIX}${VERSION}:${CACHE_REVISION}`;
 const APP_SHELL = [
-  './data/provinces/index.json', './js/data/territories.js', './js/territories.js', './data/events-province.json', './js/events/province-events.js', './js/ui/territory-events.js', './css/territories.css',
+  './data/TERRITORY_LICENSES.html', './data/provinces/index.json', './js/data/territories.js', './js/territories.js', './data/events-province.json', './js/events/province-events.js', './js/ui/territory-events.js', './css/territories.css',
   './js/data/starting.js', './js/ui/country-cards.js', './css/country-cards.css',
   './js/events/news.js', './js/ui/news-screen.js', './css/news.css',
   './js/ui/performance.js', './css/performance.css',
@@ -35,7 +35,7 @@ const APP_SHELL = [
   './data/sea_grid.json', './data/trade_ports.json', './js/map/trade-data.js', './js/ui/trade-visuals.js', './css/trade.css',
   './js/data/resource-ids.js', './js/market.js', './js/market-effects.js', './js/ui/market-screen.js', './css/market.css',
 ];
-const OPTIONAL_ASSETS = ['./data/provinces/th.json','./data/provinces/cn.json','./data/provinces/us.json','./data/provinces/jp.json','./data/provinces/fr.json'];
+const OPTIONAL_ASSETS = ['./data/provinces/th.json','./data/provinces/cn.json','./data/provinces/us.json','./data/provinces/jp.json','./data/provinces/fr.json','./data/provinces/ru.json','./data/provinces/ua.json','./data/provinces/mm.json','./data/provinces/la.json','./data/provinces/kh.json','./data/provinces/my.json'];
 const SHELL_URLS = [...new Set(APP_SHELL.map(path=>new URL(path,self.registration.scope).href))];
 const APP_URLS = new Set([...APP_SHELL,...OPTIONAL_ASSETS].map(path=>new URL(path,self.registration.scope).href));
 

@@ -50,7 +50,7 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
       picker.value = country?.id ?? '';
       document.querySelector('#country-name').textContent = info?.nameTh ?? 'เลือกประเทศ';
       const territory=record&&state?territorySummary(state,catalog,record.id):null,label=document.querySelector('#country-territory');
-      label.hidden=!territory?.total&&!territory?.acquired;label.textContent=territory?`ดินแดน ${territory.held}/${territory.total} จังหวัด (${Math.round(territory.percent)}%)`:'';
+      label.hidden=!territory?.total&&!territory?.acquired;label.textContent=territory?`ดินแดน ${territory.held}/${territory.total} ${territory.wholeCountry?'หน่วย':'จังหวัด'} (${Math.round(territory.percent)}%)`:'';
       document.querySelector('#country-category').textContent = record ? `${record.id} · ${governmentName(record)}` : 'ประเทศและดินแดน';
       document.querySelector('#country-note').textContent = info?.noteTh
         ?? (country ? (record.statusTh ?? record.nameEn)
@@ -144,12 +144,12 @@ export async function initializeMapScreen({ catalog, getState, onChange }) {
     ...map,
     destroy: () => { trade?.destroy();map.destroy(); },
     setSession(state) {
-      map.setProvinceOwners(state.territories?.revision??0,p=>provinceOwner(state,p),id=>world.countries.find(c=>c.id===catalog.byId.get(id)?.mapId)?.properties.color);
+      map.setProvinceOwners(state.territories?.revision??0,p=>provinceOwner(state,p),id=>world.countries.find(c=>c.id===catalog.byId.get(id)?.mapId)?.properties.color,p=>world.countries.find(c=>c.id===catalog.byId.get(provinceOwner(state,p))?.mapId));
       if(selectedProvince)renderProvinceCard(selectedProvince);
       if(session===state){
         map.setProvinceAlert(state.provinceEvents?.pending?.provinceId);
         renderHUD(state,catalog);
-        if(state.selectedCountryId){renderStats(document.querySelector('#country-stats'),state.countries[state.selectedCountryId],true);const t=territorySummary(state,catalog,state.selectedCountryId),label=document.querySelector('#country-territory');label.hidden=!t.total&&!t.acquired;label.textContent=`ดินแดน ${t.held}/${t.total} จังหวัด (${Math.round(t.percent)}%)`;}
+        if(state.selectedCountryId){renderStats(document.querySelector('#country-stats'),state.countries[state.selectedCountryId],true);const t=territorySummary(state,catalog,state.selectedCountryId),label=document.querySelector('#country-territory');label.hidden=!t.total&&!t.acquired;label.textContent=`ดินแดน ${t.held}/${t.total} ${t.wholeCountry?'หน่วย':'จังหวัด'} (${Math.round(t.percent)}%)`;}
         return;
       }
       session=state;

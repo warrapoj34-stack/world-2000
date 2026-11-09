@@ -26,7 +26,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
   let selected = null;
   let provinceMarker=null;
   let provinceShapes=[],provinceMesh=null,selectedProvince=null;
-  let ownerOf=p=>p.owner,ownerColor=()=>null,ownerRevision=-1,provinceAlert=null;
+  let ownerOf=p=>p.owner,ownerColor=()=>null,provinceCountry=()=>null,ownerRevision=-1,provinceAlert=null;
   // รวมเส้นลงชั้นสีเดิม แท็บเล็ตจึงไม่ต้องวาดภาพเพิ่มระหว่างเลื่อน
   function paintProvinces(ctx,k){
     ctx.save();
@@ -218,7 +218,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       if(typeof provinceMesh.addPath==='function')for(const p of provinceShapes)provinceMesh.addPath(p.path);else provinceMesh=null;
       selectedProvince=null;provinceMarker=null;countryLayer=null;canvas.dataset.provinceCount=String(features.length);onProvinceSelect(null);schedule();
     },
-    setProvinceOwners:(revision,resolve,color)=>{ownerOf=resolve;ownerColor=color;if(ownerRevision===revision)return;ownerRevision=revision;countryLayer=null;schedule();},
+    setProvinceOwners:(revision,resolve,color,country=()=>null)=>{ownerOf=resolve;ownerColor=color;provinceCountry=country;if(ownerRevision===revision)return;ownerRevision=revision;countryLayer=null;schedule();},
     setProvinceAlert:id=>{const shape=provinceShapes.find(p=>p.feature.id===id)??null;if(provinceAlert===shape)return;provinceAlert=shape;schedule();},
     focusProvince:id=>{const shape=provinceShapes.find(p=>p.feature.id===id);if(shape)view.focusPoint(projection.invert(shape.label),shape.feature.properties.nameTh,id);},
     focusPoint: (point,name,id) => {
@@ -260,7 +260,7 @@ export function createWorldMap(canvas, world, { onSelect, onZoom, onViewChange =
       if(transform.k/fit>=3&&player){
         const province=provinceShapes.find(p=>mx>=p.bounds[0][0]&&mx<=p.bounds[1][0]&&my>=p.bounds[0][1]&&my<=p.bounds[1][1]&&context.isPointInPath(p.path,mx,my));
         if(province){
-          selected=player;onSelect(player.country);selectedProvince=province;countryLayer=null;provinceMarker={point:projection.invert(province.label),name:province.feature.properties.nameTh};
+          selected=shapes.find(s=>s.country===provinceCountry(province.feature.properties))??player;onSelect(selected.country);selectedProvince=province;countryLayer=null;provinceMarker={point:projection.invert(province.label),name:province.feature.properties.nameTh};
           context.restore();schedule();onProvinceSelect(province.feature.properties);return;
         }
       }

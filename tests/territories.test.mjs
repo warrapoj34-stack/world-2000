@@ -19,12 +19,12 @@ function setup(id='THA'){
   const s=createGame(id,c);ensureEconomy(s,balance);ensureResources(s);ensureTerritories(s);return {s,c};
 }
 function storage(){let raw=null;return{getItem:()=>raw,setItem:(_,value)=>raw=value};}
-test('226 ดินแดน มีข้อมูลแค่ 6 ช่อง share รวม 100% และเส้นประเทศละไม่เกิน 300KB',async()=>{
- for(const [id,count]of Object.entries({THA:76,CHN:31,USA:50,JPN:47,FRA:22})){
+test('413 ดินแดน มี 8 ช่อง share รวม 100% และขนาดเส้นไม่เกินงบประเทศ',async()=>{
+ for(const [id,count]of Object.entries({THA:76,CHN:31,USA:50,JPN:47,FRA:22,RUS:89,UKR:27,MMR:14,LAO:18,KHM:24,MYS:15})){
   const rows=index.countries[id],map=await read('provinces/'+index.files[id].replace('.json',''));
   assert.equal(rows.length,count);assert.equal(rows.reduce((n,p)=>n+Math.round(p.share*100),0),10000);
-  assert.equal(map.features.length,count);assert((await stat(new URL('../data/provinces/'+index.files[id],import.meta.url))).size<300000);
-  for(const p of rows){assert.deepEqual(Object.keys(p).sort(),['id','nameTh','owner','share','resourceId','borders'].sort());assert.equal(p.owner,id);assert(p.share>0);assert(p.borders.every(code=>countries.some(c=>c.id===code)));}
+  assert.equal(map.features.length,count);assert((await stat(new URL('../data/provinces/'+index.files[id],import.meta.url))).size<(id==='RUS'?500000:300000));
+  for(const p of rows){assert.deepEqual(Object.keys(p).sort(),['id','nameTh','owner','share','resourceId','borders','coastal','terrain'].sort());assert.equal(p.owner,id);assert(p.share>0);assert(p.borders.every(code=>countries.some(c=>c.id===code)));assert.equal(typeof p.coastal,'boolean');assert(['plain','mountain','forest','cold'].includes(p.terrain));}
   for(const f of map.features)assert.deepEqual(f.properties,{id:f.id});
  }
  const {c}=setup();assert.deepEqual(c.territoryById.get('TH-50').borders,['MMR']);assert.deepEqual(c.territoryById.get('TH-14').borders,[]);assert.deepEqual(c.territoryById.get('US-CA').borders,['MEX']);assert(index.countries.JPN.every(p=>!p.borders.length));
@@ -58,8 +58,8 @@ test('ความสุขและเงินกลับไปคำนว�
 test('โหลด metadata ครั้งเดียว lazy load เฉพาะเส้นที่จำเป็น และใช้ข้อมูลอ้างอิงชุดเดียว',async()=>{
  const {s,c}=setup(),calls=[],original=globalThis.fetch;
  globalThis.fetch=async url=>{const file=String(url).split('/').at(-1);calls.push(file);return{ok:true,json:async()=>file==='index.json'?structuredClone(index):read('provinces/'+file.replace('.json',''))};};
- try{await loadTerritories(c);assert.deepEqual(calls,['index.json']);await loadTerritoryMaps(s,c);assert.deepEqual(calls,['index.json','th.json']);assert.strictEqual(c.territoryFeatures[0].properties,c.territoryById.get(c.territoryFeatures[0].id));await loadTerritoryMaps(s,c);assert.equal(calls.length,2);
- createTerritoryController(s,c).transferProvince('JP-13','THA');await loadTerritoryMaps(s,c);assert(calls.includes('jp.json'));assert.equal(c.territoryFeatures.length,77);
+ try{await loadTerritories(c);assert.deepEqual(calls,['index.json']);await loadTerritoryMaps(s,c,{includeNeighbors:false});assert.deepEqual(calls,['index.json','th.json']);assert.strictEqual(c.territoryFeatures[0].properties,c.territoryById.get(c.territoryFeatures[0].id));await loadTerritoryMaps(s,c,{includeNeighbors:false});assert.equal(calls.length,2);
+ createTerritoryController(s,c).transferProvince('JP-13','THA');await loadTerritoryMaps(s,c,{includeNeighbors:false});assert(calls.includes('jp.json'));assert.equal(c.territoryFeatures.length,123);
  const other=createGame('CUB',c);await loadTerritoryMaps(other,c);assert.equal(c.territoryFeatures.length,0);assert.equal(c.territoryMaps.size,0);
  }finally{globalThis.fetch=original;}
 });
